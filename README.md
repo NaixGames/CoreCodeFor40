@@ -1,2 +1,2 @@
 # CoreCode40
- CoreCodeForGodot40
+ Core Code For Godot v40 release
