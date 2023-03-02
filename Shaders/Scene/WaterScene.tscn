@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://wfpso62cvslp"]
+
+[ext_resource type="Material" uid="uid://bvomufmrn53c2" path="res://Shaders/Assets/WaterShaderMaterial.tres" id="1_dbvvj"]
+[ext_resource type="Texture2D" uid="uid://3oukyc20gand" path="res://Shaders/Assets/water_diffuse.png" id="2_38lgx"]
+[ext_resource type="Script" path="res://Shaders/Scripts/WaterDiffuseScript.cs" id="3_hvsmu"]
+
+[node name="WaterScene" type="Node2D"]
+
+[node name="WaterDiffuse" type="Sprite2D" parent="."]
+texture_repeat = 2
+material = ExtResource("1_dbvvj")
+position = Vector2(578.5, 322)
+scale = Vector2(4.45703, 2.48437)
+texture = ExtResource("2_38lgx")
+script = ExtResource("3_hvsmu")
+
+[connection signal="item_rect_changed" from="WaterDiffuse" to="WaterDiffuse" method="AdjustAspectRatio"]

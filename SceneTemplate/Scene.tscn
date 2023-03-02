@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://dvhqp2ygj2yce"]
+
+[ext_resource type="Script" path="res://ObjectPooler/Scripts/GameObjectPooler.cs" id="1_niiey"]
+
+[node name="Scene" type="Node"]
+
+[node name="ActualScene" type="Node" parent="."]
+
+[node name="PersistentElements" type="Node" parent="ActualScene"]
+
+[node name="NonPersistantelElements" type="Node" parent="ActualScene"]
+
+[node name="ObjectPooler" type="Node" parent="."]
+script = ExtResource("1_niiey")
+mPoolPosition = Vector3(200, 600, 0)
+mShouldLog = true

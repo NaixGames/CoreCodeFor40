@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://ex4crajtydxo"]
+
+[ext_resource type="Script" path="res://GameActorReferenceHandler/Script/GameActorReferenceHandler.cs" id="1_4hiql"]
+[ext_resource type="Texture2D" uid="uid://cjl63lw5knac6" path="res://icon.svg" id="1_vkfu6"]
+[ext_resource type="Script" path="res://FSM/Scripts/StateMachineActor.cs" id="2_vfaly"]
+[ext_resource type="Script" path="res://FSM/Scenes/PlayerStatesExample/PlayerStateManagerExample.cs" id="4_d1ybs"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nobvr"]
+size = Vector2(80, 88)
+
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("mStateMachine")]
+position = Vector2(165, 130)
+script = ExtResource("1_4hiql")
+mTagObject = "Player"
+mStateMachine = NodePath("PlayerExampleFSM")
+
+[node name="Player" type="Sprite2D" parent="."]
+position = Vector2(0, -48)
+texture = ExtResource("1_vkfu6")
+
+[node name="CollisionShape2d" type="CollisionShape2D" parent="."]
+position = Vector2(0, -44)
+shape = SubResource("RectangleShape2D_nobvr")
+
+[node name="PlayerExampleFSM" type="Node2D" parent="." node_paths=PackedStringArray("mStateManager")]
+script = ExtResource("2_vfaly")
+mStateManager = NodePath("PlayerStateManager")
+mMemoryBlackboard = {
+"CharacterNode": NodePath(".."),
+"JumpVelocity": 200.0,
+"MovingVelocity": 1000.0
+}
+mRequestInputChannel = 1
+
+[node name="PlayerStateManager" type="Node2D" parent="PlayerExampleFSM"]
+script = ExtResource("4_d1ybs")
