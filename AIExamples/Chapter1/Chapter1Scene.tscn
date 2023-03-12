@@ -1,0 +1,73 @@
+[gd_scene load_steps=8 format=3 uid="uid://befxeuehclhya"]
+
+[ext_resource type="PackedScene" uid="uid://o8db6ccgmu21" path="res://SceneTemplate/Managers.tscn" id="1_x2t2u"]
+[ext_resource type="PackedScene" uid="uid://dvhqp2ygj2yce" path="res://SceneTemplate/Scene.tscn" id="2_rj3rd"]
+[ext_resource type="Texture2D" uid="uid://dqd4wln1wph42" path="res://icon.svg" id="3_di6l6"]
+[ext_resource type="Script" path="res://FSM/Scripts/StateMachineActor.cs" id="4_ij5sw"]
+[ext_resource type="Script" path="res://AIExamples/Chapter1/Scripts/Bob/StateManagerBob.cs" id="5_khsri"]
+[ext_resource type="Script" path="res://FSM/Scripts/StateMachineAIInput.cs" id="6_diwrw"]
+[ext_resource type="Script" path="res://AIExamples/Chapter1/Scripts/AutomaticAI/AutomaticAIStateManager.cs" id="7_i6xb2"]
+
+[node name="Chapter1Scene" type="Node2D"]
+
+[node name="Managers" parent="." instance=ExtResource("1_x2t2u")]
+
+[node name="AudioManager" parent="Managers" index="4"]
+mPlayMusicAtStart = false
+
+[node name="Scene" parent="." instance=ExtResource("2_rj3rd")]
+
+[node name="Bob" type="Node2D" parent="Scene/ActualScene/NonPersistantelElements" index="0"]
+position = Vector2(839, 321)
+
+[node name="Icon" type="Sprite2D" parent="Scene/ActualScene/NonPersistantelElements/Bob"]
+modulate = Color(0, 1, 0.521569, 1)
+texture = ExtResource("3_di6l6")
+
+[node name="BobFSM" type="Node2D" parent="Scene/ActualScene/NonPersistantelElements/Bob" node_paths=PackedStringArray("mStateManager", "mInputReader")]
+script = ExtResource("4_ij5sw")
+mStateManager = NodePath("BobStateManager")
+mMemoryBlackboard = {
+"Fatigue": 0,
+"Gold": 0,
+"Location": "Mine",
+"MaxFatigue": 10,
+"MaxThirst": 10,
+"Money": 0,
+"PocketSize": 4,
+"Thirst": 0
+}
+mInputReader = NodePath("../AIFSM")
+
+[node name="BobStateManager" type="Node2D" parent="Scene/ActualScene/NonPersistantelElements/Bob/BobFSM"]
+script = ExtResource("5_khsri")
+
+[node name="AIFSM" type="Node" parent="Scene/ActualScene/NonPersistantelElements/Bob" node_paths=PackedStringArray("mStateManager")]
+script = ExtResource("6_diwrw")
+mStateManager = NodePath("StateManagerAI")
+mMemoryBlackboard = {
+"AxisContainer": {},
+"ButtonsContainer": [],
+"WaitingTime": 1
+}
+mAreInputsUpdated = true
+mPlayerID = 0
+mButtons = PackedStringArray("Up")
+mAxisValues = {}
+mButtonsValues = {
+"Up": false
+}
+mTimeSinceLastPressAxis = {}
+mTimeSinceLastPressButton = {
+"Up": 0.0
+}
+mTimeHeldAxis = {}
+mTimeHeldButton = {
+"Up": 0.0
+}
+
+[node name="StateManagerAI" type="Node" parent="Scene/ActualScene/NonPersistantelElements/Bob/AIFSM"]
+script = ExtResource("7_i6xb2")
+
+[editable path="Managers"]
+[editable path="Scene"]

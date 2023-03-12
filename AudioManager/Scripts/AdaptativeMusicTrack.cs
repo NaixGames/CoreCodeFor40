@@ -25,7 +25,7 @@ public partial class AdaptativeMusicTrack : AudioStreamPlayer
 	[Export] private AdaptativeMusicTrack mFollowUpTrack;
 
 
-	private const float mSpeedPhasing = 0.5f;
+	private float mSpeedPhasing = 0.5f;
 
 
 	//Variables for changing track;
@@ -36,10 +36,22 @@ public partial class AdaptativeMusicTrack : AudioStreamPlayer
 
 	private double mExactTimeInTrack=0;
 
+	private bool mEraseOnStop=false;
+
+	public bool EraseOnStop{
+		get {return mEraseOnStop;}
+	}
+
 	// ------------------------------------ Methods ------------------------------------------------
 
 	public void PhaseOut(){
 		mPhaseMode = PhasingOutMode.PhasingOut;
+	}
+
+	public void PhaseOutAndDestroy(){
+		PhaseOut();
+		mSpeedPhasing*=2;
+		mEraseOnStop=true;
 	}
 
 	public void PhaseIn(float startime = 0f, float StartingLinearDB=1){
@@ -65,6 +77,10 @@ public partial class AdaptativeMusicTrack : AudioStreamPlayer
 	public void StopTrack(){
 		this.Stop();
 		this.SetProcess(false);
+		if (mEraseOnStop){
+			this.GetParent<Node>().RemoveChild(this);
+			this.QueueFree();
+		}
 	}
 
 	//This executes when the track finishes!
@@ -106,6 +122,9 @@ public partial class AdaptativeMusicTrack : AudioStreamPlayer
 				this.StopTrack();
 				return;
 			}
+		}
+		if (mEraseOnStop){
+			return;
 		}
 		mExactTimeInTrack = this.GetPlaybackPosition() + AudioServer.GetTimeSinceLastMix() + AudioServer.GetTimeToNextMix()+AudioServer.GetOutputLatency();
 		if (mExactTimeInTrack > this.mAudioLength){

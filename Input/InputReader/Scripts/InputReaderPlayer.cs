@@ -37,36 +37,10 @@ public partial class InputReaderPlayer : InputReaderAbstract
 	protected override void UpdateInput(double delta)
 	{
 		for( int i=0; i< mAxis.Length ; i++){
-			mAxisValues[mAxis[i]] = Input.GetActionStrength(mAxis[i]+PlayerIdAndP());
-			if (Input.GetActionStrength(mAxis[i]+PlayerIdAndP())>0){
-				mTimeSinceLastPressAxis[mAxis[i]]=0;
-				if (Input.IsActionJustPressed(mAxis[i]+PlayerIdAndP())){
-					mTimeHeldAxis[mAxis[i]] = 0;
-				}
-				else{
-					mTimeHeldAxis[mAxis[i]] += delta;
-				}
-			}
-			else{
-				mTimeHeldAxis[mAxis[i]] = 0;
-				mTimeSinceLastPressAxis[mAxis[i]] +=delta;
-			}
+			ProcessAxisValue(mAxis[i], Input.GetActionStrength(mAxis[i]+PlayerIdAndP()), delta);
 		}
 		for( int i=0; i< mButtons.Length ; i++){
-			mButtonsValues[mButtons[i]] = Input.IsActionPressed(mButtons[i]+PlayerIdAndP());
-			if (Input.IsActionPressed(mButtons[i]+PlayerIdAndP())){
-				mTimeSinceLastPressButton[mButtons[i]]=0;
-				if (Input.IsActionJustPressed(mButtons[i]+PlayerIdAndP())){
-					mTimeHeldButton[mButtons[i]]=0;
-				}
-				else{
-					mTimeHeldButton[mButtons[i]]+=delta;
-				}
-			}
-			else{
-				mTimeHeldButton[mButtons[i]]=0;
-				mTimeSinceLastPressButton[mButtons[i]] +=delta;
-			}
+			ProcessButtonPressValue(mButtons[i], Input.IsActionJustPressed(mButtons[i]+PlayerIdAndP()), delta);
 		}
 	}
 

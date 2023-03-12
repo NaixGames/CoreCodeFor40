@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://o8db6ccgmu21"]
+[gd_scene load_steps=10 format=3 uid="uid://o8db6ccgmu21"]
 
 [ext_resource type="PackedScene" uid="uid://cgnt8ay08s2p5" path="res://LogManager/Scenes/LogManager.tscn" id="1_g44yu"]
 [ext_resource type="Script" path="res://ObjectEventDispatcher/GlobalEventDispatcher.cs" id="2_f31l3"]
+[ext_resource type="Script" path="res://SceneTransitionManager/Script/SceneTransitionManager.cs" id="3_33gam"]
 [ext_resource type="Script" path="res://Input/InputManager/Scripts/InputManager.cs" id="3_gbq0a"]
 [ext_resource type="Script" path="res://Input/InputReader/Scripts/InputReaderPlayer.cs" id="4_g5skp"]
 [ext_resource type="Script" path="res://Input/InputReader/Scripts/InputReaderVoid.cs" id="4_xvsgk"]
@@ -21,6 +22,9 @@ mNumberOfFSMChannels = 1
 
 [node name="GlobalEventDispatcher" type="Node" parent="."]
 script = ExtResource("2_f31l3")
+
+[node name="SceneTransitionManager" type="Node" parent="."]
+script = ExtResource("3_33gam")
 
 [node name="InputManager" type="Node" parent="."]
 script = ExtResource("3_gbq0a")

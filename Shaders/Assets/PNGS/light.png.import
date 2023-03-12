@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bu37xv1hkmjsh"
-path="res://.godot/imported/water_uv_offset.png-a51920017ed83911e56156bdd1d200f4.ctex"
+uid="uid://cw18xfh1o1cxp"
+path="res://.godot/imported/light.png-cce76933a45af36b70ba48864d1af57e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Shaders/Assets/water_uv_offset.png"
-dest_files=["res://.godot/imported/water_uv_offset.png-a51920017ed83911e56156bdd1d200f4.ctex"]
+source_file="res://Shaders/Assets/PNGS/light.png"
+dest_files=["res://.godot/imported/light.png-cce76933a45af36b70ba48864d1af57e.ctex"]
 
 [params]
 

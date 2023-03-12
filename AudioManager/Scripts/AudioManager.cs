@@ -30,7 +30,12 @@ public partial class AudioManager : Node
 
 
 	public AudioManager(){
-		instance=this; 
+		if (instance==null){
+			instance=this; 
+		}
+		else{ //This may happen naturally when loading scenes additively. 
+			GD.PushWarning("Instance of AudioManager created when there is an existing instance!");
+		}
 	}
 
 
@@ -72,7 +77,9 @@ public partial class AudioManager : Node
 	//This should be loaded in the editor to save time!
 	public void PopulateMusicAndSFXDictionaries(){
 		GetMusicManagerAndSFXReferences();
-		UpdateMusicTracks();
+		
+		//This now gets called from the SceneTransitionReferenceHelper when it loads the audio banks
+		//UpdateMusicTracks();
 
 		mGlobalSFXMap.Clear();
 		foreach (AudioStreamPlayer mStreamPlayer in mGlobalSFXNodeParent.GetChildren()){
@@ -141,6 +148,12 @@ public partial class AudioManager : Node
 		mPositionalSFXNodeParent = GetNode<Node>(mPositionalSFXNodeParentPath);
 	}
 
+
+	public void UpdateMusicBanks(Node AudioBankContainer){
+		PopulateMusicAndSFXDictionaries();
+		mMusicManager.UpdateMusicBanks(AudioBankContainer);
+	}
+
 	//Need to trigger an event on pause so all audio that is NOT pause SFX gets cut by half.
 	// So OnPause -> ChangeMasterBusLevel(-3f). OffPause ->ChangeMasterBusLevel(0f). (Remember DB scale!)
 
@@ -148,7 +161,9 @@ public partial class AudioManager : Node
 
 	public override void _Ready(){
 		base._Ready();
-		PopulateMusicAndSFXDictionaries();
+		if (mMusicManager==null){
+			PopulateMusicAndSFXDictionaries();
+		}
 		if (mShouldLog){
 			mLogObject = LogManager.Instance.RequestLogReference("Audio", 0);
 		}
@@ -162,4 +177,5 @@ public partial class AudioManager : Node
 			StopMusic();
 		}
 	}
+	
 }

@@ -1,13 +1,11 @@
 using Godot;
 using System;
 
-public partial class AudioPhasingTest : Node, IControlableByInput
+public partial class SceneTransitionManagerTest : Node, IControlableByInput
 {
+	// Called when the node enters the scene tree for the first time.
 
-	//Variables for test
-	[Export] private AdaptativeMusicTrack mFirstTrack;
-
-	[Export] private AdaptativeMusicTrack mSecondTrack;
+	[Export] private bool mHeavyLoad=false;
 
 	// ------------------------------------ Methods for IControlableByInput interface-----------------------------------------
 	
@@ -28,10 +26,6 @@ public partial class AudioPhasingTest : Node, IControlableByInput
 		mInputReader = InputManager.Instance.NullInputReader;
 	}
 
-	// ------------------------------------ Normal Overrides -----------------------------------------
-	
-
-
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
@@ -41,16 +35,25 @@ public partial class AudioPhasingTest : Node, IControlableByInput
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		//USING GD.PRINT AS THIS IS A TEST BUT THIS SHOULDN'T BE THE DEFAULT!
-		GD.Print("ACTUAL TRACK:" + AudioManager.Instance.MusicManager.ActualMusicTrack.Name);
-		
 		if (mInputReader.IsButtonJustPressedInput("Up")){
-			AudioManager.Instance.TransitionToOtherTrack(2);
-			GD.Print("GO TO TRACK 2");
+			if (mHeavyLoad){
+				SceneTransitionManager.Instance.HeavyTransitionToNewScene("SceneOne");
+				return;
+			}
+			else{
+				SceneTransitionManager.Instance.LightTransitionToNewScene("SceneOne");
+				return;
+			}
 		}
 		if (mInputReader.IsButtonJustPressedInput("Down")){
-			AudioManager.Instance.TransitionToOtherTrack(0);
-			GD.Print("GO TO TRACK 0");
+			if (mHeavyLoad){
+				SceneTransitionManager.Instance.HeavyTransitionToNewScene("SceneTwo");
+				return;
+			}
+			else{
+				SceneTransitionManager.Instance.LightTransitionToNewScene("SceneTwo");
+				return;
+			}
 		}
 	}
 }

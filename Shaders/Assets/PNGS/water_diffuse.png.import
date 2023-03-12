@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cw18xfh1o1cxp"
-path="res://.godot/imported/light.png-6f3a7c6e465d6c0daad51f69a2f9e2fb.ctex"
+uid="uid://3oukyc20gand"
+path="res://.godot/imported/water_diffuse.png-25aaa3fe586c22e655d786165aefbff8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Shaders/Assets/light.png"
-dest_files=["res://.godot/imported/light.png-6f3a7c6e465d6c0daad51f69a2f9e2fb.ctex"]
+source_file="res://Shaders/Assets/PNGS/water_diffuse.png"
+dest_files=["res://.godot/imported/water_diffuse.png-25aaa3fe586c22e655d786165aefbff8.ctex"]
 
 [params]
 

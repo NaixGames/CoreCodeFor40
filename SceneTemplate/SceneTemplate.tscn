@@ -7,4 +7,10 @@
 
 [node name="Managers" parent="." instance=ExtResource("1_au3bu")]
 
+[node name="SceneTransitionManager" parent="Managers" index="2" node_paths=PackedStringArray("mReferenceHelper")]
+mReferenceHelper = NodePath("../../Scene")
+
 [node name="Scene" parent="." instance=ExtResource("2_4ylfc")]
+
+[editable path="Managers"]
+[editable path="Scene"]

@@ -69,4 +69,35 @@ public partial class AdaptativeMusicManager : Node
 		return (mMusicTrackSceneList.Count>0);
 	}
 
+	public void UpdateMusicBanks(Node AudioBankContainer){
+		foreach (AdaptativeMusicTrack musicNode in this.GetChildren()){
+			if (musicNode == ActualMusicTrack){
+				ActualMusicTrack.PhaseOutAndDestroy();
+			}
+			else{
+				if (musicNode.IsQueuedForDeletion()){ //if the node is queue for deletion by itself we dont need to do it here.
+					continue;
+				}
+				this.RemoveChild(musicNode);
+				musicNode.QueueFree();
+			}
+		}
+	
+		foreach (AdaptativeMusicTrack musicNode in AudioBankContainer.GetChildren() ){
+			AudioBankContainer.RemoveChild(musicNode);
+			this.AddChild(musicNode);
+		}
+		
+		UpdateMusicTracks();
+
+
+		//Recall that the track that is phasing out will be added to the list. Normally it will be the first element, but rather use this to make it explicit.
+		mMusicTrackSceneList.Remove(ActualMusicTrack);
+
+		ActualMusicTrack = mMusicTrackSceneList[0];
+		ActualMusicTrack.PhaseIn();
+	}
+
+	// ------------------------------------ 
+
 }

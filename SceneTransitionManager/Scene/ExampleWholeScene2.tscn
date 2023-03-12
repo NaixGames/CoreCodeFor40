@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://cfslumrby2j55"]
+
+[ext_resource type="PackedScene" uid="uid://o8db6ccgmu21" path="res://SceneTemplate/Managers.tscn" id="1_pi6p2"]
+[ext_resource type="PackedScene" uid="uid://cppoehehlom3r" path="res://SceneTransitionManager/Scene/ActualSceneTwo.tscn" id="2_20exh"]
+
+[node name="ExampleScene1" type="Node"]
+
+[node name="Managers" parent="." instance=ExtResource("1_pi6p2")]
+
+[node name="SceneTransitionManager" parent="Managers" index="2" node_paths=PackedStringArray("mReferenceHelper")]
+mSceneNameToPathMapping = {
+"SceneOne": "res://SceneTransitionManager/Scene/ActualSceneOne.tscn",
+"SceneTwo": "res://SceneTransitionManager/Scene/ActualSceneTwo.tscn"
+}
+mNonPersistantSceneNameToPathMapping = {
+"SceneOne": "res://SceneTransitionManager/Scene/NonPersistantActualSceneOne.tscn",
+"SceneTwo": "res://SceneTransitionManager/Scene/NonPersistantActualSceneTwo.tscn"
+}
+mReferenceHelper = NodePath("../../ActualSceneTwo")
+
+[node name="ActualSceneTwo" parent="." instance=ExtResource("2_20exh")]
+
+[editable path="Managers"]

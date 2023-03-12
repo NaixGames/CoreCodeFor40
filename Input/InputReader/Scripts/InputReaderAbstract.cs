@@ -130,6 +130,42 @@ public abstract partial class InputReaderAbstract : Node
 		}
 	}
 
+	protected void ProcessButtonPressValue(string ButtonName, bool pressValue, double deltaTime){
+		bool previousValue = mButtonsValues[ButtonName];
+		mButtonsValues[ButtonName] = pressValue;
+			if (pressValue){
+				mTimeSinceLastPressButton[ButtonName]=0;
+				if (previousValue){
+					mTimeHeldButton[ButtonName]+=deltaTime;
+				}
+				else{
+					mTimeHeldButton[ButtonName]=0;
+				}
+			}
+			else{
+				mTimeHeldButton[ButtonName]=0;
+				mTimeSinceLastPressButton[ButtonName] +=deltaTime;
+			}
+	}
+
+	protected void ProcessAxisValue(string AxisName, float AxisStrength, double deltaTime){
+		float previousValue = mAxisValues[AxisName];
+		mAxisValues[AxisName] = AxisStrength;
+			if (AxisStrength>0){
+				mTimeSinceLastPressAxis[AxisName]=0;
+				if (previousValue>0){
+					mTimeHeldAxis[AxisName] += deltaTime;
+				}
+				else{
+					mTimeHeldAxis[AxisName] = 0;
+				}
+			}
+			else{
+				mTimeHeldAxis[AxisName] = 0;
+				mTimeSinceLastPressAxis[AxisName] +=deltaTime;
+			}
+	}
+
 	// ------------------------------------- Primary functions ---------------------------------------
 	public float GiveAxisStrength(string AxisName){
 		if (!mAxisValues.ContainsKey(AxisName)){

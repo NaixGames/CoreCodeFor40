@@ -12,30 +12,33 @@
 
 [node name="Managers" parent="." instance=ExtResource("1_3b3kp")]
 
-[node name="01TestAudio" type="AudioStreamPlayer" parent="Managers/AudioManager/AdaptativeMusicManager" index="0" node_paths=PackedStringArray("mFollowUpTrack")]
-stream = ExtResource("2_rrwfs")
-script = ExtResource("3_trb44")
-mFollowUpTrack = NodePath("../02TestAudio")
-
-[node name="02TestAudio" type="AudioStreamPlayer" parent="Managers/AudioManager/AdaptativeMusicManager" index="1" node_paths=PackedStringArray("mFollowUpTrack")]
-stream = ExtResource("4_oqpw4")
-script = ExtResource("3_trb44")
-mFollowUpTrack = NodePath("../01TestAudio")
-
-[node name="03TestAudio" type="AudioStreamPlayer" parent="Managers/AudioManager/AdaptativeMusicManager" index="2" node_paths=PackedStringArray("mFollowUpTrack")]
-stream = ExtResource("5_ule2v")
-script = ExtResource("3_trb44")
-mFollowUpTrack = NodePath(".")
-
-[node name="04TestAudio" type="AudioStreamPlayer" parent="Managers/AudioManager/AdaptativeMusicManager" index="3" node_paths=PackedStringArray("mFollowUpTrack")]
-stream = ExtResource("5_ule2v")
-script = ExtResource("3_trb44")
-mFollowUpTrack = NodePath(".")
+[node name="SceneTransitionManager" parent="Managers" index="2" node_paths=PackedStringArray("mReferenceHelper")]
+mReferenceHelper = NodePath("../../Scene")
 
 [node name="Scene" parent="." instance=ExtResource("5_sbbsy")]
 
 [node name="TestContainerNode" type="Node" parent="Scene/ActualScene/NonPersistantelElements" index="0"]
 script = ExtResource("7_6vkxv")
+
+[node name="01TestAudio" type="AudioStreamPlayer" parent="Scene/AudioBanks" index="0" node_paths=PackedStringArray("mFollowUpTrack")]
+stream = ExtResource("2_rrwfs")
+script = ExtResource("3_trb44")
+mFollowUpTrack = NodePath("../02TestAudio")
+
+[node name="02TestAudio" type="AudioStreamPlayer" parent="Scene/AudioBanks" index="1" node_paths=PackedStringArray("mFollowUpTrack")]
+stream = ExtResource("4_oqpw4")
+script = ExtResource("3_trb44")
+mFollowUpTrack = NodePath("../01TestAudio")
+
+[node name="03TestAudio" type="AudioStreamPlayer" parent="Scene/AudioBanks" index="2" node_paths=PackedStringArray("mFollowUpTrack")]
+stream = ExtResource("5_ule2v")
+script = ExtResource("3_trb44")
+mFollowUpTrack = NodePath(".")
+
+[node name="04TestAudio" type="AudioStreamPlayer" parent="Scene/AudioBanks" index="3" node_paths=PackedStringArray("mFollowUpTrack")]
+stream = ExtResource("5_ule2v")
+script = ExtResource("3_trb44")
+mFollowUpTrack = NodePath(".")
 
 [editable path="Managers"]
 [editable path="Scene"]

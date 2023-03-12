@@ -42,7 +42,9 @@ public partial class GameObjectPooler : Node
 	}
 
 	public GameObjectPooler(){
-		instance= this;
+		if (instance==null){
+			instance =this;
+		}
 	}
 	// ------------------------------------- Variables
 
@@ -172,6 +174,24 @@ public partial class GameObjectPooler : Node
 
 	public Node2D InstantiateGameObjectIn2D(IPoolableObject ObjectToGive, Vector2 Position, float Rotation = 0f){
 		return InstantiateGameObjectIn2D(ObjectToGive.TagObject, Position, Rotation);
+	}
+	
+
+	//Method to reset the object pooler when loading new scene
+	public void PoolAllObjects(){
+		foreach (string tag in mObjectPoolerMap.Keys){
+			for(int i=1; i< mObjectPoolerMap[tag].Length;i++){
+				mObjectPoolerMap[tag][i].ReturnToPool();
+			}
+		}
+	}
+
+	//Method to erase the object pooler. Usefull to replace it with anotherone on level changes
+
+	public void EraseObjectPooler(){
+		instance=null;
+		this.GetParent<Node>().RemoveChild(this);
+		this.QueueFree();
 	}
 
 	// -----------Methods that return a game object to the pool
