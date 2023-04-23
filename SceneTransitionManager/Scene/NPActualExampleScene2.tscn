@@ -1,10 +1,10 @@
 [gd_scene load_steps=2 format=3 uid="uid://c3cp7rsny752j"]
 
-[ext_resource type="Texture2D" uid="uid://dqd4wln1wph42" path="res://icon.svg" id="1_2ysn1"]
+[ext_resource type="Texture2D" uid="uid://dqd4wln1wph42" path="res://icon.svg" id="1_83piy"]
 
 [node name="NonPersistantelElements" type="Node"]
 
 [node name="Icon" type="Sprite2D" parent="."]
 modulate = Color(0, 0, 1, 1)
 position = Vector2(578, 438)
-texture = ExtResource("1_2ysn1")
+texture = ExtResource("1_83piy")

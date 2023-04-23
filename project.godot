@@ -23,6 +23,10 @@ buses/default_bus_layout="res://AudioManager/AudioBusConfigurations/default_bus_
 
 project/assembly_name="CoreCodeFor40"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/Docker/plugin.cfg")
+
 [input]
 
 UpP1={
@@ -65,3 +69,8 @@ DownP2={
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194322,"key_label":0,"unicode":0,"echo":false,"script":null)
 ]
 }
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0
+textures/lossless_compression/force_png=true

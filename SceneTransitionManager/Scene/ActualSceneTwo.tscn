@@ -1,34 +1,32 @@
-[gd_scene load_steps=8 format=3 uid="uid://cppoehehlom3r"]
+[gd_scene load_steps=8 format=3 uid="uid://bp6klblynwcrq"]
 
 [ext_resource type="Script" path="res://SceneTransitionManager/Script/SceneTransitionReferenceHelper.cs" id="1_cvfdc"]
 [ext_resource type="Script" path="res://SceneTransitionManager/Script/SceneTransitionManagerTest.cs" id="2_vgqha"]
 [ext_resource type="Texture2D" uid="uid://dqd4wln1wph42" path="res://icon.svg" id="3_ucd8o"]
 [ext_resource type="Script" path="res://ObjectPooler/Scripts/GameObjectPooler.cs" id="4_0yh5l"]
-[ext_resource type="PackedScene" uid="uid://c3cp7rsny752j" path="res://SceneTransitionManager/Scene/NonPersistantActualSceneTwo.tscn" id="4_xkfnc"]
 [ext_resource type="AudioStream" uid="uid://bild7eo77cnpq" path="res://AudioManager/BasicTesting/01. Castlevania - Vampire Killer [Torby Brand].mp3" id="5_ul3vj"]
 [ext_resource type="Script" path="res://AudioManager/Scripts/AdaptativeMusicTrack.cs" id="6_qvi8d"]
+[ext_resource type="PackedScene" uid="uid://c3cp7rsny752j" path="res://SceneTransitionManager/Scene/NPActualExampleScene2.tscn" id="7_6x856"]
 
 [node name="Scene" type="Node" node_paths=PackedStringArray("NonPersistentElements", "PersistentElements", "ObjectPoolerNode", "AudioBankContainerNode")]
 script = ExtResource("1_cvfdc")
-NonPersistentElements = NodePath("ActualScene/NonPersistantelElements")
+NonPersistentElements = NodePath("NonPersistantelElements")
 PersistentElements = NodePath("ActualScene/PersistentElements")
 ObjectPoolerNode = NodePath("ObjectPooler")
 AudioBankContainerNode = NodePath("AudioBanks")
 
 [node name="ActualScene" type="Node" parent="."]
 
-[node name="NonPersistantelElements" parent="ActualScene" instance=ExtResource("4_xkfnc")]
-
 [node name="PersistentElements" type="Node" parent="ActualScene"]
-
-[node name="SceneTransitioner" type="Node" parent="ActualScene/PersistentElements"]
-script = ExtResource("2_vgqha")
-mHeavyLoad = true
 
 [node name="Icon" type="Sprite2D" parent="ActualScene/PersistentElements"]
 modulate = Color(0, 0, 1, 1)
 position = Vector2(232, 419)
 texture = ExtResource("3_ucd8o")
+
+[node name="Transitioner" type="Node" parent="ActualScene/PersistentElements"]
+script = ExtResource("2_vgqha")
+mHeavyLoad = true
 
 [node name="ObjectPooler" type="Node" parent="."]
 script = ExtResource("4_0yh5l")
@@ -40,3 +38,5 @@ mShouldLog = true
 [node name="TrackScene2" type="AudioStreamPlayer" parent="AudioBanks"]
 stream = ExtResource("5_ul3vj")
 script = ExtResource("6_qvi8d")
+
+[node name="NonPersistantelElements" parent="." instance=ExtResource("7_6x856")]

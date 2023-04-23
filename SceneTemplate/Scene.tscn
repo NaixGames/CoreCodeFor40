@@ -5,7 +5,7 @@
 
 [node name="Scene" type="Node" node_paths=PackedStringArray("NonPersistentElements", "PersistentElements", "ObjectPoolerNode", "AudioBankContainerNode")]
 script = ExtResource("1_dn0c2")
-NonPersistentElements = NodePath("ActualScene/NonPersistantelElements")
+NonPersistentElements = NodePath("ActualScene/ADDNNONPERSISTENTELEMENTSASANODE")
 PersistentElements = NodePath("ActualScene/PersistentElements")
 ObjectPoolerNode = NodePath("ObjectPooler")
 AudioBankContainerNode = NodePath("AudioBanks")
@@ -14,7 +14,7 @@ AudioBankContainerNode = NodePath("AudioBanks")
 
 [node name="PersistentElements" type="Node" parent="ActualScene"]
 
-[node name="NonPersistantelElements" type="Node" parent="ActualScene"]
+[node name="ADDNNONPERSISTENTELEMENTSASANODE" type="Node" parent="ActualScene"]
 
 [node name="ObjectPooler" type="Node" parent="."]
 script = ExtResource("1_niiey")

@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://cfslumrby2j55"]
+
+[ext_resource type="PackedScene" uid="uid://o8db6ccgmu21" path="res://SceneTemplate/Managers.tscn" id="1_bjrb0"]
+[ext_resource type="PackedScene" uid="uid://bp6klblynwcrq" path="res://SceneTransitionManager/Scene/ActualSceneTwo.tscn" id="2_ooo1v"]
+
+[node name="ExampleScene1" type="Node"]
+
+[node name="Managers" parent="." instance=ExtResource("1_bjrb0")]
+
+[node name="SceneTransitionManager" parent="Managers" index="2" node_paths=PackedStringArray("mReferenceHelper")]
+mReferenceHelper = NodePath("../../ActualSceneTwo")
+
+[node name="ActualSceneTwo" parent="." instance=ExtResource("2_ooo1v")]
+
+[editable path="Managers"]

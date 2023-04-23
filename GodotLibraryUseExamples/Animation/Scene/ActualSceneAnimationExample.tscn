@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://cqy1c5qouddfq"]
+
+[ext_resource type="PackedScene" uid="uid://dvhqp2ygj2yce" path="res://SceneTemplate/Scene.tscn" id="1_5x543"]
+[ext_resource type="PackedScene" uid="uid://sufc7y08k2k0" path="res://GodotLibraryUseExamples/Animation/Scene/NonPersistentElementsAnimationScene.tscn" id="2_gj8j5"]
+
+[node name="Scene" node_paths=PackedStringArray("NonPersistentElements") instance=ExtResource("1_5x543")]
+NonPersistentElements = NodePath("ActualScene/NonPersisentElements")
+
+[node name="NonPersisentElements" parent="ActualScene" index="2" instance=ExtResource("2_gj8j5")]

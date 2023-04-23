@@ -1,7 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://d12t82a1b6jm8"]
+[gd_scene load_steps=8 format=3 uid="uid://f0n0mm447ku4"]
 
 [ext_resource type="Script" path="res://SceneTransitionManager/Script/SceneTransitionReferenceHelper.cs" id="1_mukmp"]
-[ext_resource type="PackedScene" uid="uid://bdfn1p6qmr5du" path="res://SceneTransitionManager/Scene/NonPersistantActualSceneOne.tscn" id="2_1a67u"]
+[ext_resource type="PackedScene" uid="uid://bdfn1p6qmr5du" path="res://SceneTransitionManager/Scene/NPActualExampleScene1.tscn" id="2_1a67u"]
 [ext_resource type="Texture2D" uid="uid://dqd4wln1wph42" path="res://icon.svg" id="2_4patg"]
 [ext_resource type="Script" path="res://SceneTransitionManager/Script/SceneTransitionManagerTest.cs" id="3_odkmi"]
 [ext_resource type="Script" path="res://ObjectPooler/Scripts/GameObjectPooler.cs" id="4_ve1g4"]
@@ -10,25 +10,25 @@
 
 [node name="ActualSceneOne" type="Node" node_paths=PackedStringArray("NonPersistentElements", "PersistentElements", "ObjectPoolerNode", "AudioBankContainerNode")]
 script = ExtResource("1_mukmp")
-NonPersistentElements = NodePath("ActualScene/NonPersistantelElements")
+NonPersistentElements = NodePath("ActualScene/NonPersistentElements")
 PersistentElements = NodePath("ActualScene/PersistentElements")
 ObjectPoolerNode = NodePath("ObjectPooler")
 AudioBankContainerNode = NodePath("AudioBanks")
 
 [node name="ActualScene" type="Node" parent="."]
 
-[node name="NonPersistantelElements" parent="ActualScene" instance=ExtResource("2_1a67u")]
-
 [node name="PersistentElements" type="Node" parent="ActualScene"]
+
+[node name="Transitioner" type="Node" parent="ActualScene/PersistentElements"]
+script = ExtResource("3_odkmi")
+mHeavyLoad = true
 
 [node name="Icon" type="Sprite2D" parent="ActualScene/PersistentElements"]
 modulate = Color(1, 0, 0, 1)
-position = Vector2(210, 144)
+position = Vector2(826, 352)
 texture = ExtResource("2_4patg")
 
-[node name="SceneTransitioner" type="Node" parent="ActualScene/PersistentElements"]
-script = ExtResource("3_odkmi")
-mHeavyLoad = true
+[node name="NonPersistentElements" parent="ActualScene" instance=ExtResource("2_1a67u")]
 
 [node name="ObjectPooler" type="Node" parent="."]
 script = ExtResource("4_ve1g4")

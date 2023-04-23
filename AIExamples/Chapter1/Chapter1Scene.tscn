@@ -12,7 +12,10 @@
 
 [node name="Managers" parent="." instance=ExtResource("1_x2t2u")]
 
-[node name="AudioManager" parent="Managers" index="4"]
+[node name="SceneTransitionManager" parent="Managers" index="2" node_paths=PackedStringArray("mReferenceHelper")]
+mReferenceHelper = NodePath("../../Scene")
+
+[node name="AudioManager" parent="Managers" index="5"]
 mPlayMusicAtStart = false
 
 [node name="Scene" parent="." instance=ExtResource("2_rj3rd")]

@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://o8db6ccgmu21"]
+[gd_scene load_steps=11 format=3 uid="uid://o8db6ccgmu21"]
 
 [ext_resource type="PackedScene" uid="uid://cgnt8ay08s2p5" path="res://LogManager/Scenes/LogManager.tscn" id="1_g44yu"]
 [ext_resource type="Script" path="res://ObjectEventDispatcher/GlobalEventDispatcher.cs" id="2_f31l3"]
 [ext_resource type="Script" path="res://SceneTransitionManager/Script/SceneTransitionManager.cs" id="3_33gam"]
 [ext_resource type="Script" path="res://Input/InputManager/Scripts/InputManager.cs" id="3_gbq0a"]
 [ext_resource type="Script" path="res://Input/InputReader/Scripts/InputReaderPlayer.cs" id="4_g5skp"]
+[ext_resource type="Resource" uid="uid://ch6ows28yix7h" path="res://SceneTransitionManager/Data/SceneDatabase.tres" id="4_xlfbh"]
 [ext_resource type="Script" path="res://Input/InputReader/Scripts/InputReaderVoid.cs" id="4_xvsgk"]
 [ext_resource type="Script" path="res://AchievementManager/Scripts/AchievementManager.cs" id="5_xesqj"]
 [ext_resource type="Script" path="res://AudioManager/Scripts/AudioManager.cs" id="7_161i1"]
@@ -25,6 +26,7 @@ script = ExtResource("2_f31l3")
 
 [node name="SceneTransitionManager" type="Node" parent="."]
 script = ExtResource("3_33gam")
+mSceneDatabase = ExtResource("4_xlfbh")
 
 [node name="InputManager" type="Node" parent="."]
 script = ExtResource("3_gbq0a")

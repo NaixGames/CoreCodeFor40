@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://dex2odjwmlm3m"]
+
+[ext_resource type="PackedScene" uid="uid://o8db6ccgmu21" path="res://SceneTemplate/Managers.tscn" id="1_0vwyh"]
+[ext_resource type="PackedScene" uid="uid://cqy1c5qouddfq" path="res://GodotLibraryUseExamples/Animation/Scene/ActualSceneAnimationExample.tscn" id="2_7oby1"]
+
+[node name="WholeSceneAnimationExample" type="Node2D"]
+
+[node name="Managers" parent="." instance=ExtResource("1_0vwyh")]
+
+[node name="SceneTransitionManager" parent="Managers" index="2" node_paths=PackedStringArray("mReferenceHelper")]
+mReferenceHelper = NodePath("../../Scene")
+
+[node name="Scene" parent="." instance=ExtResource("2_7oby1")]
+
+[editable path="Managers"]

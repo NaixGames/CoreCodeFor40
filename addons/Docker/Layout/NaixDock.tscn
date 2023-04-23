@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://dgj820rmix5sv"]
+
+[ext_resource type="PackedScene" uid="uid://ln4aw7jvxr2c" path="res://addons/Docker/Buttons/Example/Example.tscn" id="1_imfw1"]
+[ext_resource type="PackedScene" uid="uid://bgic8iaemhox" path="res://addons/Docker/Buttons/CreateScene/NewScene.tscn" id="2_mp4a5"]
+[ext_resource type="PackedScene" uid="uid://bmweutupp05rp" path="res://addons/Docker/Buttons/CreateActor/CreateActor.tscn" id="3_x4wk1"]
+
+[node name="NaixDock" type="VBoxContainer"]
+
+[node name="Example" parent="." instance=ExtResource("1_imfw1")]
+layout_mode = 2
+
+[node name="NewScene" parent="." instance=ExtResource("2_mp4a5")]
+layout_mode = 2
+
+[node name="CreateActor" parent="." instance=ExtResource("3_x4wk1")]
+layout_mode = 2

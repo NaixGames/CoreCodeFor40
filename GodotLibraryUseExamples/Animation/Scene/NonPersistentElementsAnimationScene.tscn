@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://sufc7y08k2k0"]
+
+[ext_resource type="PackedScene" uid="uid://hwkl4vlaavc6" path="res://GodotLibraryUseExamples/Animation/Scene/AnimatedPlayer.tscn" id="1_5ht7q"]
+[ext_resource type="Texture2D" uid="uid://cw18xfh1o1cxp" path="res://Shaders/Assets/PNGS/light.png" id="2_i38us"]
+
+[node name="NonPersisentElements" type="Node"]
+
+[node name="AnimatedPlayer" parent="." instance=ExtResource("1_5ht7q")]
+position = Vector2(210, 146)
+
+[node name="PointLight2D2" type="PointLight2D" parent="."]
+position = Vector2(133, 57)
+color = Color(1, 1, 0.627451, 1)
+energy = 3.0
+shadow_enabled = true
+shadow_color = Color(0, 0, 0, 1)
+texture = ExtResource("2_i38us")
+texture_scale = 2.64
+height = 1.0
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(79, 160)
+color = Color(1, 1, 0.627451, 1)
+energy = 15.0
+shadow_enabled = true
+shadow_color = Color(0, 0, 0, 1)
+texture = ExtResource("2_i38us")
+height = 1.0

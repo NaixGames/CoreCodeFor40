@@ -1,0 +1,121 @@
+[gd_scene load_steps=9 format=3 uid="uid://daouwivxiwk4h"]
+
+[ext_resource type="PackedScene" uid="uid://o8db6ccgmu21" path="res://SceneTemplate/Managers.tscn" id="1_f8qou"]
+[ext_resource type="PackedScene" uid="uid://dvhqp2ygj2yce" path="res://SceneTemplate/Scene.tscn" id="2_uk1ov"]
+[ext_resource type="Texture2D" uid="uid://dqd4wln1wph42" path="res://icon.svg" id="3_qp8m4"]
+[ext_resource type="Script" path="res://FSM/Scripts/StateMachineActor.cs" id="4_5pmob"]
+[ext_resource type="Script" path="res://AIExamples/Chapter1/Scripts/Bob/StateManagerBob.cs" id="5_cn3et"]
+[ext_resource type="Script" path="res://FSM/Scripts/StateMachineAIInput.cs" id="6_d8qie"]
+[ext_resource type="Script" path="res://AIExamples/Chapter1/Scripts/AutomaticAI/AutomaticAIStateManager.cs" id="7_tlg53"]
+[ext_resource type="Script" path="res://AIExamples/Chapter1/Scripts/Elsa/StateManagerElsa.cs" id="8_bwy0c"]
+
+[node name="Chapter1Scene" type="Node2D"]
+
+[node name="Managers" parent="." instance=ExtResource("1_f8qou")]
+
+[node name="SceneTransitionManager" parent="Managers" index="2" node_paths=PackedStringArray("mReferenceHelper")]
+mReferenceHelper = NodePath("../../Scene")
+
+[node name="AudioManager" parent="Managers" index="5"]
+mPlayMusicAtStart = false
+
+[node name="Scene" parent="." instance=ExtResource("2_uk1ov")]
+
+[node name="Elsa" type="Node2D" parent="Scene/ActualScene/NonPersistantelElements" index="0"]
+position = Vector2(454, 510)
+
+[node name="Icon" type="Sprite2D" parent="Scene/ActualScene/NonPersistantelElements/Elsa"]
+modulate = Color(1, 0.113725, 0.992157, 1)
+texture = ExtResource("3_qp8m4")
+
+[node name="ElsaFSM" type="Node2D" parent="Scene/ActualScene/NonPersistantelElements/Elsa" node_paths=PackedStringArray("mStateManager", "mInputReader")]
+script = ExtResource("4_5pmob")
+mStateManager = NodePath("ElsaStateManager")
+mInputReader = NodePath("AIFSMElsa")
+
+[node name="ElsaStateManager" type="Node2D" parent="Scene/ActualScene/NonPersistantelElements/Elsa/ElsaFSM"]
+script = ExtResource("8_bwy0c")
+
+[node name="AIFSMElsa" type="Node" parent="Scene/ActualScene/NonPersistantelElements/Elsa/ElsaFSM" node_paths=PackedStringArray("mStateManager")]
+script = ExtResource("6_d8qie")
+mStateManager = NodePath("StateManagerAI")
+mMemoryBlackboard = {
+"AxisContainer": {},
+"ButtonsContainer": [],
+"WaitingTime": 1
+}
+mAreInputsUpdated = true
+mPlayerID = 0
+mButtons = PackedStringArray("Up")
+mAxisValues = {}
+mButtonsValues = {
+"Up": false
+}
+mTimeSinceLastPressAxis = {}
+mTimeSinceLastPressButton = {
+"Up": 0.0
+}
+mTimeHeldAxis = {}
+mTimeHeldButton = {
+"Up": 0.0
+}
+
+[node name="StateManagerAI" type="Node" parent="Scene/ActualScene/NonPersistantelElements/Elsa/ElsaFSM/AIFSMElsa"]
+script = ExtResource("7_tlg53")
+
+[node name="Bob" type="Node2D" parent="Scene/ActualScene/NonPersistantelElements" index="1"]
+position = Vector2(839, 321)
+
+[node name="Icon" type="Sprite2D" parent="Scene/ActualScene/NonPersistantelElements/Bob"]
+modulate = Color(0, 1, 0.521569, 1)
+texture = ExtResource("3_qp8m4")
+
+[node name="BobFSM" type="Node2D" parent="Scene/ActualScene/NonPersistantelElements/Bob" node_paths=PackedStringArray("mStateManager", "mInputReader")]
+script = ExtResource("4_5pmob")
+mStateManager = NodePath("BobStateManager")
+mMemoryBlackboard = {
+"Fatigue": 0,
+"Gold": 0,
+"Location": "Mine",
+"MaxFatigue": 10,
+"MaxThirst": 10,
+"Money": 0,
+"PocketSize": 4,
+"Thirst": 0
+}
+mInputReader = NodePath("AIFSMBob")
+
+[node name="BobStateManager" type="Node2D" parent="Scene/ActualScene/NonPersistantelElements/Bob/BobFSM"]
+script = ExtResource("5_cn3et")
+
+[node name="AIFSMBob" type="Node" parent="Scene/ActualScene/NonPersistantelElements/Bob/BobFSM" node_paths=PackedStringArray("mStateManager")]
+script = ExtResource("6_d8qie")
+mStateManager = NodePath("StateManagerAI")
+mMemoryBlackboard = {
+"AxisContainer": {},
+"ButtonsContainer": [],
+"WaitingTime": 1
+}
+mAreInputsUpdated = true
+mPlayerID = 0
+mButtons = PackedStringArray("Up")
+mAxisValues = {}
+mButtonsValues = {
+"Up": false
+}
+mTimeSinceLastPressAxis = {}
+mTimeSinceLastPressButton = {
+"Up": 0.0
+}
+mTimeHeldAxis = {}
+mTimeHeldButton = {
+"Up": 0.0
+}
+
+[node name="StateManagerAI" type="Node" parent="Scene/ActualScene/NonPersistantelElements/Bob/BobFSM/AIFSMBob"]
+script = ExtResource("7_tlg53")
+
+[connection signal="FoodIsReady" from="Scene/ActualScene/NonPersistantelElements/Elsa/ElsaFSM/ElsaStateManager" to="Scene/ActualScene/NonPersistantelElements/Bob/BobFSM/BobStateManager" method="FoodIsReady"]
+
+[editable path="Managers"]
+[editable path="Scene"]
