@@ -17,7 +17,7 @@ namespace CoreCode.Example.AutomaticAI{
         }
         
         public override void InitializeStates(Node FSMNode, Godot.Collections.Dictionary mMemoryBlackboard, LogObject mLogObject = null){
-            StateWaiting.InitializeState(FSMNode, mMemoryBlackboard);
+            StateWaiting.InitializeState(FSMNode, this, mMemoryBlackboard);
         }
     }
 }

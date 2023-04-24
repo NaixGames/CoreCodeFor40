@@ -8,30 +8,30 @@ namespace CoreCode.AIExamples.Bob{
 	{
 	// -------------------------- Variables -------------------------------------
 		private InputReaderAbstract mInput;
-		private Godot.Collections.Dictionary mMemory;
-		private StateManagerBob mStateManager;
+		
 
 		// -------------------------- Abstract overrides -------------------------------------
 
-		public override void InitializeState(Node mNodeRef, Godot.Collections.Dictionary mMemoryBlackboard = null){
+		protected override void InitializeStateParams(Node mNodeRef){
 			mInput = (mNodeRef as StateMachineActor).ReturnInputReader();
+			mStateManagerCache = (mNodeRef as StateMachineActor).GiveStateManager();
 		}
 		
-		protected override StateAbstract ProcessAction(double delta, Godot.Collections.Dictionary mMemoryBlackboard, StateManagerAbstract mStateManager, LogObject mlogObject=null){
+		protected override StateAbstract ProcessAction(double delta, LogObject mlogObject=null){
 			if (!mInput.IsButtonJustPressedInput("Up")){
 				return this;
 			}
-			int fatigue = mMemoryBlackboard["Fatigue"].AsInt32()-1;
-			mMemoryBlackboard["Fatigue"]=fatigue;
+			int fatigue = mMemoryBlackboardCache["Fatigue"].AsInt32()-1;
+			mMemoryBlackboardCache["Fatigue"]=fatigue;
 			if (fatigue==0){
 				GD.Print("Welpy, timy to get bak to work!");
-				return ((StateManagerBob)mStateManager).StateWorking;
+				return ((StateManagerBob)mStateManagerCache).StateWorking;
 			}
 			GD.Print("Will continue to sleep a winy bit!");
 			return this;
 		}
 
-		protected override StateAbstract ProcessPhysicsAction(double delta, Godot.Collections.Dictionary mMemoryBlackboard, StateManagerAbstract mStateManager,  LogObject mlogObject=null){
+		protected override StateAbstract ProcessPhysicsAction(double delta, LogObject mlogObject=null){
 			return this;
 		}
 
@@ -39,15 +39,16 @@ namespace CoreCode.AIExamples.Bob{
 			//Using GD Print just for the example
 			GD.Print("Oi I am tired. Going home to rest!");
 			GD.Print("Honey I am home!");
-			mStateManager.EmitSignal(nameof(mStateManager.BobIsHome));
+			StateManagerBob managerBob = mStateManagerCache as StateManagerBob;
+			mStateManagerCache.EmitSignal(nameof(managerBob.BobIsHome));
 			return;
 		}
 
-		protected override StateAbstract ProcessDelegatedEvent(string EventName, Godot.Collections.Dictionary mParameters = null, LogObject mlogObject=null){
+		protected override StateAbstract ProcessDelegatedEvent(string EventName, LogObject mlogObject=null){
 			if (EventName == "FoodIsReady"){
-				mMemory["Fatigue"]=0;
+				mMemoryBlackboardCache["Fatigue"]=0;
 				GD.Print("With my darlin fud I can work again!");
-				return (mStateManager).StateWorking;
+				return (mStateManagerCache as StateManagerBob).StateWorking;
 			}
 			return this;
 		}

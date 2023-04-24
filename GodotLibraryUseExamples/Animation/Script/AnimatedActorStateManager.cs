@@ -19,7 +19,7 @@ namespace CoreCode.Example.AnimationExampleFSM{
         }
         
         public override void InitializeStates(Node FSMNode, Godot.Collections.Dictionary mMemoryBlackboard, LogObject mLogObject = null){
-            AnimateState.InitializeState(FSMNode, mMemoryBlackboard);
+            AnimateState.InitializeState(FSMNode, this, mMemoryBlackboard);
         }
     }
 }

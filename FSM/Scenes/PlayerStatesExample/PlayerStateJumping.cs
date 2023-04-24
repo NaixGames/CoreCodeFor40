@@ -19,22 +19,22 @@ namespace CoreCode.Example.DummyPlayerFSM{
 
 		// -------------------------- Abstract overrides -------------------------------------
 
-		public override void InitializeState(Node mNodeRef, Godot.Collections.Dictionary mMemoryBlackboard = null){
-			mCharacterBody = mNodeRef.GetNode<CharacterBody2D>(mMemoryBlackboard["CharacterNode"].AsNodePath());
+		protected override void InitializeStateParams(Node mNodeRef){
+			mCharacterBody = mNodeRef.GetNode<CharacterBody2D>(mMemoryBlackboardCache["CharacterNode"].AsNodePath());
 			mInput = (mNodeRef as StateMachineActor).ReturnInputReader();
-			mMovingVelocity = (float)mMemoryBlackboard["MovingVelocity"].AsDouble();
+			mMovingVelocity = (float)mMemoryBlackboardCache["MovingVelocity"].AsDouble();
 		}
 		
-		protected override StateAbstract ProcessAction(double delta, Godot.Collections.Dictionary mMemoryBlackboard, StateManagerAbstract mStateManager, LogObject mlogObject=null){
+		protected override StateAbstract ProcessAction(double delta, LogObject mlogObject=null){
 			mTimeJumping +=delta;
 			if (mTimeJumping>=2){
 				mTimeJumping=0;
-				return ((PlayerStateManagerExample)mStateManager).StateFalling;
+				return ((PlayerStateManagerExample)mStateManagerCache).StateFalling;
 			}
 			return this;
 		}
 
-		protected override StateAbstract ProcessPhysicsAction(double delta, Godot.Collections.Dictionary mMemoryBlackboard, StateManagerAbstract mStateManager,  LogObject mlogObject=null){
+		protected override StateAbstract ProcessPhysicsAction(double delta, LogObject mlogObject=null){
 			float TotalInput = mInput.GiveAxisStrength("Right")-mInput.GiveAxisStrength("Left");
 
 			mCharacterBody.Velocity = new Vector2(TotalInput*mMovingVelocity, mCharacterBody.Velocity.Y);

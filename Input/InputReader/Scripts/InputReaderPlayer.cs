@@ -2,6 +2,7 @@ using Godot;
 using System;
 
 namespace CoreCode.Scripts{
+	//Tool for casting editor pluggins
 	[Tool]
 	public partial class InputReaderPlayer : InputReaderAbstract
 	{
@@ -23,13 +24,7 @@ namespace CoreCode.Scripts{
 		Remember to generate input keys from the editor!
 		*/
 
-		// -----------------------------IN EDITOR METHODS-------------------------
 
-		// THIS NEEDS TO BE IMPLEMENTED IN THE INHERITATED CLASS. Having base class that are [Tools] generate lose of default values
-		[Export] public bool SetInputVariablesValues{
-			get{return false;}
-			set{FixFormatInputsButton();}
-		}
 
 
 		// -----------------------------------Overriden method to update input---------------------------------------

@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://ex4crajtydxo"]
 
 [ext_resource type="Script" path="res://GameActorReferenceHandler/Script/GameActorReferenceHandler.cs" id="1_4hiql"]
-[ext_resource type="Texture2D" uid="uid://cjl63lw5knac6" path="res://icon.svg" id="1_vkfu6"]
+[ext_resource type="Texture2D" uid="uid://dqd4wln1wph42" path="res://icon.svg" id="1_vkfu6"]
 [ext_resource type="Script" path="res://FSM/Scripts/StateMachineActor.cs" id="2_vfaly"]
 [ext_resource type="Script" path="res://FSM/Scenes/PlayerStatesExample/PlayerStateManagerExample.cs" id="4_d1ybs"]
 

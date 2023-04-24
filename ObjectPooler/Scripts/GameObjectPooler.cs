@@ -91,7 +91,7 @@ namespace CoreCode.Scripts{
 			}
 			
 			//If pool is empty, just return. Shouldn't happen in games, mostly during testing
-			if (PoolableObjectsStartUp == null || PoolableObjectsStartUp.Length == 0){
+			if (mShouldLog && (PoolableObjectsStartUp == null || PoolableObjectsStartUp.Length == 0)){
 				mLogObject.AddToLogString("Object pool is empty.");
 				return;
 			}

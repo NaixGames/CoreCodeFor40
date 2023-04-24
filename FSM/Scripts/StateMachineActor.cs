@@ -83,12 +83,12 @@ namespace CoreCode.FSM{
 
 		public override void _Process(double delta)
 		{
-			mActualState = mActualState.ExecuteProcess(delta, mMemoryBlackboard, mStateManager, mLogObject); 
+			mActualState = mActualState.ExecuteProcess(delta, mLogObject); 
 		}
 
 		public override void _PhysicsProcess(double delta)
 		{
-			mActualState = mActualState.ExecutePhysicsProcess(delta, mMemoryBlackboard, mStateManager, mLogObject); 
+			mActualState = mActualState.ExecutePhysicsProcess(delta, mLogObject); 
 		}
 
 		// ------------------------------------- Interface methods ---------------------------------------

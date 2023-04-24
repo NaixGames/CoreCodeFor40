@@ -15,26 +15,26 @@ namespace CoreCode.Example.DummyPlayerFSM{
 
 		// -------------------------- Abstract overrides -------------------------------------
 
-		public override void InitializeState(Node mNodeRef, Godot.Collections.Dictionary mMemoryBlackboard = null){
-			mCharacterBody = mNodeRef.GetNode<CharacterBody2D>(mMemoryBlackboard["CharacterNode"].AsNodePath());
+		protected override void InitializeStateParams(Node mNodeRef){
+			mCharacterBody = mNodeRef.GetNode<CharacterBody2D>(mMemoryBlackboardCache["CharacterNode"].AsNodePath());
 			mInput = (mNodeRef as StateMachineActor).ReturnInputReader();
-			mJumpVelocity = (float)mMemoryBlackboard["JumpVelocity"].AsDouble();
-			mMovingVelocity = (float)mMemoryBlackboard["MovingVelocity"].AsDouble();
+			mJumpVelocity = (float)mMemoryBlackboardCache["JumpVelocity"].AsDouble();
+			mMovingVelocity = (float)mMemoryBlackboardCache["MovingVelocity"].AsDouble();
 		}
 		
-		protected override StateAbstract ProcessAction(double delta, Godot.Collections.Dictionary mMemoryBlackboard, StateManagerAbstract mStateManager,  LogObject mlogObject=null){
+		protected override StateAbstract ProcessAction(double delta, LogObject mlogObject=null){
 			if (mInput.IsButtonJustPressedInput("Up")){
 				mCharacterBody.Velocity = new Vector2(mCharacterBody.Velocity.X, mCharacterBody.Velocity.Y - mJumpVelocity);
 				mCharacterBody.MoveAndSlide();
-				return ((PlayerStateManagerExample)mStateManager).StateJumping;
+				return ((PlayerStateManagerExample)mStateManagerCache).StateJumping;
 			}
 			if (!mCharacterBody.IsOnFloor()){
-				return ((PlayerStateManagerExample)mStateManager).StateJumping;
+				return ((PlayerStateManagerExample)mStateManagerCache).StateJumping;
 			}
 			return this;
 		}
 
-		protected override StateAbstract ProcessPhysicsAction(double delta, Godot.Collections.Dictionary mMemoryBlackboard, StateManagerAbstract mStateManager,   LogObject mlogObject=null){
+		protected override StateAbstract ProcessPhysicsAction(double delta,  LogObject mlogObject=null){
 			float TotalInput = mInput.GiveAxisStrength("Right")-mInput.GiveAxisStrength("Left");
 
 			mCharacterBody.Velocity = new Vector2(TotalInput*mMovingVelocity, mCharacterBody.Velocity.Y);

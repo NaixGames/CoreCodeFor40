@@ -11,11 +11,11 @@ namespace CoreCode.AIExamples.Bob{
 
 		// -------------------------- Abstract overrides -------------------------------------
 
-		public override void InitializeState(Node mNodeRef, Godot.Collections.Dictionary mMemoryBlackboard = null){
+		protected override void InitializeStateParams(Node mNodeRef){
 			mInput = (mNodeRef as StateMachineActor).ReturnInputReader();
 		}
 		
-		protected override StateAbstract ProcessAction(double delta, Godot.Collections.Dictionary mMemoryBlackboard, StateManagerAbstract mStateManager, LogObject mlogObject=null){
+		protected override StateAbstract ProcessAction(double delta, LogObject mlogObject=null){
 			if (!mInput.IsButtonJustPressedInput("Up")){
 				return this;
 			}
@@ -23,7 +23,7 @@ namespace CoreCode.AIExamples.Bob{
 			return this;
 		}
 
-		protected override StateAbstract ProcessPhysicsAction(double delta, Godot.Collections.Dictionary mMemoryBlackboard, StateManagerAbstract mStateManager,  LogObject mlogObject=null){
+		protected override StateAbstract ProcessPhysicsAction(double delta, LogObject mlogObject=null){
 			return this;
 		}
 

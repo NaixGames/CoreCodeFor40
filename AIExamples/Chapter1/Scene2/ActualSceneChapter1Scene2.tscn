@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://bnqmcl5pfv4oq"]
+
+[ext_resource type="Script" path="res://SceneTransitionManager/Script/SceneTransitionReferenceHelper.cs" id="1_5ghwd"]
+[ext_resource type="PackedScene" uid="uid://btcr5r66odsi7" path="res://AIExamples/Chapter1/Scene2/NonPersistentElements.tscn" id="2_fp3vt"]
+[ext_resource type="Script" path="res://ObjectPooler/Scripts/GameObjectPooler.cs" id="3_hv3y7"]
+
+[node name="WholeSceneChapter1Scene2" type="Node" node_paths=PackedStringArray("NonPersistentElements", "PersistentElements", "ObjectPoolerNode", "AudioBankContainerNode")]
+script = ExtResource("1_5ghwd")
+NonPersistentElements = NodePath("Elements/NonPersistentElements")
+PersistentElements = NodePath("Elements/PersistentElements")
+ObjectPoolerNode = NodePath("ObjectPooler")
+AudioBankContainerNode = NodePath("AudioBanks")
+
+[node name="Elements" type="Node" parent="."]
+
+[node name="PersistentElements" type="Node" parent="Elements"]
+
+[node name="NonPersistentElements" parent="Elements" instance=ExtResource("2_fp3vt")]
+
+[node name="ObjectPooler" type="Node" parent="."]
+script = ExtResource("3_hv3y7")
+
+[node name="AudioBanks" type="Node" parent="."]

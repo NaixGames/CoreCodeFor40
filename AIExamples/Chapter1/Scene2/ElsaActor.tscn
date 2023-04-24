@@ -1,0 +1,46 @@
+[gd_scene load_steps=6 format=3 uid="uid://beao0ored03an"]
+
+[ext_resource type="Texture2D" uid="uid://dqd4wln1wph42" path="res://icon.svg" id="1_tr6wq"]
+[ext_resource type="Script" path="res://FSM/Scripts/StateMachineActor.cs" id="2_eta65"]
+[ext_resource type="Script" path="res://AIExamples/Chapter1/Scripts/Elsa/StateManagerElsa.cs" id="3_gonvv"]
+[ext_resource type="Script" path="res://FSM/Scripts/StateMachineAIInput.cs" id="4_betgs"]
+[ext_resource type="Script" path="res://AIExamples/Chapter1/Scripts/AutomaticAI/AutomaticAIStateManager.cs" id="5_ak8bk"]
+
+[node name="Elsa" type="Sprite2D"]
+modulate = Color(1, 0.113725, 0.992157, 1)
+texture = ExtResource("1_tr6wq")
+
+[node name="ElsaFSM" type="Node2D" parent="." node_paths=PackedStringArray("mStateManager", "mInputReader")]
+script = ExtResource("2_eta65")
+mStateManager = NodePath("ElsaStateManager")
+mInputReader = NodePath("ElsaAIFSM")
+
+[node name="ElsaStateManager" type="Node2D" parent="ElsaFSM"]
+script = ExtResource("3_gonvv")
+
+[node name="ElsaAIFSM" type="Node" parent="ElsaFSM" node_paths=PackedStringArray("mStateManager")]
+script = ExtResource("4_betgs")
+mStateManager = NodePath("ElsaAIStateManager")
+mMemoryBlackboard = {
+"AxisContainer": {},
+"ButtonsContainer": [],
+"WaitingTime": 1
+}
+mAreInputsUpdated = true
+mPlayerID = 0
+mButtons = PackedStringArray("Up")
+mAxisValues = {}
+mButtonsValues = {
+"Up": false
+}
+mTimeSinceLastPressAxis = {}
+mTimeSinceLastPressButton = {
+"Up": 0.0
+}
+mTimeHeldAxis = {}
+mTimeHeldButton = {
+"Up": 0.0
+}
+
+[node name="ElsaAIStateManager" type="Node" parent="ElsaFSM/ElsaAIFSM"]
+script = ExtResource("5_ak8bk")

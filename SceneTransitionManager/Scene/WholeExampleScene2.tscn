@@ -10,6 +10,18 @@
 [node name="SceneTransitionManager" parent="Managers" index="2" node_paths=PackedStringArray("mReferenceHelper")]
 mReferenceHelper = NodePath("../../ActualSceneTwo")
 
+[node name="P1Input" parent="Managers/InputManager" index="1"]
+mAreInputsUpdated = false
+mPlayerID = -1
+mAxis = PackedStringArray()
+mButtons = PackedStringArray()
+mAxisValues = {}
+mButtonsValues = {}
+mTimeSinceLastPressAxis = {}
+mTimeSinceLastPressButton = {}
+mTimeHeldAxis = {}
+mTimeHeldButton = {}
+
 [node name="ActualSceneTwo" parent="." instance=ExtResource("2_ooo1v")]
 
 [editable path="Managers"]

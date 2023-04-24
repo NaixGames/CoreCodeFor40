@@ -11,35 +11,35 @@ namespace CoreCode.AIExamples.Bob{
 
 		// -------------------------- Abstract overrides -------------------------------------
 
-		public override void InitializeState(Node mNodeRef, Godot.Collections.Dictionary mMemoryBlackboard = null){
+		protected override void InitializeStateParams(Node mNodeRef){
 			mInput = (mNodeRef as StateMachineActor).ReturnInputReader();
 		}
 		
-		protected override StateAbstract ProcessAction(double delta, Godot.Collections.Dictionary mMemoryBlackboard, StateManagerAbstract mStateManager, LogObject mlogObject=null){
+		protected override StateAbstract ProcessAction(double delta, LogObject mlogObject=null){
 			if (!mInput.IsButtonJustPressedInput("Up")){
 				return this;
 			}
 			//If Bob does not have enough money to buy a Drink he dies of thirst :(
-			int money = mMemoryBlackboard["Money"].AsInt32();
+			int money = mMemoryBlackboardCache["Money"].AsInt32();
 			if (money == 0){
-				return ((StateManagerBob)mStateManager).StateDead;
+				return ((StateManagerBob)mStateManagerCache).StateDead;
 			}
 
-			int thirst = mMemoryBlackboard["Thirst"].AsInt32();
+			int thirst = mMemoryBlackboardCache["Thirst"].AsInt32();
 			int change = Mathf.Min(money,thirst);
 			money -=change;
 			thirst -= change;
 
-			mMemoryBlackboard["Thirst"]=thirst;
-			mMemoryBlackboard["Money"]=money;
+			mMemoryBlackboardCache["Thirst"]=thirst;
+			mMemoryBlackboardCache["Money"]=money;
 
 			GD.Print("Jeesz, I wasted " + change + " on drinks! Better back to work!");
 
 
-			return ((StateManagerBob)mStateManager).StateWorking;
+			return ((StateManagerBob)mStateManagerCache).StateWorking;
 		}
 
-		protected override StateAbstract ProcessPhysicsAction(double delta, Godot.Collections.Dictionary mMemoryBlackboard, StateManagerAbstract mStateManager,  LogObject mlogObject=null){
+		protected override StateAbstract ProcessPhysicsAction(double delta, LogObject mlogObject=null){
 			return this;
 		}
 

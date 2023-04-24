@@ -16,36 +16,36 @@ namespace CoreCode.AIExamples.Bob{
 
 		// -------------------------- Abstract overrides -------------------------------------
 
-		public override void InitializeState(Node mNodeRef, Godot.Collections.Dictionary mMemoryBlackboard = null){
+		protected override void InitializeStateParams(Node mNodeRef){
 			mInput = (mNodeRef as StateMachineActor).ReturnInputReader();
-			mMaxThirst = mMemoryBlackboard["MaxThirst"].AsInt32();
-			mMaxFatigue = mMemoryBlackboard["MaxFatigue"].AsInt32();
+			mMaxThirst = mMemoryBlackboardCache["MaxThirst"].AsInt32();
+			mMaxFatigue = mMemoryBlackboardCache["MaxFatigue"].AsInt32();
 		}
 		
-		protected override StateAbstract ProcessAction(double delta, Godot.Collections.Dictionary mMemoryBlackboard, StateManagerAbstract mStateManager, LogObject mlogObject=null){
+		protected override StateAbstract ProcessAction(double delta, LogObject mlogObject=null){
 			if (!mInput.IsButtonJustPressedInput("Up")){
 				return this;
 			}
-			int gold = mMemoryBlackboard["Gold"].AsInt32();
-			int money = mMemoryBlackboard["Money"].AsInt32();
+			int gold = mMemoryBlackboardCache["Gold"].AsInt32();
+			int money = mMemoryBlackboardCache["Money"].AsInt32();
 			money +=gold;
-			mMemoryBlackboard["Money"]=money;
-			mMemoryBlackboard["Gold"]=0;
+			mMemoryBlackboardCache["Money"]=money;
+			mMemoryBlackboardCache["Gold"]=0;
 			GD.Print("Oi, sold all my gold and now I got " + money + " of money!");
-			int thirst = mMemoryBlackboard["Thirst"].AsInt32();
-			int fatigue = mMemoryBlackboard["Fatigue"].AsInt32();
+			int thirst = mMemoryBlackboardCache["Thirst"].AsInt32();
+			int fatigue = mMemoryBlackboardCache["Fatigue"].AsInt32();
 
 			if (thirst >= mMaxThirst){
-				return ((StateManagerBob)mStateManager).StateDrinking;
+				return ((StateManagerBob)mStateManagerCache).StateDrinking;
 			}
 			if (fatigue >= mMaxFatigue){
-				return ((StateManagerBob)mStateManager).StateResting;
+				return ((StateManagerBob)mStateManagerCache).StateResting;
 			}
 
-			return ((StateManagerBob)mStateManager).StateWorking;
+			return ((StateManagerBob)mStateManagerCache).StateWorking;
 		}
 
-		protected override StateAbstract ProcessPhysicsAction(double delta, Godot.Collections.Dictionary mMemoryBlackboard, StateManagerAbstract mStateManager,  LogObject mlogObject=null){
+		protected override StateAbstract ProcessPhysicsAction(double delta, LogObject mlogObject=null){
 			return this;
 		}
 

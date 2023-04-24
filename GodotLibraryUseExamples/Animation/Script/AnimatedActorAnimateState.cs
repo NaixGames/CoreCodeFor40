@@ -14,13 +14,13 @@ namespace CoreCode.Example.AnimationExampleFSM{
 
 		// -------------------------- Abstract overrides -------------------------------------
 
-		public override void InitializeState(Node mNodeRef, Godot.Collections.Dictionary mMemoryBlackboard = null){
+		protected override void InitializeStateParams(Node mNodeRef){
 			mInput = (mNodeRef as StateMachineActor).ReturnInputReader();
-			NodePath animationPath = mMemoryBlackboard["AnimationPlayer"].AsNodePath();
+			NodePath animationPath = mMemoryBlackboardCache["AnimationPlayer"].AsNodePath();
 			mAnimator = mNodeRef.GetNode<AnimationPlayer>(animationPath);
 		}
 		
-		protected override StateAbstract ProcessAction(double delta, Godot.Collections.Dictionary mMemoryBlackboard, StateManagerAbstract mStateManager,  LogObject mlogObject=null){
+		protected override StateAbstract ProcessAction(double delta, LogObject mlogObject=null){
 			if (mInput.IsButtonJustPressedInput("Up")){
 				mAnimator.Play("HappyFace");
 				return this;
@@ -31,7 +31,7 @@ namespace CoreCode.Example.AnimationExampleFSM{
 			return this;
 		}
 
-		protected override StateAbstract ProcessPhysicsAction(double delta, Godot.Collections.Dictionary mMemoryBlackboard, StateManagerAbstract mStateManager,   LogObject mlogObject=null){
+		protected override StateAbstract ProcessPhysicsAction(double delta, LogObject mlogObject=null){
 			return this;
 		}
 	}

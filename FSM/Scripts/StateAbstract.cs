@@ -16,13 +16,17 @@ namespace CoreCode.FSM{
 		/*ExecuteProcess executes a ProcessAction, which can create a change of state. If that is the case it Finalizes the Actual state,
 		initialize the new one, and print the change of state. ExecutePhysicsProcess works similarly. */
 
+		// ------------------------------------- Variable
+		protected StateManagerAbstract mStateManagerCache;
+		protected Godot.Collections.Dictionary mMemoryBlackboardCache;
+
 		// ------------------------------------- Abstract methods ---------------------------------------
 		
-		protected abstract StateAbstract ProcessAction(double delta, Godot.Collections.Dictionary mMemoryBlackboard, StateManagerAbstract mStateManager, LogObject mlogObject=null);
+		protected abstract StateAbstract ProcessAction(double delta, LogObject mlogObject=null);
 
-		protected abstract StateAbstract ProcessPhysicsAction(double delta, Godot.Collections.Dictionary mMemoryBlackboard, StateManagerAbstract mStateManager, LogObject mlogObject=null);
+		protected abstract StateAbstract ProcessPhysicsAction(double delta, LogObject mlogObject=null);
 
-		public abstract void InitializeState(Node mNodeReference, Godot.Collections.Dictionary mMemoryBlackboard = null);
+		protected abstract void InitializeStateParams(Node mNodeReference);
 		
 
 		// ------------------------------------- Virtual functions ---------------------------------------
@@ -36,14 +40,14 @@ namespace CoreCode.FSM{
 		}
 
 		//This is the method for processing external events in state machines. By default, we ignore it by staying in the same state.
-		protected virtual StateAbstract ProcessDelegatedEvent(string EventName, Godot.Collections.Dictionary mParameters = null, LogObject mlogObject=null){
+		protected virtual StateAbstract ProcessDelegatedEvent(string EventName, LogObject mlogObject=null){
 			return this;
 		}
 
 		// ------------------------------------- Functions ---------------------------------------
 
-		public StateAbstract ExecuteProcess(double delta, Godot.Collections.Dictionary mMemoryBlackboard, StateManagerAbstract mStateManager, LogObject mLogObject=null){
-			StateAbstract stateActionResult = ProcessAction(delta, mMemoryBlackboard, mStateManager, mLogObject);
+		public StateAbstract ExecuteProcess(double delta, LogObject mLogObject=null){
+			StateAbstract stateActionResult = ProcessAction(delta, mLogObject);
 			if (stateActionResult==this){
 				return stateActionResult;
 			}
@@ -55,8 +59,8 @@ namespace CoreCode.FSM{
 			return stateActionResult;
 		}
 
-		public StateAbstract ExecutePhysicsProcess(double delta, Godot.Collections.Dictionary mMemoryBlackboard, StateManagerAbstract mStateManager,  LogObject mLogObject=null){
-			StateAbstract stateActionResult = ProcessPhysicsAction(delta, mMemoryBlackboard, mStateManager, mLogObject);
+		public StateAbstract ExecutePhysicsProcess(double delta, LogObject mLogObject=null){
+			StateAbstract stateActionResult = ProcessPhysicsAction(delta, mLogObject);
 			if (stateActionResult==this){
 				return stateActionResult;
 			}
@@ -68,8 +72,8 @@ namespace CoreCode.FSM{
 			return stateActionResult;
 		}
 
-		public StateAbstract ExecuteDelegatedEvent(string EventName, Godot.Collections.Dictionary mParameters = null, LogObject mLogObject=null){
-			StateAbstract stateEventResult = ProcessDelegatedEvent(EventName, mParameters, mLogObject);
+		public StateAbstract ExecuteDelegatedEvent(string EventName,LogObject mLogObject=null){
+			StateAbstract stateEventResult = ProcessDelegatedEvent(EventName, mLogObject);
 			if (stateEventResult==this){
 				return stateEventResult;
 			}
@@ -79,6 +83,12 @@ namespace CoreCode.FSM{
 				mLogObject.AddToLogString("Change of state from event " + EventName + " from state "  + this.GetType() + " to state " + stateEventResult.GetType());
 			}
 			return stateEventResult;
+		}
+
+		public void InitializeState(Node mNodeReference, StateManagerAbstract stateManager, Godot.Collections.Dictionary mMemoryBlackboard = null){
+			mStateManagerCache = stateManager;
+			mMemoryBlackboardCache = mMemoryBlackboard;
+			InitializeStateParams(mNodeReference);
 		}	
 	}
 }

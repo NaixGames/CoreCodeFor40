@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3]
+[gd_scene load_steps=4 format=3 uid="uid://ccvp8sx2xywum"]
 
 [ext_resource type="PackedScene" uid="uid://cgnt8ay08s2p5" path="res://LogManager/Scenes/LogManager.tscn" id="1_kesbm"]
 [ext_resource type="Script" path="res://Input/InputReader/Scripts/InputReaderPlayer.cs" id="2_vvitc"]
@@ -17,28 +17,12 @@ mNumberOfInputChannels = 2
 
 [node name="ObjectWithP1Input" type="Node" parent="Scene"]
 script = ExtResource("2_vvitc")
-mAreInputsUpdated = true
-mPlayerID = 1
-mButtons = PackedStringArray("Up", "Left", "Right")
 mAxisValues = {}
-mButtonsValues = {
-"Left": false,
-"Right": false,
-"Up": false
-}
+mButtonsValues = {}
 mTimeSinceLastPressAxis = {}
-mTimeSinceLastPressButton = {
-"Left": 0.0,
-"Right": 0.0,
-"Up": 0.0
-}
+mTimeSinceLastPressButton = {}
 mTimeHeldAxis = {}
-mTimeHeldButton = {
-"Left": 0.0,
-"Right": 0.0,
-"Up": 0.0
-}
-mShouldLog = true
+mTimeHeldButton = {}
 
 [node name="ObjectWithDummyLog" type="Node" parent="Scene"]
 script = ExtResource("3_uxuqt")

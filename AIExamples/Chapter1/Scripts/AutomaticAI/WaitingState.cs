@@ -15,12 +15,12 @@ namespace CoreCode.Example.AutomaticAI{
 
 		// -------------------------- Abstract overrides -------------------------------------
 
-		public override void InitializeState(Node mNodeRef, Godot.Collections.Dictionary mMemoryBlackboard = null){
-			mMaxWaitTime = (int)mMemoryBlackboard["WaitingTime"].AsInt32();
-			ButtonsCollections = (Godot.Collections.Array<string>)mMemoryBlackboard["ButtonsContainer"];
+		protected override void InitializeStateParams(Node mNodeRef){
+			mMaxWaitTime = (int)mMemoryBlackboardCache["WaitingTime"].AsInt32();
+			ButtonsCollections = (Godot.Collections.Array<string>)mMemoryBlackboardCache["ButtonsContainer"];
 		}
 		
-		protected override StateAbstract ProcessAction(double delta, Godot.Collections.Dictionary mMemoryBlackboard, StateManagerAbstract mStateManager,  LogObject mlogObject=null){
+		protected override StateAbstract ProcessAction(double delta, LogObject mlogObject=null){
 			mActualWaitingTime+=delta;
 			if (mActualWaitingTime>=mMaxWaitTime){
 				mActualWaitingTime-=mMaxWaitTime;
@@ -29,7 +29,7 @@ namespace CoreCode.Example.AutomaticAI{
 			return this;
 		}
 
-		protected override StateAbstract ProcessPhysicsAction(double delta, Godot.Collections.Dictionary mMemoryBlackboard, StateManagerAbstract mStateManager,   LogObject mlogObject=null){
+		protected override StateAbstract ProcessPhysicsAction(double delta, LogObject mlogObject=null){
 			return this;
 		}
 	}

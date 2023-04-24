@@ -22,11 +22,11 @@ namespace CoreCode.AIExamples.Bob{
         }
         
         public override void InitializeStates(Node FSMNode, Godot.Collections.Dictionary mMemoryBlackboard, LogObject mLogObject = null){
-            StateWorking.InitializeState(FSMNode, mMemoryBlackboard);
-            StateBanking.InitializeState(FSMNode, mMemoryBlackboard);
-            StateDrinking.InitializeState(FSMNode, mMemoryBlackboard);
-            StateResting.InitializeState(FSMNode,mMemoryBlackboard);
-            StateDead.InitializeState(FSMNode, mMemoryBlackboard);
+            StateWorking.InitializeState(FSMNode, this, mMemoryBlackboard);
+            StateBanking.InitializeState(FSMNode,this,  mMemoryBlackboard);
+            StateDrinking.InitializeState(FSMNode, this, mMemoryBlackboard);
+            StateResting.InitializeState(FSMNode, this, mMemoryBlackboard);
+            StateDead.InitializeState(FSMNode, this, mMemoryBlackboard);
 
             BobStateMachine = FSMNode as StateMachineActor;
         }

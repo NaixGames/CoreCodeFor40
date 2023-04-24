@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://btcr5r66odsi7"]
+
+[ext_resource type="PackedScene" uid="uid://beao0ored03an" path="res://AIExamples/Chapter1/Scene2/ElsaActor.tscn" id="1_o3xg8"]
+[ext_resource type="PackedScene" uid="uid://bn36tk10vqr4v" path="res://AIExamples/Chapter1/Scene1/Bob.tscn" id="2_t2bkj"]
+
+[node name="NonPersistentElements" type="Node"]
+
+[node name="Elsa" parent="." instance=ExtResource("1_o3xg8")]
+position = Vector2(714, 160)
+
+[node name="Bob" parent="." instance=ExtResource("2_t2bkj")]
+position = Vector2(402, 321)

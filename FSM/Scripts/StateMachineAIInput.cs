@@ -3,6 +3,7 @@ using System;
 using CoreCode.Scripts;
 
 namespace CoreCode.FSM{
+	//Tool for casting editor pluggins
 	[Tool]
 	public partial class StateMachineAIInput : InputReaderAbstract, IStateMachine
 	{
@@ -15,10 +16,6 @@ namespace CoreCode.FSM{
 
 		// ------------------------------------ Variables ------------------------------------------------
 
-		[Export] public bool SetInputVariablesValues{
-			get{return false;}
-			set{FixFormatInputsButton();}
-		}
 
 		[Export] private StateManagerAbstract mStateManager;
 		[Export] private Godot.Collections.Dictionary mMemoryBlackboard = new Godot.Collections.Dictionary();
@@ -36,7 +33,7 @@ namespace CoreCode.FSM{
 		// ------------------------------------- Godot overrides ---------------------------------------
 
 		protected override void UpdateInput(double delta){
-			mActualState = mActualState.ExecuteProcess(delta, mMemoryBlackboard, mStateManager, mLogObject); 
+			mActualState = mActualState.ExecuteProcess(delta, mLogObject); 
 			//Check the lsit of "processed" things and update value of input reader accordingly.
 			Godot.Collections.Array<string> ButtonsThisFrame = (Godot.Collections.Array<string>)mMemoryBlackboard["ButtonsContainer"];
 			UpdateButtonValues(ButtonsThisFrame, delta);

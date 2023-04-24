@@ -19,9 +19,9 @@ namespace CoreCode.Example.DummyPlayerFSM{
         }
         
         public override void InitializeStates(Node FSMNode, Godot.Collections.Dictionary mMemoryBlackboard, LogObject mLogObject = null){
-            StateJumping.InitializeState(FSMNode, mMemoryBlackboard);
-            StateMoving.InitializeState(FSMNode, mMemoryBlackboard);
-            StateFalling.InitializeState(FSMNode, mMemoryBlackboard);
+            StateJumping.InitializeState(FSMNode, this, mMemoryBlackboard);
+            StateMoving.InitializeState(FSMNode, this,  mMemoryBlackboard);
+            StateFalling.InitializeState(FSMNode, this, mMemoryBlackboard);
         }
 
     }

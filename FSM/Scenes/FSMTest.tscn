@@ -10,6 +10,18 @@
 
 [node name="Managers" parent="." instance=ExtResource("1_sg1mh")]
 
+[node name="P1Input" parent="Managers/InputManager" index="1"]
+mAreInputsUpdated = false
+mPlayerID = -1
+mAxis = PackedStringArray()
+mButtons = PackedStringArray()
+mAxisValues = {}
+mButtonsValues = {}
+mTimeSinceLastPressAxis = {}
+mTimeSinceLastPressButton = {}
+mTimeHeldAxis = {}
+mTimeHeldButton = {}
+
 [node name="Scene" type="Node" parent="."]
 
 [node name="ActualScene" type="Node" parent="Scene"]

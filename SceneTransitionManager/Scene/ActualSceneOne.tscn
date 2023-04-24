@@ -10,25 +10,25 @@
 
 [node name="ActualSceneOne" type="Node" node_paths=PackedStringArray("NonPersistentElements", "PersistentElements", "ObjectPoolerNode", "AudioBankContainerNode")]
 script = ExtResource("1_mukmp")
-NonPersistentElements = NodePath("ActualScene/NonPersistentElements")
-PersistentElements = NodePath("ActualScene/PersistentElements")
+NonPersistentElements = NodePath("Elements/NonPersistentElements")
+PersistentElements = NodePath("Elements/PersistentElements")
 ObjectPoolerNode = NodePath("ObjectPooler")
 AudioBankContainerNode = NodePath("AudioBanks")
 
-[node name="ActualScene" type="Node" parent="."]
+[node name="Elements" type="Node" parent="."]
 
-[node name="PersistentElements" type="Node" parent="ActualScene"]
+[node name="PersistentElements" type="Node" parent="Elements"]
 
-[node name="Transitioner" type="Node" parent="ActualScene/PersistentElements"]
+[node name="Transitioner" type="Node" parent="Elements/PersistentElements"]
 script = ExtResource("3_odkmi")
 mHeavyLoad = true
 
-[node name="Icon" type="Sprite2D" parent="ActualScene/PersistentElements"]
+[node name="Icon" type="Sprite2D" parent="Elements/PersistentElements"]
 modulate = Color(1, 0, 0, 1)
 position = Vector2(826, 352)
 texture = ExtResource("2_4patg")
 
-[node name="NonPersistentElements" parent="ActualScene" instance=ExtResource("2_1a67u")]
+[node name="NonPersistentElements" parent="Elements" instance=ExtResource("2_1a67u")]
 
 [node name="ObjectPooler" type="Node" parent="."]
 script = ExtResource("4_ve1g4")
