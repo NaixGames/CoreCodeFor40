@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://addons/Docker/ButtonsScripts/Example/DockerButtonExample.cs" id="1_x2tta"]
+
+[node name="Example" type="Button"]
+text = "Example Button"
+script = ExtResource("1_x2tta")

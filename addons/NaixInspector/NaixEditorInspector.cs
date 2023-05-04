@@ -10,21 +10,30 @@ namespace CoreCode.Inspector{
 	{
 		public override bool _CanHandle(GodotObject @object)
 		{
-			return true;
+			return (IsInputForEditor(@object) || IsSceneDatabase(@object));
 		}
 
 		public override void _ParseBegin(GodotObject @object)
 		{
-			InputReaderAbstract myInput = @object as InputReaderPlayer;
-			if (myInput!=null){
+			if (IsInputForEditor(@object)){
+				InputReaderAbstract myObject = @object as InputReaderAbstract;
 				AddPropertyEditor("Fix input map", new InputReaderAbstractInspectorPluging ());
 				return;
 			}
-			myInput = @object as StateMachineAIInput;
-			if (myInput!=null){
-				AddPropertyEditor("Fix input map", new InputReaderAbstractInspectorPluging ());
+			else if (IsSceneDatabase(@object)){
+				SceneDatabase myObject = @object as SceneDatabase;
+				AddPropertyEditor("Generate Scene data mappings", new SceneDatabaseInspectorPluging ());
 				return;
 			}
+		}
+
+		//Parsing type methods
+		private bool IsInputForEditor(GodotObject @object){
+			return @object is InputReaderPlayer || @object is StateMachineAIInput;
+		}
+
+		private bool IsSceneDatabase(GodotObject @object){
+			return @object is SceneDatabase;
 		}
 	}
 	#endif

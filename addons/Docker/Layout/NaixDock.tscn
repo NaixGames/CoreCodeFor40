@@ -1,8 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://dgj820rmix5sv"]
+[gd_scene load_steps=4 format=3 uid="uid://bq5k70dq0qx8k"]
 
-[ext_resource type="PackedScene" uid="uid://ln4aw7jvxr2c" path="res://addons/Docker/Buttons/Example/Example.tscn" id="1_imfw1"]
-[ext_resource type="PackedScene" uid="uid://bgic8iaemhox" path="res://addons/Docker/Buttons/CreateScene/NewScene.tscn" id="2_mp4a5"]
-[ext_resource type="PackedScene" uid="uid://bmweutupp05rp" path="res://addons/Docker/Buttons/CreateActor/CreateActor.tscn" id="3_x4wk1"]
+[ext_resource type="PackedScene" path="res://addons/Docker/ButtonsScripts/Example/Example.tscn" id="1_imfw1"]
+[ext_resource type="PackedScene" path="res://addons/Docker/ButtonsScripts/CreateScene/NewScene.tscn" id="2_mp4a5"]
+[ext_resource type="PackedScene" path="res://addons/Docker/ButtonsScripts/CreateActor/CreateActor.tscn" id="3_x4wk1"]
 
 [node name="NaixDock" type="VBoxContainer"]
 
@@ -14,3 +14,10 @@ layout_mode = 2
 
 [node name="CreateActor" parent="." instance=ExtResource("3_x4wk1")]
 layout_mode = 2
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+
+[node name="InputBox" type="LineEdit" parent="."]
+layout_mode = 2
+placeholder_text = "Path for asset creation"

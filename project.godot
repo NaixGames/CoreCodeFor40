@@ -25,7 +25,7 @@ project/assembly_name="CoreCodeFor40"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/Docker/plugin.cfg", "res://addons/NaixInspector/plugin.cfg")
+enabled=PackedStringArray("res://addons/NaixInspector/plugin.cfg", "res://addons/Docker/plugin.cfg")
 
 [input]
 

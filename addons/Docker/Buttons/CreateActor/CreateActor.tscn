@@ -1,7 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://bmweutupp05rp"]
-
-[ext_resource type="Script" path="res://addons/Docker/Buttons/CreateActor/CreateActorTemplate.cs" id="1_4tfx1"]
-
-[node name="CreateActor" type="Button"]
-text = "Create Actor Template"
-script = ExtResource("1_4tfx1")

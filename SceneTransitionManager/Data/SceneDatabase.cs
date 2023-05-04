@@ -18,7 +18,7 @@ public partial class SceneDatabase : Resource
 
     [Export] public bool IsSceneDatabaseUpdated{
         get{ return mSceneNameToUIDMapping.Count == mSceneNameToPathMapping.Count && mSceneNameToUIDMapping.Count == mNonPersistantSceneNameToPathMapping.Count;}
-        set{ LoadSceneDatabase(); } 
+        set{ return; } 
     }
 
     //This MUST be exported to be serialized. Sadly.
@@ -29,15 +29,15 @@ public partial class SceneDatabase : Resource
    
     // ----------------- Methods
 
-    private void LoadSceneDatabase(){
+    public void LoadSceneDatabase(){
         if (!Engine.IsEditorHint()){
             return;
         }
         if (IsSceneDatabaseUpdated){
-            GD.PushWarning("SceneDatabase seems updated, avoiding recreating database");
+            GD.PushWarning("SceneDatabase seems updated, avoiding recreating database. If this is wrong, clear the mappings and try again.");
             return;
         }
-        GD.Print("This is running");
+        GD.Print("The scene database is being updated");
         mSceneNameToPathMapping.Clear();
         mNonPersistantSceneNameToPathMapping.Clear();
 
@@ -47,5 +47,6 @@ public partial class SceneDatabase : Resource
             string nonPersistantScenePath = wholeScenePath.Replace("Whole", "NPActual");
             mNonPersistantSceneNameToPathMapping.Add(keyString, nonPersistantScenePath);
         }
+        GD.Print("The scene database was updated!");
     }
 }
