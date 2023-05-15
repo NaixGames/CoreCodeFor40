@@ -3,7 +3,7 @@ using System;
 using CoreCode.FSM;
 
 namespace CoreCode.Scripts{
-	public partial class GameActorReferenceHandler : CharacterBody2D, IPoolableObject
+	public partial class GameActorReferenceHandler2D : CharacterBody2D, IPoolableObject
 	{
 		// ----------------------------------- Information ------------------------------------------------
 		/*This is a script to reference nodes in actors more easily in Godot.*/

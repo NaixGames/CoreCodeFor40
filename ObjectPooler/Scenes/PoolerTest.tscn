@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://r22rxcnx0mh7"]
+[gd_scene load_steps=9 format=3]
 
 [ext_resource type="PackedScene" uid="uid://cgnt8ay08s2p5" path="res://LogManager/Scenes/LogManager.tscn" id="1_e2wy1"]
 [ext_resource type="Script" path="res://ObjectPooler/Scripts/GameObjectPooler.cs" id="2_0ue2f"]

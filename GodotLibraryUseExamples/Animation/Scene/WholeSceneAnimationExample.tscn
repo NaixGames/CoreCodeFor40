@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://dex2odjwmlm3m"]
+[gd_scene load_steps=3 format=3]
 
 [ext_resource type="PackedScene" uid="uid://o8db6ccgmu21" path="res://SceneTemplate/Managers.tscn" id="1_0vwyh"]
 [ext_resource type="PackedScene" uid="uid://cqy1c5qouddfq" path="res://GodotLibraryUseExamples/Animation/Scene/ActualSceneAnimationExample.tscn" id="2_7oby1"]

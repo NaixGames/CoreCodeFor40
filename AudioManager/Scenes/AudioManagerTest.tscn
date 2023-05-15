@@ -1,10 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://ctoxeu23ft617"]
+[gd_scene load_steps=8 format=3]
 
 [ext_resource type="PackedScene" uid="uid://o8db6ccgmu21" path="res://SceneTemplate/Managers.tscn" id="1_3b3kp"]
 [ext_resource type="AudioStream" uid="uid://cj32numecji5q" path="res://AudioManager/BasicTesting/01TestAudio.mp3" id="2_rrwfs"]
 [ext_resource type="Script" path="res://AudioManager/Scripts/AdaptativeMusicTrack.cs" id="3_trb44"]
 [ext_resource type="AudioStream" uid="uid://domtjaregpqq2" path="res://AudioManager/BasicTesting/02TestAudio.mp3" id="4_oqpw4"]
-[ext_resource type="PackedScene" uid="uid://dvhqp2ygj2yce" path="res://SceneTemplate/Scene.tscn" id="5_sbbsy"]
+[ext_resource type="PackedScene" path="res://SceneTemplate/Scene.tscn" id="5_sbbsy"]
 [ext_resource type="AudioStream" uid="uid://bild7eo77cnpq" path="res://AudioManager/BasicTesting/01. Castlevania - Vampire Killer [Torby Brand].mp3" id="5_ule2v"]
 [ext_resource type="Script" path="res://AudioManager/Scripts/AudioPhasingTest.cs" id="7_6vkxv"]
 

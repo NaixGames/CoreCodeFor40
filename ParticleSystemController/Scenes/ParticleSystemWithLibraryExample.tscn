@@ -1,11 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://chulfj0uyxfvo"]
+[gd_scene load_steps=11 format=3]
 
 [ext_resource type="PackedScene" uid="uid://cgnt8ay08s2p5" path="res://LogManager/Scenes/LogManager.tscn" id="1_yid2t"]
 [ext_resource type="Script" path="res://ObjectEventDispatcher/GlobalEventDispatcher.cs" id="2_opvpn"]
-[ext_resource type="Script" path="res://ParticleSystemController/Scripts/ParticleSystemController.cs" id="3_11o3b"]
+[ext_resource type="Script" path="res://ParticleSystemController/Scripts/ParticleSystemController2D.cs" id="3_11o3b"]
 [ext_resource type="Script" path="res://Input/InputReader/Scripts/InputReaderPlayer.cs" id="4_q5qq2"]
 [ext_resource type="Script" path="res://ObjectPooler/Scripts/GameObjectPooler.cs" id="5_6emtm"]
-[ext_resource type="Texture2D" uid="uid://cjl63lw5knac6" path="res://icon.svg" id="6_vytxs"]
+[ext_resource type="Texture2D" uid="uid://dqd4wln1wph42" path="res://icon.svg" id="6_vytxs"]
 [ext_resource type="Script" path="res://ObjectPooler/Scripts/PoolableParticleSystem2D.cs" id="7_cwood"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_c6tbg"]

@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://5s4gb1q7vgi7"]
+
+[ext_resource type="Script" path="res://FSM/Scripts/StateMachineAIInput.cs" id="1_w7bl3"]
+[ext_resource type="Script" path="res://CreationExamples/Actor/AITestAI/StateManager/AITestAIStateManager.cs" id="2_prw12"]
+
+[node name="AITestAIFSM" type="Node" node_paths=PackedStringArray("mStateManager")]
+script = ExtResource("1_w7bl3")
+mStateManager = NodePath("AITestAIStateManager")
+mPlayerID = 0
+mAxisValues = {}
+mButtonsValues = {}
+mTimeSinceLastPressAxis = {}
+mTimeSinceLastPressButton = {}
+mTimeHeldAxis = {}
+mTimeHeldButton = {}
+
+[node name="AITestAIStateManager" type="Node" parent="."]
+script = ExtResource("2_prw12")

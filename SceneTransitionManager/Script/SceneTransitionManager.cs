@@ -2,7 +2,9 @@ using Godot;
 using System;
 using CoreCode.AudioSystem;
 
+
 namespace CoreCode.Scripts{
+	[Tool]
 	public partial class SceneTransitionManager : Node
 	{
 		// ----------------------------------- Information ------------------------------------------------
@@ -21,6 +23,9 @@ namespace CoreCode.Scripts{
 		}
 
 		public static SceneTransitionManager TryToReturnInstance(){
+			if (Engine.IsEditorHint()){
+				return new SceneTransitionManager();
+			}
 			if (instance == null){
 				GD.PushWarning("Instance of SceneTransitionManager called before the instance was ready!");
 				instance = new SceneTransitionManager();
@@ -30,6 +35,9 @@ namespace CoreCode.Scripts{
 
 
 		public SceneTransitionManager(){
+			if (Engine.IsEditorHint()){
+				return;
+			}
 			if (instance==null){
 				instance=this; 
 			}
@@ -41,7 +49,14 @@ namespace CoreCode.Scripts{
 
 		[Export] private SceneDatabase mSceneDatabase;
 		
-		[Export] private SceneTransitionReferenceHelper mReferenceHelper;
+		private SceneTransitionReferenceHelper mReferenceHelper;
+
+		[Export] private NodePath mReferenceHelperPath;
+
+		public NodePath ReferenceHelperPath{
+			set{mReferenceHelperPath=value;}
+			get{return mReferenceHelperPath;}
+		}
 
 		// ------------------------------------ Variable for logging-----------------------------------------
 
@@ -121,9 +136,14 @@ namespace CoreCode.Scripts{
 
 
 		public override void _Ready(){
+			if (Engine.IsEditorHint()){
+				return;
+			}
 			if (mShouldLog){
 				mLogObject = LogManager.Instance.RequestLogReference("SceneTransitions", 0);
 			}
+			mReferenceHelper = GetNode<SceneTransitionReferenceHelper>(mReferenceHelperPath);
+			mReferenceHelper.GetNodesFromPaths();
 			//If not any reference for SceneTransitionReferenceHelper give a warning
 			if (mReferenceHelper == null){
 				GD.PushWarning("No reference SceneTransitionReferenceHelper on Scene Transition Manager. Audio and Scene Transitions should not work correclty");

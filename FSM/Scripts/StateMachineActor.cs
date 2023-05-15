@@ -21,7 +21,8 @@ namespace CoreCode.FSM{
 
 		// ------------------------------------ Variables ------------------------------------------------
 
-		[Export] private StateManagerAbstract mStateManager;
+		private StateManagerAbstract mStateManager;
+		[Export] public NodePath NodeManagerPath;
 		[Export] private Godot.Collections.Dictionary mMemoryBlackboard = new Godot.Collections.Dictionary();
 		private StateAbstract mActualState;
 
@@ -64,6 +65,7 @@ namespace CoreCode.FSM{
 
 		public override void _Ready()
 		{
+			mStateManager = GetNode<StateManagerAbstract>(NodeManagerPath);
 			if (mRequestInputChannel>0){
 				RecieveInputReader(InputManager.Instance.GiveInputByPlayerChannel(this, mRequestInputChannel));
 			}

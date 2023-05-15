@@ -1,14 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://bd1xepcdu2qog"]
+[gd_scene load_steps=3 format=3]
 
 [ext_resource type="PackedScene" uid="uid://o8db6ccgmu21" path="res://SceneTemplate/Managers.tscn" id="1_7im5v"]
-[ext_resource type="PackedScene" uid="uid://f0n0mm447ku4" path="res://SceneTransitionManager/Scene/ActualSceneOne.tscn" id="2_op710"]
+[ext_resource type="PackedScene" path="res://SceneTransitionManager/Scene/ActualSceneOne.tscn" id="2_op710"]
 
 [node name="ExampleWholeScene1" type="Node"]
 
 [node name="Managers" parent="." instance=ExtResource("1_7im5v")]
 
-[node name="SceneTransitionManager" parent="Managers" index="2" node_paths=PackedStringArray("mReferenceHelper")]
-mReferenceHelper = NodePath("../../ActualSceneOne")
+[node name="SceneTransitionManager" parent="Managers" index="2"]
+mReferenceHelperPath = NodePath("../../ActualSceneOne")
 
 [node name="P1Input" parent="Managers/InputManager" index="1"]
 mAreInputsUpdated = false
@@ -23,5 +23,6 @@ mTimeHeldAxis = {}
 mTimeHeldButton = {}
 
 [node name="ActualSceneOne" parent="." instance=ExtResource("2_op710")]
+NonPersistmentElementsPath = NodePath("")
 
 [editable path="Managers"]

@@ -1,7 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://cmiqunu7ieraw"]
+[gd_scene load_steps=3 format=3]
 
 [ext_resource type="PackedScene" uid="uid://o8db6ccgmu21" path="res://SceneTemplate/Managers.tscn" id="1_au3bu"]
-[ext_resource type="PackedScene" uid="uid://dvhqp2ygj2yce" path="res://SceneTemplate/Scene.tscn" id="2_4ylfc"]
+[ext_resource type="PackedScene" path="res://SceneTemplate/Scene.tscn" id="2_4ylfc"]
 
 [node name="SceneTemplate" type="Node"]
 

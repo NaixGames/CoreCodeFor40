@@ -1,26 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://7j7cl0sv50vw"]
+[gd_scene load_steps=4 format=3 uid="uid://mso51kgkgkam"]
 
-[ext_resource type="PackedScene" uid="uid://ex4crajtydxo" path="res://FSM/Scenes/Import/Player/player.tscn" id="1_g1nvx"]
-[ext_resource type="PackedScene" uid="uid://o8db6ccgmu21" path="res://SceneTemplate/Managers.tscn" id="1_sg1mh"]
-[ext_resource type="Script" path="res://ObjectPooler/Scripts/GameObjectPooler.cs" id="4_2rs78"]
+[ext_resource type="PackedScene" uid="uid://c18emqn331q8j" path="res://FSM/Scenes/Import/Player/player.tscn" id="1_g1nvx"]
+[ext_resource type="Script" path="res://ObjectPooler/Scripts/GameObjectPooler2D.cs" id="3_ihi1j"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ly7ef"]
 
 [node name="FSMTest" type="Node2D"]
-
-[node name="Managers" parent="." instance=ExtResource("1_sg1mh")]
-
-[node name="P1Input" parent="Managers/InputManager" index="1"]
-mAreInputsUpdated = false
-mPlayerID = -1
-mAxis = PackedStringArray()
-mButtons = PackedStringArray()
-mAxisValues = {}
-mButtonsValues = {}
-mTimeSinceLastPressAxis = {}
-mTimeSinceLastPressButton = {}
-mTimeHeldAxis = {}
-mTimeHeldButton = {}
 
 [node name="Scene" type="Node" parent="."]
 
@@ -40,9 +25,6 @@ scale = Vector2(100, 1.944)
 shape = SubResource("RectangleShape2D_ly7ef")
 
 [node name="ObjectPooler" type="Node" parent="Scene"]
-script = ExtResource("4_2rs78")
-mPoolPosition = Vector3(200, 600, 0)
-mShouldLog = true
+script = ExtResource("3_ihi1j")
 
-[editable path="Managers"]
 [editable path="Scene/ActualScene/Player"]

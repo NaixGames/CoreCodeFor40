@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://cc2rl2td3fa6d"]
+
+[ext_resource type="Script" path="res://SceneTransitionManager/Script/SceneTransitionReferenceHelper.cs" id="1_41y4x"]
+[ext_resource type="PackedScene" uid="uid://47a6aurig46a" path="res://CreationExamples/Scene/TestScene/NPActualTestScene.tscn" id="2_duxiw"]
+[ext_resource type="PackedScene" uid="uid://qo54xqllvtk7" path="res://CreationExamples/Actor/ActorCreateFSM/ActorCreateFSM.tscn" id="3_14233"]
+[ext_resource type="Script" path="res://ObjectPooler/Scripts/GameObjectPooler2D.cs" id="3_juc48"]
+
+[node name="ActualTestScene" type="Node"]
+script = ExtResource("1_41y4x")
+NonPersistentElementsPath = NodePath("Elements/NPActualTestScene")
+PersistentElementsPath = NodePath("Elements/PETestScene")
+ObjectPoolerNodePath = NodePath("ObjectPooler")
+AudioBankContainerNodePath = NodePath("AudioBank")
+
+[node name="Elements" type="Node" parent="."]
+
+[node name="PETestScene" type="Node" parent="Elements"]
+
+[node name="NPActualTestScene" parent="Elements" instance=ExtResource("2_duxiw")]
+
+[node name="ActorCreateFSM" parent="Elements/NPActualTestScene" instance=ExtResource("3_14233")]
+position = Vector2(200, 204)
+
+[node name="ObjectPooler" type="Node" parent="."]
+script = ExtResource("3_juc48")
+
+[node name="AudioBank" type="Node" parent="."]

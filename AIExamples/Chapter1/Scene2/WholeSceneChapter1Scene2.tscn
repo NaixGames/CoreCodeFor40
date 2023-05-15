@@ -1,7 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://bvq68pdtju0dx"]
+[gd_scene load_steps=3 format=3]
 
 [ext_resource type="PackedScene" uid="uid://o8db6ccgmu21" path="res://SceneTemplate/Managers.tscn" id="1_b2xeh"]
-[ext_resource type="PackedScene" uid="uid://bnqmcl5pfv4oq" path="res://AIExamples/Chapter1/Scene2/ActualSceneChapter1Scene2.tscn" id="2_0s647"]
+[ext_resource type="PackedScene" path="res://AIExamples/Chapter1/Scene2/ActualSceneChapter1Scene2.tscn" id="2_0s647"]
 
 [node name="WholeSceneChapter1Scene2" type="Node"]
 

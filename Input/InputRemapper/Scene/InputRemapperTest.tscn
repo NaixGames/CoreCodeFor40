@@ -1,7 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://dss787o3jl7nq"]
+[gd_scene load_steps=6 format=3]
 
 [ext_resource type="PackedScene" uid="uid://o8db6ccgmu21" path="res://SceneTemplate/Managers.tscn" id="1_yewjp"]
-[ext_resource type="PackedScene" uid="uid://ex4crajtydxo" path="res://FSM/Scenes/Import/Player/player.tscn" id="2_7eywv"]
+[ext_resource type="PackedScene" uid="uid://c18emqn331q8j" path="res://FSM/Scenes/Import/Player/player.tscn" id="2_7eywv"]
 [ext_resource type="Script" path="res://ObjectPooler/Scripts/GameObjectPooler.cs" id="3_33hbc"]
 [ext_resource type="Script" path="res://Input/InputRemapper/Scripts/InputRemapperExample.cs" id="3_nrjbl"]
 

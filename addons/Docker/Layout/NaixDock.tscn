@@ -1,23 +1,125 @@
-[gd_scene load_steps=4 format=3 uid="uid://bq5k70dq0qx8k"]
+[gd_scene load_steps=6 format=3 uid="uid://ce5q6u46obd8w"]
 
 [ext_resource type="PackedScene" path="res://addons/Docker/ButtonsScripts/Example/Example.tscn" id="1_imfw1"]
+[ext_resource type="Script" path="res://addons/Docker/DockerExpandingButton.cs" id="2_hbtqo"]
 [ext_resource type="PackedScene" path="res://addons/Docker/ButtonsScripts/CreateScene/NewScene.tscn" id="2_mp4a5"]
-[ext_resource type="PackedScene" path="res://addons/Docker/ButtonsScripts/CreateActor/CreateActor.tscn" id="3_x4wk1"]
+[ext_resource type="Texture2D" uid="uid://c60axen41iigm" path="res://Assets/Images/ExpandableButtomIcon.png" id="2_tl2x1"]
+[ext_resource type="PackedScene" path="res://addons/Docker/ButtonsScripts/CreateFSM/CreateFSM.tscn" id="3_x4wk1"]
 
 [node name="NaixDock" type="VBoxContainer"]
+offset_top = 1.0
+offset_right = 235.0
+offset_bottom = 316.0
 
 [node name="Example" parent="." instance=ExtResource("1_imfw1")]
 layout_mode = 2
 
-[node name="NewScene" parent="." instance=ExtResource("2_mp4a5")]
+[node name="Asset Creation Title" type="Label" parent="."]
+layout_mode = 2
+text = "Asset creation options"
+horizontal_alignment = 1
+
+[node name="Scene Template Creation" type="Button" parent="."]
+layout_mode = 2
+text = "Scene Template Creation"
+icon = ExtResource("2_tl2x1")
+flat = true
+alignment = 0
+script = ExtResource("2_hbtqo")
+mNotePathOfMenu = NodePath("../SceneTemplateCreationBox")
+
+[node name="SceneTemplateCreationBox" type="VBoxContainer" parent="."]
+visible = false
+custom_minimum_size = Vector2(0, 85)
 layout_mode = 2
 
-[node name="CreateActor" parent="." instance=ExtResource("3_x4wk1")]
+[node name="Space2" type="Label" parent="SceneTemplateCreationBox"]
+layout_mode = 2
+text = "
+"
+horizontal_alignment = 1
+
+[node name="ScenePathInputBox" type="LineEdit" parent="SceneTemplateCreationBox"]
+layout_mode = 2
+placeholder_text = "Path to save Scene"
+caret_blink = true
+caret_blink_interval = 0.5
+
+[node name="SceneNameInputBox" type="LineEdit" parent="SceneTemplateCreationBox"]
+layout_mode = 2
+placeholder_text = "Name of Scene"
+caret_blink = true
+caret_blink_interval = 0.5
+
+[node name="DimensionCase" type="ItemList" parent="SceneTemplateCreationBox"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+item_count = 2
+item_0/text = "2D"
+item_1/text = "3D"
+
+[node name="NewScene" parent="SceneTemplateCreationBox" instance=ExtResource("2_mp4a5")]
+layout_mode = 2
+text = "Create New Scene
+"
+
+[node name="Space" type="Label" parent="SceneTemplateCreationBox"]
+layout_mode = 2
+text = "
+"
+horizontal_alignment = 1
+
+[node name="FSM Template Creation" type="Button" parent="."]
+layout_mode = 2
+text = "FSM Template Creation"
+icon = ExtResource("2_tl2x1")
+flat = true
+alignment = 0
+script = ExtResource("2_hbtqo")
+mNotePathOfMenu = NodePath("../FSMTemplateCreationBox")
+
+[node name="FSMTemplateCreationBox" type="VBoxContainer" parent="."]
+visible = false
 layout_mode = 2
 
-[node name="Label" type="Label" parent="."]
+[node name="Space2" type="Label" parent="FSMTemplateCreationBox"]
 layout_mode = 2
+text = "
+"
+horizontal_alignment = 1
 
-[node name="InputBox" type="LineEdit" parent="."]
+[node name="FSMPathInputBox" type="LineEdit" parent="FSMTemplateCreationBox"]
 layout_mode = 2
-placeholder_text = "Path for asset creation"
+placeholder_text = "Path to save FSM"
+caret_blink = true
+caret_blink_interval = 0.5
+
+[node name="FSMNameInputBox" type="LineEdit" parent="FSMTemplateCreationBox"]
+layout_mode = 2
+placeholder_text = "FSM Name"
+caret_blink = true
+caret_blink_interval = 0.5
+
+[node name="InitialStateNameInputBox" type="LineEdit" parent="FSMTemplateCreationBox"]
+layout_mode = 2
+placeholder_text = "Initial State Name"
+caret_blink = true
+caret_blink_interval = 0.5
+
+[node name="FSMCase" type="ItemList" parent="FSMTemplateCreationBox"]
+custom_minimum_size = Vector2(0, 90)
+layout_mode = 2
+item_count = 3
+item_0/text = "2D Actor"
+item_1/text = "3D Actor"
+item_2/text = "AI"
+
+[node name="CreateFSM" parent="FSMTemplateCreationBox" instance=ExtResource("3_x4wk1")]
+layout_mode = 2
+text = "Create FSM"
+
+[node name="Space" type="Label" parent="FSMTemplateCreationBox"]
+layout_mode = 2
+text = "
+"
+horizontal_alignment = 1

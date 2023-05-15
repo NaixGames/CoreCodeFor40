@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bp6klblynwcrq"]
+[gd_scene load_steps=8 format=3]
 
 [ext_resource type="Script" path="res://SceneTransitionManager/Script/SceneTransitionReferenceHelper.cs" id="1_cvfdc"]
 [ext_resource type="Script" path="res://SceneTransitionManager/Script/SceneTransitionManagerTest.cs" id="2_vgqha"]

@@ -4,11 +4,13 @@ using System.Collections;
 using System.Collections.Generic;
 
 namespace CoreCode.Scripts{
-	public partial class GameObjectPooler : Node
+	public abstract partial class GameObjectPooler : Node
 	{
 		// ----------------------------------- Information ------------------------------------------------
 		/*This is a script to have a game object poooler. This is a more efficient and memory safe way to manage instantiation of game objects. 
-		The game object pooler should be the waypoint of all instantion during gameplay. */
+		The game object pooler should be the waypoint of all instantion during gameplay. 
+		
+		UPDATE: This was changed to be an abstract class, to allow seperation to 2D and 3D, which allows better compatibility with godot's systems*/
 		
 		// ------------------------------------ Use -------------------------------------------------------
 		/*  Every instantiable game object should inherit from a PoolableObject Node. Once this is done, one can add
@@ -29,15 +31,15 @@ namespace CoreCode.Scripts{
 
 		// ------------------------------------- Singleton instantiation -------------------------------
 
-		[Export] private static GameObjectPooler instance;
+		[Export] protected static GameObjectPooler instance;
 		public static GameObjectPooler Instance{
 			get {return TryToReturnInstance();}
 		}
 
-		public static GameObjectPooler TryToReturnInstance(){
+		protected static GameObjectPooler TryToReturnInstance(){
 			if (instance == null){
 				GD.PushWarning("Instance of GameObjectPooler called before the instance was ready!");
-				instance = new GameObjectPooler();
+				instance = new GameObjectPooler2D();
 			}
 			return instance;
 		}
@@ -49,20 +51,20 @@ namespace CoreCode.Scripts{
 		}
 		// ------------------------------------- Variables
 
-		private IPoolableObject[] PoolableObjectsStartUp;
+		protected IPoolableObject[] PoolableObjectsStartUp;
 
-		[Export] private NodePath[] PoolableObjectStartUpManualSetUp = new NodePath[0]; //This could be extended to actuall contain folders of different type of objects
+		[Export] protected NodePath[] PoolableObjectStartUpManualSetUp = new NodePath[0]; //This could be extended to actuall contain folders of different type of objects
 
 		[Export]
-		private Godot.Collections.Array<int> NumberOfCopiesStartUp = new Godot.Collections.Array<int>();
+		protected Godot.Collections.Array<int> NumberOfCopiesStartUp = new Godot.Collections.Array<int>();
 		
-		[Export] private int mNumberForPoolExpandUponFilling=10;
-		private Dictionary<string,IPoolableObject[]> mObjectPoolerMap = new Dictionary<string, IPoolableObject[]>(); 
+		[Export] protected int mNumberForPoolExpandUponFilling=10;
+		protected Dictionary<string,IPoolableObject[]> mObjectPoolerMap = new Dictionary<string, IPoolableObject[]>(); 
 		
 
-		private Dictionary<string,int> mIndexForObjectPoolerMap = new Dictionary<string, int>(); //This should now split "used" versus "unused" objects
+		protected Dictionary<string,int> mIndexForObjectPoolerMap = new Dictionary<string, int>(); //This should now split "used" versus "unused" objects
 
-		[Export] private Vector3 mPoolPosition; 
+		[Export] protected Vector3 mPoolPosition; 
 		public Vector3 PoolPosition {
 			get{return mPoolPosition;}
 		}
@@ -70,9 +72,9 @@ namespace CoreCode.Scripts{
 		//---------------------Variables for loging
 		
 		[Export]
-		private bool mShouldLog;
+		protected bool mShouldLog;
 
-		private LogObject mLogObject;
+		protected LogObject mLogObject;
 
 		// -----------------------------------------------------------------------------
 
@@ -153,29 +155,7 @@ namespace CoreCode.Scripts{
 			return GiveObject(ObjectToGive.TagObject);
 		}
 
-		public Node3D InstantiateGameObjectIn3D(string tag, Vector3 Position, Vector3 Rotation){
-			Node3D ThreeDimObject = (Node3D)GiveObject(tag);
-			ThreeDimObject.Position = Position;
-			ThreeDimObject.Rotation = Rotation;
-			return ThreeDimObject;
-
-		}
-
-		public Node3D InstantiateGameObjectIn3D(IPoolableObject ObjectToGive, Vector3 Position, Vector3 Rotation){
-			return InstantiateGameObjectIn3D(ObjectToGive.TagObject, Position, Rotation);
-		}
-
-		public Node2D InstantiateGameObjectIn2D(string tag, Vector2 Position, float Rotation=0f){
-			Node2D TwoDimObject = (Node2D)GiveObject(tag);
-			TwoDimObject.Position = Position;
-			TwoDimObject.Rotation = Rotation;
-			return TwoDimObject;
-
-		}
-
-		public Node2D InstantiateGameObjectIn2D(IPoolableObject ObjectToGive, Vector2 Position, float Rotation = 0f){
-			return InstantiateGameObjectIn2D(ObjectToGive.TagObject, Position, Rotation);
-		}
+		// -----------Methods to manage the pool
 		
 
 		//Method to reset the object pooler when loading new scene

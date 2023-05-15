@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://qo54xqllvtk7"]
+
+[ext_resource type="Script" path="res://GameActorReferenceHandler/Script/GameActorReferenceHandler2D.cs" id="1_epvcy"]
+[ext_resource type="Script" path="res://FSM/Scripts/StateMachineActor.cs" id="2_bwyr4"]
+[ext_resource type="Script" path="res://CreationExamples/Actor/ActorCreateFSM/StateManager/ActorCreateFSMStateManager.cs" id="3_1muj1"]
+
+[node name="ActorCreateFSM" type="CharacterBody2D" node_paths=PackedStringArray("mStateMachine")]
+script = ExtResource("1_epvcy")
+mStateMachine = NodePath("ActorCreateFSMFSM")
+
+[node name="ActorCreateFSMFSM" type="Node" parent="."]
+script = ExtResource("2_bwyr4")
+NodeManagerPath = NodePath("ActorCreateFSMStateManager")
+mRequestInputChannel = -1
+
+[node name="ActorCreateFSMStateManager" type="Node" parent="ActorCreateFSMFSM"]
+script = ExtResource("3_1muj1")

@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://bxygdor54i7w2"]
+
+[ext_resource type="Script" path="res://SceneTransitionManager/Script/SceneTransitionReferenceHelper.cs" id="1_fleqt"]
+[ext_resource type="PackedScene" uid="uid://k7iywm2pwryo" path="res://TestSceneCreation/TestScene3D/NPActualTestScene3D.tscn" id="2_piei2"]
+[ext_resource type="Script" path="res://ObjectPooler/Scripts/GameObjectPooler3D.cs" id="3_j70wk"]
+
+[node name="ActualTestScene3D" type="Node"]
+script = ExtResource("1_fleqt")
+NonPersistentElementsPath = NodePath("Elements/NPActualTestScene3D")
+PersistentElementsPath = NodePath("Elements/PETestScene3D")
+ObjectPoolerNodePath = NodePath("ObjectPooler")
+AudioBankContainerNodePath = NodePath("AudioBank")
+
+[node name="Elements" type="Node" parent="."]
+
+[node name="PETestScene3D" type="Node" parent="Elements"]
+
+[node name="NPActualTestScene3D" type="Node" parent="Elements" instance=ExtResource("2_piei2")]
+
+[node name="ObjectPooler" type="Node" parent="."]
+script = ExtResource("3_j70wk")
+
+[node name="AudioBank" type="Node" parent="."]

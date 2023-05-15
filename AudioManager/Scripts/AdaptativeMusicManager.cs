@@ -89,7 +89,12 @@ namespace CoreCode.AudioSystem{
 					musicNode.QueueFree();
 				}
 				}
-		
+			
+			if (AudioBankContainer.GetChildCount()==0){
+				GD.PushWarning("No music on audiobanks. No sound will play!");
+				return;
+			}
+
 			foreach (AdaptativeMusicTrack musicNode in AudioBankContainer.GetChildren() ){
 				AudioBankContainer.RemoveChild(musicNode);
 				this.AddChild(musicNode);

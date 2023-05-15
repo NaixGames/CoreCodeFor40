@@ -2,6 +2,7 @@ using Godot;
 using System;
 
 namespace CoreCode.Scripts{
+	[Tool]
 	public partial class SceneTransitionReferenceHelper : Node
 	{
 		// ----------------------------------- Information ------------------------------------------------
@@ -16,10 +17,16 @@ namespace CoreCode.Scripts{
 
 		// ------------------------------------Variables 
 		
-		[Export]public Node NonPersistentElements;
-		[Export] public Node PersistentElements;
-		[Export] public Node ObjectPoolerNode;
-		[Export] public Node AudioBankContainerNode;
+		[Export] public NodePath NonPersistentElementsPath;
+		[Export] public NodePath PersistentElementsPath;
+		[Export] public NodePath ObjectPoolerNodePath;
+		[Export] public NodePath AudioBankContainerNodePath;
+
+		public Node NonPersistentElements;
+		public Node PersistentElements;
+		public Node ObjectPoolerNode;
+		public Node AudioBankContainerNode;
+
 
 		// ------------------------------------ Method to queue without anoying references staying arround
 
@@ -29,6 +36,22 @@ namespace CoreCode.Scripts{
 			ObjectPoolerNode=null;
 			AudioBankContainerNode=null;
 			this.QueueFree();
+		}
+
+
+		//---------------------------------------------------------------------------
+
+		public override void _Ready(){
+			if (Engine.IsEditorHint()){
+				return;
+			}
+		}
+
+		public void GetNodesFromPaths(){
+			NonPersistentElements = GetNode(NonPersistentElementsPath);
+			PersistentElements = GetNode(PersistentElementsPath);
+			ObjectPoolerNode = GetNode(ObjectPoolerNodePath);
+			AudioBankContainerNode = GetNode(AudioBankContainerNodePath);
 		}
 	}
 }

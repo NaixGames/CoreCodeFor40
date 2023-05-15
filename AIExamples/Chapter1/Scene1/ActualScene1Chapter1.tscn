@@ -1,7 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://b80ko51wtjfya"]
+[gd_scene load_steps=4 format=3]
 
 [ext_resource type="Script" path="res://SceneTransitionManager/Script/SceneTransitionReferenceHelper.cs" id="1_rgybj"]
-[ext_resource type="PackedScene" uid="uid://djgog8k4pih52" path="res://AIExamples/Chapter1/Scene1/NonPersistentElements.tscn" id="2_cd8ya"]
+[ext_resource type="PackedScene" uid="uid://djgog8k4pih52" path="res://AIExamples/Chapter1/Scene1/NPActualSceneChapter1.tscn" id="2_cd8ya"]
 [ext_resource type="Script" path="res://ObjectPooler/Scripts/GameObjectPooler.cs" id="3_41gcu"]
 
 [node name="ActualSceneChapter1Scene1" type="Node" node_paths=PackedStringArray("NonPersistentElements", "PersistentElements", "ObjectPoolerNode", "AudioBankContainerNode")]
