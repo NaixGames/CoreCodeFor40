@@ -18,14 +18,16 @@ namespace CoreCode.Scripts{
 		{
 			//This is setting by default to "nothing is pressed"
 			for( int i=0; i< mAxis.Length ; i++){
-				mAxisValues[mAxis[i]] =0;
-				mTimeSinceLastPressAxis[mAxis[i]]+=delta;
-				mTimeHeldAxis[mAxis[i]]=0;
+				InputActionInfo mActionInfoRef = mAxisValues[mAxis[i]];
+				mActionInfoRef.Value =0;
+				mActionInfoRef.TimeSinceLastPressed+=(float)delta;
+				mActionInfoRef.TimeHeld=0;
 			}
 			for( int i=0; i< mButtons.Length ; i++){
-				mButtonsValues[mButtons[i]]=false;
-				mTimeSinceLastPressButton[mButtons[i]]+=delta;
-				mTimeHeldButton[mButtons[i]]=0;
+				InputActionInfo mActionInfoRef = mButtonsValues[mButtons[i]];
+				mActionInfoRef.Value=0;
+				mActionInfoRef.TimeSinceLastPressed+=(float)delta;
+				mActionInfoRef.TimeHeld=0;
 			}
 		}
 	}

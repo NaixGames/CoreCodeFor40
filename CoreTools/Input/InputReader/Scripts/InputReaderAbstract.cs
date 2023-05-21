@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 
 namespace CoreCode.Scripts{
 
@@ -15,17 +16,9 @@ namespace CoreCode.Scripts{
 
 		For setting up Input for Player in a concentrete class, see InputManager. For setting Input for Enemies (ie, AI), see the InputAIAbstract class or its childrens. (TO DO)
 		*/
-
-
-		// ------------------------------------- Pending -----------------------------------------------
-		/*
-		Related; connection to logs classes, so I can dump there input values. Logs are still not implemented, that will be next for my core.
-		*/
-
 		// ------------------------------------ Variables ------------------------------------------------
 
 		
-		[Export] protected bool mAreInputsUpdated = false;
 		[Export] protected int mPlayerID = -1; //Note the convention that -1 is AI/Engine input and 1 and beyond are players.
 
 
@@ -39,15 +32,9 @@ namespace CoreCode.Scripts{
 		}
 
 
-		[Export] protected Godot.Collections.Dictionary<string, float> mAxisValues;
-		[Export] protected Godot.Collections.Dictionary<string, bool> mButtonsValues;
+		protected Dictionary<string, InputActionInfo> mAxisValues = new Dictionary<string, InputActionInfo>();
+		protected Dictionary<string, InputActionInfo> mButtonsValues = new Dictionary<string, InputActionInfo>();
 
-
-		[Export] protected Godot.Collections.Dictionary<string, double> mTimeSinceLastPressAxis;
-		[Export] protected Godot.Collections.Dictionary<string, double> mTimeSinceLastPressButton;
-
-		[Export] protected Godot.Collections.Dictionary<string, double> mTimeHeldAxis;
-		[Export] protected Godot.Collections.Dictionary<string, double> mTimeHeldButton;
 
 		protected bool mIsFirstFrame=true;
 
@@ -64,9 +51,7 @@ namespace CoreCode.Scripts{
 		// ------------------------------------- Godot overrides ---------------------------------------
 
 		public override void _Ready(){
-			if (mAreInputsUpdated == false){
-				GD.PushWarning("There are inputs that are not correctly updated! Check node " + this.Name);
-			}
+			GenerateInputValuesArrays();
 		}
 		public override void _Process(double delta)
 		{
@@ -96,74 +81,54 @@ namespace CoreCode.Scripts{
 		// ------------------------------------- Auxiliary functions for setups ---------------------------------------
 		
 		//This function should be executed in the inspector. Using the Set method for a bool for that.
-		public void FixFormatInputsButton(){
-			if (Engine.IsEditorHint()){ //Using prints here because this will only be called from the Editor!
-				if (mAreInputsUpdated){
-					GD.Print("Trying to Fix updated inputs for a player. Are you sure you want to do this? If so untick the mAreInputsUpdated variable.");
-					return;
-				}
-				GenerateInputValuesArrays();
-				mAreInputsUpdated=true;
-				GD.Print("Inputs set up correctly!"); 
-			}
-			else{
-				GD.PushWarning("Trying to call FixFormatInputs in gameplay! This should not happen!");
-			}
-		}
 
 
 		protected void GenerateInputValuesArrays(){
-			mAxisValues = new Godot.Collections.Dictionary<string, float>();
-			mButtonsValues =  new Godot.Collections.Dictionary<string, bool>();
-			mTimeSinceLastPressAxis = new Godot.Collections.Dictionary<string, double>();
-			mTimeSinceLastPressButton= new Godot.Collections.Dictionary<string, double>();
-			mTimeHeldAxis = new Godot.Collections.Dictionary<string, double>();
-			mTimeHeldButton= new Godot.Collections.Dictionary<string, double>();
 			for( int i=0; i< mAxis.Length ; i++){
-				mAxisValues.Add(mAxis[i], 0);
-				mTimeSinceLastPressAxis.Add(mAxis[i], 0);
-				mTimeHeldAxis.Add(mAxis[i], 0);
+				InputActionInfo mActionInfo = new InputActionInfo(mAxis[i]);
+				mAxisValues.Add(mAxis[i], mActionInfo);
 			}
 			for( int i=0; i< mButtons.Length ; i++){
-				mButtonsValues.Add(mButtons[i], false);
-				mTimeSinceLastPressButton.Add(mButtons[i], 0);
-				mTimeHeldButton.Add(mButtons[i], 0);
+				InputActionInfo mActionInfo = new InputActionInfo(mButtons[i]);
+				mButtonsValues.Add(mButtons[i], mActionInfo);
 			}
 		}
 
-		protected void ProcessButtonPressValue(string ButtonName, bool pressValue, double deltaTime){
-			bool previousValue = mButtonsValues[ButtonName];
-			mButtonsValues[ButtonName] = pressValue;
+		protected void ProcessButtonPressValue(string ButtonName, bool pressValue, float deltaTime){
+			float previousValue = mButtonsValues[ButtonName].Value;
+			InputActionInfo mActioInfoRef = mButtonsValues[ButtonName];
+			mActioInfoRef.Value = pressValue ? 1f : 0f;
 				if (pressValue){
-					mTimeSinceLastPressButton[ButtonName]=0;
-					if (previousValue){
-						mTimeHeldButton[ButtonName]+=deltaTime;
+					mActioInfoRef.TimeSinceLastPressed=0;
+					if (previousValue>0.5f){
+						mActioInfoRef.TimeHeld+=deltaTime;
 					}
 					else{
-						mTimeHeldButton[ButtonName]=0;
+						mActioInfoRef.TimeHeld=0;
 					}
 				}
 				else{
-					mTimeHeldButton[ButtonName]=0;
-					mTimeSinceLastPressButton[ButtonName] +=deltaTime;
+					mActioInfoRef.TimeHeld=0;
+					mActioInfoRef.TimeSinceLastPressed +=deltaTime;
 				}
 		}
 
-		protected void ProcessAxisValue(string AxisName, float AxisStrength, double deltaTime){
-			float previousValue = mAxisValues[AxisName];
-			mAxisValues[AxisName] = AxisStrength;
+		protected void ProcessAxisValue(string AxisName, float AxisStrength, float deltaTime){
+			float previousValue = mAxisValues[AxisName].Value;
+			InputActionInfo mActioInfoRef = mAxisValues[AxisName];
+			mActioInfoRef.Value = AxisStrength;
 				if (AxisStrength>0){
-					mTimeSinceLastPressAxis[AxisName]=0;
+					mActioInfoRef.TimeSinceLastPressed=0;
 					if (previousValue>0){
-						mTimeHeldAxis[AxisName] += deltaTime;
+						mActioInfoRef.TimeHeld += deltaTime;
 					}
 					else{
-						mTimeHeldAxis[AxisName] = 0;
+						mActioInfoRef.TimeHeld = 0;
 					}
 				}
 				else{
-					mTimeHeldAxis[AxisName] = 0;
-					mTimeSinceLastPressAxis[AxisName] +=deltaTime;
+					mActioInfoRef.TimeHeld = 0;
+					mActioInfoRef.TimeSinceLastPressed +=deltaTime;
 				}
 		}
 
@@ -173,7 +138,7 @@ namespace CoreCode.Scripts{
 				GD.PushError("Input key " + AxisName + " does not exist in dictionary. Check your input names/generate the input keys!");
 				return 0;
 			}
-			return mAxisValues[AxisName];
+			return mAxisValues[AxisName].Value;
 		}
 
 		//--------------------------------------
@@ -183,7 +148,7 @@ namespace CoreCode.Scripts{
 				GD.PushError("Input key " + ButtonName + " does not exist in dictionary. Check your input names/generate the input keys!");
 				return false;
 			}
-			return mButtonsValues[ButtonName];
+			return mButtonsValues[ButtonName].Value > 0.5f;
 		}
 
 		//--------------------------------------
@@ -193,7 +158,7 @@ namespace CoreCode.Scripts{
 				GD.PushError("Input key " + AxisName + " does not exist in dictionary. Check your input names/generate the input keys!");
 				return 0;
 			}
-			return  mTimeSinceLastPressAxis[AxisName];
+			return  mAxisValues[AxisName].TimeSinceLastPressed;
 		}
 
 		//--------------------------------------
@@ -203,7 +168,7 @@ namespace CoreCode.Scripts{
 				GD.PushError("Input key " + ButtonName + " does not exist in dictionary. Check your input names/generate the input keys!");
 				return 0;
 			}
-			return  mTimeSinceLastPressButton[ButtonName];
+			return  mButtonsValues[ButtonName].TimeSinceLastPressed;
 		}
 
 		//--------------------------------------
@@ -213,7 +178,7 @@ namespace CoreCode.Scripts{
 				GD.PushError("Input key " + AxisName + " does not exist in dictionary. Check your input names/generate the input keys!");
 				return 0;
 			}
-			return  mTimeHeldAxis[AxisName];
+			return  mAxisValues[AxisName].TimeHeld;
 		}
 
 		//--------------------------------------
@@ -223,7 +188,7 @@ namespace CoreCode.Scripts{
 				GD.PushError("Input key " + ButtonName + " does not exist in dictionary. Check your input names/generate the input keys!");
 				return 0;
 			}
-			return  mTimeHeldButton[ButtonName];
+			return  mButtonsValues[ButtonName].TimeHeld;
 		}
 
 		//--------------------------------------
@@ -232,7 +197,7 @@ namespace CoreCode.Scripts{
 				GD.PushError("Input key " + AxisName + " does not exist in dictionary. Check your input names/generate the input keys!");
 				return false;
 			}
-			return  (mTimeHeldAxis[AxisName]==0 && mTimeSinceLastPressAxis[AxisName]==0);
+			return  (mAxisValues[AxisName].TimeHeld==0 && mAxisValues[AxisName].TimeSinceLastPressed==0 && (!mIsFirstFrame));
 		}
 
 		//--------------------------------------
@@ -241,7 +206,7 @@ namespace CoreCode.Scripts{
 				GD.PushError("Input key " + ButtonName + " does not exist in dictionary. Check your input names/generate the input keys!");
 				return false;
 			}
-			return  (mTimeHeldButton[ButtonName]==0 && mTimeSinceLastPressButton[ButtonName]==0 && (!mIsFirstFrame));
+			return  (mButtonsValues[ButtonName].TimeHeld==0 && mButtonsValues[ButtonName].TimeSinceLastPressed==0 && (!mIsFirstFrame));
 		}
 
 		//--------------------------------------

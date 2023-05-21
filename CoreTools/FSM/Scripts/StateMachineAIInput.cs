@@ -48,6 +48,7 @@ namespace CoreCode.FSM{
 
 		public override void _Ready()
 		{
+			base._Ready();
 			if (Engine.IsEditorHint()){ //Using prints here because this will only be called from the Editor!
 				return;
 			}
@@ -83,7 +84,7 @@ namespace CoreCode.FSM{
 
 		private void UpdateButtonValues(Godot.Collections.Array<string> ButtonPressedThisFrame, double deltaTime){
 			for( int i=0; i< mButtons.Length ; i++){
-				ProcessButtonPressValue(mButtons[i], ButtonPressedThisFrame.Contains(mButtons[i]), deltaTime);
+				ProcessButtonPressValue(mButtons[i], ButtonPressedThisFrame.Contains(mButtons[i]), (float)deltaTime);
 			}
 			return;
 		}
@@ -91,7 +92,7 @@ namespace CoreCode.FSM{
 		private void UpdateAxisValues(Godot.Collections.Dictionary<string, float> AxisValuesThisFrame, double deltaTime){
 			for( int i=0; i< mAxis.Length ; i++){
 				float axisStrength = AxisValuesThisFrame.ContainsKey(mAxis[i]) ? AxisValuesThisFrame[mAxis[i]] : 0;
-				ProcessAxisValue(mAxis[i], axisStrength , deltaTime);
+				ProcessAxisValue(mAxis[i], axisStrength , (float)deltaTime);
 			}
 			return;
 		}
