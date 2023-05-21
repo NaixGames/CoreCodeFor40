@@ -1,0 +1,53 @@
+[gd_scene load_steps=8 format=3 uid="uid://dtv2v6rcqfr0d"]
+
+[ext_resource type="Script" path="res://CoreTools/SceneTransitionManager/Script/SceneTransitionReferenceHelper.cs" id="1_to0kj"]
+[ext_resource type="PackedScene" uid="uid://bg8gwtn8f24oh" path="res://CoreTools/AudioManager/Scenes/AudioTest/NPActualAudioTest.tscn" id="2_i5rfs"]
+[ext_resource type="Script" path="res://CoreTools/ObjectPooler/Scripts/GameObjectPooler2D.cs" id="3_qq7ng"]
+[ext_resource type="AudioStream" uid="uid://cj32numecji5q" path="res://CoreTools/AudioManager/BasicTesting/01TestAudio.mp3" id="4_l6u8a"]
+[ext_resource type="Script" path="res://CoreTools/AudioManager/Scripts/AdaptativeMusicTrack.cs" id="5_nwmjv"]
+[ext_resource type="AudioStream" uid="uid://domtjaregpqq2" path="res://CoreTools/AudioManager/BasicTesting/02TestAudio.mp3" id="6_npjud"]
+[ext_resource type="AudioStream" uid="uid://bild7eo77cnpq" path="res://CoreTools/AudioManager/BasicTesting/01. Castlevania - Vampire Killer [Torby Brand].mp3" id="7_ox2j4"]
+
+[node name="ActualAudioTest" type="Node"]
+script = ExtResource("1_to0kj")
+NonPersistentElementsPath = NodePath("Elements/NPActualAudioTest")
+PersistentElementsPath = NodePath("Elements/PEAudioTest")
+ObjectPoolerNodePath = NodePath("ObjectPooler")
+AudioBankContainerNodePath = NodePath("AudioBank")
+
+[node name="Elements" type="Node" parent="."]
+
+[node name="PEAudioTest" type="Node" parent="Elements"]
+
+[node name="NPActualAudioTest" parent="Elements" instance=ExtResource("2_i5rfs")]
+
+[node name="AudioTester" parent="Elements/NPActualAudioTest" index="0" node_paths=PackedStringArray("mFirstTrack", "mSecondTrack")]
+mFirstTrack = NodePath("../../../AudioBank/01TestAudio")
+mSecondTrack = NodePath("../../../AudioBank/02TestAudio")
+
+[node name="ObjectPooler" type="Node" parent="."]
+script = ExtResource("3_qq7ng")
+
+[node name="AudioBank" type="Node" parent="."]
+
+[node name="01TestAudio" type="AudioStreamPlayer" parent="AudioBank" node_paths=PackedStringArray("mFollowUpTrack")]
+stream = ExtResource("4_l6u8a")
+script = ExtResource("5_nwmjv")
+mFollowUpTrack = NodePath("../02TestAudio")
+
+[node name="02TestAudio" type="AudioStreamPlayer" parent="AudioBank" node_paths=PackedStringArray("mFollowUpTrack")]
+stream = ExtResource("6_npjud")
+script = ExtResource("5_nwmjv")
+mFollowUpTrack = NodePath("../01TestAudio")
+
+[node name="03TestAudio" type="AudioStreamPlayer" parent="AudioBank" node_paths=PackedStringArray("mFollowUpTrack")]
+stream = ExtResource("7_ox2j4")
+script = ExtResource("5_nwmjv")
+mFollowUpTrack = NodePath(".")
+
+[node name="04TestAudio" type="AudioStreamPlayer" parent="AudioBank" node_paths=PackedStringArray("mFollowUpTrack")]
+stream = ExtResource("7_ox2j4")
+script = ExtResource("5_nwmjv")
+mFollowUpTrack = NodePath(".")
+
+[editable path="Elements/NPActualAudioTest"]

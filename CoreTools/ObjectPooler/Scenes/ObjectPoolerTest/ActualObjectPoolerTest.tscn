@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://crdp86qsrhut8"]
+
+[ext_resource type="Script" path="res://CoreTools/SceneTransitionManager/Script/SceneTransitionReferenceHelper.cs" id="1_klum0"]
+[ext_resource type="PackedScene" uid="uid://dam1je1nkvg51" path="res://CoreTools/ObjectPooler/Scenes/ObjectPoolerTest/NPActualObjectPoolerTest.tscn" id="2_1to5a"]
+[ext_resource type="Script" path="res://CoreTools/ObjectPooler/Scripts/GameObjectPooler2D.cs" id="3_yf8mh"]
+[ext_resource type="PackedScene" uid="uid://cfwutdbsfce8m" path="res://CoreTools/ObjectPooler/ObjectsForTest/GreenObject.tscn" id="4_bxsh5"]
+[ext_resource type="PackedScene" path="res://CoreTools/ObjectPooler/ObjectsForTest/RedObject.tscn" id="5_xp0d2"]
+
+[node name="ActualObjectPoolerTest" type="Node"]
+script = ExtResource("1_klum0")
+NonPersistentElementsPath = NodePath("Elements/NPActualObjectPoolerTest")
+PersistentElementsPath = NodePath("Elements/PEObjectPoolerTest")
+ObjectPoolerNodePath = NodePath("ObjectPooler")
+AudioBankContainerNodePath = NodePath("AudioBank")
+
+[node name="Elements" type="Node" parent="."]
+
+[node name="PEObjectPoolerTest" type="Node" parent="Elements"]
+
+[node name="NPActualObjectPoolerTest" parent="Elements" instance=ExtResource("2_1to5a")]
+
+[node name="ObjectPooler" type="Node" parent="."]
+script = ExtResource("3_yf8mh")
+PoolableObjectStartUpManualSetUp = [NodePath("GreenObject"), NodePath("RedObject")]
+NumberOfCopiesStartUp = [5, 5]
+
+[node name="GreenObject" parent="ObjectPooler" instance=ExtResource("4_bxsh5")]
+position = Vector2(-6, -46)
+
+[node name="RedObject" parent="ObjectPooler" instance=ExtResource("5_xp0d2")]
+position = Vector2(-1, -38)
+
+[node name="AudioBank" type="Node" parent="."]

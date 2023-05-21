@@ -1,0 +1,56 @@
+[gd_scene load_steps=6 format=3 uid="uid://hmf8l4tei0nm"]
+
+[ext_resource type="Texture2D" uid="uid://dqd4wln1wph42" path="res://icon.svg" id="1_xfcow"]
+[ext_resource type="Script" path="res://CoreTools/FSM/Scripts/StateMachineActor.cs" id="2_c0x75"]
+[ext_resource type="Script" path="res://AIExamples/Chapter1/Scripts/Bob/StateManagerBob.cs" id="3_pne3h"]
+[ext_resource type="Script" path="res://CoreTools/FSM/Scripts/StateMachineAIInput.cs" id="4_b2ry6"]
+[ext_resource type="Script" path="res://AIExamples/Chapter1/Scripts/AutomaticAI/AutomaticAIStateManager.cs" id="5_7awrd"]
+
+[node name="Bob" type="Sprite2D"]
+modulate = Color(0, 1, 0.521569, 1)
+texture = ExtResource("1_xfcow")
+
+[node name="FSM" type="Node2D" parent="." node_paths=PackedStringArray("mInputReader")]
+script = ExtResource("2_c0x75")
+NodeManagerPath = NodePath("StateManager")
+mMemoryBlackboard = {
+"Fatigue": 0,
+"Gold": 0,
+"Location": "Mine",
+"MaxFatigue": 10,
+"MaxThirst": 10,
+"Money": 0,
+"PocketSize": 4,
+"Thirst": 0
+}
+mInputReader = NodePath("AIFSM")
+
+[node name="StateManager" type="Node2D" parent="FSM"]
+script = ExtResource("3_pne3h")
+
+[node name="AIFSM" type="Node" parent="FSM" node_paths=PackedStringArray("mStateManager")]
+script = ExtResource("4_b2ry6")
+mStateManager = NodePath("AIStateManager")
+mMemoryBlackboard = {
+"AxisContainer": {},
+"ButtonsContainer": {},
+"WaitingTime": 1
+}
+mAreInputsUpdated = true
+mPlayerID = 0
+mButtons = PackedStringArray("Up")
+mAxisValues = {}
+mButtonsValues = {
+"Up": false
+}
+mTimeSinceLastPressAxis = {}
+mTimeSinceLastPressButton = {
+"Up": 0.0
+}
+mTimeHeldAxis = {}
+mTimeHeldButton = {
+"Up": 0.0
+}
+
+[node name="AIStateManager" type="Node" parent="FSM/AIFSM"]
+script = ExtResource("5_7awrd")

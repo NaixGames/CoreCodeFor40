@@ -1,0 +1,67 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://b1jj86mm1tdmc"]
+
+[ext_resource type="Script" path="res://CoreTools/SceneTransitionManager/Data/SceneDatabase.cs" id="1_lw0rv"]
+
+[resource]
+script = ExtResource("1_lw0rv")
+mSceneNameToUIDMapping = {
+"AIChapter1Task1": "uid://b4hfwh6lb6mde",
+"AIChapter1Task2": &"uid://bcgdbfswuihvd",
+"AnimationTest": &"uid://c0fao8ukq1ob3",
+"AudioTest": "uid://vs1a5ulmv3xi",
+"BezierCurveTest": &"uid://3cfuoui1rgc",
+"ExampleScene1": &"uid://d0m10n7ok1okq",
+"ExampleScene2": &"uid://3exoxae1o7aq",
+"FSMTest": "uid://qoisf2o8b16y",
+"InputRemapper": "uid://de1vmsls2v7y8",
+"LogTest": "uid://djufmcg68uouw",
+"ObjectPoolerTest": "uid://w8p2x4obmv5x",
+"ParticleControllerTest": &"uid://dagcpxouotd6j",
+"TweenTest": &"uid://cscmcl67y4dpx"
+}
+IsSceneDatabaseUpdated = true
+mSceneNameToPathMapping = {
+"AIChapter1Task1": "res://AIExamples/Chapter1/Task1/SceneTask1/WholeSceneTask1.tscn",
+"AIChapter1Task2": "res://AIExamples/Chapter1/Task2/SceneTask2/WholeSceneTask2.tscn",
+"AnimationTest": "res://CoreTools/GodotLibraryUseExamples/Animation/Scene/AnimationTest/WholeAnimationTest.tscn",
+"AudioTest": "res://CoreTools/AudioManager/Scenes/AudioTest/WholeAudioTest.tscn",
+"BezierCurveTest": "res://CoreTools/GodotLibraryUseExamples/BezierCurves/Scene/BezierCurveTest/WholeBezierCurveTest.tscn",
+"ExampleScene1": "res://CoreTools/SceneTransitionManager/Scene/SceneOne/WholeExampleScene1.tscn",
+"ExampleScene2": "res://CoreTools/SceneTransitionManager/Scene/SceneTwo/WholeExampleScene2.tscn",
+"FSMTest": "res://CoreTools/FSM/Scenes/FSMTest/WholeFSMTest.tscn",
+"InputRemapper": "res://CoreTools/Input/InputRemapper/Scene/InputRemapExample/WholeInputRemapExample.tscn",
+"LogTest": "res://CoreTools/LogManager/Scenes/LogTest/WholeLogTest.tscn",
+"ObjectPoolerTest": "res://CoreTools/ObjectPooler/Scenes/ObjectPoolerTest/WholeObjectPoolerTest.tscn",
+"ParticleControllerTest": "res://CoreTools/ParticleSystemController/Scenes/ParticleSystemController/WholeParticleSystemController.tscn",
+"TweenTest": "res://CoreTools/GodotLibraryUseExamples/Tweens/Scene/TweenTest/WholeTweenTest.tscn"
+}
+mActualSceneSceneNameToPathMapping = {
+"AIChapter1Task1": "res://AIExamples/Chapter1/Task1/SceneTask1/ActualSceneTask1.tscn",
+"AIChapter1Task2": "res://AIExamples/Chapter1/Task2/SceneTask2/ActualSceneTask2.tscn",
+"AnimationTest": "res://CoreTools/GodotLibraryUseExamples/Animation/Scene/AnimationTest/ActualAnimationTest.tscn",
+"AudioTest": "res://CoreTools/AudioManager/Scenes/AudioTest/ActualAudioTest.tscn",
+"BezierCurveTest": "res://CoreTools/GodotLibraryUseExamples/BezierCurves/Scene/BezierCurveTest/ActualBezierCurveTest.tscn",
+"ExampleScene1": "res://CoreTools/SceneTransitionManager/Scene/SceneOne/ActualExampleScene1.tscn",
+"ExampleScene2": "res://CoreTools/SceneTransitionManager/Scene/SceneTwo/ActualExampleScene2.tscn",
+"FSMTest": "res://CoreTools/FSM/Scenes/FSMTest/ActualFSMTest.tscn",
+"InputRemapper": "res://CoreTools/Input/InputRemapper/Scene/InputRemapExample/ActualInputRemapExample.tscn",
+"LogTest": "res://CoreTools/LogManager/Scenes/LogTest/ActualLogTest.tscn",
+"ObjectPoolerTest": "res://CoreTools/ObjectPooler/Scenes/ObjectPoolerTest/ActualObjectPoolerTest.tscn",
+"ParticleControllerTest": "res://CoreTools/ParticleSystemController/Scenes/ParticleSystemController/ActualParticleSystemController.tscn",
+"TweenTest": "res://CoreTools/GodotLibraryUseExamples/Tweens/Scene/TweenTest/ActualTweenTest.tscn"
+}
+mNonPersistantSceneNameToPathMapping = {
+"AIChapter1Task1": "res://AIExamples/Chapter1/Task1/SceneTask1/NPActualSceneTask1.tscn",
+"AIChapter1Task2": "res://AIExamples/Chapter1/Task2/SceneTask2/NPActualSceneTask2.tscn",
+"AnimationTest": "res://CoreTools/GodotLibraryUseExamples/Animation/Scene/AnimationTest/NPActualAnimationTest.tscn",
+"AudioTest": "res://CoreTools/AudioManager/Scenes/AudioTest/NPActualAudioTest.tscn",
+"BezierCurveTest": "res://CoreTools/GodotLibraryUseExamples/BezierCurves/Scene/BezierCurveTest/NPActualBezierCurveTest.tscn",
+"ExampleScene1": "res://CoreTools/SceneTransitionManager/Scene/SceneOne/NPActualExampleScene1.tscn",
+"ExampleScene2": "res://CoreTools/SceneTransitionManager/Scene/SceneTwo/NPActualExampleScene2.tscn",
+"FSMTest": "res://CoreTools/FSM/Scenes/FSMTest/NPActualFSMTest.tscn",
+"InputRemapper": "res://CoreTools/Input/InputRemapper/Scene/InputRemapExample/NPActualInputRemapExample.tscn",
+"LogTest": "res://CoreTools/LogManager/Scenes/LogTest/NPActualLogTest.tscn",
+"ObjectPoolerTest": "res://CoreTools/ObjectPooler/Scenes/ObjectPoolerTest/NPActualObjectPoolerTest.tscn",
+"ParticleControllerTest": "res://CoreTools/ParticleSystemController/Scenes/ParticleSystemController/NPActualParticleSystemController.tscn",
+"TweenTest": "res://CoreTools/GodotLibraryUseExamples/Tweens/Scene/TweenTest/NPActualTweenTest.tscn"
+}

@@ -13,10 +13,10 @@ namespace  CoreCode.Docker
         private ItemList mFSMCaseNode;
 
         private const string ProjectName = "CoreCode";
-        private const string PathScriptFSMActor="res://FSM/Scripts/StateMachineActor.cs";
-        private const string PathScriptFSMAI="res://FSM/Scripts/StateMachineAIInput.cs";
-        private const string PathStringGameActorReference2D="res://GameActorReferenceHandler/Script/GameActorReferenceHandler2D.cs";
-        private const string PathStringGameActorReference3D="res://GameActorReferenceHandler/Script/GameActorReferenceHandler3D.cs";
+        private const string PathScriptFSMActor="res://CoreTools/FSM/Scripts/StateMachineActor.cs";
+        private const string PathScriptFSMAI="res://CoreTools/FSM/Scripts/StateMachineAIInput.cs";
+        private const string PathStringGameActorReference2D="res://CoreTools/GameActorReferenceHandler/Script/GameActorReferenceHandler2D.cs";
+        private const string PathStringGameActorReference3D="res://CoreTools/GameActorReferenceHandler/Script/GameActorReferenceHandler3D.cs";
         private const string PathScriptStateTemplate="res://addons/ScriptTemplates/Node/StateTemplate.cs";
         private const string PathScriptStateManagerTemplate="res://addons/ScriptTemplates/Node/StateManagerTemplate.cs";
 

@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dugxtsat5krte"]
+
+[ext_resource type="PackedScene" uid="uid://g3cq5antyit0" path="res://CoreTools/GodotLibraryUseExamples/BezierCurves/Scene/BezierCurveSceneTest.tscn" id="1_mh653"]
+
+[node name="NPActualBezierCurveTest" type="Node"]
+
+[node name="BezierCurveSceneTest" parent="." instance=ExtResource("1_mh653")]
+position = Vector2(304, 27)

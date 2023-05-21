@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://btss5a2a612os"]
+
+[ext_resource type="Script" path="res://CoreTools/SceneTransitionManager/Script/SceneTransitionReferenceHelper.cs" id="1_tjui5"]
+[ext_resource type="PackedScene" uid="uid://dxfwl1fp2xua7" path="res://CoreTools/FSM/Scenes/FSMTest/NPActualFSMTest.tscn" id="2_amjlp"]
+[ext_resource type="Script" path="res://CoreTools/ObjectPooler/Scripts/GameObjectPooler2D.cs" id="3_orevq"]
+
+[node name="ActualFSMTest" type="Node"]
+script = ExtResource("1_tjui5")
+NonPersistentElementsPath = NodePath("Elements/NPActualFSMTest")
+PersistentElementsPath = NodePath("Elements/PEFSMTest")
+ObjectPoolerNodePath = NodePath("ObjectPooler")
+AudioBankContainerNodePath = NodePath("AudioBank")
+
+[node name="Elements" type="Node" parent="."]
+
+[node name="PEFSMTest" type="Node" parent="Elements"]
+
+[node name="NPActualFSMTest" parent="Elements" instance=ExtResource("2_amjlp")]
+
+[node name="ObjectPooler" type="Node" parent="."]
+script = ExtResource("3_orevq")
+
+[node name="AudioBank" type="Node" parent="."]

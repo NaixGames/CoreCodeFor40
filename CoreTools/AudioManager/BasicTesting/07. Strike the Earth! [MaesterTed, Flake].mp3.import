@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://culb26ms4bw8r"
+path="res://.godot/imported/07. Strike the Earth! [MaesterTed, Flake].mp3-1d403831bbb32b22673cad58b076e633.mp3str"
+
+[deps]
+
+source_file="res://CoreTools/AudioManager/BasicTesting/07. Strike the Earth! [MaesterTed, Flake].mp3"
+dest_files=["res://.godot/imported/07. Strike the Earth! [MaesterTed, Flake].mp3-1d403831bbb32b22673cad58b076e633.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4

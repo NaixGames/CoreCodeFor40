@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bg8gwtn8f24oh"]
+
+[ext_resource type="Script" path="res://CoreTools/AudioManager/Scripts/AudioPhasingTest.cs" id="1_daun4"]
+
+[node name="NPActualAudioTest" type="Node"]
+
+[node name="AudioTester" type="Node" parent="."]
+script = ExtResource("1_daun4")

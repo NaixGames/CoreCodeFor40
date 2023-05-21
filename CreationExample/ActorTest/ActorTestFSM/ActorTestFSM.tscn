@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://esvnh8v527yd"]
+
+[ext_resource type="Script" path="res://CoreTools/GameActorReferenceHandler/Script/GameActorReferenceHandler2D.cs" id="1_b3qk3"]
+[ext_resource type="Script" path="res://CoreTools/FSM/Scripts/StateMachineActor.cs" id="2_tm81p"]
+[ext_resource type="Script" path="res://CreationExample/ActorTest/ActorTestFSM/StateManager/ActorTestFSMStateManager.cs" id="3_oidtw"]
+
+[node name="ActorTestFSM" type="CharacterBody2D"]
+script = ExtResource("1_b3qk3")
+
+[node name="ActorTestFSMFSM" type="Node" parent="."]
+script = ExtResource("2_tm81p")
+
+[node name="ActorTestFSMStateManager" type="Node" parent="ActorTestFSMFSM"]
+script = ExtResource("3_oidtw")

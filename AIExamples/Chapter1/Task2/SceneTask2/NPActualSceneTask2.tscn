@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://ciavosrlmn3gk"]
+
+[ext_resource type="PackedScene" uid="uid://mh03iupw5hrb" path="res://AIExamples/Chapter1/Task2/ElsaActor.tscn" id="1_sxrsj"]
+[ext_resource type="PackedScene" uid="uid://hmf8l4tei0nm" path="res://AIExamples/Chapter1/Task1/Bob.tscn" id="2_kj6nr"]
+
+[node name="NPActualSceneTask2" type="Node"]
+
+[node name="Elsa" parent="." instance=ExtResource("1_sxrsj")]
+position = Vector2(105, 134)
+
+[node name="Bob" parent="." instance=ExtResource("2_kj6nr")]
+position = Vector2(441, 201)

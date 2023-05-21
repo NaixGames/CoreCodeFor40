@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://dagcpxouotd6j"]
+
+[ext_resource type="PackedScene" uid="uid://drxehyvydlrnt" path="res://CoreTools/SceneTemplate/Managers.tscn" id="1_vb25o"]
+[ext_resource type="PackedScene" uid="uid://cyt2yqilfbu73" path="res://CoreTools/ParticleSystemController/Scenes/ParticleSystemController/ActualParticleSystemController.tscn" id="12_pc57i"]
+
+[node name="WholeParticleSystemController" type="Node"]
+
+[node name="Managers" parent="." instance=ExtResource("1_vb25o")]
+
+[node name="SceneTransitionManager" parent="Managers" index="2"]
+mReferenceHelperPath = NodePath("../../ActualParticleSystemController")
+
+[node name="ActualParticleSystemController" parent="." instance=ExtResource("12_pc57i")]
+
+[node name="ParticleSystemController" parent="ActualParticleSystemController/Elements/NPActualParticleSystemController" index="0" node_paths=PackedStringArray("mInputReference")]
+mInputReference = NodePath("../../../../Managers/InputManager/P1Input")
+
+[editable path="Managers"]
+[editable path="ActualParticleSystemController"]
+[editable path="ActualParticleSystemController/Elements/NPActualParticleSystemController"]

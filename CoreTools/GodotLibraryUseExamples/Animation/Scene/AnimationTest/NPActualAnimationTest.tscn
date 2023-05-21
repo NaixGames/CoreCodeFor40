@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dvyavfmdn0fbm"]
+
+[ext_resource type="PackedScene" uid="uid://btdp8vhydkco7" path="res://CoreTools/GodotLibraryUseExamples/Animation/Scene/AnimatedPlayer.tscn" id="1_snfod"]
+
+[node name="NPActualAnimationTest" type="Node"]
+
+[node name="AnimatedPlayer" parent="." instance=ExtResource("1_snfod")]
+position = Vector2(214, 179)

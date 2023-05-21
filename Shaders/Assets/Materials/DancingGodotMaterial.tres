@@ -1,8 +1,0 @@
-[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://rbg80eironcl"]
-
-[ext_resource type="Shader" path="res://Shaders/ShaderFiles/DancingGodotTest.gdshader" id="1_tova4"]
-
-[resource]
-shader = ExtResource("1_tova4")
-shader_parameter/timeFactor = Vector2(2, 4)
-shader_parameter/amplitude = Vector2(11, 11)

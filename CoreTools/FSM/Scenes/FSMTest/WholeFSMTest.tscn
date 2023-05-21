@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://qoisf2o8b16y"]
+
+[ext_resource type="PackedScene" uid="uid://drxehyvydlrnt" path="res://CoreTools/SceneTemplate/Managers.tscn" id="1_ngue8"]
+[ext_resource type="PackedScene" uid="uid://btss5a2a612os" path="res://CoreTools/FSM/Scenes/FSMTest/ActualFSMTest.tscn" id="12_da75t"]
+
+[node name="WholeFSMTest" type="Node"]
+
+[node name="Managers" parent="." instance=ExtResource("1_ngue8")]
+
+[node name="SceneTransitionManager" parent="Managers" index="2"]
+mReferenceHelperPath = NodePath("../../ActualFSMTest")
+
+[node name="ActualFSMTest" parent="." instance=ExtResource("12_da75t")]
+
+[editable path="Managers"]

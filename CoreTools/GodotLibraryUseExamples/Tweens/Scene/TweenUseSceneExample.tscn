@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://CoreTools/GodotLibraryUseExamples/Tweens/Scripts/TweenUseExample.cs" id="1_m5e4a"]
+[ext_resource type="Texture2D" uid="uid://dqd4wln1wph42" path="res://icon.svg" id="2_l5t7b"]
+
+[node name="TweenUseSceneExample" type="Node2D"]
+
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2(137, 74)
+script = ExtResource("1_m5e4a")
+mObjectivePoint = Vector2(500, 450)
+mTransitionChoice = 1
+
+[node name="Icon" type="Sprite2D" parent="Node2D"]
+texture = ExtResource("2_l5t7b")
+
+[node name="Node2D2" type="Node2D" parent="."]
+position = Vector2(140, 205)
+script = ExtResource("1_m5e4a")
+mObjectivePoint = Vector2(500, 450)
+mTransitionChoice = 2
+
+[node name="Icon" type="Sprite2D" parent="Node2D2"]
+texture = ExtResource("2_l5t7b")

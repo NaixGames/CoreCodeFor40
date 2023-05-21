@@ -1,0 +1,97 @@
+[gd_scene load_steps=14 format=3 uid="uid://cfiqjio4xghor"]
+
+[ext_resource type="PackedScene" uid="uid://drxehyvydlrnt" path="res://CoreTools/SceneTemplate/Managers.tscn" id="1_1linp"]
+[ext_resource type="Script" path="res://CoreTools/LogManager/Scripts/LogManager.cs" id="2_0jc85"]
+[ext_resource type="Script" path="res://CoreTools/ObjectEventDispatcher/GlobalEventDispatcher.cs" id="3_fyhe3"]
+[ext_resource type="Script" path="res://CoreTools/SceneTransitionManager/Script/SceneTransitionManager.cs" id="4_xfiis"]
+[ext_resource type="Resource" path="res://CoreTools/SceneTransitionManager/Data/SceneDatabase.tres" id="5_xooc8"]
+[ext_resource type="Script" path="res://CoreTools/Input/InputManager/Scripts/InputManager.cs" id="6_jh8kh"]
+[ext_resource type="Script" path="res://CoreTools/Input/InputReader/Scripts/InputReaderVoid.cs" id="7_phijw"]
+[ext_resource type="Script" path="res://CoreTools/Input/InputReader/Scripts/InputReaderPlayer.cs" id="8_verss"]
+[ext_resource type="Script" path="res://CoreTools/AchievementManager/Scripts/AchievementManager.cs" id="9_nlu60"]
+[ext_resource type="Script" path="res://CoreTools/AudioManager/Scripts/AudioManager.cs" id="10_def17"]
+[ext_resource type="Script" path="res://CoreTools/AudioManager/Scripts/AdaptativeMusicManager.cs" id="11_l3pjx"]
+[ext_resource type="PackedScene" uid="uid://co5bbil50yb4f" path="res://CreationExample/Scene/Test3D/ActualTest3D.tscn" id="12_svbp3"]
+[ext_resource type="Script" path="res://CoreTools/SceneTransitionManager/Script/SceneTransitionReferenceHelper.cs" id="13_68byt"]
+
+[node name="WholeTest3D" type="Node"]
+
+[node name="Managers" parent="." instance=ExtResource("1_1linp")]
+
+[node name="LogManager" parent="Managers" index="0"]
+script = ExtResource("2_0jc85")
+mAllowLogging = false
+mNumberOfDummyChannels = 1
+mNumberOfInputChannels = 1
+mNumberOfPoolerChannels = 1
+mNumberOfEventDispatcherChannels = 1
+mNumberOfFSMChannels = 1
+
+[node name="GlobalEventDispatcher" parent="Managers" index="1"]
+script = ExtResource("3_fyhe3")
+
+[node name="SceneTransitionManager" parent="Managers" index="2"]
+script = ExtResource("4_xfiis")
+mSceneDatabase = ExtResource("5_xooc8")
+mReferenceHelperPath = NodePath("../../ActualTest3D")
+
+[node name="InputManager" parent="Managers" index="3"]
+script = ExtResource("6_jh8kh")
+mPlayerInputs = [NodePath("VoidInput"), NodePath("P1Input")]
+
+[node name="VoidInput" parent="Managers/InputManager" index="0"]
+script = ExtResource("7_phijw")
+mAreInputsUpdated = true
+
+[node name="P1Input" parent="Managers/InputManager" index="1"]
+script = ExtResource("8_verss")
+mAreInputsUpdated = true
+mPlayerID = 1
+mAxis = PackedStringArray("Right", "Left")
+mButtons = PackedStringArray("Up", "Down")
+mAxisValues = {
+"Left": 0.0,
+"Right": 0.0
+}
+mButtonsValues = {
+"Down": false,
+"Up": false
+}
+mTimeSinceLastPressAxis = {
+"Left": 0.0,
+"Right": 0.0
+}
+mTimeSinceLastPressButton = {
+"Down": 0.0,
+"Up": 0.0
+}
+mTimeHeldAxis = {
+"Left": 0.0,
+"Right": 0.0
+}
+mTimeHeldButton = {
+"Down": 0.0,
+"Up": 0.0
+}
+
+[node name="AchievementManager" parent="Managers" index="4"]
+script = ExtResource("9_nlu60")
+
+[node name="AudioManager" parent="Managers" index="5"]
+script = ExtResource("10_def17")
+mMusicManagerPath = NodePath("AdaptativeMusicManager")
+mPlayMusicAtStart = true
+mGlobalSFXNodeParentPath = NodePath("GlobalSFXContainerNode")
+mPositionalSFXNodeParentPath = NodePath("PositionalSFXContainerNode")
+
+[node name="AdaptativeMusicManager" parent="Managers/AudioManager" index="0"]
+script = ExtResource("11_l3pjx")
+
+[node name="ActualTest3D" type="Node" parent="." instance=ExtResource("12_svbp3")]
+script = ExtResource("13_68byt")
+NonPersistentElementsPath = NodePath("Elements/NPActualTest3D")
+PersistentElementsPath = NodePath("Elements/PETest3D")
+ObjectPoolerNodePath = NodePath("ObjectPooler")
+AudioBankContainerNodePath = NodePath("AudioBank")
+
+[editable path="Managers"]

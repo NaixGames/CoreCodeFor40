@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://cscmcl67y4dpx"]
+
+[ext_resource type="PackedScene" uid="uid://drxehyvydlrnt" path="res://CoreTools/SceneTemplate/Managers.tscn" id="1_imx2m"]
+[ext_resource type="PackedScene" uid="uid://dn2ou7hcslyx6" path="res://CoreTools/GodotLibraryUseExamples/Tweens/Scene/TweenTest/ActualTweenTest.tscn" id="12_gey5x"]
+
+[node name="WholeTweenTest" type="Node"]
+
+[node name="Managers" parent="." instance=ExtResource("1_imx2m")]
+
+[node name="SceneTransitionManager" parent="Managers" index="2"]
+mReferenceHelperPath = NodePath("../../ActualTweenTest")
+
+[node name="ActualTweenTest" parent="." instance=ExtResource("12_gey5x")]
+
+[editable path="Managers"]

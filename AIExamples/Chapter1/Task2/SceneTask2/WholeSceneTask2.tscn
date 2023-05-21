@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://bcgdbfswuihvd"]
+
+[ext_resource type="PackedScene" uid="uid://drxehyvydlrnt" path="res://CoreTools/SceneTemplate/Managers.tscn" id="1_fqi4h"]
+[ext_resource type="PackedScene" uid="uid://plu1ibsbymv5" path="res://AIExamples/Chapter1/Task2/SceneTask2/ActualSceneTask2.tscn" id="12_bpk8u"]
+
+[node name="WholeSceneTask2" type="Node"]
+
+[node name="Managers" parent="." instance=ExtResource("1_fqi4h")]
+
+[node name="SceneTransitionManager" parent="Managers" index="2"]
+mReferenceHelperPath = NodePath("../../ActualSceneTask2")
+
+[node name="ActualSceneTask2" parent="." instance=ExtResource("12_bpk8u")]
+
+[editable path="Managers"]

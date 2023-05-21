@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://ldod4yuwc0vy"]
+
+[ext_resource type="PackedScene" uid="uid://hmf8l4tei0nm" path="res://AIExamples/Chapter1/Task1/Bob.tscn" id="1_nb0th"]
+
+[node name="NPActualSceneTask1" type="Node"]
+
+[node name="Bob" parent="." instance=ExtResource("1_nb0th")]
+position = Vector2(185, 136)

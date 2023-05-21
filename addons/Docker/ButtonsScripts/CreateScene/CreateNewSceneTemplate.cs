@@ -13,10 +13,10 @@ namespace  CoreCode.Docker
 
         private ItemList mDimensionCaseNode;
 
-        private const string ManagerNodeUID="uid://o8db6ccgmu21";
-        private const string PathScriptSceneManagerTransitionHelper="res://SceneTransitionManager/Script/SceneTransitionReferenceHelper.cs";
-        private const string PathScriptGameObjectPooler2D="res://ObjectPooler/Scripts/GameObjectPooler2D.cs";
-        private const string PathScriptGameObjectPooler3D="res://ObjectPooler/Scripts/GameObjectPooler3D.cs";
+        private const string ManagerNodePath="res://CoreTools/SceneTemplate/Managers.tscn";
+        private const string PathScriptSceneManagerTransitionHelper="res://CoreTools/SceneTransitionManager/Script/SceneTransitionReferenceHelper.cs";
+        private const string PathScriptGameObjectPooler2D="res://CoreTools/ObjectPooler/Scripts/GameObjectPooler2D.cs";
+        private const string PathScriptGameObjectPooler3D="res://CoreTools/ObjectPooler/Scripts/GameObjectPooler3D.cs";
         public override void _EnterTree()
         {
             Pressed += Clicked;
@@ -107,7 +107,7 @@ namespace  CoreCode.Docker
             wholeScene.Name = "Whole"+sceneName;
 
             //Add Managers to the scene.
-            Node Managers = (Node)GD.Load<PackedScene>(ResourceUid.GetIdPath(ResourceUid.TextToId(ManagerNodeUID))).Instantiate();
+            Node Managers = (Node)GD.Load<PackedScene>(ManagerNodePath).Instantiate();
             wholeScene.AddChild(Managers);
             Managers.Owner = wholeScene;
 

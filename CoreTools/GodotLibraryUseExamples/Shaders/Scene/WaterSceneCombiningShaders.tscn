@@ -1,0 +1,28 @@
+[gd_scene load_steps=7 format=3 uid="uid://de373bhe8qb5h"]
+
+[ext_resource type="Material" path="res://CoreTools/GodotLibraryUseExamples/Shaders/Assets/Materials/WaterShaderMaterialWithCombiner.tres" id="1_eewjb"]
+[ext_resource type="Texture2D" uid="uid://3oukyc20gand" path="res://CoreTools/GodotLibraryUseExamples/Shaders/Assets/PNGS/water_diffuse.png" id="2_4xl4u"]
+[ext_resource type="Texture2D" uid="uid://2cspu3be0pnu" path="res://CoreTools/GodotLibraryUseExamples/Shaders/Assets/PNGS/water_normal.png" id="3_6ppmh"]
+[ext_resource type="Script" path="res://CoreTools/GodotLibraryUseExamples/Shaders/Scripts/WaterDiffuseScript.cs" id="3_gbliu"]
+[ext_resource type="Texture2D" uid="uid://cw18xfh1o1cxp" path="res://CoreTools/GodotLibraryUseExamples/Shaders/Assets/PNGS/light.png" id="5_g5gaj"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_oo7un"]
+diffuse_texture = ExtResource("2_4xl4u")
+normal_texture = ExtResource("3_6ppmh")
+
+[node name="WaterSceneCombiningShaders" type="Node2D"]
+
+[node name="WaterDiffuse" type="Sprite2D" parent="."]
+texture_repeat = 2
+material = ExtResource("1_eewjb")
+position = Vector2(575.5, 323)
+scale = Vector2(4.43359, 2.49219)
+texture = SubResource("CanvasTexture_oo7un")
+script = ExtResource("3_gbliu")
+
+[node name="PointLight2D" type="PointLight2D" parent="WaterDiffuse"]
+energy = 0.4
+texture = ExtResource("5_g5gaj")
+texture_scale = 8.0
+
+[connection signal="item_rect_changed" from="WaterDiffuse" to="WaterDiffuse" method="AdjustAspectRatio"]

@@ -36,5 +36,5 @@ namespace CoreCode.Inspector{
 			return @object is SceneDatabase;
 		}
 	}
-	#endif
 }
+#endif
