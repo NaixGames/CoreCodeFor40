@@ -8,15 +8,16 @@ namespace CoreCode.AIExamples.Elsa{
 	{
 		// -------------------------- Variables -------------------------------------
 		private InputReaderAbstract mInput;
-		private Godot.Collections.Dictionary mMemory;
+
+		private int mMaxBladerTime; 
 
 
 		// -------------------------- Abstract overrides -------------------------------------
 
 		protected override void InitializeStateParams(Node mNodeRef){
 			mInput = (mNodeRef as StateMachineActor).ReturnInputReader();
-			mMemory=mMemoryBlackboardCache;
-			mStateManagerCache = (mNodeRef as StateMachineActor).GiveStateManager();
+
+			mMaxBladerTime = mMemoryBlackboardCache["BladerFillTime"].AsInt32();
 		}
 		
 		protected override StateAbstract ProcessAction(double delta, LogObject mlogObject=null){
@@ -24,6 +25,12 @@ namespace CoreCode.AIExamples.Elsa{
 				return this;
 			}
 			GD.Print("I am doing housework!!");
+			int blader = mMemoryBlackboardCache["BladerLevel"].AsInt32();
+			blader++;
+			mMemoryBlackboardCache["BladerLevel"]=blader;
+			if (blader >= mMaxBladerTime){
+				return (mStateManagerCache as StateManagerElsa).StatePee;
+			}
 			return this;
 		}
 
@@ -41,7 +48,7 @@ namespace CoreCode.AIExamples.Elsa{
 		protected override StateAbstract ProcessDelegatedEvent(string EventName, LogObject mlogObject=null){
 			if (EventName == "BobIsHome"){
 				GD.Print("My hosband is hom. Will go and mak fud!!");
-				return (mStateManagerCache as StateManagerElsa).StatePee;
+				return (mStateManagerCache as StateManagerElsa).StateCooking;
 			}
 			return this;
 		}

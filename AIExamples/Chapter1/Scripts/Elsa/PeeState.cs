@@ -9,12 +9,18 @@ namespace CoreCode.AIExamples.Elsa{
 		// -------------------------- Variables -------------------------------------
 		private InputReaderAbstract mInput;
 
+		private int mTimeForPee;
+
+		private int TimeSpentPeeing;
+
 
 		// -------------------------- Abstract overrides -------------------------------------
 
 		protected override void InitializeStateParams(Node mNodeRef){
 			mInput = (mNodeRef as StateMachineActor).ReturnInputReader();
-			mStateManagerCache = (mNodeRef as StateMachineActor).GiveStateManager();
+
+			mTimeForPee = mMemoryBlackboardCache["TimeForPee"].AsInt32();
+			TimeSpentPeeing=0;
 		}
 		
 		protected override StateAbstract ProcessAction(double delta, LogObject mlogObject=null){
@@ -22,6 +28,11 @@ namespace CoreCode.AIExamples.Elsa{
 				return this;
 			}
 			GD.Print("I am in the bathroom maity!!");
+			TimeSpentPeeing+=1;
+			if(TimeSpentPeeing==mTimeForPee){
+				mMemoryBlackboardCache["BladerLevel"]=0;
+				return ((StateManagerElsa)mStateManagerCache).StateHousework;
+			}
 			return this;
 		}
 
@@ -32,6 +43,7 @@ namespace CoreCode.AIExamples.Elsa{
 		protected override void EnterState(){
 			//Using GD Print just for the example
 			GD.Print("Oi I really need to pee!");
+			TimeSpentPeeing=0;
 			return;
 		}
 	}

@@ -27,7 +27,7 @@ namespace CoreCode.AIExamples.Bob{
 				return this;
 			}
 			int gold = mMemoryBlackboardCache["Gold"].AsInt32();
-				gold++;
+			gold++;
 			mMemoryBlackboardCache["Gold"]=gold;
 			//Using GD Print just for the example
 			GD.Print("Ay I have gotten some gold. Now got " + gold);

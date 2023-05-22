@@ -102,5 +102,9 @@ namespace CoreCode.FSM{
 		public StateAbstract GiveActualState(){
 			return mActualState;
 		}
+
+		public void ChangeStateAfterEventChange(StateAbstract newState){
+			mActualState = newState;
+		}
 	}
 }

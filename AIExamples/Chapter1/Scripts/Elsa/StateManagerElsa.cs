@@ -9,6 +9,7 @@ namespace CoreCode.AIExamples.Elsa{
         private StateMachineActor ElsaStateMachine;
         public readonly PeeState StatePee = new PeeState();
         public readonly HouseworkState StateHousework = new HouseworkState();
+        public readonly CookingState StateCooking = new CookingState();
 
 
         //----------------------------------- Initial State ------------------------------------------------
@@ -21,6 +22,7 @@ namespace CoreCode.AIExamples.Elsa{
         public override void InitializeStates(Node FSMNode, Godot.Collections.Dictionary mMemoryBlackboard, LogObject mLogObject = null){
             StatePee.InitializeState(FSMNode, this, mMemoryBlackboard);
             StateHousework.InitializeState(FSMNode, this, mMemoryBlackboard);
+            StateCooking.InitializeState(FSMNode, this, mMemoryBlackboard);
 
             ElsaStateMachine = FSMNode as StateMachineActor;
         }
@@ -30,7 +32,7 @@ namespace CoreCode.AIExamples.Elsa{
         [Signal] public delegate void FoodIsReadyEventHandler();
 
         private void BobIsHome(){
-            ElsaStateMachine.GiveActualState().ExecuteDelegatedEvent("BobIsHome");
+            ElsaStateMachine.ChangeStateAfterEventChange(ElsaStateMachine.GiveActualState().ExecuteDelegatedEvent("BobIsHome"));
         }
 
     }

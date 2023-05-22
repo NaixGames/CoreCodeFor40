@@ -18,6 +18,8 @@ namespace CoreCode.FSM{
 		public StateManagerAbstract GiveStateManager(); //This will be useful if I ever want to do a visualisation tool. I can just request the StateManager and get information from that.
 
 		public StateAbstract GiveActualState();
+
+		public void ChangeStateAfterEventChange(StateAbstract newState);
 		
 	}
 }

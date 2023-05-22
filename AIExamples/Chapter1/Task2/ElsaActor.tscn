@@ -13,6 +13,12 @@ texture = ExtResource("1_tr6wq")
 [node name="ElsaFSM" type="Node2D" parent="." node_paths=PackedStringArray("mInputReader")]
 script = ExtResource("2_eta65")
 NodeManagerPath = NodePath("ElsaStateManager")
+mMemoryBlackboard = {
+"BladerFillTime": 12,
+"BladerLevel": 0,
+"TimeForCooking": 3,
+"TimeForPee": 2
+}
 mInputReader = NodePath("ElsaAIFSM")
 
 [node name="ElsaStateManager" type="Node2D" parent="ElsaFSM"]
@@ -26,21 +32,8 @@ mMemoryBlackboard = {
 "ButtonsContainer": [],
 "WaitingTime": 1
 }
-mAreInputsUpdated = true
 mPlayerID = 0
 mButtons = PackedStringArray("Up")
-mAxisValues = {}
-mButtonsValues = {
-"Up": false
-}
-mTimeSinceLastPressAxis = {}
-mTimeSinceLastPressButton = {
-"Up": 0.0
-}
-mTimeHeldAxis = {}
-mTimeHeldButton = {
-"Up": 0.0
-}
 
 [node name="ElsaAIStateManager" type="Node" parent="ElsaFSM/ElsaAIFSM"]
 script = ExtResource("5_ak8bk")
