@@ -37,7 +37,7 @@ jobs:
         name: Export win64 build
         command: |
           mkdir -p win64
-          ./godot --export win64 project.godot "win64/CoreExport.exe"    
+          ./godot --export-debug win64 project.godot "win64/CoreExport.exe"    
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/configuration-reference/#workflows
