@@ -39,10 +39,3 @@ jobs:
         mkdir -p win64
         ./godot --export win64 project.godot "win64/CoreExport.exe"    
 
-# Invoke jobs via workflows
-# See: https://circleci.com/docs/configuration-reference/#workflows
-workflows:
-  sample: # This is the name of the workflow, feel free to change it to better match your workflow.
-    # Inside the workflow, you define the jobs you want to run.
-    jobs:
-      - build
