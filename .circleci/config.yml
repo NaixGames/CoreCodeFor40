@@ -15,27 +15,27 @@ jobs:
    steps:
     - checkout
     - run:
-     name: Install dependencies
-     command: |
-      sudo apt-get update
-      sudo apt-get -y install wget zip unzip
+      name: Install dependencies
+      command: |
+        sudo apt-get update
+        sudo apt-get -y install wget zip unzip
     - run:
-     name: Download Godot 3.1
-     command: |
-      wget -q https://downloads.tuxfamily.org/godotengine/4.0.3/Godot_v4.0.3-stable_linux.x86_64.zip
-      unzip Godot_v4.0.3-stable_linux.x86_64.zip
-      mv Godot_v4.0.3-stable_linux.x86_64 godot
-      chmod +x godot
+      name: Download Godot 4.0.3
+      command: |
+        wget -q https://downloads.tuxfamily.org/godotengine/4.0.3/Godot_v4.0.3-stable_linux.x86_64.zip
+        unzip Godot_v4.0.3-stable_linux.x86_64.zip
+        mv Godot_v4.0.3-stable_linux.x86_64 godot
+        chmod +x godot
     - run:
-     name: Download Godot 4.0.3 Export Templates
-     command: |
+      name: Download Godot 4.0.3 Export Templates
+      command: |
         wget -q https://downloads.tuxfamily.org/godotengine/4.0.3/Godot_v4.0.3-stable_export_templates.tpz
         mkdir -p ~/.local/share/godot/templates
         unzip Godot_v4.0.3-stable_export_templates.tpz -d ~/.local/share/godot/templates
         mv ~/.local/share/godot/templates/templates ~/.local/share/godot/templates/4.0.3.stable
     - run:
-     name: Export win64 build
-     command: |
+      name: Export win64 build
+      command: |
         mkdir -p win64
         ./godot --export win64 project.godot "win64/CoreExport.exe"    
 
