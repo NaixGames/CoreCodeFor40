@@ -34,10 +34,10 @@ jobs:
           unzip Godot_v4.0.3-stable_export_templates.tpz -d ~/.local/share/godot/templates
           mv ~/.local/share/godot/templates/templates ~/.local/share/godot/templates/4.0.3.stable
     - run:
-        name: Export win64 build
+        name: Export Windows Desktop build
         command: |
-          mkdir -p win64
-          ./godot --export-debug win64 project.godot "win64/CoreExport.exe"    
+          mkdir -p ExportBuildAuto
+          ./godot --export-debug Windows Desktop project.godot "ExportBuildAuto/CoreExport.exe"    
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/configuration-reference/#workflows
