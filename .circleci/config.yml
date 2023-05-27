@@ -27,6 +27,10 @@ jobs:
           mv Godot_v4.0.3-stable_mono_linux_x86_64 godot
           chmod +x godot/Godot_v4.0.3-stable_mono_linux.x86_64
     - run:
+        name: Generate Mono
+        command: |
+          ./godot/Godot_v4.0.3-stable_mono_linux.x86_64 --headless --generate-mono-glue modules/mono/glue
+    - run:
         name: Download Godot 4.0.3 Export Templates
         command: |
           wget -q https://downloads.tuxfamily.org/godotengine/4.0.3/Godot_v4.0.3-stable_export_templates.tpz
