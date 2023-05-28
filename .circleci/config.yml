@@ -18,7 +18,7 @@ jobs:
         name: Install dependencies
         command: |
           sudo apt-get update
-          sudo apt-get -y install wget zip unzip dotnet-sdk-6.0
+          sudo apt-get -y install wget zip unzip dotnet-sdk-6.0 wine
     - run:
         name: Download Godot 4.0.3
         command: |
