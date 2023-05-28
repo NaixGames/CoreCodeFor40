@@ -36,7 +36,7 @@ jobs:
     - run:
         name: Give rcedit application rights
         command: |
-          chmod +x rcedit\rcedit-x86.exe
+          chmod +x rcedit\rcedit-x86
     - run:
         name: Export Windows64 build
         command: |
