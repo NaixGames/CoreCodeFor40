@@ -41,7 +41,7 @@ jobs:
     - run:
         name: Debug step
         command: |
-          ls ./ExportBuildAuto
+          ls ./
     - run:
         name: Download butler
         command: |
