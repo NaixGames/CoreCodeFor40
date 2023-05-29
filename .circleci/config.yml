@@ -39,6 +39,10 @@ jobs:
           mkdir -p ExportBuildAuto
           ./godot/Godot_v4.0.3-stable_mono_linux.x86_64 --headless --export-debug Windows64 project.godot "ExportBuildAuto/CoreExport.exe"  
     - run:
+        name: Debug step
+        command: |
+          ls /
+    - run:
         name: Download butler
         command: |
           wget -q -O butler.zip https://broth.itch.ovh/butler/linux-amd64/LATEST/archive/default
