@@ -34,6 +34,12 @@ jobs:
           unzip Godot_v4.0.3-stable_export_templates.tpz -d ~/.local/share/godot/export_templates
           mv ~/.local/share/godot/export_templates/templates ~/.local/share/godot/export_templates/4.0.3.stable.mono
     - run:
+        name: Download butler
+        command: |
+          wget -q -O butler.zip https://broth.itch.ovh/butler/linux-amd64/LATEST/archive/default
+          unzip butler.zip
+          chmod +x butler
+    - run:
         name: Give rcedit application rights
         command: |
           chmod +rwx rcedit/rcedit-x86.exe
@@ -46,7 +52,10 @@ jobs:
           name: Change application icon
           command: |
             ./godot/Godot_v4.0.3-stable_mono_linux.x86_64 --headless -s IconChange/CreateIcon.gd Assets/Images/Logo.ico Assets/Images/Logo.png
-            ./godot/Godot_v4.0.3-stable_mono_linux.x86_64 -s IconChange/ReplaceIcon.gd Assets/Images/Logo.ico ExportBuildAuto/CoreExport.exe
+            ./godot/Godot_v4.0.3-stable_mono_linux.x86_64 --headless -s IconChange/ReplaceIcon.gd Assets/Images/Logo.ico ExportBuildAuto/CoreExport.exe
+    - run:
+          name: Upload Win64 build
+          command: ./butler push ExportBuildAuto NaixGames/CoreTools:win-64bit
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/configuration-reference/#workflows
