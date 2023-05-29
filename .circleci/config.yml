@@ -42,7 +42,6 @@ jobs:
         name: Debug step
         command: |
           ls ./
-          ls ./godot
     - run:
         name: Download butler
         command: |
@@ -51,7 +50,7 @@ jobs:
           chmod +rwx butler
     - run:
           name: Upload Win64 build
-          command: ./butler push ./godot/ExportBuildAuto NaixGames/CoreTools:win-64bit
+          command: ./butler push ./ExportBuildAuto NaixGames/CoreTools:win-64bit
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/configuration-reference/#workflows
