@@ -43,7 +43,7 @@ jobs:
         command: |
           wget -q -O butler.zip https://broth.itch.ovh/butler/linux-amd64/LATEST/archive/default
           unzip butler.zip
-          chmod +x butler
+          chmod +rwx butler
     - run:
           name: Upload Win64 build
           command: ./butler push ExportBuildAuto NaixGames/CoreTools:win-64bit
