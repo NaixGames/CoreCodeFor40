@@ -41,12 +41,12 @@ jobs:
         name: Export Windows64 build
         command: |
           mkdir -p ExportBuildAuto
-          ./godot/Godot_v4.0.3-stable_mono_linux.x86_64 --headless --export-debug Windows64 project.godot "ExportBuildAuto/CoreExport.exe"  
+          ./godot/Godot_v4.0.3-stable_mono_linux.x86_64 --headless --verbose --export-debug Windows64 project.godot "ExportBuildAuto/CoreExport.exe"  
     - run:
           name: Change application icon
           command: |
             ./godot/Godot_v4.0.3-stable_mono_linux.x86_64 --headless -s IconChange/CreateIcon.gd Assets/Images/Logo.ico Assets/Images/Logo.png
-            ./godot/Godot_v4.0.3-stable_mono_linux.x86_64 --headless -s IconChange/ReplaceIcon.gd Assets/Images/Logo.ico ExportBuildAuto/CoreExport.exe
+            ./godot/Godot_v4.0.3-stable_mono_linux.x86_64 -s IconChange/ReplaceIcon.gd Assets/Images/Logo.ico ExportBuildAuto/CoreExport.exe
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/configuration-reference/#workflows
