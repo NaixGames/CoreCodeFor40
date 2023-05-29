@@ -34,20 +34,16 @@ jobs:
           unzip Godot_v4.0.3-stable_export_templates.tpz -d ~/.local/share/godot/export_templates
           mv ~/.local/share/godot/export_templates/templates ~/.local/share/godot/export_templates/4.0.3.stable.mono
     - run:
+        name: Export Windows64 build
+        command: |
+          mkdir -p ExportBuildAuto
+          ./godot/Godot_v4.0.3-stable_mono_linux.x86_64 --headless --export-debug Windows64 project.godot "ExportBuildAuto/CoreExport.exe"  
+    - run:
         name: Download butler
         command: |
           wget -q -O butler.zip https://broth.itch.ovh/butler/linux-amd64/LATEST/archive/default
           unzip butler.zip
           chmod +x butler
-    - run:
-        name: Give rcedit application rights
-        command: |
-          chmod +rwx rcedit/rcedit-x86.exe
-    - run:
-        name: Export Windows64 build
-        command: |
-          mkdir -p ExportBuildAuto
-          ./godot/Godot_v4.0.3-stable_mono_linux.x86_64 --export-debug Windows64 project.godot "ExportBuildAuto/CoreExport.exe"  
     - run:
           name: Upload Win64 build
           command: ./butler push ExportBuildAuto NaixGames/CoreTools:win-64bit
