@@ -36,7 +36,7 @@ jobs:
     - run:
         name: Force imports
         command: |
-          timeout 60s ./godot/Godot_v4.0.3-stable_mono_linux.x86_64 --headless -e
+          ./godot/Godot_v4.0.3-stable_mono_linux.x86_64 --headless --editor --quit
     - run:
         name: Export Windows64 build
         command: |
