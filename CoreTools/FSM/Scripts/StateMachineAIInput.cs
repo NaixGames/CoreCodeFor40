@@ -48,10 +48,10 @@ namespace CoreCode.FSM{
 
 		public override void _Ready()
 		{
-			base._Ready();
-			if (Engine.IsEditorHint()){ //Using prints here because this will only be called from the Editor!
+			if (Engine.IsEditorHint()){ 
 				return;
 			}
+			base._Ready();
 			if (mShouldLog){
 				mLogObject = LogManager.Instance.RequestLogReference("FSM", mLogChannel);
 				mLogObject.AddToLogString("Intiliazing FSM of: "  + this.Name + " with state manager " + mStateManager.GetType()); 
