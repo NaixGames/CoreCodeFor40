@@ -43,7 +43,7 @@ namespace CoreCode.Scripts{
 		// ---------------------------------- override method to log ---------------------------
 
 		public override void _Ready(){
-			if (!Engine.IsEditorHint()){
+			if (Engine.IsEditorHint()){
                 return;
             }
 			base._Ready();
