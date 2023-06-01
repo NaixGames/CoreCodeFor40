@@ -34,10 +34,6 @@ jobs:
           unzip Godot_v4.0.3-stable_export_templates.tpz -d ~/.local/share/godot/export_templates
           mv ~/.local/share/godot/export_templates/templates ~/.local/share/godot/export_templates/4.0.3.stable.mono
     - run:
-        name: Build Solutions
-        command: |
-          ./godot/Godot_v4.0.3-stable_mono_linux.x86_64 --build-solutions --quit
-    - run:
         name: Export Windows64 build
         command: |
           mkdir -p .godot/editor .godot/imported
