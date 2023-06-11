@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://clwq8ci6wulqn"]
+
+[ext_resource type="PackedScene" uid="uid://drxehyvydlrnt" path="res://CoreTools/SceneTemplate/Managers.tscn" id="1_8dy3c"]
+[ext_resource type="PackedScene" uid="uid://ba6n7svctr8oh" path="res://AIExamples/Chapter2/Task5Evade/Evade/ActualEvade.tscn" id="12_uaunq"]
+
+[node name="WholeEvade" type="Node"]
+
+[node name="Managers" parent="." instance=ExtResource("1_8dy3c")]
+
+[node name="SceneTransitionManager" parent="Managers" index="2"]
+mReferenceHelperPath = NodePath("../../ActualEvade")
+
+[node name="P1Input" parent="Managers/InputManager" index="1"]
+mAxis = PackedStringArray("Right", "Left", "Up", "Down")
+
+[node name="ActualEvade" parent="." instance=ExtResource("12_uaunq")]
+
+[editable path="Managers"]

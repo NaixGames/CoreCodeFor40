@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://cfy1qr7xpu1xj"]
+
+[ext_resource type="PackedScene" uid="uid://b8bvibp3efkqi" path="res://AIExamples/Chapter2/ControlablePlayer/ActorPlayerFSM/ActorPlayerFSM.tscn" id="1_q1unl"]
+[ext_resource type="PackedScene" uid="uid://bpauljen1mcrh" path="res://AIExamples/Chapter2/Task4Anticipate/ActorAIFSM4/ActorAIFSM.tscn" id="2_pw16m"]
+
+[node name="NPActualAnticipateScene" type="Node"]
+
+[node name="ActorPlayerFSM" parent="." instance=ExtResource("1_q1unl")]
+position = Vector2(294, 66)
+
+[node name="ActorAIFSM" parent="." instance=ExtResource("2_pw16m")]
+position = Vector2(247, 293)
+
+[node name="AIAnticipateAIFSM" parent="ActorAIFSM/ActorAIFSM" index="1"]
+mMemoryBlackboard = {
+"CharacterNode": NodePath("../.."),
+"Objective": NodePath("../../../ActorPlayerFSM")
+}
+
+[editable path="ActorAIFSM"]

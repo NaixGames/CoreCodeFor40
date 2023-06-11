@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://ba6n7svctr8oh"]
+
+[ext_resource type="Script" path="res://CoreTools/SceneTransitionManager/Script/SceneTransitionReferenceHelper.cs" id="1_kuwmd"]
+[ext_resource type="PackedScene" uid="uid://nqehd3qpxpp3" path="res://AIExamples/Chapter2/Task5Evade/Evade/NPActualEvade.tscn" id="2_aj7ua"]
+[ext_resource type="Script" path="res://CoreTools/ObjectPooler/Scripts/GameObjectPooler2D.cs" id="3_v7r1q"]
+
+[node name="ActualEvade" type="Node"]
+script = ExtResource("1_kuwmd")
+NonPersistentElementsPath = NodePath("Elements/NPActualEvade")
+PersistentElementsPath = NodePath("Elements/PEEvade")
+ObjectPoolerNodePath = NodePath("ObjectPooler")
+AudioBankContainerNodePath = NodePath("AudioBank")
+
+[node name="Elements" type="Node" parent="."]
+
+[node name="PEEvade" type="Node" parent="Elements"]
+
+[node name="NPActualEvade" type="Node" parent="Elements" instance=ExtResource("2_aj7ua")]
+
+[node name="ObjectPooler" type="Node" parent="."]
+script = ExtResource("3_v7r1q")
+
+[node name="AudioBank" type="Node" parent="."]

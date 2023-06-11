@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://nqehd3qpxpp3"]
+
+[ext_resource type="PackedScene" uid="uid://bnpkhrnkqw0jl" path="res://AIExamples/Chapter2/Task5Evade/ActorAIFSM5/ActorAIFSM.tscn" id="1_8kimk"]
+[ext_resource type="PackedScene" uid="uid://b8bvibp3efkqi" path="res://AIExamples/Chapter2/ControlablePlayer/ActorPlayerFSM/ActorPlayerFSM.tscn" id="2_hyyhl"]
+
+[node name="NPActualEvade" type="Node"]
+
+[node name="ActorAIFSM" parent="." instance=ExtResource("1_8kimk")]
+position = Vector2(547, 366)
+
+[node name="AIEvadeAIFSM" parent="ActorAIFSM/ActorAIFSM" index="1"]
+mMemoryBlackboard = {
+"CharacterNode": NodePath("../.."),
+"Objective": NodePath("../../../ActorPlayerFSM"),
+"Range": 250.0
+}
+
+[node name="ActorPlayerFSM" parent="." instance=ExtResource("2_hyyhl")]
+position = Vector2(980, 479)
+
+[editable path="ActorAIFSM"]

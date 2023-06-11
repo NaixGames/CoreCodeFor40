@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://bpn8sqtc6ms0t"]
+
+[ext_resource type="PackedScene" uid="uid://drxehyvydlrnt" path="res://CoreTools/SceneTemplate/Managers.tscn" id="1_53e7i"]
+[ext_resource type="PackedScene" uid="uid://blkfphvfhf3q2" path="res://AIExamples/Chapter2/Task3Arrive/ArriveScene/ActualArriveScene.tscn" id="12_d6h63"]
+
+[node name="WholeArriveScene" type="Node"]
+
+[node name="Managers" parent="." instance=ExtResource("1_53e7i")]
+
+[node name="SceneTransitionManager" parent="Managers" index="2"]
+mReferenceHelperPath = NodePath("../../ActualArriveScene")
+
+[node name="P1Input" parent="Managers/InputManager" index="1"]
+mAxis = PackedStringArray("Right", "Left", "Up", "Down")
+
+[node name="ActualArriveScene" parent="." instance=ExtResource("12_d6h63")]
+
+[editable path="Managers"]

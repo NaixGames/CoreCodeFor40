@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://ci34gqoakn8dr"]
+
+[ext_resource type="Script" path="res://CoreTools/SceneTransitionManager/Script/SceneTransitionReferenceHelper.cs" id="1_72qtp"]
+[ext_resource type="PackedScene" uid="uid://cfy1qr7xpu1xj" path="res://AIExamples/Chapter2/Task4Anticipate/AnticipateScene/NPActualAnticipateScene.tscn" id="2_cemqi"]
+[ext_resource type="Script" path="res://CoreTools/ObjectPooler/Scripts/GameObjectPooler2D.cs" id="3_p4gxw"]
+
+[node name="ActualAnticipateScene" type="Node"]
+script = ExtResource("1_72qtp")
+NonPersistentElementsPath = NodePath("Elements/NPActualAnticipateScene")
+PersistentElementsPath = NodePath("Elements/PEAnticipateScene")
+ObjectPoolerNodePath = NodePath("ObjectPooler")
+AudioBankContainerNodePath = NodePath("AudioBank")
+
+[node name="Elements" type="Node" parent="."]
+
+[node name="PEAnticipateScene" type="Node" parent="Elements"]
+
+[node name="NPActualAnticipateScene" type="Node" parent="Elements" instance=ExtResource("2_cemqi")]
+
+[node name="ObjectPooler" type="Node" parent="."]
+script = ExtResource("3_p4gxw")
+
+[node name="AudioBank" type="Node" parent="."]

@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://blkfphvfhf3q2"]
+
+[ext_resource type="Script" path="res://CoreTools/SceneTransitionManager/Script/SceneTransitionReferenceHelper.cs" id="1_y3ixw"]
+[ext_resource type="PackedScene" uid="uid://vbh0dggnu28r" path="res://AIExamples/Chapter2/Task3Arrive/ArriveScene/NPActualArriveScene.tscn" id="2_1atmn"]
+[ext_resource type="Script" path="res://CoreTools/ObjectPooler/Scripts/GameObjectPooler2D.cs" id="3_sil63"]
+
+[node name="ActualArriveScene" type="Node"]
+script = ExtResource("1_y3ixw")
+NonPersistentElementsPath = NodePath("Elements/NPActualArriveScene")
+PersistentElementsPath = NodePath("Elements/PEArriveScene")
+ObjectPoolerNodePath = NodePath("ObjectPooler")
+AudioBankContainerNodePath = NodePath("AudioBank")
+
+[node name="Elements" type="Node" parent="."]
+
+[node name="PEArriveScene" type="Node" parent="Elements"]
+
+[node name="NPActualArriveScene" parent="Elements" instance=ExtResource("2_1atmn")]
+
+[node name="ObjectPooler" type="Node" parent="."]
+script = ExtResource("3_sil63")
+
+[node name="AudioBank" type="Node" parent="."]

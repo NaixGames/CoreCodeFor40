@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://bkq7bu4ramu5i"]
+
+[ext_resource type="PackedScene" uid="uid://drxehyvydlrnt" path="res://CoreTools/SceneTemplate/Managers.tscn" id="1_7v7i1"]
+[ext_resource type="PackedScene" uid="uid://ci34gqoakn8dr" path="res://AIExamples/Chapter2/Task4Anticipate/AnticipateScene/ActualAnticipateScene.tscn" id="12_pn5us"]
+
+[node name="WholeAnticipateScene" type="Node"]
+
+[node name="Managers" parent="." instance=ExtResource("1_7v7i1")]
+
+[node name="SceneTransitionManager" parent="Managers" index="2"]
+mReferenceHelperPath = NodePath("../../ActualAnticipateScene")
+
+[node name="P1Input" parent="Managers/InputManager" index="1"]
+mAxis = PackedStringArray("Right", "Left", "Up", "Down")
+
+[node name="ActualAnticipateScene" parent="." instance=ExtResource("12_pn5us")]
+
+[editable path="Managers"]

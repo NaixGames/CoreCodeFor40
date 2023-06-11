@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://dnhbictppirjr"]
+
+[ext_resource type="Script" path="res://CoreTools/FSM/Scripts/StateMachineAIInput.cs" id="1_cnxps"]
+[ext_resource type="Script" path="res://AIExamples/Chapter2/Task2Flee/AIFleeAI/StateManager/AIFleeAIStateManager.cs" id="2_0hdlh"]
+
+[node name="AIFleeAIFSM" type="Node" node_paths=PackedStringArray("mStateManager")]
+script = ExtResource("1_cnxps")
+mStateManager = NodePath("AIFleeAIStateManager")
+mPlayerID = 0
+mAxis = PackedStringArray("Up", "Down", "Left", "Right")
+
+[node name="AIFleeAIStateManager" type="Node" parent="."]
+script = ExtResource("2_0hdlh")

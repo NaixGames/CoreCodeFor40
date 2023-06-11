@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://bwed31lyv2jcd"]
+
+[ext_resource type="Script" path="res://CoreTools/FSM/Scripts/StateMachineAIInput.cs" id="1_ukcec"]
+[ext_resource type="Script" path="res://AIExamples/Chapter2/Task3Arrive/AIArriveAI/StateManager/AIArriveAIStateManager.cs" id="2_6qnmc"]
+
+[node name="AIArriveAIFSM" type="Node" node_paths=PackedStringArray("mStateManager")]
+script = ExtResource("1_ukcec")
+mStateManager = NodePath("AIArriveAIStateManager")
+mMemoryBlackboard = {
+"Range": 20.0,
+"VelocityTolerance": 10.0
+}
+mAxis = PackedStringArray("Up", "Down", "Left", "Right")
+
+[node name="AIArriveAIStateManager" type="Node" parent="."]
+script = ExtResource("2_6qnmc")

@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://c4pja4okgfegt"]
+
+[ext_resource type="PackedScene" uid="uid://b8bvibp3efkqi" path="res://AIExamples/Chapter2/ControlablePlayer/ActorPlayerFSM/ActorPlayerFSM.tscn" id="1_4bgli"]
+[ext_resource type="PackedScene" uid="uid://clcufsnn7sqxd" path="res://AIExamples/Chapter2/Task2Flee/ActorAIFSM2/ActorAIFSM.tscn" id="2_obdv4"]
+
+[node name="NPActualFleeScene" type="Node"]
+
+[node name="ActorPlayerFSM" parent="." instance=ExtResource("1_4bgli")]
+position = Vector2(155, 158)
+
+[node name="ActorAIFSM" parent="." instance=ExtResource("2_obdv4")]
+position = Vector2(444, 216)
+
+[node name="AIFleeAIFSM" parent="ActorAIFSM/ActorAIFSM" index="1"]
+mMemoryBlackboard = {
+"CharacterNode": NodePath("../.."),
+"Objective": NodePath("../../../ActorPlayerFSM"),
+"Range": 300.0
+}
+
+[editable path="ActorAIFSM"]

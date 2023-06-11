@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://cyldan7s21bla"]
+
+[ext_resource type="Script" path="res://CoreTools/FSM/Scripts/StateMachineAIInput.cs" id="1_g8ada"]
+[ext_resource type="Script" path="res://AIExamples/Chapter2/Task4Anticipate/AIAnticipateAI/StateManager/AIAnticipateAIStateManager.cs" id="2_mhdrq"]
+
+[node name="AIAnticipateAIFSM" type="Node" node_paths=PackedStringArray("mStateManager")]
+script = ExtResource("1_g8ada")
+mStateManager = NodePath("AIAnticipateAIStateManager")
+mAxis = PackedStringArray("Up", "Down", "Left", "Right")
+
+[node name="AIAnticipateAIStateManager" type="Node" parent="."]
+script = ExtResource("2_mhdrq")

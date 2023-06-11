@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://c73j57st7m8d"]
+
+[ext_resource type="Script" path="res://CoreTools/SceneTransitionManager/Script/SceneTransitionReferenceHelper.cs" id="1_1h22a"]
+[ext_resource type="PackedScene" uid="uid://c4pja4okgfegt" path="res://AIExamples/Chapter2/Task2Flee/FleeScene/NPActualFleeScene.tscn" id="2_fek7u"]
+[ext_resource type="Script" path="res://CoreTools/ObjectPooler/Scripts/GameObjectPooler2D.cs" id="3_driwg"]
+
+[node name="ActualFleeScene" type="Node"]
+script = ExtResource("1_1h22a")
+NonPersistentElementsPath = NodePath("Elements/NPActualFleeScene")
+PersistentElementsPath = NodePath("Elements/PEFleeScene")
+ObjectPoolerNodePath = NodePath("ObjectPooler")
+AudioBankContainerNodePath = NodePath("AudioBank")
+
+[node name="Elements" type="Node" parent="."]
+
+[node name="PEFleeScene" type="Node" parent="Elements"]
+
+[node name="NPActualFleeScene" type="Node" parent="Elements" instance=ExtResource("2_fek7u")]
+
+[node name="ObjectPooler" type="Node" parent="."]
+script = ExtResource("3_driwg")
+
+[node name="AudioBank" type="Node" parent="."]
