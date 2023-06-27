@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://ciogy3ipr267k"]
+
+[ext_resource type="Script" path="res://CoreTools/SceneTransitionManager/Script/SceneTransitionReferenceHelper.cs" id="1_rlbge"]
+[ext_resource type="PackedScene" uid="uid://djcgjfgc13flw" path="res://AIExamples/Chapter2/Task6Wander/Wander/NPActualWander.tscn" id="2_cx8wo"]
+[ext_resource type="Script" path="res://CoreTools/ObjectPooler/Scripts/GameObjectPooler2D.cs" id="3_vjt3s"]
+
+[node name="ActualWander" type="Node"]
+script = ExtResource("1_rlbge")
+NonPersistentElementsPath = NodePath("Elements/NPActualWander")
+PersistentElementsPath = NodePath("Elements/PEWander")
+ObjectPoolerNodePath = NodePath("ObjectPooler")
+AudioBankContainerNodePath = NodePath("AudioBank")
+
+[node name="Elements" type="Node" parent="."]
+
+[node name="PEWander" type="Node" parent="Elements"]
+
+[node name="NPActualWander" type="Node" parent="Elements" instance=ExtResource("2_cx8wo")]
+
+[node name="ObjectPooler" type="Node" parent="."]
+script = ExtResource("3_vjt3s")
+
+[node name="AudioBank" type="Node" parent="."]

@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://cxvravpw2unrv"]
+
+[ext_resource type="PackedScene" uid="uid://bqjh0lu0ga1q6" path="res://CoreTools/FSM/Scenes/Actor/Player/player.tscn" id="1_kr8pv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_moo35"]
+
+[node name="NPActualCameraTest" type="Node"]
+
+[node name="Player" parent="." instance=ExtResource("1_kr8pv")]
+position = Vector2(305, 243)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(529, 628)
+scale = Vector2(100, 1.944)
+shape = SubResource("RectangleShape2D_moo35")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(593, 592)
+position_smoothing_enabled = true

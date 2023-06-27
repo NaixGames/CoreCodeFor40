@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://0ydt2g01b2kp"]
+
+[ext_resource type="Script" path="res://CoreTools/SceneTransitionManager/Script/SceneTransitionReferenceHelper.cs" id="1_extt7"]
+[ext_resource type="PackedScene" uid="uid://cxvravpw2unrv" path="res://CoreTools/GodotLibraryUseExamples/Camera/CameraTest/NPActualCameraTest.tscn" id="2_kf7eu"]
+[ext_resource type="Script" path="res://CoreTools/ObjectPooler/Scripts/GameObjectPooler2D.cs" id="3_1ru5c"]
+
+[node name="ActualCameraTest" type="Node"]
+script = ExtResource("1_extt7")
+NonPersistentElementsPath = NodePath("Elements/NPActualCameraTest")
+PersistentElementsPath = NodePath("Elements/PECameraTest")
+ObjectPoolerNodePath = NodePath("ObjectPooler")
+AudioBankContainerNodePath = NodePath("AudioBank")
+
+[node name="Elements" type="Node" parent="."]
+
+[node name="PECameraTest" type="Node" parent="Elements"]
+
+[node name="NPActualCameraTest" parent="Elements" instance=ExtResource("2_kf7eu")]
+
+[node name="ObjectPooler" type="Node" parent="."]
+script = ExtResource("3_1ru5c")
+
+[node name="AudioBank" type="Node" parent="."]

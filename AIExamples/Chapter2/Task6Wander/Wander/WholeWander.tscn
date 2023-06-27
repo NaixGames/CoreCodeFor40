@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://ipim4mkevcqf"]
+
+[ext_resource type="PackedScene" uid="uid://drxehyvydlrnt" path="res://CoreTools/SceneTemplate/Managers.tscn" id="1_m0j0i"]
+[ext_resource type="PackedScene" uid="uid://ciogy3ipr267k" path="res://AIExamples/Chapter2/Task6Wander/Wander/ActualWander.tscn" id="12_b6v6u"]
+
+[node name="WholeWander" type="Node"]
+
+[node name="Managers" parent="." instance=ExtResource("1_m0j0i")]
+
+[node name="SceneTransitionManager" parent="Managers" index="2"]
+mReferenceHelperPath = NodePath("../../ActualWander")
+
+[node name="P1Input" parent="Managers/InputManager" index="1"]
+mAxis = PackedStringArray("Right", "Left", "Up", "Down")
+
+[node name="ActualWander" parent="." instance=ExtResource("12_b6v6u")]
+
+[editable path="Managers"]

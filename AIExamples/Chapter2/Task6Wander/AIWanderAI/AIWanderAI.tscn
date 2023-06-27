@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://7hu2fa77rl4d"]
+
+[ext_resource type="Script" path="res://CoreTools/FSM/Scripts/StateMachineAIInput.cs" id="1_xaqyl"]
+[ext_resource type="Script" path="res://AIExamples/Chapter2/Task6Wander/AIWanderAI/StateManager/AIWanderAIStateManager.cs" id="2_qh8ss"]
+
+[node name="AIWanderAIFSM" type="Node" node_paths=PackedStringArray("mStateManager")]
+script = ExtResource("1_xaqyl")
+mStateManager = NodePath("AIWanderAIStateManager")
+mMemoryBlackboard = {
+"CharacterNode": NodePath(""),
+"WanderDistance": 50.0,
+"WanderJitter": 2.0,
+"WanderRadius": 5.0
+}
+mAxis = PackedStringArray("Up", "Left", "Right", "Down")
+
+[node name="AIWanderAIStateManager" type="Node" parent="."]
+script = ExtResource("2_qh8ss")

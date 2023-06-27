@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://r5yq2gwnany1"]
+
+[ext_resource type="Script" path="res://CoreTools/FSM/Scripts/StateMachineAIInput.cs" id="1_3w1se"]
+[ext_resource type="Script" path="res://AIExamples/Chapter2/Task7SeekAndAvoidObstacles/AISeekAndAvoidObstaclesAI/StateManager/AISeekAndAvoidObstaclesAIStateManager.cs" id="2_8hadv"]
+
+[node name="AISeekAndAvoidObstaclesAIFSM" type="Node" node_paths=PackedStringArray("mStateManager")]
+script = ExtResource("1_3w1se")
+mStateManager = NodePath("AISeekAndAvoidObstaclesAIStateManager")
+mMemoryBlackboard = {
+"CharacterNode": NodePath(""),
+"LeftRaycast": NodePath(""),
+"Objective": NodePath(""),
+"RightRaycast": NodePath("")
+}
+mAxis = PackedStringArray("Up", "Down", "Left", "Right")
+
+[node name="AISeekAndAvoidObstaclesAIStateManager" type="Node" parent="."]
+script = ExtResource("2_8hadv")

@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://bv7y42pre0gsn"]
+
+[ext_resource type="PackedScene" uid="uid://drxehyvydlrnt" path="res://CoreTools/SceneTemplate/Managers.tscn" id="1_8vwr7"]
+[ext_resource type="PackedScene" uid="uid://7phjoavxjk07" path="res://AIExamples/Chapter2/Task7SeekAndAvoidObstacles/SeekAndAvoidObstracles/ActualSeekAndAvoidObstracles.tscn" id="12_mok31"]
+
+[node name="WholeSeekAndAvoidObstracles" type="Node"]
+
+[node name="Managers" parent="." instance=ExtResource("1_8vwr7")]
+
+[node name="SceneTransitionManager" parent="Managers" index="2"]
+mReferenceHelperPath = NodePath("../../ActualSeekAndAvoidObstracles")
+
+[node name="P1Input" parent="Managers/InputManager" index="1"]
+mAxis = PackedStringArray("Right", "Left", "Up", "Down")
+
+[node name="ActualSeekAndAvoidObstracles" parent="." instance=ExtResource("12_mok31")]
+
+[editable path="Managers"]

@@ -1,0 +1,48 @@
+[gd_scene load_steps=4 format=3 uid="uid://6yo2lokpbutl"]
+
+[ext_resource type="PackedScene" uid="uid://cymua3f17lo45" path="res://AIExamples/Chapter2/Task7SeekAndAvoidObstacles/ActorAIFSM7/ActorAIFSM.tscn" id="1_exijg"]
+[ext_resource type="PackedScene" uid="uid://b8bvibp3efkqi" path="res://AIExamples/Chapter2/ControlablePlayer/ActorPlayerFSM/ActorPlayerFSM.tscn" id="2_7hkyi"]
+[ext_resource type="PackedScene" uid="uid://rmioj7b0tnrp" path="res://AIExamples/Chapter2/Task7SeekAndAvoidObstacles/Prop/Obstacle.tscn" id="3_16ooo"]
+
+[node name="NPActualSeekAndAvoidObstracles" type="Node"]
+
+[node name="ActorPlayerFSM" parent="." instance=ExtResource("2_7hkyi")]
+position = Vector2(964, 501)
+
+[node name="Obstacle" parent="." instance=ExtResource("3_16ooo")]
+position = Vector2(390, 233)
+
+[node name="Obstacle2" parent="." instance=ExtResource("3_16ooo")]
+position = Vector2(659, 300)
+
+[node name="Obstacle3" parent="." instance=ExtResource("3_16ooo")]
+position = Vector2(582, 529)
+
+[node name="ActorAIFSM" parent="." instance=ExtResource("1_exijg")]
+position = Vector2(126, 450)
+
+[node name="ActorAIFSM" parent="ActorAIFSM" index="0"]
+mMemoryBlackboard = {
+"Acceleration": 15,
+"CharacterNode": NodePath(".."),
+"Drag": 5.0,
+"Force": 20.0,
+"Mass": 10.0,
+"MaxSpeed": 150
+}
+
+[node name="AISeekAndAvoidObstaclesAIFSM" parent="ActorAIFSM/ActorAIFSM" index="1"]
+mMemoryBlackboard = {
+"AvoidanceWeight": 0.8,
+"BreakingAvoidanceWeight": 0.3,
+"CharacterNode": NodePath("../.."),
+"InputAverageWindow": 40,
+"LateralAvoidanceWeight": 0.7,
+"LeftRaycast": NodePath("../../LeftRaycast"),
+"Objective": NodePath("../../../ActorPlayerFSM"),
+"RightRaycast": NodePath("../../RightRaycast"),
+"SeekWeight": 0.2
+}
+
+[editable path="ActorAIFSM"]
+[editable path="ActorAIFSM/ActorAIFSM/AISeekAndAvoidObstaclesAIFSM"]

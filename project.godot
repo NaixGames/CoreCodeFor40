@@ -74,6 +74,20 @@ DownP2={
 ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="Default"
+2d_physics/layer_2="StaticBackground"
+2d_physics/layer_3="StaticProp"
+2d_physics/layer_4="DynamicProp"
+2d_physics/layer_5="UNUSED"
+2d_physics/layer_6="UNUSED"
+2d_physics/layer_7="Camera"
+2d_physics/layer_8="UNUSED"
+2d_physics/layer_9="UNUSED"
+2d_physics/layer_10="Players"
+2d_physics/layer_11="NonPlayerActors"
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0

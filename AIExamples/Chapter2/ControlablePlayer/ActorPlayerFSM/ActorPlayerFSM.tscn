@@ -9,6 +9,8 @@
 
 [node name="ActorPlayerFSM" type="CharacterBody2D" node_paths=PackedStringArray("mStateMachine")]
 scale = Vector2(0.5, 0.5)
+collision_layer = 512
+collision_mask = 1551
 motion_mode = 1
 script = ExtResource("1_ej351")
 mStateMachine = NodePath("ActorPlayerFSMFSM")

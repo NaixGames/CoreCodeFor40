@@ -104,5 +104,19 @@ namespace CoreCode.Scripts{
             }
             return -AnticipateDirectionForce3D(agentPos, objetivePos, agentVelocity, objectiveVelocity);
         }
+
+         //------------------------ Wander behaviour
+
+        public static Vector2 WanderForce2D(Vector2 forward, float radius, float distance, float jitter, Vector2 oldWanderTarget, out Vector2 newWanderTarget){
+            Vector2 randomOffset = new Vector2(GD.RandRange(-1,1),GD.RandRange(-1,1));
+            newWanderTarget = (oldWanderTarget + jitter*randomOffset).Normalized();
+            return (distance*forward + newWanderTarget*radius).Normalized();
+        }
+
+        public static Vector3 WanderForce3D(Vector3 forward, float radius, float distance, float jitter, Vector3 oldWanderTarget, out Vector3 newWanderTarget){
+            Vector3 randomOffset = new Vector3(GD.RandRange(-1,1),GD.RandRange(-1,1), GD.RandRange(-1,1));
+            newWanderTarget = (oldWanderTarget + jitter*randomOffset).Normalized();
+            return (distance*forward + newWanderTarget*radius).Normalized();
+        }
     }
 }
