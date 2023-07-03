@@ -35,38 +35,12 @@ mPlayerInputs = [NodePath("VoidInput"), NodePath("P1Input")]
 
 [node name="VoidInput" type="Node" parent="InputManager"]
 script = ExtResource("4_xvsgk")
-mAreInputsUpdated = true
 
 [node name="P1Input" type="Node" parent="InputManager"]
 script = ExtResource("4_g5skp")
-mAreInputsUpdated = true
 mPlayerID = 1
-mAxis = PackedStringArray("Right", "Left")
+mAxis = PackedStringArray("Right", "Left", "Up", "Down")
 mButtons = PackedStringArray("Up", "Down")
-mAxisValues = {
-"Left": 0.0,
-"Right": 0.0
-}
-mButtonsValues = {
-"Down": false,
-"Up": false
-}
-mTimeSinceLastPressAxis = {
-"Left": 0.0,
-"Right": 0.0
-}
-mTimeSinceLastPressButton = {
-"Down": 0.0,
-"Up": 0.0
-}
-mTimeHeldAxis = {
-"Left": 0.0,
-"Right": 0.0
-}
-mTimeHeldButton = {
-"Down": 0.0,
-"Up": 0.0
-}
 
 [node name="AchievementManager" type="Node" parent="."]
 script = ExtResource("5_xesqj")

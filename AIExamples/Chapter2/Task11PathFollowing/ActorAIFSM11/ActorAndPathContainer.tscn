@@ -1,0 +1,35 @@
+[gd_scene load_steps=3 format=3 uid="uid://cvx6xnsubks83"]
+
+[ext_resource type="PackedScene" uid="uid://dxuwrp4bhj4if" path="res://AIExamples/Chapter2/Task11PathFollowing/ActorAIFSM11/ActorAIFSM.tscn" id="1_qa77c"]
+
+[sub_resource type="Curve2D" id="Curve2D_8h7c1"]
+_data = {
+"points": PackedVector2Array(-445.836, 21.3574, 445.836, -21.3574, 0, 2, 1.99889, -76.8841, -1.99889, 76.8841, 350, 52, -355.067, -13.3484, 355.067, 13.3484, 543, 286, -317.692, 133.484, 317.692, -133.484, 903, 75, 0, 0, 0, 0, 1003, 566)
+}
+point_count = 5
+
+[node name="ActorAndPathContainer" type="Node2D"]
+
+[node name="Path2D" type="Path2D" parent="."]
+position = Vector2(62, 30)
+curve = SubResource("Curve2D_8h7c1")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2(0, 2)
+rotation = -0.0478676
+
+[node name="44682" type="Timer" parent="Path2D/PathFollow2D"]
+wait_time = 0.2
+one_shot = true
+
+[node name="ActorAIFSM" parent="." instance=ExtResource("1_qa77c")]
+
+[node name="AIAIPathFollowingFSM" parent="ActorAIFSM/ActorAIFSM" index="1"]
+mMemoryBlackboard = {
+"CharacterNode": NodePath("../.."),
+"NextPointTolerance": 5.0,
+"PathFollower": NodePath("../../../Path2D/PathFollow2D"),
+"SplineRuningSpeed": 25.0
+}
+
+[editable path="ActorAIFSM"]

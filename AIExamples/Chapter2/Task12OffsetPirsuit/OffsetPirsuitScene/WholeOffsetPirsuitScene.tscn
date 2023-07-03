@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://mpdm16oko3cp"]
+
+[ext_resource type="PackedScene" uid="uid://drxehyvydlrnt" path="res://CoreTools/SceneTemplate/Managers.tscn" id="1_67ypy"]
+[ext_resource type="PackedScene" uid="uid://cui4oufvyem85" path="res://AIExamples/Chapter2/Task12OffsetPirsuit/OffsetPirsuitScene/ActualOffsetPirsuitScene.tscn" id="12_kl4w0"]
+
+[node name="WholeOffsetPirsuitScene" type="Node"]
+
+[node name="Managers" parent="." instance=ExtResource("1_67ypy")]
+
+[node name="SceneTransitionManager" parent="Managers" index="2"]
+mReferenceHelperPath = NodePath("../../ActualOffsetPirsuitScene")
+
+[node name="ActualOffsetPirsuitScene" parent="." instance=ExtResource("12_kl4w0")]
+
+[editable path="Managers"]

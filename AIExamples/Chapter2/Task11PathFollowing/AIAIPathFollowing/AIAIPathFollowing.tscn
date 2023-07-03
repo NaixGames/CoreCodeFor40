@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://ptd6v7rks27k"]
+
+[ext_resource type="Script" path="res://CoreTools/FSM/Scripts/StateMachineAIInput.cs" id="1_di616"]
+[ext_resource type="Script" path="res://AIExamples/Chapter2/Task11PathFollowing/AIAIPathFollowing/StateManager/AIAIPathFollowingStateManager.cs" id="2_468hd"]
+
+[node name="AIAIPathFollowingFSM" type="Node" node_paths=PackedStringArray("mStateManager")]
+script = ExtResource("1_di616")
+mStateManager = NodePath("AIAIPathFollowingStateManager")
+mAxis = PackedStringArray("Up", "Down", "Left", "Right")
+
+[node name="AIAIPathFollowingStateManager" type="Node" parent="."]
+script = ExtResource("2_468hd")

@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://drwx6nr87kk7"]
+
+[ext_resource type="PackedScene" uid="uid://drxehyvydlrnt" path="res://CoreTools/SceneTemplate/Managers.tscn" id="1_kxs0c"]
+[ext_resource type="PackedScene" uid="uid://d0255qi6o0qwk" path="res://AIExamples/Chapter2/Task11PathFollowing/PathFollowingScene/ActualPathFollowingScene.tscn" id="12_6vhq1"]
+
+[node name="WholePathFollowingScene" type="Node"]
+
+[node name="Managers" parent="." instance=ExtResource("1_kxs0c")]
+
+[node name="SceneTransitionManager" parent="Managers" index="2"]
+mReferenceHelperPath = NodePath("../../ActualPathFollowingScene")
+
+[node name="ActualPathFollowingScene" parent="." instance=ExtResource("12_6vhq1")]
+
+[editable path="Managers"]

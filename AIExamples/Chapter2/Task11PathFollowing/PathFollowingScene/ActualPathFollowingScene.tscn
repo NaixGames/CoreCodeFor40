@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://d0255qi6o0qwk"]
+
+[ext_resource type="Script" path="res://CoreTools/SceneTransitionManager/Script/SceneTransitionReferenceHelper.cs" id="1_ib01o"]
+[ext_resource type="PackedScene" uid="uid://cpl0hpwkhjnna" path="res://AIExamples/Chapter2/Task11PathFollowing/PathFollowingScene/NPActualPathFollowingScene.tscn" id="2_gfd77"]
+[ext_resource type="Script" path="res://CoreTools/ObjectPooler/Scripts/GameObjectPooler2D.cs" id="3_pkyge"]
+
+[node name="ActualPathFollowingScene" type="Node"]
+script = ExtResource("1_ib01o")
+NonPersistentElementsPath = NodePath("Elements/NPActualPathFollowingScene")
+PersistentElementsPath = NodePath("Elements/PEPathFollowingScene")
+ObjectPoolerNodePath = NodePath("ObjectPooler")
+AudioBankContainerNodePath = NodePath("AudioBank")
+
+[node name="Elements" type="Node" parent="."]
+
+[node name="PEPathFollowingScene" type="Node" parent="Elements"]
+
+[node name="NPActualPathFollowingScene" type="Node" parent="Elements" instance=ExtResource("2_gfd77")]
+
+[node name="ObjectPooler" type="Node" parent="."]
+script = ExtResource("3_pkyge")
+
+[node name="AudioBank" type="Node" parent="."]

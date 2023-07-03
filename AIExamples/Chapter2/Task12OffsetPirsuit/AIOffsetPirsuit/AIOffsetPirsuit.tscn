@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://5wu0didt3jgo"]
+
+[ext_resource type="Script" path="res://CoreTools/FSM/Scripts/StateMachineAIInput.cs" id="1_vo3f6"]
+[ext_resource type="Script" path="res://AIExamples/Chapter2/Task12OffsetPirsuit/AIOffsetPirsuit/StateManager/AIOffsetPirsuitStateManager.cs" id="2_0e57f"]
+
+[node name="AIOffsetPirsuitFSM" type="Node" node_paths=PackedStringArray("mStateManager")]
+script = ExtResource("1_vo3f6")
+mStateManager = NodePath("AIOffsetPirsuitStateManager")
+mAxis = PackedStringArray("Up", "Down", "Left", "Right")
+
+[node name="AIOffsetPirsuitStateManager" type="Node" parent="."]
+script = ExtResource("2_0e57f")

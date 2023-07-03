@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://cpl0hpwkhjnna"]
+
+[ext_resource type="PackedScene" uid="uid://cvx6xnsubks83" path="res://AIExamples/Chapter2/Task11PathFollowing/ActorAIFSM11/ActorAndPathContainer.tscn" id="1_w8yx2"]
+
+[node name="NPActualPathFollowingScene" type="Node"]
+
+[node name="ActorAndPathContainer" parent="." instance=ExtResource("1_w8yx2")]
+position = Vector2(-18, 0)
+
+[node name="AIAIPathFollowingFSM" parent="ActorAndPathContainer/ActorAIFSM/ActorAIFSM" index="1"]
+mMemoryBlackboard = {
+"CharacterNode": NodePath("../.."),
+"NextPointTolerance": 150.0,
+"PathFollower": NodePath("../../../Path2D/PathFollow2D"),
+"SplineRuningSpeed": 200.0
+}
+
+[editable path="ActorAndPathContainer"]
+[editable path="ActorAndPathContainer/ActorAIFSM"]

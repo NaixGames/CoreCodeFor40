@@ -1,0 +1,49 @@
+[gd_scene load_steps=7 format=3 uid="uid://dxuwrp4bhj4if"]
+
+[ext_resource type="Script" path="res://CoreTools/GameActorReferenceHandler/Script/GameActorReferenceHandler2D.cs" id="1_ddqwo"]
+[ext_resource type="Script" path="res://CoreTools/FSM/Scripts/StateMachineActor.cs" id="2_s0amw"]
+[ext_resource type="Script" path="res://AIExamples/Chapter2/ControlablePlayer/ActorPlayerFSM/StateManager/ActorPlayerFSMStateManager.cs" id="3_dphgg"]
+[ext_resource type="PackedScene" uid="uid://ptd6v7rks27k" path="res://AIExamples/Chapter2/Task11PathFollowing/AIAIPathFollowing/AIAIPathFollowing.tscn" id="4_kumi2"]
+[ext_resource type="Texture2D" uid="uid://dqd4wln1wph42" path="res://icon.svg" id="5_o7rwg"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jek8g"]
+
+[node name="ActorAIFSM" type="CharacterBody2D" node_paths=PackedStringArray("mStateMachine")]
+scale = Vector2(0.5, 0.5)
+collision_layer = 1024
+collision_mask = 1549
+motion_mode = 1
+script = ExtResource("1_ddqwo")
+mStateMachine = NodePath("ActorAIFSM")
+
+[node name="ActorAIFSM" type="Node" parent="." node_paths=PackedStringArray("mInputReader")]
+script = ExtResource("2_s0amw")
+NodeManagerPath = NodePath("ActorAIStateManager")
+mMemoryBlackboard = {
+"Acceleration": 25,
+"CharacterNode": NodePath(".."),
+"Drag": 5.0,
+"Force": 20.0,
+"Mass": 10.0,
+"MaxSpeed": 150
+}
+mInputReader = NodePath("AIAIPathFollowingFSM")
+
+[node name="ActorAIStateManager" type="Node" parent="ActorAIFSM"]
+script = ExtResource("3_dphgg")
+
+[node name="AIAIPathFollowingFSM" parent="ActorAIFSM" instance=ExtResource("4_kumi2")]
+mMemoryBlackboard = {
+"CharacterNode": NodePath("../.."),
+"NextPointTolerance": 25.0,
+"PathFollower": NodePath(""),
+"SplineRuningSpeed": 25.0
+}
+
+[node name="Icon" type="Sprite2D" parent="."]
+modulate = Color(1, 0.294118, 0.34902, 1)
+texture = ExtResource("5_o7rwg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(7, 7)
+shape = SubResource("CircleShape2D_jek8g")

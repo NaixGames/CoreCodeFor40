@@ -1,0 +1,49 @@
+[gd_scene load_steps=3 format=3 uid="uid://cb55o6aeo6xb6"]
+
+[ext_resource type="PackedScene" uid="uid://d7rlg2thy3ea" path="res://AIExamples/Chapter2/Task12OffsetPirsuit/ActorAIFSM12/ActorAIFSM.tscn" id="1_lucb7"]
+[ext_resource type="PackedScene" uid="uid://b8bvibp3efkqi" path="res://AIExamples/Chapter2/ControlablePlayer/ActorPlayerFSM/ActorPlayerFSM.tscn" id="2_s6ogk"]
+
+[node name="NPActualOffsetPirsuitScene" type="Node"]
+
+[node name="ActorAIFSM" parent="." instance=ExtResource("1_lucb7")]
+position = Vector2(187, 109)
+
+[node name="AIOffsetPirsuitFSM" parent="ActorAIFSM/ActorAIFSM" index="1"]
+mMemoryBlackboard = {
+"CharacterNode": NodePath("../.."),
+"Objective": NodePath("../../../ActorPlayerFSM"),
+"OffsetVector": Vector2(0, 225),
+"Range": 50.0,
+"VelocityTolerance": 100.0
+}
+
+[node name="ActorAIFSM2" parent="." instance=ExtResource("1_lucb7")]
+position = Vector2(121, 298)
+
+[node name="AIOffsetPirsuitFSM" parent="ActorAIFSM2/ActorAIFSM" index="1"]
+mMemoryBlackboard = {
+"CharacterNode": NodePath("../.."),
+"Objective": NodePath("../../../ActorAIFSM"),
+"OffsetVector": Vector2(0, 225),
+"Range": 50.0,
+"VelocityTolerance": 100.0
+}
+
+[node name="ActorAIFSM3" parent="." instance=ExtResource("1_lucb7")]
+position = Vector2(262, 442)
+
+[node name="AIOffsetPirsuitFSM" parent="ActorAIFSM3/ActorAIFSM" index="1"]
+mMemoryBlackboard = {
+"CharacterNode": NodePath("../.."),
+"Objective": NodePath("../../../ActorAIFSM2"),
+"OffsetVector": Vector2(0, 225),
+"Range": 50.0,
+"VelocityTolerance": 100.0
+}
+
+[node name="ActorPlayerFSM" parent="." instance=ExtResource("2_s6ogk")]
+position = Vector2(977, 479)
+
+[editable path="ActorAIFSM"]
+[editable path="ActorAIFSM2"]
+[editable path="ActorAIFSM3"]
