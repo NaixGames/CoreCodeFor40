@@ -19,6 +19,9 @@ namespace CoreCode.FSM{
 		// ------------------------------------- Variable
 		protected StateManagerAbstract mStateManagerCache;
 		protected Godot.Collections.Dictionary mMemoryBlackboardCache;
+	
+		//This is to execute Payload/message reception post next update
+		public string EventQueued="";
 
 		// ------------------------------------- Abstract methods ---------------------------------------
 		
@@ -39,8 +42,19 @@ namespace CoreCode.FSM{
 			return;
 		}
 
-		//This is the method for processing external events in state machines. By default, we ignore it by staying in the same state.
-		protected virtual StateAbstract ProcessDelegatedEvent(string EventName, LogObject mlogObject=null){
+		//This is the method that queues some event to later execution. Any needed information should be cached here
+		//Note this will only queue ONE event per frame execution! (To be fair, if we are queing more than one most likely
+		//we are doing something wrong. Worst case can put a queue of event names and run all of them on each frame. Or just override EventQueued).
+		public void QueueDelegatedEvent(string EventName, Godot.Collections.Dictionary PayloadDictionary = null, LogObject mlogObject=null){
+			EventQueued = EventName;
+			mMemoryBlackboardCache["Payload"]= PayloadDictionary;
+		}
+	
+
+		//This is what actually gets called on the execution cycle of the event. This should NOT be called from other states, 
+		//as it is executed after the Update cycle to avoid a state eating its own signals. Note that, for default,
+		//we dont do anything and return.
+		protected virtual StateAbstract OnUnqueuedDelegatedEvent(string EventName, LogObject logObject=null){
 			return this;
 		}
 
@@ -72,16 +86,18 @@ namespace CoreCode.FSM{
 			return stateActionResult;
 		}
 
-		public StateAbstract ExecuteDelegatedEvent(string EventName,LogObject mLogObject=null){
-			StateAbstract stateEventResult = ProcessDelegatedEvent(EventName, mLogObject);
+		public StateAbstract ExecuteQueuedDelegatedEvent(LogObject mLogObject=null){
+			StateAbstract stateEventResult = OnUnqueuedDelegatedEvent(EventQueued, mLogObject);
 			if (stateEventResult==this){
 				return stateEventResult;
 			}
 			this.ExitState();
 			stateEventResult.EnterState();
 			if (mLogObject!=null){
-				mLogObject.AddToLogString("Change of state from event " + EventName + " from state "  + this.GetType() + " to state " + stateEventResult.GetType());
+				mLogObject.AddToLogString("Change of state from event " + EventQueued + " from state "  + this.GetType() + " to state " + stateEventResult.GetType());
 			}
+			EventQueued="";
+			mMemoryBlackboardCache.Remove("Payload");
 			return stateEventResult;
 		}
 

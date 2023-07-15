@@ -190,6 +190,10 @@ namespace CoreCode.Scripts{
 			if (ObjectToPool.IsClass("Node3D")){
 				((Node3D)ObjectToPool).Position = PoolPosition;
 			}
+			if (ObjectToPool.GetParent<Node>()!=null){
+				ObjectToPool.GetParent<Node>().RemoveChild(ObjectToPool);
+			}
+			this.AddChild(ObjectToPool);
 		}
 
 		public void AddObjectReferenceToPool(IPoolableObject ObjectToAdd){

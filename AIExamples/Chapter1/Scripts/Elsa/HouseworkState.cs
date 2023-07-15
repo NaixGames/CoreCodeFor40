@@ -45,7 +45,7 @@ namespace CoreCode.AIExamples.Elsa{
 		}
 
 
-		protected override StateAbstract ProcessDelegatedEvent(string EventName, LogObject mlogObject=null){
+		protected override StateAbstract OnUnqueuedDelegatedEvent(string EventName, LogObject mlogObject=null){
 			if (EventName == "BobIsHome"){
 				GD.Print("My hosband is hom. Will go and mak fud!!");
 				return (mStateManagerCache as StateManagerElsa).StateCooking;

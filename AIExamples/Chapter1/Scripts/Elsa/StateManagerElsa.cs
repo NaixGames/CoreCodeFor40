@@ -32,7 +32,7 @@ namespace CoreCode.AIExamples.Elsa{
         [Signal] public delegate void FoodIsReadyEventHandler();
 
         private void BobIsHome(){
-            ElsaStateMachine.ChangeStateAfterEventChange(ElsaStateMachine.GiveActualState().ExecuteDelegatedEvent("BobIsHome"));
+            ElsaStateMachine.GiveActualState().QueueDelegatedEvent("BobIsHome");
         }
 
     }

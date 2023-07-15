@@ -44,26 +44,32 @@ namespace CoreCode.Scripts{
 		
 		//------------------------------------Methods
 
+		//THIS SHOULD NEVER BE CALLED. USE GAME OBJECT POOLER TO POOL OBJECTS!
 		public void ReturnToPool(){
 			if (HasPoolReference==false){
 				AddReferenceInPool();	
 			}
 			mIsObjectActive = false; 
-			this.SetProcess(false);
-			this.SetPhysicsProcess(false);
-			//INFORM OBJECT EVENTS DISPATCHER IN OTHER OBJECTS
+			EmitSignal(nameof(ReturnedToPool));
+			Position=Vector3.Zero;
+			Rotation=Vector3.Zero;
+			this.ProcessMode=ProcessModeEnum.Disabled;
 		}
 
 		public void ActivatePooledObject(){
 			mIsObjectActive = true;
-			this.SetProcess(GetTree().Paused); //Put the pause mode to whatever is happening in scene. Useful if we want to spawn object in paused mode.
-			this.SetPhysicsProcess(GetTree().Paused);
-			///INFORM OBJECT EVENTS DISPATCHER IN OTHER OBJECTS
+			this.ProcessMode=ProcessModeEnum.Inherit;
+			EmitSignal(nameof(SpawnedFromPool));
 		}
 
 		public void AddReferenceInPool(){
 			GameObjectPooler.Instance.AddObjectReferenceToPool(this);
 			HasPoolReference = true;
 		}
+
+		//---------- Signals
+
+		[Signal] public delegate void ReturnedToPoolEventHandler();
+		[Signal] public delegate void SpawnedFromPoolEventHandler(); 
 	}
 }

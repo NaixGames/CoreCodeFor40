@@ -86,6 +86,7 @@ namespace CoreCode.FSM{
 		public override void _Process(double delta)
 		{
 			mActualState = mActualState.ExecuteProcess(delta, mLogObject); 
+			mActualState = mActualState.ExecuteQueuedDelegatedEvent(mLogObject);
 		}
 
 		public override void _PhysicsProcess(double delta)
@@ -101,10 +102,6 @@ namespace CoreCode.FSM{
 		}
 		public StateAbstract GiveActualState(){
 			return mActualState;
-		}
-
-		public void ChangeStateAfterEventChange(StateAbstract newState){
-			mActualState = newState;
 		}
 	}
 }

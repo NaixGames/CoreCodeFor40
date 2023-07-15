@@ -43,6 +43,7 @@ namespace CoreCode.FSM{
 
 			ButtonsThisFrame.Clear();
 			AxisValuesThisFrame.Clear();
+			mActualState = mActualState.ExecuteQueuedDelegatedEvent(mLogObject);
 		} 
 
 
@@ -107,9 +108,6 @@ namespace CoreCode.FSM{
 			return mActualState;
 		}
 
-		public void ChangeStateAfterEventChange(StateAbstract newState){
-			mActualState = newState;
-		}
 
 	}
 }

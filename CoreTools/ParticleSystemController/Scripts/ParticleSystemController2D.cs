@@ -31,7 +31,7 @@ namespace CoreCode.Example{
 		}
 
 		public void StopParticleSystem(PoolableParticleSystem2D particles){
-			particles.ReturnToPool();
+			GameObjectPooler.Instance.ReturnObjectToPool(particles);
 		}
 
 		public override void _Ready(){

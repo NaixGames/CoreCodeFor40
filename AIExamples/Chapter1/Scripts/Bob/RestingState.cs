@@ -44,7 +44,7 @@ namespace CoreCode.AIExamples.Bob{
 			return;
 		}
 
-		protected override StateAbstract ProcessDelegatedEvent(string EventName, LogObject mlogObject=null){
+		protected override StateAbstract OnUnqueuedDelegatedEvent(string EventName, LogObject mlogObject=null){
 			if (EventName == "FoodIsReady"){
 				mMemoryBlackboardCache["Fatigue"]=0;
 				GD.Print("With my darlin fud I can work again!");

@@ -36,7 +36,7 @@ namespace CoreCode.AIExamples.Bob{
         [Signal] public delegate void BobIsHomeEventHandler();
 
         private void FoodIsReady(){
-            BobStateMachine.ChangeStateAfterEventChange(BobStateMachine.GiveActualState().ExecuteDelegatedEvent("FoodIsReady"));
+            BobStateMachine.GiveActualState().QueueDelegatedEvent("FoodIsReady");
         }
     }
 }

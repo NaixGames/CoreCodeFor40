@@ -65,7 +65,7 @@ namespace CoreCode.Scripts{
 		public override void _Process(double delta)
 		{
 			if (this.Emitting==false){
-				this.ReturnToPool();
+				GameObjectPooler.Instance.ReturnObjectToPool(this);
 			}
 		}
 	}
