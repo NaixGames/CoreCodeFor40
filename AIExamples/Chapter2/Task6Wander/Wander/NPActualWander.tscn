@@ -10,3 +10,25 @@ position = Vector2(281, 235)
 
 [node name="ActorAIFSM" parent="." instance=ExtResource("1_bw8m6")]
 position = Vector2(575, 350)
+
+[node name="AIWanderAIFSM" parent="ActorAIFSM/ActorAIFSM" index="1"]
+mMemoryBlackboard = {
+"CharacterNode": NodePath("../.."),
+"WanderDistance": 5.0,
+"WanderJitter": 10.0,
+"WanderRadius": 5.0
+}
+
+[node name="ActorAIFSM2" parent="." instance=ExtResource("1_bw8m6")]
+position = Vector2(233, 464)
+
+[node name="AIWanderAIFSM" parent="ActorAIFSM2/ActorAIFSM" index="1"]
+mMemoryBlackboard = {
+"CharacterNode": NodePath("../.."),
+"WanderDistance": 7.0,
+"WanderJitter": 10.0,
+"WanderRadius": 5.0
+}
+
+[editable path="ActorAIFSM"]
+[editable path="ActorAIFSM2"]

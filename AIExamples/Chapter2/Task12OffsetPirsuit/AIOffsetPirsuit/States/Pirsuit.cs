@@ -7,7 +7,7 @@ using CoreCode.MathUtils;
 namespace CoreCode.AIAIOffsetPirsuit{
 	public partial class Pirsuit : StateAbstract
 	{
-		Godot.Collections.Dictionary<string, float> AxisCollection;
+		private Godot.Collections.Dictionary<string, float> AxisCollection;
 		private CharacterBody2D mObjective;
 		private CharacterBody2D mCharacterBody;
 		private float mRange;

@@ -1,0 +1,66 @@
+[gd_scene load_steps=9 format=3 uid="uid://cc2gt5tox4aa8"]
+
+[ext_resource type="Script" path="res://CoreTools/GameActorReferenceHandler/Script/GameActorReferenceHandler2D.cs" id="1_s1bg4"]
+[ext_resource type="Script" path="res://CoreTools/FSM/Scripts/StateMachineActor.cs" id="2_2f12h"]
+[ext_resource type="Script" path="res://AIExamples/Chapter2/ControlablePlayer/ActorPlayerFSM/StateManager/ActorPlayerFSMStateManager.cs" id="3_d4q25"]
+[ext_resource type="PackedScene" uid="uid://bog0ee8f2itxe" path="res://AIExamples/Chapter2/Task13Boids/AIBoid/AIBoid.tscn" id="4_jhs2l"]
+[ext_resource type="Texture2D" uid="uid://dqd4wln1wph42" path="res://icon.svg" id="5_2p335"]
+[ext_resource type="Script" path="res://CoreTools/SteeringBehaviors/BoidActorsManager2D.cs" id="5_by1tr"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jek8g"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_sbins"]
+
+[node name="ActorAIFSM" type="CharacterBody2D" node_paths=PackedStringArray("mStateMachine") groups=["BoidActor"]]
+scale = Vector2(0.5, 0.5)
+collision_layer = 1024
+collision_mask = 1549
+motion_mode = 1
+script = ExtResource("1_s1bg4")
+mStateMachine = NodePath("ActorAIFSM")
+
+[node name="ActorAIFSM" type="Node" parent="." node_paths=PackedStringArray("mInputReader")]
+script = ExtResource("2_2f12h")
+NodeManagerPath = NodePath("ActorAIStateManager")
+mMemoryBlackboard = {
+"Acceleration": 25,
+"CharacterNode": NodePath(".."),
+"Drag": 5.0,
+"Force": 20.0,
+"Mass": 10.0,
+"MaxSpeed": 150
+}
+mInputReader = NodePath("AIBoidFSM")
+
+[node name="ActorAIStateManager" type="Node" parent="ActorAIFSM"]
+script = ExtResource("3_d4q25")
+
+[node name="AIBoidFSM" parent="ActorAIFSM" instance=ExtResource("4_jhs2l")]
+mMemoryBlackboard = {
+"BoidActorsManager": NodePath("../../Area2D"),
+"CharacterNode": NodePath("../.."),
+"ToleranceMagnitudeSeparation": 5.0,
+"WeightAlignment": 0.05,
+"WeightCohesion": &"0.25",
+"WeightSeparation": 0.7
+}
+
+[node name="Icon" type="Sprite2D" parent="."]
+modulate = Color(1, 0.294118, 0.34902, 1)
+texture = ExtResource("5_2p335")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(7, 7)
+shape = SubResource("CircleShape2D_jek8g")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 1024
+collision_mask = 1536
+script = ExtResource("5_by1tr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+scale = Vector2(75, 75)
+shape = SubResource("CircleShape2D_sbins")
+
+[connection signal="body_entered" from="Area2D" to="Area2D" method="OnBodyTrigerEnter"]
+[connection signal="body_exited" from="Area2D" to="Area2D" method="OnBodyTrigerExit"]

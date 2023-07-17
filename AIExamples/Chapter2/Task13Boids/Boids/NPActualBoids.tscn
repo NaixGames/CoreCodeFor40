@@ -1,0 +1,55 @@
+[gd_scene load_steps=3 format=3 uid="uid://dme62006n2c4x"]
+
+[ext_resource type="PackedScene" uid="uid://b8bvibp3efkqi" path="res://AIExamples/Chapter2/ControlablePlayer/ActorPlayerFSM/ActorPlayerFSM.tscn" id="2_d2q6u"]
+[ext_resource type="PackedScene" uid="uid://cc2gt5tox4aa8" path="res://AIExamples/Chapter2/Task13Boids/ActorAIFSM13/ActorAIFSM.tscn" id="2_phi2t"]
+
+[node name="NPActualBoids" type="Node"]
+
+[node name="ActorPlayerFSM" parent="." instance=ExtResource("2_d2q6u")]
+position = Vector2(448, 334)
+
+[node name="ActorAIFSM" parent="." instance=ExtResource("2_phi2t")]
+position = Vector2(438, 188)
+
+[node name="AIBoidFSM" parent="ActorAIFSM/ActorAIFSM" index="1"]
+mMemoryBlackboard = {
+"BoidActorsManager": NodePath("../../Area2D"),
+"CharacterNode": NodePath("../.."),
+"RangeCohesion": 150.0,
+"ToleranceMagnitudeSeparation": 50.0,
+"WeightAlignment": 0.1,
+"WeightCohesion": 0.4,
+"WeightSeparation": 0.5
+}
+
+[node name="ActorAIFSM2" parent="." instance=ExtResource("2_phi2t")]
+position = Vector2(557, 392)
+
+[node name="AIBoidFSM" parent="ActorAIFSM2/ActorAIFSM" index="1"]
+mMemoryBlackboard = {
+"BoidActorsManager": NodePath("../../Area2D"),
+"CharacterNode": NodePath("../.."),
+"RangeCohesion": 150.0,
+"ToleranceMagnitudeSeparation": 50.0,
+"WeightAlignment": 0.1,
+"WeightCohesion": 0.4,
+"WeightSeparation": 0.5
+}
+
+[node name="ActorAIFSM3" parent="." instance=ExtResource("2_phi2t")]
+position = Vector2(740, 250)
+
+[node name="AIBoidFSM" parent="ActorAIFSM3/ActorAIFSM" index="1"]
+mMemoryBlackboard = {
+"BoidActorsManager": NodePath("../../Area2D"),
+"CharacterNode": NodePath("../.."),
+"RangeCohesion": 150.0,
+"ToleranceMagnitudeSeparation": 50.0,
+"WeightAlignment": 0.1,
+"WeightCohesion": 0.4,
+"WeightSeparation": 0.5
+}
+
+[editable path="ActorAIFSM"]
+[editable path="ActorAIFSM2"]
+[editable path="ActorAIFSM3"]

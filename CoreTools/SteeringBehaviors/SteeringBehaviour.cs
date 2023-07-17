@@ -105,7 +105,7 @@ namespace CoreCode.Scripts{
             return -AnticipateDirectionForce3D(agentPos, objetivePos, agentVelocity, objectiveVelocity);
         }
 
-         //------------------------ Wander behaviour
+        //------------------------ Wander behaviour
 
         public static Vector2 WanderForce2D(Vector2 forward, float radius, float distance, float jitter, Vector2 oldWanderTarget, out Vector2 newWanderTarget){
             Vector2 randomOffset = new Vector2(GD.RandRange(-1,1),GD.RandRange(-1,1));

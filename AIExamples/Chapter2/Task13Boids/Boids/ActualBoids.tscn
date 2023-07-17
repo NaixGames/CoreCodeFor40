@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://yf6rrgpsvrit"]
+
+[ext_resource type="Script" path="res://CoreTools/SceneTransitionManager/Script/SceneTransitionReferenceHelper.cs" id="1_y302l"]
+[ext_resource type="PackedScene" uid="uid://dme62006n2c4x" path="res://AIExamples/Chapter2/Task13Boids/Boids/NPActualBoids.tscn" id="2_1wg3x"]
+[ext_resource type="Script" path="res://CoreTools/ObjectPooler/Scripts/GameObjectPooler2D.cs" id="3_1q4ib"]
+
+[node name="ActualBoids" type="Node"]
+script = ExtResource("1_y302l")
+NonPersistentElementsPath = NodePath("Elements/NPActualBoids")
+PersistentElementsPath = NodePath("Elements/PEBoids")
+ObjectPoolerNodePath = NodePath("ObjectPooler")
+AudioBankContainerNodePath = NodePath("AudioBank")
+
+[node name="Elements" type="Node" parent="."]
+
+[node name="PEBoids" type="Node" parent="Elements"]
+
+[node name="NPActualBoids" parent="Elements" instance=ExtResource("2_1wg3x")]
+
+[node name="ObjectPooler" type="Node" parent="."]
+script = ExtResource("3_1q4ib")
+
+[node name="AudioBank" type="Node" parent="."]
