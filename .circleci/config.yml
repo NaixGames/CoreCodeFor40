@@ -29,9 +29,9 @@ jobs:
     - run:
         name: Download Godot 4.1.1 Export Templates
         command: |
-          wget -q https://downloads.tuxfamily.org/godotengine/4.1.1/Godot_v4.1.1-stable_export_templates.tpz
+          wget -q https://downloads.tuxfamily.org/godotengine/4.1.1/mono/Godot_v4.1.1-stable_mono_export_templates.tpz
           mkdir -p ~/.local/share/godot/export_templates
-          unzip Godot_v4.1.1-stable_export_templates.tpz -d ~/.local/share/godot/export_templates
+          unzip Godot_v4.1.1-stable_mono_export_templates.tpz -d ~/.local/share/godot/export_templates
           mv ~/.local/share/godot/export_templates/templates ~/.local/share/godot/export_templates/4.1.1.stable.mono
     - run:
         name: Force imports
