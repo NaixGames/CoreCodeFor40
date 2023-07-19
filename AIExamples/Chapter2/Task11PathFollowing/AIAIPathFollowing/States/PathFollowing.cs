@@ -27,8 +27,6 @@ namespace CoreCode.AIAIAIPathFollowing{
 			//Put any action to be performed on update here.
 			Vector2 splineObjectivePosition = mPathFollower.GlobalPosition;
 
-			GD.Print("Spline position: " + splineObjectivePosition);
-			GD.Print("Spline progress: "  + mPathFollower.Progress);
 			//This works fine if the tolerance for the point and the spline runing speed are good enough.
 			//Could potentially be more tolerance if this was a while with a break instead of just one if.
 			if ((splineObjectivePosition-mCharacterBody.GlobalPosition).Length() < mToleranceForNextPoint){
