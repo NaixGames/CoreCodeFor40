@@ -103,5 +103,10 @@ namespace CoreCode.FSM{
 		public StateAbstract GiveActualState(){
 			return mActualState;
 		}
+
+		//THIS SHOULD ONLY BE USED WHEN SPAWNING ACTORS TO FORCE A PARTICULAR STATE FOR RESET
+		public void ForceStateChange(StateAbstract newState){
+			mActualState= newState;
+		}
 	}
 }
