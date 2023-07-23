@@ -5,7 +5,7 @@ using CoreCode.Scripts;
 namespace CoreCode.FSM{
 	//Tool for casting editor pluggins
 	[Tool]
-	public partial class StateMachineAIInput : InputReaderAbstract, IStateMachine
+	public partial class StateMachineAIInput : InputReaderAbstract, IStateMachine, IResetable
 	{
 		// ----------------------------------- Information ------------------------------------------------
 		/*This is a script to create instances of AI state machines to use in Godot.*/
@@ -108,9 +108,10 @@ namespace CoreCode.FSM{
 			return mActualState;
 		}
 
-		//THIS SHOULD ONLY BE USED WHEN SPAWNING ACTORS TO FORCE A PARTICULAR STATE FOR RESET
-		public void ForceStateChange(StateAbstract newState){
-			mActualState= newState;
+		//THIS SHOULD ONLY BE USED WHEN SPAWNING ACTORS TO FORCE A THE INITIAL STATE FOR RESET
+		public void DoReset(){
+			mActualState= mStateManager.GiveInitialState();
+			mStateManager.DoReset();
 		}
 	}
 }

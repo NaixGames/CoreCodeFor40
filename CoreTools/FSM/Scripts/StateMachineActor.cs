@@ -3,7 +3,7 @@ using System;
 using CoreCode.Scripts;
 
 namespace CoreCode.FSM{
-	public partial class StateMachineActor : Node, IStateMachine, IControlableByInput
+	public partial class StateMachineActor : Node, IStateMachine, IControlableByInput, IResetable
 	{
 		// ----------------------------------- Information ------------------------------------------------
 		/*This is a script to create instances of state machines to use in Godot.*/
@@ -104,9 +104,10 @@ namespace CoreCode.FSM{
 			return mActualState;
 		}
 
-		//THIS SHOULD ONLY BE USED WHEN SPAWNING ACTORS TO FORCE A PARTICULAR STATE FOR RESET
-		public void ForceStateChange(StateAbstract newState){
-			mActualState= newState;
+		//THIS SHOULD ONLY BE USED WHEN SPAWNING ACTORS TO FORCE A THE INITIAL STATE FOR RESET
+		public void DoReset(){
+			mActualState= mStateManager.GiveInitialState();
+			mStateManager.DoReset();
 		}
 	}
 }
