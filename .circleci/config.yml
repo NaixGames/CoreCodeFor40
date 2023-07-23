@@ -34,6 +34,11 @@ jobs:
           unzip Godot_v4.1.1-stable_mono_export_templates.tpz -d ~/.local/share/godot/export_templates
           mv ~/.local/share/godot/export_templates/templates ~/.local/share/godot/export_templates/4.1.1.stable.mono
     - run:
+        name: Import assets
+        import-assets:
+        command:
+          - godot -v -e --quit --headless
+    - run:
         name: Export Windows64 build
         command: |
           mkdir -p .godot/editor .godot/imported
