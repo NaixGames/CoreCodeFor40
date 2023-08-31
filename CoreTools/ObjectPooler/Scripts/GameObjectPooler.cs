@@ -166,7 +166,6 @@ namespace CoreCode.Scripts{
 
 		public void EraseObjectPooler(){
 			instance=null;
-			this.GetParent<Node>().RemoveChild(this);
 			this.QueueFree();
 		}
 
