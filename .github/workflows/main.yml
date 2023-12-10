@@ -2,7 +2,7 @@ on:
   # Runs on pushes targeting the default branch
   push:
     tags-ignore: NoBuild.**
-    branches: ["mainBranch"]
+    branches: ["main"]
 
 
 jobs:
