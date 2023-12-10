@@ -1,0 +1,53 @@
+on:
+  # Runs on pushes targeting the default branch
+  push:
+    tags-ignore: NoBuild.**
+    branches: ["mainBranch"]
+
+
+jobs:
+  export_game:
+    runs-on: ubuntu-latest
+    name: Export Game Job
+    permissions: write-all
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3.3.0
+      - name: install wine
+        id: wine_install
+        run: |
+          sudo apt install wine64
+          echo "WINE_PATH=$(which wine64)" >> $GITHUB_OUTPUT
+      - name: Get version tag
+        uses: michpohl/action-concatenate-strings@v1.0.1
+        with:
+          first: "internal"
+          second: ${{ github.run_number }}
+          separator: '-'
+          output-var-name: 'VERSION_NAME_STRING'
+      - name: export game
+        id: export
+        uses: firebelley/godot-export@v5.2.0
+        with:
+          godot_executable_download_url: https://downloads.tuxfamily.org/godotengine/4.2/mono/Godot_v4.2-stable_mono_linux_x86_64.zip
+          godot_export_templates_download_url: https://downloads.tuxfamily.org/godotengine/4.2/mono/Godot_v4.2-stable_mono_export_templates.tpz
+          relative_project_path: . # build the standard project
+          relative_export_path: ./my/build/destination # move export output to this directory relative to git root
+          archive_output: false
+          export_debug: false
+          wine_path: ${{ steps.wine_install.outputs.WINE_PATH }}
+      - name: create release
+        uses: ncipollo/release-action@v1.13.0
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          generateReleaseNotes: false
+          tag: ${{ env.VERSION_NAME_STRING }}
+          artifacts: ${{ steps.export.outputs.archive_directory }}/* # Added "/*" at the end is glob pattern match for this action
+      - name: upload paid to itch
+        uses: manleydev/butler-publish-itchio-action@master
+        env:
+          BUTLER_CREDENTIALS: ${{ secrets.BUTLER }}
+          CHANNEL: windows
+          ITCH_GAME: coretools
+          ITCH_USER: NaixGames
+          PACKAGE: ./my/build/destination/Windows64
