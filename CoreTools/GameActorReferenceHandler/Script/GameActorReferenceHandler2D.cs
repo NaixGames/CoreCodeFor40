@@ -49,8 +49,8 @@ namespace CoreCode.Scripts{
 			if (HasPoolReference==false){
 				AddReferenceInPool();	
 			}
-			mIsObjectActive = false; 
 			EmitSignal(nameof(ReturnedToPool));
+			mIsObjectActive = false; 
 			Position=Vector2.Zero;
 			Rotation=0;
 			this.ProcessMode=ProcessModeEnum.Disabled;

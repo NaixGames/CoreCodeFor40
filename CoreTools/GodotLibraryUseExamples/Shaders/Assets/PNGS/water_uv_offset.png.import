@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://bu37xv1hkmjsh"
 path.s3tc="res://.godot/imported/water_uv_offset.png-2c93e1a76897d492b9d6796f8f04573e.s3tc.ctex"
+path.etc2="res://.godot/imported/water_uv_offset.png-2c93e1a76897d492b9d6796f8f04573e.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://CoreTools/GodotLibraryUseExamples/Shaders/Assets/PNGS/water_uv_offset.png"
-dest_files=["res://.godot/imported/water_uv_offset.png-2c93e1a76897d492b9d6796f8f04573e.s3tc.ctex"]
+dest_files=["res://.godot/imported/water_uv_offset.png-2c93e1a76897d492b9d6796f8f04573e.s3tc.ctex", "res://.godot/imported/water_uv_offset.png-2c93e1a76897d492b9d6796f8f04573e.etc2.ctex"]
 
 [params]
 

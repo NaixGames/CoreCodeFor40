@@ -7,11 +7,11 @@
 [node name="NPActualFSMTest" type="Node"]
 
 [node name="Player" parent="." instance=ExtResource("1_7et8b")]
-position = Vector2(284, 187)
+position = Vector2(121, 187)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(529, 628)
+position = Vector2(529, 297)
 scale = Vector2(100, 1.944)
 shape = SubResource("RectangleShape2D_d7br7")

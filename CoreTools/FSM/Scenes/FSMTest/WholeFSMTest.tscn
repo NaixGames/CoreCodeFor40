@@ -8,7 +8,6 @@
 [node name="Managers" parent="." instance=ExtResource("1_ngue8")]
 
 [node name="LogManager" parent="Managers" index="0"]
-mAllowLogging = true
 mDisplayInputChannels = true
 mNumberOfInputChannels = 3
 

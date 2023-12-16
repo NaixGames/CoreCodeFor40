@@ -1,14 +1,15 @@
-[gd_scene load_steps=11 format=3 uid="uid://drxehyvydlrnt"]
+[gd_scene load_steps=12 format=3 uid="uid://drxehyvydlrnt"]
 
 [ext_resource type="PackedScene" uid="uid://bib7i8f55qbxs" path="res://CoreTools/SceneTemplate/LogManager.tscn" id="1_g44yu"]
 [ext_resource type="Script" path="res://CoreTools/ObjectEventDispatcher/GlobalEventDispatcher.cs" id="2_f31l3"]
 [ext_resource type="Script" path="res://CoreTools/Input/InputManager/Scripts/InputManager.cs" id="3_gbq0a"]
 [ext_resource type="Script" path="res://CoreTools/SceneTransitionManager/Script/SceneTransitionManager.cs" id="3_xb83e"]
-[ext_resource type="Resource" uid="uid://b1jj86mm1tdmc" path="res://CoreTools/SceneTransitionManager/Data/SceneDatabase.tres" id="4_coc2g"]
 [ext_resource type="Script" path="res://CoreTools/Input/InputReader/Scripts/InputReaderPlayer.cs" id="4_g5skp"]
 [ext_resource type="Script" path="res://CoreTools/Input/InputReader/Scripts/InputReaderVoid.cs" id="4_xvsgk"]
+[ext_resource type="Resource" uid="uid://dtd6uh54nggqk" path="res://GameFiles/CoreAssets/SceneGameDatabase.tres" id="4_ygubc"]
 [ext_resource type="Script" path="res://CoreTools/AchievementManager/Scripts/AchievementManager.cs" id="5_xesqj"]
 [ext_resource type="Script" path="res://CoreTools/AudioManager/Scripts/AudioManager.cs" id="7_161i1"]
+[ext_resource type="Script" path="res://CoreTools/Input/InputReader/Scripts/InputEmiterTouch.cs" id="8_foah0"]
 [ext_resource type="Script" path="res://CoreTools/AudioManager/Scripts/AdaptativeMusicManager.cs" id="8_m6vep"]
 
 [node name="Managers" type="Node"]
@@ -26,7 +27,7 @@ script = ExtResource("2_f31l3")
 
 [node name="SceneTransitionManager" type="Node" parent="."]
 script = ExtResource("3_xb83e")
-mSceneDatabase = ExtResource("4_coc2g")
+mSceneDatabase = ExtResource("4_ygubc")
 mReferenceHelperPath = NodePath("")
 
 [node name="InputManager" type="Node" parent="."]
@@ -41,6 +42,10 @@ script = ExtResource("4_g5skp")
 mPlayerID = 1
 mAxis = PackedStringArray("Right", "Left", "Up", "Down")
 mButtons = PackedStringArray("Up", "Down")
+
+[node name="InputTouchEmiter" type="Node" parent="."]
+script = ExtResource("8_foah0")
+mDragDistance = 50.0
 
 [node name="AchievementManager" type="Node" parent="."]
 script = ExtResource("5_xesqj")

@@ -78,8 +78,6 @@ namespace CoreCode.Scripts{
 			//For a similar reason we erase the other elements. Dont want two of the same thing of a scene. But we keep the parent for adding nodes later.
 			Node PersistentElementsParent = mReferenceHelper.PersistentElements.GetParent<Node>();
 			Node nonPersistentElementsParent = mReferenceHelper.NonPersistentElements.GetParent<Node>();
-			PersistentElementsParent.RemoveChild(mReferenceHelper.PersistentElements);
-			nonPersistentElementsParent.RemoveChild(mReferenceHelper.NonPersistentElements);
 			mReferenceHelper.PersistentElements.QueueFree();
 			mReferenceHelper.PersistentElements=null;
 			mReferenceHelper.NonPersistentElements.QueueFree();
@@ -111,9 +109,7 @@ namespace CoreCode.Scripts{
 		
 			
 			//Free the loaded scene from memory
-			loadedReferenceHelper.SceneFinishedLoading();
-			loadedReferenceHelper=null; newActualScene=null;
-			
+			loadedReferenceHelper.SceneFinishedLoading();			
 		}
 
 		public void LightTransitionToNewScene(string sceneName){

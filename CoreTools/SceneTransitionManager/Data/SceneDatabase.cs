@@ -42,6 +42,7 @@ namespace CoreCode.Scripts{
             }
             GD.Print("The scene database is being updated");
             mSceneNameToPathMapping.Clear();
+            mActualSceneSceneNameToPathMapping.Clear();
             mNonPersistantSceneNameToPathMapping.Clear();
 
             foreach (string keyString in mSceneNameToUIDMapping.Keys){
