@@ -25,9 +25,9 @@ namespace CoreCode.FSM{
 
 		// ------------------------------------- Abstract methods ---------------------------------------
 		
-		protected abstract StateAbstract ProcessAction(double delta, LogObject mlogObject=null);
+		protected abstract StateAbstract ProcessAction(double delta, ILogObject mlogObject=null);
 
-		protected abstract StateAbstract ProcessPhysicsAction(double delta, LogObject mlogObject=null);
+		protected abstract StateAbstract ProcessPhysicsAction(double delta, ILogObject mlogObject=null);
 
 		protected abstract void InitializeStateParams(Node mNodeReference);
 		
@@ -45,7 +45,7 @@ namespace CoreCode.FSM{
 		//This is the method that queues some event to later execution. Any needed information should be cached here
 		//Note this will only queue ONE event per frame execution! (To be fair, if we are queing more than one most likely
 		//we are doing something wrong. Worst case can put a queue of event names and run all of them on each frame. Or just override EventQueued).
-		public void QueueDelegatedEvent(string EventName, Godot.Collections.Dictionary PayloadDictionary = null, LogObject mlogObject=null){
+		public void QueueDelegatedEvent(string EventName, Godot.Collections.Dictionary PayloadDictionary = null, ILogObject mlogObject=null){
 			EventQueued = EventName;
 			mMemoryBlackboardCache["Payload"]= PayloadDictionary;
 		}
@@ -54,13 +54,13 @@ namespace CoreCode.FSM{
 		//This is what actually gets called on the execution cycle of the event. This should NOT be called from other states, 
 		//as it is executed after the Update cycle to avoid a state eating its own signals. Note that, for default,
 		//we dont do anything and return.
-		protected virtual StateAbstract OnUnqueuedDelegatedEvent(string EventName, LogObject logObject=null){
+		protected virtual StateAbstract OnUnqueuedDelegatedEvent(string EventName, ILogObject logObject=null){
 			return this;
 		}
 
 		// ------------------------------------- Functions ---------------------------------------
 
-		public StateAbstract ExecuteProcess(double delta, LogObject mLogObject=null){
+		public StateAbstract ExecuteProcess(double delta, ILogObject mLogObject=null){
 			StateAbstract stateActionResult = ProcessAction(delta, mLogObject);
 			if (stateActionResult==this){
 				return stateActionResult;
@@ -68,12 +68,12 @@ namespace CoreCode.FSM{
 			this.ExitState();
 			stateActionResult.EnterState();
 			if (mLogObject!=null){
-				mLogObject.AddToLogString("Change of state in Process from state "  + this.GetType() + " to state " + stateActionResult.GetType()); 
+				mLogObject.Print("Change of state in Process from state "  + this.GetType() + " to state " + stateActionResult.GetType()); 
 			}
 			return stateActionResult;
 		}
 
-		public StateAbstract ExecutePhysicsProcess(double delta, LogObject mLogObject=null){
+		public StateAbstract ExecutePhysicsProcess(double delta, ILogObject mLogObject=null){
 			StateAbstract stateActionResult = ProcessPhysicsAction(delta, mLogObject);
 			if (stateActionResult==this){
 				return stateActionResult;
@@ -81,12 +81,12 @@ namespace CoreCode.FSM{
 			this.ExitState();
 			stateActionResult.EnterState();
 			if (mLogObject!=null){
-				mLogObject.AddToLogString("Change of state in Physics Process from state "  + this.GetType() + " to state " + stateActionResult.GetType());
+				mLogObject.Print("Change of state in Physics Process from state "  + this.GetType() + " to state " + stateActionResult.GetType());
 			}
 			return stateActionResult;
 		}
 
-		public StateAbstract ExecuteQueuedDelegatedEvent(LogObject mLogObject=null){
+		public StateAbstract ExecuteQueuedDelegatedEvent(ILogObject mLogObject=null){
 			StateAbstract stateEventResult = OnUnqueuedDelegatedEvent(EventQueued, mLogObject);
 			if (stateEventResult==this){
 				return stateEventResult;
@@ -94,7 +94,7 @@ namespace CoreCode.FSM{
 			this.ExitState();
 			stateEventResult.EnterState();
 			if (mLogObject!=null){
-				mLogObject.AddToLogString("Change of state from event " + EventQueued + " from state "  + this.GetType() + " to state " + stateEventResult.GetType());
+				mLogObject.Print("Change of state from event " + EventQueued + " from state "  + this.GetType() + " to state " + stateEventResult.GetType());
 			}
 			EventQueued="";
 			mMemoryBlackboardCache.Remove("Payload");

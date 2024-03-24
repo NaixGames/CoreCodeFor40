@@ -43,7 +43,7 @@ namespace CoreCode.Scripts{
 
 		[Export] protected bool mShouldLog;
 
-		protected LogObject mLogObject;
+		protected ILogObject mLogObject;
 
 
 		// ------------------------------------ Functions ------------------------------------------------	
@@ -68,10 +68,10 @@ namespace CoreCode.Scripts{
 				return;
 			}
 			for (int i = 0; i< AxisNames.Length; i++){
-				mLogObject.AddToLogString("Axi: " + AxisNames[i] + " value " + GiveAxisStrength(AxisNames[i])  + " last pressed "  + TimeSinceLastAxisInput(AxisNames[i]) + " held for " + TimeAxisHeldInput(AxisNames[i]));
+				mLogObject.Print("Axi: " + AxisNames[i] + " value " + GiveAxisStrength(AxisNames[i])  + " last pressed "  + TimeSinceLastAxisInput(AxisNames[i]) + " held for " + TimeAxisHeldInput(AxisNames[i]));
 			}
 			for (int i = 0; i< ButtonNames.Length; i++){
-				mLogObject.AddToLogString("Button: " + ButtonNames[i] + " value " + IsButtonPressed(ButtonNames[i])  + " last pressed "  + TimeSinceLastButtonInput(ButtonNames[i])+ " held for " + TimeButtonHeldInput(ButtonNames[i]));
+				mLogObject.Print("Button: " + ButtonNames[i] + " value " + IsButtonPressed(ButtonNames[i])  + " last pressed "  + TimeSinceLastButtonInput(ButtonNames[i])+ " held for " + TimeButtonHeldInput(ButtonNames[i]));
 			}
 		}
 		

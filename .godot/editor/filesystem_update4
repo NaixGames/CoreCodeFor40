@@ -1,7 +1,3 @@
-res://AIExamples/Chapter2/Task13Boids/Boids/WholeBoids.tscn
-res://CoreTools/LogManager/Scripts/LogManager.cs
-res://CoreTools/SceneTransitionManager/Data/SceneDatabase.tres
-res://CoreTools/FSM/Scripts/StateMachineAIInput.cs
 res://addons/Docker/ButtonsScripts/CreateFSM/CreateFSMTemplate.cs
 res://addons/Docker/ButtonsScripts/CreateScene/CreateNewSceneTemplate.cs
 res://addons/Docker/ButtonsScripts/Example/DockerButtonExample.cs
@@ -59,6 +55,7 @@ res://CoreTools/FSM/Scenes/Actor/Player/PlayerStatesExample/PlayerStateManagerEx
 res://CoreTools/FSM/Scenes/Actor/Player/PlayerStatesExample/PlayerStateMoving.cs
 res://CoreTools/FSM/Scripts/StateAbstract.cs
 res://CoreTools/FSM/Scripts/StateMachineActor.cs
+res://CoreTools/FSM/Scripts/StateMachineAIInput.cs
 res://CoreTools/FSM/Scripts/StateManagerAbstract.cs
 res://CoreTools/GameActorReferenceHandler/Script/GameActorReferenceHandler2D.cs
 res://CoreTools/GameActorReferenceHandler/Script/GameActorReferenceHandler3D.cs
@@ -70,6 +67,7 @@ res://CoreTools/GodotLibraryUseExamples/Shaders/Scripts/SliderShaderExample.cs
 res://CoreTools/GodotLibraryUseExamples/Shaders/Scripts/WaterDiffuseScript.cs
 res://CoreTools/GodotLibraryUseExamples/Tweens/Scripts/TweenUseExample.cs
 res://CoreTools/Input/InputManager/Scripts/InputManager.cs
+res://CoreTools/Input/InputReader/Scripts/InputEmiterTouch.cs
 res://CoreTools/Input/InputReader/Scripts/InputReaderAbstract.cs
 res://CoreTools/Input/InputReader/Scripts/InputReaderPlayer.cs
 res://CoreTools/Input/InputReader/Scripts/InputReaderTestNumberOne.cs
@@ -77,6 +75,7 @@ res://CoreTools/Input/InputReader/Scripts/InputReaderTestNumberTwo.cs
 res://CoreTools/Input/InputReader/Scripts/InputReaderVoid.cs
 res://CoreTools/Input/InputRemapper/Scripts/InputRemapperExample.cs
 res://CoreTools/LogManager/Scenes/LoggingTest1.cs
+res://CoreTools/LogManager/Scripts/LogManager.cs
 res://CoreTools/LogManager/Scripts/LogObject.cs
 res://CoreTools/ObjectEventDispatcher/GlobalEventDispatcher.cs
 res://CoreTools/ObjectEventDispatcher/TestScriptForGED.cs
@@ -99,3 +98,6 @@ res://CreationExample/ActorTest/ActorTestFSM/StateManager/ActorTestFSMStateManag
 res://CreationExample/ActorTest/ActorTestFSM/States/TestState.cs
 res://CreationExample/ActorTest/AITestAI/StateManager/AITestAIStateManager.cs
 res://CreationExample/ActorTest/AITestAI/States/TestStateAI.cs
+res://CoreTools/SceneTemplate/Managers.tscn
+res://CoreTools/SceneTransitionManager/Data/SceneDatabase.tres
+res://AIExamples/Chapter1/Task2/SceneTask2/WholeSceneTask2.tscn

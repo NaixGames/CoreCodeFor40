@@ -14,12 +14,12 @@ namespace CoreCode.AIAITestAI{
 
         //----------------------------------- Initial State ------------------------------------------------
 
-        public override StateAbstract GiveInitialState(LogObject mLogObject = null)
+        public override StateAbstract GiveInitialState(ILogObject mLogObject = null)
         {
             return testStateAI;
         }
         
-        public override void InitializeStates(Node FSMNode, Godot.Collections.Dictionary mMemoryBlackboard, LogObject mLogObject = null){
+        public override void InitializeStates(Node FSMNode, Godot.Collections.Dictionary mMemoryBlackboard, ILogObject mLogObject = null){
             testStateAI.InitializeState(FSMNode, this, mMemoryBlackboard);
         }
 

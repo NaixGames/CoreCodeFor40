@@ -22,7 +22,7 @@ namespace CoreCode.Example.DummyPlayerFSM{
 			mMovingVelocity = (float)mMemoryBlackboardCache["MovingVelocity"].AsDouble();
 		}
 		
-		protected override StateAbstract ProcessAction(double delta, LogObject mlogObject=null){
+		protected override StateAbstract ProcessAction(double delta, ILogObject mlogObject=null){
 			if (mInput.IsButtonJustPressedInput("Up")){
 				mCharacterBody.Velocity = new Vector2(mCharacterBody.Velocity.X, mCharacterBody.Velocity.Y - mJumpVelocity);
 				mCharacterBody.MoveAndSlide();
@@ -34,7 +34,7 @@ namespace CoreCode.Example.DummyPlayerFSM{
 			return this;
 		}
 
-		protected override StateAbstract ProcessPhysicsAction(double delta,  LogObject mlogObject=null){
+		protected override StateAbstract ProcessPhysicsAction(double delta,  ILogObject mlogObject=null){
 			float TotalInput = mInput.GiveAxisStrength("Right")-mInput.GiveAxisStrength("Left");
 
 			mCharacterBody.Velocity = new Vector2(TotalInput*mMovingVelocity, mCharacterBody.Velocity.Y);

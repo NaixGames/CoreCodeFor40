@@ -25,7 +25,7 @@ namespace CoreCode.AIAIWanderAI{
 			mWanderTarget = -mCharacterBody.Transform.Y.Normalized();
 		}
 
-		protected override StateAbstract ProcessAction(double delta, LogObject mlogObject=null){
+		protected override StateAbstract ProcessAction(double delta, ILogObject mlogObject=null){
 			//Put any action to be performed on update here.
 			float deltaf = (float)delta;
 			Vector2 input = SteeringBehaviour.WanderForce2D(-mCharacterBody.Transform.Y, mWanderRadius, mWanderDistance, mWanderJitter*deltaf, mWanderTarget,  out mWanderTarget);
@@ -36,7 +36,7 @@ namespace CoreCode.AIAIWanderAI{
 			return this;
 		}
 
-		protected override StateAbstract ProcessPhysicsAction(double delta, LogObject mlogObject=null){
+		protected override StateAbstract ProcessPhysicsAction(double delta, ILogObject mlogObject=null){
 			//Put any action to be performed on physics update here.
 			return this;
 		}

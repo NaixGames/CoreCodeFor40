@@ -14,12 +14,12 @@ namespace CoreCode.AIAIFleeAI{
 
         //----------------------------------- Initial State ------------------------------------------------
 
-        public override StateAbstract GiveInitialState(LogObject mLogObject = null)
+        public override StateAbstract GiveInitialState(ILogObject mLogObject = null)
         {
             return flee;
         }
         
-        public override void InitializeStates(Node FSMNode, Godot.Collections.Dictionary mMemoryBlackboard, LogObject mLogObject = null){
+        public override void InitializeStates(Node FSMNode, Godot.Collections.Dictionary mMemoryBlackboard, ILogObject mLogObject = null){
             flee.InitializeState(FSMNode, this, mMemoryBlackboard);
         }
 

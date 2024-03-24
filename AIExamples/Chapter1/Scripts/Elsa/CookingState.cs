@@ -22,7 +22,7 @@ namespace CoreCode.AIExamples.Elsa{
 
 			TimeSpentCooking=0;
 		}
-		protected override StateAbstract ProcessAction(double delta, LogObject mlogObject=null){
+		protected override StateAbstract ProcessAction(double delta, ILogObject mlogObject=null){
 			//Put any action to be performed on update here.
 			if (!mInput.IsButtonJustPressedInput("Up")){
 				return this;
@@ -37,7 +37,7 @@ namespace CoreCode.AIExamples.Elsa{
 			return this;
 		}
 
-		protected override StateAbstract ProcessPhysicsAction(double delta, LogObject mlogObject=null){
+		protected override StateAbstract ProcessPhysicsAction(double delta, ILogObject mlogObject=null){
 			//Put any action to be performed on physics update here.
 			return this;
 		}

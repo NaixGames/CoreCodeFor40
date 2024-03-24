@@ -12,7 +12,6 @@ namespace CoreCode.Example.DummyPlayerFSM{
 		private InputReaderAbstract mInput;
 		private float mMovingVelocity;
 
-
 		private double mTimeJumping = 0;
 
 
@@ -25,7 +24,7 @@ namespace CoreCode.Example.DummyPlayerFSM{
 			mMovingVelocity = (float)mMemoryBlackboardCache["MovingVelocity"].AsDouble();
 		}
 		
-		protected override StateAbstract ProcessAction(double delta, LogObject mlogObject=null){
+		protected override StateAbstract ProcessAction(double delta, ILogObject mlogObject=null){
 			mTimeJumping +=delta;
 			if (mTimeJumping>=2){
 				mTimeJumping=0;
@@ -34,7 +33,7 @@ namespace CoreCode.Example.DummyPlayerFSM{
 			return this;
 		}
 
-		protected override StateAbstract ProcessPhysicsAction(double delta, LogObject mlogObject=null){
+		protected override StateAbstract ProcessPhysicsAction(double delta, ILogObject mlogObject=null){
 			float TotalInput = mInput.GiveAxisStrength("Right")-mInput.GiveAxisStrength("Left");
 
 			mCharacterBody.Velocity = new Vector2(TotalInput*mMovingVelocity, mCharacterBody.Velocity.Y);

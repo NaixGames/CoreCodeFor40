@@ -17,12 +17,12 @@ namespace _STATEMANAGERNAMESPACE_{
 
         //----------------------------------- Initial State ------------------------------------------------
 
-        public override StateAbstract GiveInitialState(LogObject mLogObject = null)
+        public override StateAbstract GiveInitialState(ILogObject mLogObject = null)
         {
             return dummyState;
         }
         
-        public override void InitializeStates(Node FSMNode, Godot.Collections.Dictionary mMemoryBlackboard, LogObject mLogObject = null){
+        public override void InitializeStates(Node FSMNode, Godot.Collections.Dictionary mMemoryBlackboard, ILogObject mLogObject = null){
             dummyState.InitializeState(FSMNode, this, mMemoryBlackboard);
         }
 

@@ -5,16 +5,16 @@ using CoreCode.Scripts;
 namespace CoreCode.Example{
 public partial class LoggingTest1 : Node
 	{
-		private LogObject mDummyLogReference;
+		private ILogObject mDummyLogReference;
 		public override void _Ready(){
-			mDummyLogReference = LogManager.Instance.RequestLogReference("Dummy", 0);
+			mDummyLogReference = LogManager.Instance.RequestLog("Dummy");
 		}
 
 		// Called every frame. 'delta' is the elapsed time since the previous frame.
 		public override void _Process(double delta)
 		{
-			mDummyLogReference.AddToLogString("This is a test!");
-			mDummyLogReference.AddToLogString("The test continues!");
+			mDummyLogReference.Print("This is a test!");
+			mDummyLogReference.Print("The test continues!");
 		}
 	}
 }

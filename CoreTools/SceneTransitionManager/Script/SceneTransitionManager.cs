@@ -5,7 +5,7 @@ using CoreCode.AudioSystem;
 
 namespace CoreCode.Scripts{
 	[Tool]
-	public partial class SceneTransitionManager : Node, ILogRequester 
+	public partial class SceneTransitionManager : Node
 	{
 		// ----------------------------------- Information ------------------------------------------------
 		/*This is a script to allow Scene transition in godot in a nice way. That is, preserving singletons
@@ -62,7 +62,7 @@ namespace CoreCode.Scripts{
 
 		[Export] protected bool mShouldLog;
 
-		protected LogObject mLogObject; 
+		protected ILogObject mLogObject; 
 
 		// ------------------------------------ Methods -----------------------------------------
 
@@ -137,7 +137,7 @@ namespace CoreCode.Scripts{
 				return;
 			}
 			if (mShouldLog){
-				mLogObject = LogManager.Instance.RequestLogReference("SceneTransitions", 0);
+				mLogObject = LogManager.Instance.RequestLog("SceneTransitions");
 			}
 			mReferenceHelper = GetNode<SceneTransitionReferenceHelper>(mReferenceHelperPath);
 			mReferenceHelper.GetNodesFromPaths();
@@ -159,7 +159,7 @@ namespace CoreCode.Scripts{
 
 		public void SendMessageToLog(string message){
 			if (mShouldLog){
-				mLogObject.AddToLogString(message);
+				mLogObject.Print(message);
 			}
 		}
 	}

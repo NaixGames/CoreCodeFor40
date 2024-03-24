@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CoreCodeFor40")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+08d88850c153eeeb6af3c501ab9c6cfaa786c35a")]
 [assembly: System.Reflection.AssemblyProductAttribute("CoreCodeFor40")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CoreCodeFor40")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

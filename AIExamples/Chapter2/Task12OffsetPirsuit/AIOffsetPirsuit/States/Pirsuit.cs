@@ -29,7 +29,7 @@ namespace CoreCode.AIAIOffsetPirsuit{
 
 			mAverageInput = new Smoother<Vector2, Vector2Operations>(2);
 		}
-		protected override StateAbstract ProcessAction(double delta, LogObject mlogObject=null){
+		protected override StateAbstract ProcessAction(double delta, ILogObject mlogObject=null){
 			//Put any action to be performed on update here.
 			Vector2 localOffsetPosition = mObjective.ToGlobal(mOffsetVector);
 			Vector2 input =  mAverageInput.Smooth(SteeringBehaviour.ArriveDirectionForce2D(mCharacterBody.Position, localOffsetPosition, mCharacterBody.Velocity, mRange, mVelocityTolerance));
@@ -40,7 +40,7 @@ namespace CoreCode.AIAIOffsetPirsuit{
 			return this;
 		}
 
-		protected override StateAbstract ProcessPhysicsAction(double delta, LogObject mlogObject=null){
+		protected override StateAbstract ProcessPhysicsAction(double delta, ILogObject mlogObject=null){
 			//Put any action to be performed on physics update here.
 			return this;
 		}

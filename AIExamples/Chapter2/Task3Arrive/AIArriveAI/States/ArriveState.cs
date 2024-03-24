@@ -24,7 +24,7 @@ namespace CoreCode.AIAIArriveAI{
 			mRange = (float)mMemoryBlackboardCache["Range"].AsDouble();
 			mVelocityTolerance = (float)mMemoryBlackboardCache["VelocityTolerance"].AsDouble();
 		}
-		protected override StateAbstract ProcessAction(double delta, LogObject mlogObject=null){
+		protected override StateAbstract ProcessAction(double delta, ILogObject mlogObject=null){
 			//Put any action to be performed on update here.
 			//When wanting to process input use something like AxisCollections.Add("Up", 0.5);
 			Vector2 input = SteeringBehaviour.ArriveDirectionForce2D(mCharacterBody.Position, mObjective.Position, mCharacterBody.Velocity, mRange, mVelocityTolerance);
@@ -35,7 +35,7 @@ namespace CoreCode.AIAIArriveAI{
 			return this;
 		}
 
-		protected override StateAbstract ProcessPhysicsAction(double delta, LogObject mlogObject=null){
+		protected override StateAbstract ProcessPhysicsAction(double delta, ILogObject mlogObject=null){
 			//Put any action to be performed on physics update here.
 			return this;
 		}

@@ -16,12 +16,12 @@ namespace CoreCode.AIExamples.Bob{
 
         //----------------------------------- Initial State ------------------------------------------------
 
-        public override StateAbstract GiveInitialState(LogObject mLogObject = null)
+        public override StateAbstract GiveInitialState(ILogObject mLogObject = null)
         {
             return StateWorking;
         }
         
-        public override void InitializeStates(Node FSMNode, Godot.Collections.Dictionary mMemoryBlackboard, LogObject mLogObject = null){
+        public override void InitializeStates(Node FSMNode, Godot.Collections.Dictionary mMemoryBlackboard, ILogObject mLogObject = null){
             StateWorking.InitializeState(FSMNode, this, mMemoryBlackboard);
             StateBanking.InitializeState(FSMNode,this,  mMemoryBlackboard);
             StateDrinking.InitializeState(FSMNode, this, mMemoryBlackboard);

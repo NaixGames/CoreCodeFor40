@@ -38,7 +38,7 @@ namespace CoreCode.Scripts{
 
 		[Export] protected bool mShouldLog;
 
-		protected LogObject mLogObject;
+		protected ILogObject mLogObject;
 
 		// ------------------------------------ Variables-----------------------------------------
 
@@ -52,11 +52,11 @@ namespace CoreCode.Scripts{
 
 		public void AssignInputByPlayerChannel(IControlableByInput controlable, int channel){
 			if ((channel > mPlayerInputs.Count)&&mShouldLog){
-				mLogObject.AddToLogString("Unexisting player channel requested! " + channel + " by " + controlable);
+				mLogObject.Print("Unexisting player channel requested! " + channel + " by " + controlable);
 				return;
 			}
 			if (mShouldLog){
-				mLogObject.AddToLogString("Assigning player input " + channel + " to " + controlable);
+				mLogObject.Print("Assigning player input " + channel + " to " + controlable);
 			}
 			controlable.RecieveInputReader(this.GetNode<InputReaderPlayer>(mPlayerInputs[channel]));
 		}
@@ -65,11 +65,11 @@ namespace CoreCode.Scripts{
 
 		public InputReaderAbstract GiveInputByPlayerChannel(IControlableByInput controlable, int channel){
 			if ((channel > mPlayerInputs.Count) && mShouldLog ){
-				mLogObject.AddToLogString("Unexisting player channel requested! " + channel + " by " + controlable);
+				mLogObject.Print("Unexisting player channel requested! " + channel + " by " + controlable);
 				return this.GetNode<InputReaderAbstract>(mPlayerInputs[0]);
 			}
 			if (mShouldLog){
-				mLogObject.AddToLogString("Player input " + channel + " was requested");
+				mLogObject.Print("Player input " + channel + " was requested");
 			}
 			return this.GetNode<InputReaderPlayer>(mPlayerInputs[channel]);
 		}
@@ -85,7 +85,7 @@ namespace CoreCode.Scripts{
 		public override void _Ready(){
 			base._Ready();
 			if (mShouldLog){
-				mLogObject = LogManager.Instance.RequestLogReference("Input", 0);
+				mLogObject = LogManager.Instance.RequestLog("Input");
 			}
 		}
 

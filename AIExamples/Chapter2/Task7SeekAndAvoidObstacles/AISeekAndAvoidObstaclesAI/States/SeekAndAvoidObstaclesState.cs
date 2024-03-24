@@ -45,7 +45,7 @@ namespace CoreCode.AIAISeekAndAvoidObstaclesAI{
 			mAverageInput = new Smoother<Vector2, Vector2Operations>(mAverageWindow);
 			mAvoidanceRange = Mathf.Max(mLeftRaycast.TargetPosition.Length(), mRightRaycast.TargetPosition.Length());
 		}
-		protected override StateAbstract ProcessAction(double delta, LogObject mlogObject=null){
+		protected override StateAbstract ProcessAction(double delta, ILogObject mlogObject=null){
 			Vector2 inputThisFrame;
 			Vector2 inputSeek = SteeringBehaviour.SeekDirectionForce2D(mCharacterBody.Position, mObjective.Position, mCharacterBody.Velocity);
 
@@ -84,7 +84,7 @@ namespace CoreCode.AIAISeekAndAvoidObstaclesAI{
 			return this;
 		}
 
-		protected override StateAbstract ProcessPhysicsAction(double delta, LogObject mlogObject=null){
+		protected override StateAbstract ProcessPhysicsAction(double delta, ILogObject mlogObject=null){
 			//Put any action to be performed on physics update here.
 			return this;
 		}

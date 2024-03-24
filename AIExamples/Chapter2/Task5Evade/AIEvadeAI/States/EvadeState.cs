@@ -20,7 +20,7 @@ namespace CoreCode.AIAIEvadeAI{
 			mObjective = mNodeRef.GetNode<CharacterBody2D>(mMemoryBlackboardCache["Objective"].AsNodePath()); //in a better setting this would be set each time we enter the state.
 			mRange = (float)mMemoryBlackboardCache["Range"].AsDouble();
 		}
-		protected override StateAbstract ProcessAction(double delta, LogObject mlogObject=null){
+		protected override StateAbstract ProcessAction(double delta, ILogObject mlogObject=null){
 			//When wanting to process input use something like AxisCollections.Add("Up", 0.5);
 			Vector2 input = SteeringBehaviour.EvadeInRangeDirectionForce2D(mCharacterBody.Position, mObjective.Position, mCharacterBody.Velocity, mObjective.Velocity, mRange);
 			AxisCollection.Add("Up",Mathf.Max(-input.Y,0));
@@ -30,7 +30,7 @@ namespace CoreCode.AIAIEvadeAI{
 			return this;
 		}
 
-		protected override StateAbstract ProcessPhysicsAction(double delta, LogObject mlogObject=null){
+		protected override StateAbstract ProcessPhysicsAction(double delta, ILogObject mlogObject=null){
 			//Put any action to be performed on physics update here.
 			return this;
 		}

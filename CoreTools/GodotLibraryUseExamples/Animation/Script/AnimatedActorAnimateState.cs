@@ -20,7 +20,7 @@ namespace CoreCode.Example.AnimationExampleFSM{
 			mAnimator = mNodeRef.GetNode<AnimationPlayer>(animationPath);
 		}
 		
-		protected override StateAbstract ProcessAction(double delta, LogObject mlogObject=null){
+		protected override StateAbstract ProcessAction(double delta, ILogObject mlogObject=null){
 			if (mInput.IsButtonJustPressedInput("Up")){
 				mAnimator.Play("HappyFace");
 				return this;
@@ -31,7 +31,7 @@ namespace CoreCode.Example.AnimationExampleFSM{
 			return this;
 		}
 
-		protected override StateAbstract ProcessPhysicsAction(double delta, LogObject mlogObject=null){
+		protected override StateAbstract ProcessPhysicsAction(double delta, ILogObject mlogObject=null){
 			return this;
 		}
 	}

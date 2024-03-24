@@ -22,7 +22,7 @@ namespace CoreCode.AIExamples.Bob{
 			mMaxFatigue = mMemoryBlackboardCache["MaxFatigue"].AsInt32();
 		}
 		
-		protected override StateAbstract ProcessAction(double delta, LogObject mlogObject=null){
+		protected override StateAbstract ProcessAction(double delta, ILogObject mlogObject=null){
 			if (!mInput.IsButtonJustPressedInput("Up")){
 				return this;
 			}
@@ -45,7 +45,7 @@ namespace CoreCode.AIExamples.Bob{
 			return ((StateManagerBob)mStateManagerCache).StateWorking;
 		}
 
-		protected override StateAbstract ProcessPhysicsAction(double delta, LogObject mlogObject=null){
+		protected override StateAbstract ProcessPhysicsAction(double delta, ILogObject mlogObject=null){
 			return this;
 		}
 

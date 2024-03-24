@@ -54,11 +54,11 @@ namespace CoreCode.FSM{
 			}
 			base._Ready();
 			if (mShouldLog){
-				mLogObject = LogManager.Instance.RequestLogReference("FSM", mLogChannel);
-				mLogObject.AddToLogString("Intiliazing FSM of: "  + this.Name + " with state manager " + mStateManager.GetType()); 
+				mLogObject = LogManager.Instance.RequestLog("FSM");
+				mLogObject.Print("Intiliazing FSM of: "  + this.Name + " with state manager " + mStateManager.GetType()); 
 			}
 			if (mShouldLog){
-				mLogObject.AddToLogString("Starting FSM of " + this.Name + " with state " + mActualState.GetType());
+				mLogObject.Print("Starting FSM of " + this.Name + " with state " + mActualState.GetType());
 			}
 			//Add a BBV container list to the Blackboard. This is what will have the inputs pressed on that frame.
 			Godot.Collections.Array<string> ButtonsPressedThisFrame = new Godot.Collections.Array<string>();

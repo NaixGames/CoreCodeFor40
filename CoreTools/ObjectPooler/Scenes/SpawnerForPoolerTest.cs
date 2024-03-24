@@ -23,13 +23,13 @@ namespace CoreCode.Example{
 		private Stack<Node2D> mGreenObjectStack = new Stack<Node2D>();
 		private Stack<Node2D> mRedObjectStack = new Stack<Node2D>();
 
-		private LogObject mLog;
+		private ILogObject mLog;
 
 		[Export] bool mShouldLog = true;
 
 		public override void _Ready(){
 			if (mShouldLog){
-				mLog = LogManager.Instance.RequestLogReference("GameObjectPooler", 0);
+				mLog = LogManager.Instance.RequestLog("GameObjectPooler");
 			}
 		}
 		
@@ -44,7 +44,7 @@ namespace CoreCode.Example{
 			}
 			if (mInputReference.IsAxisJustPressedInput("Left")){
 				if (mRedObjectStack.Count == 0){
-					mLog.AddToLogString("Emtpy red object stack!"); 
+					mLog.Print("Emtpy red object stack!"); 
 					return;
 				}
 				Node2D mLastRed = mRedObjectStack.Pop();
@@ -59,7 +59,7 @@ namespace CoreCode.Example{
 			}
 			if (mInputReference.IsButtonJustPressedInput("Down")){
 				if (mGreenObjectStack.Count == 0){
-					mLog.AddToLogString("Emtpy green object stack!"); 
+					mLog.Print("Emtpy green object stack!"); 
 					return;
 				}
 				Node2D mLastGreen = mGreenObjectStack.Pop();

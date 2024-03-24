@@ -19,7 +19,7 @@ namespace CoreCode.AIAIAnticipateAI{
 			mCharacterBody = mNodeRef.GetNode<CharacterBody2D>(mMemoryBlackboardCache["CharacterNode"].AsNodePath());
 			mObjective = mNodeRef.GetNode<CharacterBody2D>(mMemoryBlackboardCache["Objective"].AsNodePath()); //in a better setting this would be set each time we enter the state.
 		}
-		protected override StateAbstract ProcessAction(double delta, LogObject mlogObject=null){
+		protected override StateAbstract ProcessAction(double delta, ILogObject mlogObject=null){
 			//Put any action to be performed on update here.
 			//When wanting to process input use something like AxisCollections.Add("Up", 0.5);
 			Vector2 input = SteeringBehaviour.AnticipateDirectionForce2D(mCharacterBody.Position, mObjective.Position, mCharacterBody.Velocity, mObjective.Velocity);
@@ -30,7 +30,7 @@ namespace CoreCode.AIAIAnticipateAI{
 			return this;
 		}
 
-		protected override StateAbstract ProcessPhysicsAction(double delta, LogObject mlogObject=null){
+		protected override StateAbstract ProcessPhysicsAction(double delta, ILogObject mlogObject=null){
 			//Put any action to be performed on physics update here.
 			return this;
 		}

@@ -6,7 +6,7 @@
 [ext_resource type="Script" path="res://CoreTools/SceneTransitionManager/Script/SceneTransitionManager.cs" id="3_xb83e"]
 [ext_resource type="Script" path="res://CoreTools/Input/InputReader/Scripts/InputReaderPlayer.cs" id="4_g5skp"]
 [ext_resource type="Script" path="res://CoreTools/Input/InputReader/Scripts/InputReaderVoid.cs" id="4_xvsgk"]
-[ext_resource type="Resource" uid="uid://dtd6uh54nggqk" path="res://GameFiles/CoreAssets/SceneGameDatabase.tres" id="4_ygubc"]
+[ext_resource type="Resource" uid="uid://b1jj86mm1tdmc" path="res://CoreTools/SceneTransitionManager/Data/SceneDatabase.tres" id="4_ygubc"]
 [ext_resource type="Script" path="res://CoreTools/AchievementManager/Scripts/AchievementManager.cs" id="5_xesqj"]
 [ext_resource type="Script" path="res://CoreTools/AudioManager/Scripts/AudioManager.cs" id="7_161i1"]
 [ext_resource type="Script" path="res://CoreTools/Input/InputReader/Scripts/InputEmiterTouch.cs" id="8_foah0"]
@@ -15,12 +15,16 @@
 [node name="Managers" type="Node"]
 
 [node name="LogManager" parent="." instance=ExtResource("1_g44yu")]
-mAllowLogging = false
-mNumberOfDummyChannels = 1
-mNumberOfInputChannels = 1
-mNumberOfPoolerChannels = 1
-mNumberOfEventDispatcherChannels = 1
-mNumberOfFSMChannels = 1
+mChannels = {
+"Achievements": false,
+"Audio": false,
+"Dummy": false,
+"FSM": false,
+"GameObjectPooler": false,
+"GlobalEventDispatcher": false,
+"Input": false,
+"SceneTransitions": false
+}
 
 [node name="GlobalEventDispatcher" type="Node" parent="."]
 script = ExtResource("2_f31l3")

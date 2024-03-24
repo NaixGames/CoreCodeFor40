@@ -45,7 +45,7 @@ namespace CoreCode.AudioSystem{
 
 		[Export] protected bool mShouldLog;
 
-		protected LogObject mLogObject;
+		protected ILogObject mLogObject;
 
 
 		// ------------------------------------ Variables-----------------------------------------
@@ -95,42 +95,42 @@ namespace CoreCode.AudioSystem{
 
 		public void PlayMusic(){
 			if (mShouldLog){
-				mLogObject.AddToLogString("Playing music");
+				mLogObject.Print("Playing music");
 			}
 			mMusicManager.Play();
 		}
 
 		public void StopMusic(){
 			if (mShouldLog){
-				mLogObject.AddToLogString("Stopping music");
+				mLogObject.Print("Stopping music");
 			}
 			mMusicManager.Stop();
 		}
 
 		public void TransitionToOtherTrack(int TrackID){
 			if (mShouldLog){
-				mLogObject.AddToLogString("Transitioning music to track " + TrackID);
+				mLogObject.Print("Transitioning music to track " + TrackID);
 			}
 			mMusicManager.TransitionToOtherTrack(TrackID);
 		}
 
 		public void UpdateMusicTracks(){
 			if (mShouldLog){
-				mLogObject.AddToLogString("Loading music tracks ");
+				mLogObject.Print("Loading music tracks ");
 			}
 			mMusicManager.UpdateMusicTracks();
 		}
 
 		public void PlayGlobalSFX(string SfxIdentifier){
 			if (mShouldLog){
-				mLogObject.AddToLogString("Playing SFX " + SfxIdentifier);
+				mLogObject.Print("Playing SFX " + SfxIdentifier);
 			}
 			mGlobalSFXMap[SfxIdentifier].Play();
 		}
 
 		public void PlaySFXAtPosition(string SfxIdentifier, Vector2 position){
 			if (mShouldLog){
-				mLogObject.AddToLogString("Playing SFX " + SfxIdentifier + " at position " + position);
+				mLogObject.Print("Playing SFX " + SfxIdentifier + " at position " + position);
 			}
 			mPositionalSFXMap[SfxIdentifier].Position = position;
 			mPositionalSFXMap[SfxIdentifier].Play();
@@ -139,7 +139,7 @@ namespace CoreCode.AudioSystem{
 
 		private void ChangeMasterBusLevel(float level){
 			if (mShouldLog){
-				mLogObject.AddToLogString("Putting master level volume at level " + level);
+				mLogObject.Print("Putting master level volume at level " + level);
 			}
 			AudioServer.SetBusVolumeDb(0, level);
 		}
@@ -167,7 +167,7 @@ namespace CoreCode.AudioSystem{
 				PopulateMusicAndSFXDictionaries();
 			}
 			if (mShouldLog){
-				mLogObject = LogManager.Instance.RequestLogReference("Audio", 0);
+				mLogObject = LogManager.Instance.RequestLog("Audio");
 			}
 			if (!mMusicManager.HasMusic()){
 				return;

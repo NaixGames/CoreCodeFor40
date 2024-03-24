@@ -14,12 +14,12 @@ namespace CoreCode.AIAIArriveAI{
 
         //----------------------------------- Initial State ------------------------------------------------
 
-        public override StateAbstract GiveInitialState(LogObject mLogObject = null)
+        public override StateAbstract GiveInitialState(ILogObject mLogObject = null)
         {
             return arriveState;
         }
         
-        public override void InitializeStates(Node FSMNode, Godot.Collections.Dictionary mMemoryBlackboard, LogObject mLogObject = null){
+        public override void InitializeStates(Node FSMNode, Godot.Collections.Dictionary mMemoryBlackboard, ILogObject mLogObject = null){
             arriveState.InitializeState(FSMNode, this, mMemoryBlackboard);
         }
 

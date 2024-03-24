@@ -31,12 +31,12 @@ namespace CoreCode.AITestActorPlayerFSM{
 			mForce = (float)mMemoryBlackboardCache["Force"].AsDouble();
 		}
 		
-		protected override StateAbstract ProcessAction(double delta, LogObject mlogObject=null){
+		protected override StateAbstract ProcessAction(double delta, ILogObject mlogObject=null){
 			mInputBuffer = new Vector2(mInput.GiveAxisStrength("Right")-mInput.GiveAxisStrength("Left"), mInput.GiveAxisStrength("Down")-mInput.GiveAxisStrength("Up"));
 			return this;
 		}
 
-		protected override StateAbstract ProcessPhysicsAction(double delta,  LogObject mlogObject=null){
+		protected override StateAbstract ProcessPhysicsAction(double delta,  ILogObject mlogObject=null){
 			mCharacterBody.Velocity += mAcceleration*mInputBuffer*mForce/mMass;
 			if(mCharacterBody.Velocity.Length() > mMaxSpeed){
 				mCharacterBody.Velocity = mCharacterBody.Velocity.Normalized()*mMaxSpeed;

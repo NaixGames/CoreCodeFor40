@@ -31,7 +31,7 @@ namespace CoreCode.FSM{
 		// ------------------------------------ Variable for logging-----------------------------------------
 
 		[Export] protected bool mShouldLog;
-		protected LogObject mLogObject;
+		protected ILogObject mLogObject;
 		[Export] protected int mLogChannel;
 
 		// ------------------------------------ Variable for input requesting-----------------------------------------
@@ -73,13 +73,13 @@ namespace CoreCode.FSM{
 				ClearInputReader();
 			}
 			if (mShouldLog){
-				mLogObject = LogManager.Instance.RequestLogReference("FSM", mLogChannel);
-				mLogObject.AddToLogString("Intiliazing FSM of: "  + this.Name + " with state manager " + mStateManager.GetType()); 
+				mLogObject = LogManager.Instance.RequestLog("FSM");
+				mLogObject.Print("Intiliazing FSM of: "  + this.Name + " with state manager " + mStateManager.GetType()); 
 			}
 			mStateManager.InitializeStates(this, mMemoryBlackboard);
 			mActualState = mStateManager.GiveInitialState(mLogObject); 
 			if (mShouldLog){
-				mLogObject.AddToLogString("Starting FSM of " + this.Name + " with state " + mActualState.GetType());
+				mLogObject.Print("Starting FSM of " + this.Name + " with state " + mActualState.GetType());
 			}
 		}
 

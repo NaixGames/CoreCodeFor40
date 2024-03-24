@@ -17,7 +17,7 @@ namespace CoreCode.AIExamples.Bob{
 			mStateManagerCache = (mNodeRef as StateMachineActor).GiveStateManager();
 		}
 		
-		protected override StateAbstract ProcessAction(double delta, LogObject mlogObject=null){
+		protected override StateAbstract ProcessAction(double delta, ILogObject mlogObject=null){
 			if (!mInput.IsButtonJustPressedInput("Up")){
 				return this;
 			}
@@ -31,7 +31,7 @@ namespace CoreCode.AIExamples.Bob{
 			return this;
 		}
 
-		protected override StateAbstract ProcessPhysicsAction(double delta, LogObject mlogObject=null){
+		protected override StateAbstract ProcessPhysicsAction(double delta, ILogObject mlogObject=null){
 			return this;
 		}
 
@@ -44,7 +44,7 @@ namespace CoreCode.AIExamples.Bob{
 			return;
 		}
 
-		protected override StateAbstract OnUnqueuedDelegatedEvent(string EventName, LogObject mlogObject=null){
+		protected override StateAbstract OnUnqueuedDelegatedEvent(string EventName, ILogObject mlogObject=null){
 			if (EventName == "FoodIsReady"){
 				mMemoryBlackboardCache["Fatigue"]=0;
 				GD.Print("With my darlin fud I can work again!");

@@ -23,14 +23,14 @@ namespace CoreCode.Example.DummyPlayerFSM{
 			mMovingVelocity = (float)mMemoryBlackboardCache["MovingVelocity"].AsDouble();
 		}
 		
-		protected override StateAbstract ProcessAction(double delta, LogObject mlogObject=null){
+		protected override StateAbstract ProcessAction(double delta, ILogObject mlogObject=null){
 			if (mCharacterBody.IsOnFloor()){
 				return ((PlayerStateManagerExample)mStateManagerCache).StateMoving;
 			}
 			return this;
 		}
 
-		protected override StateAbstract ProcessPhysicsAction(double delta, LogObject mlogObject=null){
+		protected override StateAbstract ProcessPhysicsAction(double delta, ILogObject mlogObject=null){
 			float TotalInput = mInput.GiveAxisStrength("Right")-mInput.GiveAxisStrength("Left");
 
 			mCharacterBody.Velocity = new Vector2(TotalInput*mMovingVelocity, mCharacterBody.Velocity.Y + gravity*(float)delta);

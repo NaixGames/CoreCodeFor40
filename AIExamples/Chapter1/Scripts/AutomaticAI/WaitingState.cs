@@ -20,7 +20,7 @@ namespace CoreCode.Example.AutomaticAI{
 			ButtonsCollections = (Godot.Collections.Array<string>)mMemoryBlackboardCache["ButtonsContainer"];
 		}
 		
-		protected override StateAbstract ProcessAction(double delta, LogObject mlogObject=null){
+		protected override StateAbstract ProcessAction(double delta, ILogObject mlogObject=null){
 			mActualWaitingTime+=delta;
 			if (mActualWaitingTime>=mMaxWaitTime){
 				mActualWaitingTime-=mMaxWaitTime;
@@ -29,7 +29,7 @@ namespace CoreCode.Example.AutomaticAI{
 			return this;
 		}
 
-		protected override StateAbstract ProcessPhysicsAction(double delta, LogObject mlogObject=null){
+		protected override StateAbstract ProcessPhysicsAction(double delta, ILogObject mlogObject=null){
 			return this;
 		}
 	}

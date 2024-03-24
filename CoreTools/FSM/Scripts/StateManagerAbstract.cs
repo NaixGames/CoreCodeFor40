@@ -20,9 +20,9 @@ namespace CoreCode.FSM{
 		
 		// ------------------------------------ Abstract Functions ------------------------------------------------	
 
-		public abstract StateAbstract GiveInitialState(LogObject mLogObject=null);
+		public abstract StateAbstract GiveInitialState(ILogObject mLogObject=null);
 
-		public abstract void InitializeStates(Node mFinisteStatemachineNode, Godot.Collections.Dictionary mMemoryBlackboard, LogObject mLogObject=null);
+		public abstract void InitializeStates(Node mFinisteStatemachineNode, Godot.Collections.Dictionary mMemoryBlackboard, ILogObject mLogObject=null);
 
 		public virtual void DoReset(){
 			return;

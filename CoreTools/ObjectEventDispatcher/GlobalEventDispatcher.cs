@@ -60,7 +60,7 @@ namespace CoreCode.Scripts{
 		[Export]
 		private bool mShouldLog;
 
-		private LogObject mLogObject;
+		private ILogObject mLogObject;
 
 		// -----------------------------------------------------------------------------
 
@@ -70,7 +70,7 @@ namespace CoreCode.Scripts{
 		public override void _Ready()
 		{
 			if (mShouldLog){
-				mLogObject = LogManager.Instance.RequestLogReference("GlobalEventDispatcher", 0); //This should be use to send logs in certain events if needed.
+				mLogObject = LogManager.Instance.RequestLog("GlobalEventDispatcher"); //This should be use to send logs in certain events if needed.
 			}
 		}
 	}

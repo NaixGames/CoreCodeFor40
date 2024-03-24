@@ -23,7 +23,7 @@ namespace CoreCode.AIAIAIPathFollowing{
 			mSplineRuningSpeed = (float)mMemoryBlackboardCache["SplineRuningSpeed"].AsDouble();
 			
 		}
-		protected override StateAbstract ProcessAction(double delta, LogObject mlogObject=null){
+		protected override StateAbstract ProcessAction(double delta, ILogObject mlogObject=null){
 			//Put any action to be performed on update here.
 			Vector2 splineObjectivePosition = mPathFollower.GlobalPosition;
 
@@ -44,7 +44,7 @@ namespace CoreCode.AIAIAIPathFollowing{
 			return this;
 		}
 
-		protected override StateAbstract ProcessPhysicsAction(double delta, LogObject mlogObject=null){
+		protected override StateAbstract ProcessPhysicsAction(double delta, ILogObject mlogObject=null){
 			//Put any action to be performed on physics update here.
 			return this;
 		}

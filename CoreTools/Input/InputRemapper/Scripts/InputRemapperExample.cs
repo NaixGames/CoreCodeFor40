@@ -40,7 +40,7 @@ namespace CoreCode.Example{
 		// ------------------------------------ Variable for logging-----------------------------------------
 
 		[Export] protected bool mShouldLog;
-		protected LogObject mLogObject;
+		protected ILogObject mLogObject;
 
 		// ------------------------------------ Variable for Input-----------------------------------------
 
@@ -66,7 +66,7 @@ namespace CoreCode.Example{
 			RecieveInputReader(InputManager.Instance.GiveInputByPlayerChannel(this,1));
 			
 			if (mShouldLog){
-				mLogObject = LogManager.Instance.RequestLogReference("Input", 0);
+				mLogObject = LogManager.Instance.RequestLog("Input");
 			}
 		}
 
@@ -78,13 +78,13 @@ namespace CoreCode.Example{
 				RemapInputKeyAction(FromKeyToInputEvent(Godot.Key.A), FromKeyToInputEvent(Godot.Key.Z), "LeftP1");
 				RemapInputKeyAction(FromKeyToInputEvent(Godot.Key.D), FromKeyToInputEvent(Godot.Key.C), "RightP1");
 				if (mShouldLog){
-					mLogObject.AddToLogString("Remap code executed!");
+					mLogObject.Print("Remap code executed!");
 				}
 			}
 			if (mInputReader.IsButtonPressed("Down")){
 				RestoreInputToDefault();
 				if (mShouldLog){
-					mLogObject.AddToLogString("Remap code executed!");
+					mLogObject.Print("Remap code executed!");
 				}
 			}
 

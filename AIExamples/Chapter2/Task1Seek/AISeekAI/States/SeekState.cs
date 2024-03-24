@@ -17,7 +17,7 @@ namespace CoreCode.AIAISeekAI{
 			mCharacterBody = mNodeRef.GetNode<CharacterBody2D>(mMemoryBlackboardCache["CharacterNode"].AsNodePath());
 			mObjective = mNodeRef.GetNode<Node2D>(mMemoryBlackboardCache["Objective"].AsNodePath()); //in a better setting this would be set each time we enter the state.
 		}
-		protected override StateAbstract ProcessAction(double delta, LogObject mlogObject=null){
+		protected override StateAbstract ProcessAction(double delta, ILogObject mlogObject=null){
 			//When wanting to process input use something like AxisCollections.Add("Up", 0.5);
 			Vector2 input = SteeringBehaviour.SeekDirectionForce2D(mCharacterBody.Position, mObjective.Position, mCharacterBody.Velocity);
 			AxisCollection.Add("Up",Mathf.Max(-input.Y,0));
@@ -27,7 +27,7 @@ namespace CoreCode.AIAISeekAI{
 			return this;
 		}
 
-		protected override StateAbstract ProcessPhysicsAction(double delta, LogObject mlogObject=null){
+		protected override StateAbstract ProcessPhysicsAction(double delta, ILogObject mlogObject=null){
 			return this;
 		}
 	}

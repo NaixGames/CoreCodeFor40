@@ -74,7 +74,7 @@ namespace CoreCode.Scripts{
 		[Export]
 		protected bool mShouldLog;
 
-		protected LogObject mLogObject;
+		protected ILogObject mLogObject;
 
 		// -----------------------------------------------------------------------------
 
@@ -84,7 +84,7 @@ namespace CoreCode.Scripts{
 		{
 			//Hook up to the loging system.
 			if (mShouldLog){
-				mLogObject = LogManager.Instance.RequestLogReference("GameObjectPooler", 0);
+				mLogObject = LogManager.Instance.RequestLog("GameObjectPooler");
 			}
 
 			PoolableObjectsStartUp = new IPoolableObject[PoolableObjectStartUpManualSetUp.Length];
@@ -94,7 +94,7 @@ namespace CoreCode.Scripts{
 			
 			//If pool is empty, just return. Shouldn't happen in games, mostly during testing
 			if (mShouldLog && (PoolableObjectsStartUp == null || PoolableObjectsStartUp.Length == 0)){
-				mLogObject.AddToLogString("Object pool is empty.");
+				mLogObject.Print("Object pool is empty.");
 				return;
 			}
 
@@ -254,7 +254,7 @@ namespace CoreCode.Scripts{
 
 		private void SendToLog(string message){
 			if (mShouldLog){
-				mLogObject.AddToLogString(message);
+				mLogObject.Print(message);
 			}
 		}
 	}

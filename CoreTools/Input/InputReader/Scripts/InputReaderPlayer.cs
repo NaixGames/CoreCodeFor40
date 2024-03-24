@@ -48,7 +48,7 @@ namespace CoreCode.Scripts{
             }
 			base._Ready();
 			if (mShouldLog){
-				mLogObject = LogManager.Instance.RequestLogReference("Input", mPlayerID);
+				mLogObject = LogManager.Instance.RequestLog("Input");
 			}
 		}
 

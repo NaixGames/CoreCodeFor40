@@ -47,7 +47,7 @@ namespace CoreCode.Scripts{
 		
 		[Export]
 		private bool mShouldLog;
-		private LogObject mLogObject;
+		private ILogObject mLogObject;
 
 
 		// ------------------------------------- Methods -------------------------------
@@ -61,7 +61,7 @@ namespace CoreCode.Scripts{
 			#endif
 
 			if (mShouldLog){
-				mLogObject = LogManager.Instance.RequestLogReference("Achievements", 0); //This should be use to send logs in certain events if needed.
+				mLogObject = LogManager.Instance.RequestLog("Achievements"); //This should be use to send logs in certain events if needed.
 			}
 
 			LoadAchievementDatabase();
@@ -75,14 +75,14 @@ namespace CoreCode.Scripts{
 			mAPIReference.UnlockAchivement(AchievementName);
 
 			if (mShouldLog){
-				mLogObject.AddToLogString(AchievementName + " Achivement has been unlocked");
+				mLogObject.Print(AchievementName + " Achivement has been unlocked");
 			}
 		}
 
 		public bool IsAchivementUnlocked(string AchievementName){
 			if (!mAchievementsDictionary.ContainsKey(AchievementName)){
 				if (mShouldLog){
-					mLogObject.AddToLogString(AchievementName + " has been called from the achivement dictionary, but does not exist!");
+					mLogObject.Print(AchievementName + " has been called from the achivement dictionary, but does not exist!");
 				}
 				return false;
 			}

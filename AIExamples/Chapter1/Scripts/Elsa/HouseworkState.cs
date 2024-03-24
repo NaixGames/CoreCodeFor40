@@ -20,7 +20,7 @@ namespace CoreCode.AIExamples.Elsa{
 			mMaxBladerTime = mMemoryBlackboardCache["BladerFillTime"].AsInt32();
 		}
 		
-		protected override StateAbstract ProcessAction(double delta, LogObject mlogObject=null){
+		protected override StateAbstract ProcessAction(double delta, ILogObject mlogObject=null){
 			if (!mInput.IsButtonJustPressedInput("Up")){
 				return this;
 			}
@@ -34,7 +34,7 @@ namespace CoreCode.AIExamples.Elsa{
 			return this;
 		}
 
-		protected override StateAbstract ProcessPhysicsAction(double delta, LogObject mlogObject=null){
+		protected override StateAbstract ProcessPhysicsAction(double delta, ILogObject mlogObject=null){
 			return this;
 		}
 
@@ -45,7 +45,7 @@ namespace CoreCode.AIExamples.Elsa{
 		}
 
 
-		protected override StateAbstract OnUnqueuedDelegatedEvent(string EventName, LogObject mlogObject=null){
+		protected override StateAbstract OnUnqueuedDelegatedEvent(string EventName, ILogObject mlogObject=null){
 			if (EventName == "BobIsHome"){
 				GD.Print("My hosband is hom. Will go and mak fud!!");
 				return (mStateManagerCache as StateManagerElsa).StateCooking;
