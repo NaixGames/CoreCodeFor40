@@ -1,8 +1,8 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene load_steps=2 format=3 uid="uid://6ichkjaxn0iv"]
 
 [ext_resource type="Script" path="res://addons/Docker/ButtonsScripts/CreateScene/CreateNewSceneTemplate.cs" id="1_yex08"]
 
 [node name="NewScene" type="Button"]
-text = "Create New Scene Template
+text = "Create New Scene
 "
 script = ExtResource("1_yex08")

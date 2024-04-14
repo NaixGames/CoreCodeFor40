@@ -110,3 +110,13 @@ res://CoreTools/GodotLibraryUseExamples/BezierCurves/Scene/BezierCurveTest/Actua
 res://CoreTools/GodotLibraryUseExamples/Camera/CameraTest/ActualCameraTest.tscn
 res://CoreTools/ObjectPooler/Scenes/ObjectPoolerTest/ActualObjectPoolerTest.tscn
 res://CreationExample/Scene/Test2D/ActualTest2D.tscn
+res://CoreTools/GodotLibraryUseExamples/Animation/Scene/AnimatedPlayer.tscn
+res://Test//TestScene/NPETestScene.tscn
+res://Test/TestScene/NPETestScene.tscn
+res://addons/Docker/ButtonsScripts/CreateScene/NewScene.tscn
+res://addons/Docker/Layout/NaixDock.tscn
+res://CreationExample/Scene/Test3D/ActualTest3D.tscn
+res://CoreTools/ParticleSystemController/Scenes/ParticleSystemController/ActualParticleSystemController.tscn
+res://CoreTools/Input/InputRemapper/Scene/InputRemapExample/ActualInputRemapExample.tscn
+res://CoreTools/GodotLibraryUseExamples/Tweens/Scene/TweenTest/ActualTweenTest.tscn
+res://CoreTools/LogManager/Scenes/LogTest/ActualLogTest.tscn

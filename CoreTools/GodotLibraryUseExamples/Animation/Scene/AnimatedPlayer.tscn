@@ -1,8 +1,8 @@
 [gd_scene load_steps=11 format=3 uid="uid://btdp8vhydkco7"]
 
 [ext_resource type="Script" path="res://CoreTools/FSM/Scripts/StateMachineActor.cs" id="1_tqc3h"]
-[ext_resource type="Texture2D" uid="uid://cmdgexe0wiixm" path="res://Assets/Animations/AnimationTestTVNormalMap.png" id="2_34i62"]
-[ext_resource type="Texture2D" uid="uid://cginq5g5prdu7" path="res://Assets/Animations/AnimationTestTV.png" id="2_n17qe"]
+[ext_resource type="Texture2D" uid="uid://cmdgexe0wiixm" path="res://EditorAssets/Animations/AnimationTestTVNormalMap.png" id="2_34i62"]
+[ext_resource type="Texture2D" uid="uid://cginq5g5prdu7" path="res://EditorAssets/Animations/AnimationTestTV.png" id="2_n17qe"]
 [ext_resource type="Script" path="res://CoreTools/GodotLibraryUseExamples/Animation/Script/AnimatedActorStateManager.cs" id="2_ofxcy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vcpd5"]

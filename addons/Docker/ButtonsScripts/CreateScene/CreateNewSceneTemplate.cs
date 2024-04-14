@@ -88,8 +88,9 @@ namespace  CoreCode.Docker
 
 
             //Put the reference of the script in the actual scene
+            //Adding a script dispose of the original memory address for some really weird reason.
             parentScene.SetScript(GD.Load<Script>(PathScriptSceneManagerTransitionHelper));
-            SceneTransitionReferenceHelper referenceHelper = parentScene as SceneTransitionReferenceHelper;
+            SceneTransitionReferenceHelper referenceHelper = persistentElements.GetParent() as SceneTransitionReferenceHelper;
             referenceHelper.NonPersistentElementsPath = referenceHelper.GetPathTo(NPElementsInstance);
             referenceHelper.PersistentElementsPath = referenceHelper.GetPathTo(persistentElements);
             referenceHelper.ObjectPoolerNodePath = referenceHelper.GetPathTo(objectPooler);

@@ -6,18 +6,16 @@
 
 [node name="ActualInputRemapExample" type="Node"]
 script = ExtResource("1_4msue")
-NonPersistentElementsPath = NodePath("Elements/NPActualInputRemapExample")
-PersistentElementsPath = NodePath("Elements/PEInputRemapExample")
+NonPersistentElementsPath = NodePath("NPActualInputRemapExample")
+PersistentElementsPath = NodePath("PEInputRemapExample")
 ObjectPoolerNodePath = NodePath("ObjectPooler")
 AudioBankContainerNodePath = NodePath("AudioBank")
-
-[node name="Elements" type="Node" parent="."]
-
-[node name="PEInputRemapExample" type="Node" parent="Elements"]
-
-[node name="NPActualInputRemapExample" parent="Elements" instance=ExtResource("2_dsepo")]
 
 [node name="ObjectPooler" type="Node" parent="."]
 script = ExtResource("3_q8swo")
 
 [node name="AudioBank" type="Node" parent="."]
+
+[node name="PEInputRemapExample" type="Node" parent="."]
+
+[node name="NPActualInputRemapExample" parent="." instance=ExtResource("2_dsepo")]

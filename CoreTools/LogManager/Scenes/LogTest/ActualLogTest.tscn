@@ -6,18 +6,16 @@
 
 [node name="ActualLogTest" type="Node"]
 script = ExtResource("1_mu6f8")
-NonPersistentElementsPath = NodePath("Elements/NPActualLogTest")
-PersistentElementsPath = NodePath("Elements/PELogTest")
+NonPersistentElementsPath = NodePath("NPActualLogTest")
+PersistentElementsPath = NodePath("PELogTest")
 ObjectPoolerNodePath = NodePath("ObjectPooler")
 AudioBankContainerNodePath = NodePath("AudioBank")
 
-[node name="Elements" type="Node" parent="."]
-
-[node name="PELogTest" type="Node" parent="Elements"]
-
-[node name="NPActualLogTest" parent="Elements" instance=ExtResource("2_dg3u0")]
+[node name="PELogTest" type="Node" parent="."]
 
 [node name="ObjectPooler" type="Node" parent="."]
 script = ExtResource("3_quftm")
 
 [node name="AudioBank" type="Node" parent="."]
+
+[node name="NPActualLogTest" parent="." instance=ExtResource("2_dg3u0")]

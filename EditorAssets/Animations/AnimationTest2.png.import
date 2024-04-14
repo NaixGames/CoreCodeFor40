@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cginq5g5prdu7"
-path="res://.godot/imported/AnimationTestTV.png-b4b10ea9a3fe6e580ab0a867ec05c326.ctex"
+uid="uid://w3c68dh30bj1"
+path="res://.godot/imported/AnimationTest2.png-a9f7c1b779944b892050aed76d36e482.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Animations/AnimationTestTV.png"
-dest_files=["res://.godot/imported/AnimationTestTV.png-b4b10ea9a3fe6e580ab0a867ec05c326.ctex"]
+source_file="res://EditorAssets/Animations/AnimationTest2.png"
+dest_files=["res://.godot/imported/AnimationTest2.png-a9f7c1b779944b892050aed76d36e482.ctex"]
 
 [params]
 

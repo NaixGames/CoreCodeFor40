@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c60axen41iigm"
-path="res://.godot/imported/ExpandableButtomIcon.png-55ec7f5806162712acb8047563690090.ctex"
+path="res://.godot/imported/ExpandableButtomIcon.png-c4420c6394424e84cb35282e80a630db.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Images/ExpandableButtomIcon.png"
-dest_files=["res://.godot/imported/ExpandableButtomIcon.png-55ec7f5806162712acb8047563690090.ctex"]
+source_file="res://EditorAssets/Images/ExpandableButtomIcon.png"
+dest_files=["res://.godot/imported/ExpandableButtomIcon.png-c4420c6394424e84cb35282e80a630db.ctex"]
 
 [params]
 

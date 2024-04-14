@@ -2,8 +2,8 @@
 
 [ext_resource type="PackedScene" path="res://addons/Docker/ButtonsScripts/Example/Example.tscn" id="1_imfw1"]
 [ext_resource type="Script" path="res://addons/Docker/DockerExpandingButton.cs" id="2_hbtqo"]
-[ext_resource type="PackedScene" path="res://addons/Docker/ButtonsScripts/CreateScene/NewScene.tscn" id="2_mp4a5"]
-[ext_resource type="Texture2D" uid="uid://c60axen41iigm" path="res://Assets/Images/ExpandableButtomIcon.png" id="2_tl2x1"]
+[ext_resource type="PackedScene" uid="uid://6ichkjaxn0iv" path="res://addons/Docker/ButtonsScripts/CreateScene/NewScene.tscn" id="2_mp4a5"]
+[ext_resource type="Texture2D" uid="uid://c60axen41iigm" path="res://EditorAssets/Images/ExpandableButtomIcon.png" id="2_tl2x1"]
 [ext_resource type="PackedScene" path="res://addons/Docker/ButtonsScripts/CreateFSM/CreateFSM.tscn" id="3_x4wk1"]
 
 [node name="NaixDock" type="VBoxContainer"]
@@ -29,7 +29,6 @@ script = ExtResource("2_hbtqo")
 mNotePathOfMenu = NodePath("../SceneTemplateCreationBox")
 
 [node name="SceneTemplateCreationBox" type="VBoxContainer" parent="."]
-visible = false
 custom_minimum_size = Vector2(0, 85)
 layout_mode = 2
 
@@ -60,7 +59,7 @@ item_1/text = "3D"
 
 [node name="NewScene" parent="SceneTemplateCreationBox" instance=ExtResource("2_mp4a5")]
 layout_mode = 2
-text = "Create New Scene
+text = "Create Scene
 "
 
 [node name="Space" type="Label" parent="SceneTemplateCreationBox"]
