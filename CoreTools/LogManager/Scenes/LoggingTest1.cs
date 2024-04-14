@@ -7,7 +7,7 @@ public partial class LoggingTest1 : Node
 	{
 		private ILogObject mDummyLogReference;
 		public override void _Ready(){
-			mDummyLogReference = LogManager.Instance.RequestLog("Dummy");
+			mDummyLogReference = LogManager.Instance.RequestLog("Dummy", true);
 		}
 
 		// Called every frame. 'delta' is the elapsed time since the previous frame.

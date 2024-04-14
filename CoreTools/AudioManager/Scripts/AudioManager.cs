@@ -166,9 +166,9 @@ namespace CoreCode.AudioSystem{
 			if (mMusicManager==null){
 				PopulateMusicAndSFXDictionaries();
 			}
-			if (mShouldLog){
-				mLogObject = LogManager.Instance.RequestLog("Audio");
-			}
+
+			mLogObject = LogManager.Instance.RequestLog("Audio", mShouldLog);
+			
 			if (!mMusicManager.HasMusic()){
 				return;
 			}

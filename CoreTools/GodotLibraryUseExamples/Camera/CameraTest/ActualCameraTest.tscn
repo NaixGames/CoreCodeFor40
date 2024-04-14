@@ -6,18 +6,16 @@
 
 [node name="ActualCameraTest" type="Node"]
 script = ExtResource("1_extt7")
-NonPersistentElementsPath = NodePath("Elements/NPActualCameraTest")
-PersistentElementsPath = NodePath("Elements/PECameraTest")
+NonPersistentElementsPath = NodePath("NPActualCameraTest")
+PersistentElementsPath = NodePath("PECameraTest")
 ObjectPoolerNodePath = NodePath("ObjectPooler")
 AudioBankContainerNodePath = NodePath("AudioBank")
 
-[node name="Elements" type="Node" parent="."]
-
-[node name="PECameraTest" type="Node" parent="Elements"]
-
-[node name="NPActualCameraTest" parent="Elements" instance=ExtResource("2_kf7eu")]
+[node name="NPActualCameraTest" parent="." instance=ExtResource("2_kf7eu")]
 
 [node name="ObjectPooler" type="Node" parent="."]
 script = ExtResource("3_1ru5c")
 
 [node name="AudioBank" type="Node" parent="."]
+
+[node name="PECameraTest" type="Node" parent="."]

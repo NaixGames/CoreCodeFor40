@@ -28,9 +28,7 @@ namespace CoreCode.Example{
 		[Export] bool mShouldLog = true;
 
 		public override void _Ready(){
-			if (mShouldLog){
-				mLog = LogManager.Instance.RequestLog("GameObjectPooler");
-			}
+			mLog = LogManager.Instance.RequestLog("GameObjectPooler", mShouldLog);
 		}
 		
 

@@ -6,18 +6,16 @@
 
 [node name="ActualFSMTest" type="Node"]
 script = ExtResource("1_tjui5")
-NonPersistentElementsPath = NodePath("Elements/NPActualFSMTest")
-PersistentElementsPath = NodePath("Elements/PEFSMTest")
+NonPersistentElementsPath = NodePath("NPActualFSMTest")
+PersistentElementsPath = NodePath("PEFSMTest")
 ObjectPoolerNodePath = NodePath("ObjectPooler")
 AudioBankContainerNodePath = NodePath("AudioBank")
-
-[node name="Elements" type="Node" parent="."]
-
-[node name="PEFSMTest" type="Node" parent="Elements"]
-
-[node name="NPActualFSMTest" parent="Elements" instance=ExtResource("2_amjlp")]
 
 [node name="ObjectPooler" type="Node" parent="."]
 script = ExtResource("3_orevq")
 
 [node name="AudioBank" type="Node" parent="."]
+
+[node name="PEFSMTest" type="Node" parent="."]
+
+[node name="NPActualFSMTest" parent="." instance=ExtResource("2_amjlp")]

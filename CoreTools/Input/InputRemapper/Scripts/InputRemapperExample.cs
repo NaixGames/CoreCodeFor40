@@ -65,9 +65,7 @@ namespace CoreCode.Example{
 		{
 			RecieveInputReader(InputManager.Instance.GiveInputByPlayerChannel(this,1));
 			
-			if (mShouldLog){
-				mLogObject = LogManager.Instance.RequestLog("Input");
-			}
+			mLogObject = LogManager.Instance.RequestLog("Input", mShouldLog);
 		}
 
 		public override void _Process(double delta)

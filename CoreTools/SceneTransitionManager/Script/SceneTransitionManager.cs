@@ -51,13 +51,6 @@ namespace CoreCode.Scripts{
 		
 		private SceneTransitionReferenceHelper mReferenceHelper;
 
-		[Export] private NodePath mReferenceHelperPath;
-
-		public NodePath ReferenceHelperPath{
-			set{mReferenceHelperPath=value;}
-			get{return mReferenceHelperPath;}
-		}
-
 		// ------------------------------------ Variable for logging-----------------------------------------
 
 		[Export] protected bool mShouldLog;
@@ -68,7 +61,7 @@ namespace CoreCode.Scripts{
 
 		public void HeavyTransitionToNewScene(string sceneName){
 			if (!mSceneDatabase.mActualSceneSceneNameToPathMapping.ContainsKey(sceneName)){
-				SendMessageToLog("trying to load scene not loaded in Scene database named: " + sceneName);
+				mLogObject.Err("trying to load scene not loaded in Scene database named: " + sceneName);
 				return;
 			}
 			//First we remove the object pooler, since it is a singleton also present on the other scene.
@@ -76,8 +69,6 @@ namespace CoreCode.Scripts{
 			GameObjectPooler.Instance.PoolAllObjects();
 			GameObjectPooler.Instance.EraseObjectPooler();
 			//For a similar reason we erase the other elements. Dont want two of the same thing of a scene. But we keep the parent for adding nodes later.
-			Node PersistentElementsParent = mReferenceHelper.PersistentElements.GetParent<Node>();
-			Node nonPersistentElementsParent = mReferenceHelper.NonPersistentElements.GetParent<Node>();
 			mReferenceHelper.PersistentElements.QueueFree();
 			mReferenceHelper.PersistentElements=null;
 			mReferenceHelper.NonPersistentElements.QueueFree();
@@ -96,7 +87,7 @@ namespace CoreCode.Scripts{
 			//Change the non persistent elements for the new ones.
 			mReferenceHelper.PersistentElements = loadedReferenceHelper.PersistentElements;
 			loadedReferenceHelper.PersistentElements.GetParent<Node>().RemoveChild(loadedReferenceHelper.PersistentElements);
-			PersistentElementsParent.AddChild(loadedReferenceHelper.PersistentElements);
+			mReferenceHelper.AddChild(loadedReferenceHelper.PersistentElements);
 		
 			
 			//Should update the audio bank and make the song transition.
@@ -105,7 +96,7 @@ namespace CoreCode.Scripts{
 			//Change the non persistent elements for the new ones.
 			mReferenceHelper.NonPersistentElements = loadedReferenceHelper.NonPersistentElements;
 			loadedReferenceHelper.NonPersistentElements.GetParent<Node>().RemoveChild(loadedReferenceHelper.NonPersistentElements);
-			nonPersistentElementsParent.AddChild(loadedReferenceHelper.NonPersistentElements);
+			mReferenceHelper.AddChild(loadedReferenceHelper.NonPersistentElements);
 		
 			
 			//Free the loaded scene from memory
@@ -114,7 +105,7 @@ namespace CoreCode.Scripts{
 
 		public void LightTransitionToNewScene(string sceneName){
 			if (!mSceneDatabase.mNonPersistantSceneNameToPathMapping.ContainsKey(sceneName)){
-				SendMessageToLog("trying to load scene not loaded in Scene database named: " + sceneName);
+				mLogObject.Err("trying to load scene not loaded in Scene database named: " + sceneName);
 				return;
 			}
 			
@@ -123,44 +114,36 @@ namespace CoreCode.Scripts{
 			Node newNonPersitanceScene = ResourceLoader.Load<PackedScene>(mSceneDatabase.mNonPersistantSceneNameToPathMapping[sceneName]).Instantiate(); 
 
 			//Change the non persistent elements for the new ones.
-			Node nonPersistentElementsParent = mReferenceHelper.NonPersistentElements.GetParent<Node>();
 			mReferenceHelper.NonPersistentElements.QueueFree();
 			mReferenceHelper.NonPersistentElements = newNonPersitanceScene;
-			nonPersistentElementsParent.AddChild(newNonPersitanceScene);
+			mReferenceHelper.AddChild(newNonPersitanceScene);
 		}
-
-		// Some nice methods for shaders when transition scene? Some animation? 
-
 
 		public override void _Ready(){
 			if (Engine.IsEditorHint()){
 				return;
 			}
-			if (mShouldLog){
-				mLogObject = LogManager.Instance.RequestLog("SceneTransitions");
-			}
-			mReferenceHelper = GetNode<SceneTransitionReferenceHelper>(mReferenceHelperPath);
-			mReferenceHelper.GetNodesFromPaths();
-			//If not any reference for SceneTransitionReferenceHelper give a warning
-			if (mReferenceHelper == null){
-				GD.PushWarning("No reference SceneTransitionReferenceHelper on Scene Transition Manager. Audio and Scene Transitions should not work correclty");
-				return;
-			}
-			AudioManager.Instance.UpdateMusicBanks(mReferenceHelper.AudioBankContainerNode);
+			
+			mLogObject = LogManager.Instance.RequestLog("SceneTransitions", mShouldLog);
+			
 			//If we dont have a SceneDatabase give a warning.
-			if (mSceneDatabase==null){
-				GD.PushWarning("No scene database provided. No scene transition will be posible!");
-			}		
+			if (mSceneDatabase == null){
+				mLogObject.Warn("No scene database provided. No scene transition will be posible!");
+			}	
+			
+			Node baseNode = GetTree().Root.GetChild(GetTree().Root.GetChildCount()-1);
+
+			if (!(baseNode is SceneTransitionReferenceHelper)){
+				mLogObject.Warn("No reference SceneTransitionReferenceHelper as base. Audio and Scene Transitions will not work correclty");
+			}
+
+			mReferenceHelper = baseNode as SceneTransitionReferenceHelper;
+			mReferenceHelper.GetNodesFromPaths();
+			AudioManager.Instance.UpdateMusicBanks(mReferenceHelper.AudioBankContainerNode);	
 
 		}
 
 
 		//--------------------------------------
-
-		public void SendMessageToLog(string message){
-			if (mShouldLog){
-				mLogObject.Print(message);
-			}
-		}
 	}
 }

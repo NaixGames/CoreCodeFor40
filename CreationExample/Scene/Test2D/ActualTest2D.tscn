@@ -6,18 +6,16 @@
 
 [node name="ActualTest2D" type="Node"]
 script = ExtResource("1_kgxkj")
-NonPersistentElementsPath = NodePath("Elements/NPActualTest2D")
-PersistentElementsPath = NodePath("Elements/PETest2D")
+NonPersistentElementsPath = NodePath("NPActualTest2D")
+PersistentElementsPath = NodePath("PETest2D")
 ObjectPoolerNodePath = NodePath("ObjectPooler")
 AudioBankContainerNodePath = NodePath("AudioBank")
-
-[node name="Elements" type="Node" parent="."]
-
-[node name="PETest2D" type="Node" parent="Elements"]
-
-[node name="NPActualTest2D" type="Node" parent="Elements" instance=ExtResource("2_tkg48")]
 
 [node name="ObjectPooler" type="Node" parent="."]
 script = ExtResource("3_55e20")
 
 [node name="AudioBank" type="Node" parent="."]
+
+[node name="PETest2D" type="Node" parent="."]
+
+[node name="NPActualTest2D" parent="." instance=ExtResource("2_tkg48")]

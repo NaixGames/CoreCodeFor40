@@ -47,9 +47,8 @@ namespace CoreCode.Scripts{
                 return;
             }
 			base._Ready();
-			if (mShouldLog){
-				mLogObject = LogManager.Instance.RequestLog("Input");
-			}
+			
+			mLogObject = LogManager.Instance.RequestLog("Input", mShouldLog);
 		}
 
 		// -----------------------------------Helper method---------------------------------------

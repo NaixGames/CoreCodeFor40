@@ -69,9 +69,7 @@ namespace CoreCode.Scripts{
 
 		public override void _Ready()
 		{
-			if (mShouldLog){
-				mLogObject = LogManager.Instance.RequestLog("GlobalEventDispatcher"); //This should be use to send logs in certain events if needed.
-			}
+			mLogObject = LogManager.Instance.RequestLog("GlobalEventDispatcher", mShouldLog); //This should be use to send logs in certain events if needed.
 		}
 	}
 }

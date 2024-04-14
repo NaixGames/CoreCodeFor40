@@ -8,16 +8,10 @@
 
 [node name="ActualObjectPoolerTest" type="Node"]
 script = ExtResource("1_klum0")
-NonPersistentElementsPath = NodePath("Elements/NPActualObjectPoolerTest")
-PersistentElementsPath = NodePath("Elements/PEObjectPoolerTest")
+NonPersistentElementsPath = NodePath("NPActualObjectPoolerTest")
+PersistentElementsPath = NodePath("PEObjectPoolerTest")
 ObjectPoolerNodePath = NodePath("ObjectPooler")
 AudioBankContainerNodePath = NodePath("AudioBank")
-
-[node name="Elements" type="Node" parent="."]
-
-[node name="PEObjectPoolerTest" type="Node" parent="Elements"]
-
-[node name="NPActualObjectPoolerTest" parent="Elements" instance=ExtResource("2_1to5a")]
 
 [node name="ObjectPooler" type="Node" parent="."]
 script = ExtResource("3_yf8mh")
@@ -31,3 +25,7 @@ position = Vector2(-6, -46)
 position = Vector2(-1, -38)
 
 [node name="AudioBank" type="Node" parent="."]
+
+[node name="PEObjectPoolerTest" type="Node" parent="."]
+
+[node name="NPActualObjectPoolerTest" parent="." instance=ExtResource("2_1to5a")]

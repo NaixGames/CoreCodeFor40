@@ -60,9 +60,7 @@ namespace CoreCode.Scripts{
 				mAPIReference = new AchievementAPIPCDefault();
 			#endif
 
-			if (mShouldLog){
-				mLogObject = LogManager.Instance.RequestLog("Achievements"); //This should be use to send logs in certain events if needed.
-			}
+			mLogObject = LogManager.Instance.RequestLog("Achievementsm", mShouldLog); //This should be use to send logs in certain events if needed.
 
 			LoadAchievementDatabase();
 		}

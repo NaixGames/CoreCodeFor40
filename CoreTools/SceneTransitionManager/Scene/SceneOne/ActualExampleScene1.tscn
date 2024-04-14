@@ -10,25 +10,10 @@
 
 [node name="ActualSceneOne" type="Node"]
 script = ExtResource("1_mukmp")
-NonPersistentElementsPath = NodePath("Elements/NonPersistentElements")
-PersistentElementsPath = NodePath("Elements/PersistentElements")
+NonPersistentElementsPath = NodePath("NonPersistentElements")
+PersistentElementsPath = NodePath("PersistentElements")
 ObjectPoolerNodePath = NodePath("ObjectPooler")
 AudioBankContainerNodePath = NodePath("AudioBanks")
-
-[node name="Elements" type="Node" parent="."]
-
-[node name="PersistentElements" type="Node" parent="Elements"]
-
-[node name="Transitioner" type="Node" parent="Elements/PersistentElements"]
-script = ExtResource("3_odkmi")
-mHeavyLoad = true
-
-[node name="Icon" type="Sprite2D" parent="Elements/PersistentElements"]
-modulate = Color(1, 0, 0, 1)
-position = Vector2(826, 352)
-texture = ExtResource("2_4patg")
-
-[node name="NonPersistentElements" parent="Elements" instance=ExtResource("2_1a67u")]
 
 [node name="ObjectPooler" type="Node" parent="."]
 script = ExtResource("3_slpaa")
@@ -40,3 +25,16 @@ mShouldLog = true
 [node name="TrackScene1" type="AudioStreamPlayer" parent="AudioBanks"]
 stream = ExtResource("5_35wxi")
 script = ExtResource("6_4m6rx")
+
+[node name="PersistentElements" type="Node" parent="."]
+
+[node name="Transitioner" type="Node" parent="PersistentElements"]
+script = ExtResource("3_odkmi")
+mHeavyLoad = true
+
+[node name="Icon" type="Sprite2D" parent="PersistentElements"]
+modulate = Color(1, 0, 0, 1)
+position = Vector2(826, 352)
+texture = ExtResource("2_4patg")
+
+[node name="NonPersistentElements" parent="." instance=ExtResource("2_1a67u")]

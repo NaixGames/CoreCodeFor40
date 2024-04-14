@@ -10,20 +10,10 @@
 
 [node name="ActualAudioTest" type="Node"]
 script = ExtResource("1_to0kj")
-NonPersistentElementsPath = NodePath("Elements/NPActualAudioTest")
-PersistentElementsPath = NodePath("Elements/PEAudioTest")
+NonPersistentElementsPath = NodePath("NPActualAudioTest")
+PersistentElementsPath = NodePath("PEAudioTest")
 ObjectPoolerNodePath = NodePath("ObjectPooler")
 AudioBankContainerNodePath = NodePath("AudioBank")
-
-[node name="Elements" type="Node" parent="."]
-
-[node name="PEAudioTest" type="Node" parent="Elements"]
-
-[node name="NPActualAudioTest" parent="Elements" instance=ExtResource("2_i5rfs")]
-
-[node name="AudioTester" parent="Elements/NPActualAudioTest" index="0" node_paths=PackedStringArray("mFirstTrack", "mSecondTrack")]
-mFirstTrack = NodePath("../../../AudioBank/01TestAudio")
-mSecondTrack = NodePath("../../../AudioBank/02TestAudio")
 
 [node name="ObjectPooler" type="Node" parent="."]
 script = ExtResource("3_qq7ng")
@@ -50,4 +40,8 @@ stream = ExtResource("7_ox2j4")
 script = ExtResource("5_nwmjv")
 mFollowUpTrack = NodePath(".")
 
-[editable path="Elements/NPActualAudioTest"]
+[node name="PEAudioTest" type="Node" parent="."]
+
+[node name="NPActualAudioTest" parent="." instance=ExtResource("2_i5rfs")]
+
+[editable path="NPActualAudioTest"]

@@ -11,22 +11,9 @@
 [node name="Scene" type="Node"]
 script = ExtResource("1_cvfdc")
 NonPersistentElementsPath = NodePath("NonPersistantelElements")
-PersistentElementsPath = NodePath("ActualScene/PersistentElements")
+PersistentElementsPath = NodePath("PersistentElements")
 ObjectPoolerNodePath = NodePath("ObjectPooler")
 AudioBankContainerNodePath = NodePath("AudioBanks")
-
-[node name="ActualScene" type="Node" parent="."]
-
-[node name="PersistentElements" type="Node" parent="ActualScene"]
-
-[node name="Icon" type="Sprite2D" parent="ActualScene/PersistentElements"]
-modulate = Color(0, 0, 1, 1)
-position = Vector2(232, 419)
-texture = ExtResource("3_ucd8o")
-
-[node name="Transitioner" type="Node" parent="ActualScene/PersistentElements"]
-script = ExtResource("2_vgqha")
-mHeavyLoad = true
 
 [node name="ObjectPooler" type="Node" parent="."]
 script = ExtResource("3_i0sfl")
@@ -40,3 +27,14 @@ stream = ExtResource("5_ul3vj")
 script = ExtResource("6_qvi8d")
 
 [node name="NonPersistantelElements" parent="." instance=ExtResource("7_6x856")]
+
+[node name="PersistentElements" type="Node" parent="."]
+
+[node name="Icon" type="Sprite2D" parent="PersistentElements"]
+modulate = Color(0, 0, 1, 1)
+position = Vector2(232, 419)
+texture = ExtResource("3_ucd8o")
+
+[node name="Transitioner" type="Node" parent="PersistentElements"]
+script = ExtResource("2_vgqha")
+mHeavyLoad = true

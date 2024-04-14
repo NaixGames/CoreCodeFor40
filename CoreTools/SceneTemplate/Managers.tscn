@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=3 uid="uid://drxehyvydlrnt"]
 
-[ext_resource type="PackedScene" uid="uid://bib7i8f55qbxs" path="res://CoreTools/SceneTemplate/LogManager.tscn" id="1_g44yu"]
+[ext_resource type="Script" path="res://CoreTools/LogManager/Scripts/LogManager.cs" id="1_eeq6c"]
 [ext_resource type="Script" path="res://CoreTools/ObjectEventDispatcher/GlobalEventDispatcher.cs" id="2_f31l3"]
 [ext_resource type="Script" path="res://CoreTools/Input/InputManager/Scripts/InputManager.cs" id="3_gbq0a"]
 [ext_resource type="Script" path="res://CoreTools/SceneTransitionManager/Script/SceneTransitionManager.cs" id="3_xb83e"]
@@ -14,7 +14,8 @@
 
 [node name="Managers" type="Node"]
 
-[node name="LogManager" parent="." instance=ExtResource("1_g44yu")]
+[node name="LogManager" type="Node" parent="."]
+script = ExtResource("1_eeq6c")
 mChannels = {
 "Achievements": false,
 "Audio": false,
@@ -32,7 +33,6 @@ script = ExtResource("2_f31l3")
 [node name="SceneTransitionManager" type="Node" parent="."]
 script = ExtResource("3_xb83e")
 mSceneDatabase = ExtResource("4_ygubc")
-mReferenceHelperPath = NodePath("")
 
 [node name="InputManager" type="Node" parent="."]
 script = ExtResource("3_gbq0a")

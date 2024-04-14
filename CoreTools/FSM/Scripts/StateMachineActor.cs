@@ -72,15 +72,13 @@ namespace CoreCode.FSM{
 			if (mInputReader==null){
 				ClearInputReader();
 			}
-			if (mShouldLog){
-				mLogObject = LogManager.Instance.RequestLog("FSM");
-				mLogObject.Print("Intiliazing FSM of: "  + this.Name + " with state manager " + mStateManager.GetType()); 
-			}
+			mLogObject = LogManager.Instance.RequestLog("FSM", mShouldLog);
+			mLogObject.Print("Intiliazing FSM of: "  + this.Name + " with state manager " + mStateManager.GetType()); 
+
 			mStateManager.InitializeStates(this, mMemoryBlackboard);
 			mActualState = mStateManager.GiveInitialState(mLogObject); 
-			if (mShouldLog){
-				mLogObject.Print("Starting FSM of " + this.Name + " with state " + mActualState.GetType());
-			}
+			
+			mLogObject.Print("Starting FSM of " + this.Name + " with state " + mActualState.GetType());
 		}
 
 		public override void _Process(double delta)

@@ -1,7 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://bib7i8f55qbxs"]
-
-[ext_resource type="Script" path="res://CoreTools/LogManager/Scripts/LogManager.cs" id="1_ufjs2"]
-
-[node name="LogManager" type="Node"]
-script = ExtResource("1_ufjs2")
-mDisplayDummyLog = true

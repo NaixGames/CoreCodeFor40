@@ -83,9 +83,7 @@ namespace CoreCode.Scripts{
 		public override void _Ready()
 		{
 			//Hook up to the loging system.
-			if (mShouldLog){
-				mLogObject = LogManager.Instance.RequestLog("GameObjectPooler");
-			}
+			mLogObject = LogManager.Instance.RequestLog("GameObjectPooler", mShouldLog);
 
 			PoolableObjectsStartUp = new IPoolableObject[PoolableObjectStartUpManualSetUp.Length];
 			for (int index=0;index<PoolableObjectsStartUp.Length;index++){
@@ -93,7 +91,7 @@ namespace CoreCode.Scripts{
 			}
 			
 			//If pool is empty, just return. Shouldn't happen in games, mostly during testing
-			if (mShouldLog && (PoolableObjectsStartUp == null || PoolableObjectsStartUp.Length == 0)){
+			if (PoolableObjectsStartUp == null || PoolableObjectsStartUp.Length == 0){
 				mLogObject.Print("Object pool is empty.");
 				return;
 			}
@@ -120,9 +118,9 @@ namespace CoreCode.Scripts{
 					mPoolOfAGameObject[j].HasPoolReference=true;
 					ReturnObjectToPool(CopyObject);
 				}
-				SendToLog(PoolableObjectsStartUp[i].TagObject + " instatiated correctly in the object pooler with " + NumberOfCopiesStartUp[i] + " copies");
+				mLogObject.Print(PoolableObjectsStartUp[i].TagObject + " instatiated correctly in the object pooler with " + NumberOfCopiesStartUp[i] + " copies");
 			}
-			SendToLog("Game object pooler instantiated correctly");
+			mLogObject.Print("Game object pooler instantiated correctly");
 		}
 
 		// ------------------------- Methods
@@ -130,14 +128,14 @@ namespace CoreCode.Scripts{
 		// -----------Methods that return a game object from the pool
 
 		public Node GiveObject(string tag){
-			SendToLog("Attepmting to get object with tag " + tag + " from the index" + mIndexForObjectPoolerMap[tag]);
-			SendToLog("There are " + mObjectPoolerMap[tag].Length + " total object in that pool");
+			mLogObject.Print("Attepmting to get object with tag " + tag + " from the index" + mIndexForObjectPoolerMap[tag]);
+			mLogObject.Print("There are " + mObjectPoolerMap[tag].Length + " total object in that pool");
 			
 			if (!mObjectPoolerMap.ContainsKey(tag)){
-				SendToLog("Trying to obtain from pool tag " + tag + " which is not in pool!");
+				mLogObject.Err("Trying to obtain from pool tag " + tag + " which is not in pool!");
 			}
 			if (mIndexForObjectPoolerMap[tag] == mObjectPoolerMap[tag].Length){ //If we arrive at the end of the Pool, we need to expand.
-				SendToLog(tag + " object requested but non active. Instantiating new copies"); 
+				mLogObject.Warn(tag + " object requested but non active. Instantiating new copies"); 
 				ExpandPool(tag, mNumberForPoolExpandUponFilling);
 			}
 			IPoolableObject mObjectPooled = mObjectPoolerMap[tag][mIndexForObjectPoolerMap[tag]];
@@ -198,12 +196,12 @@ namespace CoreCode.Scripts{
 		public void AddObjectReferenceToPool(IPoolableObject ObjectToAdd){
 			//This method is to put in the pool a give object that was not referenced before
 			if (mObjectPoolerMap.ContainsKey(ObjectToAdd.TagObject)){
-				SendToLog("Object with tag" + ObjectToAdd.TagObject + " returned to pool, but had no reference in pool. Expanding pool to adjust.");
+				mLogObject.Warn("Object with tag" + ObjectToAdd.TagObject + " returned to pool, but had no reference in pool. Expanding pool to adjust.");
 				ObjectToAdd.HasPoolReference = true;
 				ExpandPool(ObjectToAdd.TagObject, 1);
 			}
 			else{
-				SendToLog("Object with tag" + ObjectToAdd.TagObject + " returned to pool, but no pool existed. Creating a new pool");
+				mLogObject.Warn("Object with tag" + ObjectToAdd.TagObject + " returned to pool, but no pool existed. Creating a new pool");
 				IPoolableObject[] mPoolOfAGameObject = new PoolableObject2D[2];
 				//Need to add the two following objects correctly.
 				ObjectToAdd.HasPoolReference=true;
@@ -252,10 +250,5 @@ namespace CoreCode.Scripts{
 			mObjectPoolerMap[tagOfPool] = newPool;
 		}
 
-		private void SendToLog(string message){
-			if (mShouldLog){
-				mLogObject.Print(message);
-			}
-		}
 	}
 }

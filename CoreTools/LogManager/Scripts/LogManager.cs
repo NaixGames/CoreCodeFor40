@@ -53,8 +53,10 @@ namespace CoreCode.Scripts{
 
 		//-------------------------------------- Method for giving logs
 
-
-		public ILogObject RequestLog(string channel){
+		public ILogObject RequestLog(string channel, bool shouldLog){
+			if (!shouldLog){
+				return new VoidLogObject();
+			}
 			if (mLogsDictionary.ContainsKey(channel)){
 				return mLogsDictionary[channel];
 			}
