@@ -102,3 +102,14 @@ res://CreationExample/ActorTest/AITestAI/StateManager/AITestAIStateManager.cs
 res://CreationExample/ActorTest/AITestAI/States/TestStateAI.cs
 res://CoreTools/FSM/Scenes/FSMTest/NPActualFSMTest.tscn
 res://CoreTools/FSM/Scenes/FSMTest/ActualFSMTest.tscn
+res://CoreTools/FSM/Scenes/Actor/Player/player.tscn
+res://CoreTools/FSM/Scripts/StateManagerPointer.cs
+res://CoreTools/FSM/Scenes/Actor/Player/TestStateManagerPointer.tres
+res://AIExamples/Chapter2/ControlablePlayer/ActorPlayerFSM/ActorPlayerFSM.tscn
+res://CoreTools/Test/ActorTest/StateManager/ActorTestStateManager.cs
+res://CoreTools/Test/ActorTest/States/TestInitialState.cs
+res://CoreTools/Test//ActorTest/ActorTest.tscn
+res://CoreTools/SceneTemplate/Scene.tscn
+res://CoreTools/Test/ActorTest/StateManager/ActorTestManagerPointer.tres
+res://CoreTools/Test/ActorTest/ActorTest.tscn
+res://CoreTools/Test/AI/AITest/States/TestInitialState.cs

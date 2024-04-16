@@ -80,8 +80,6 @@ namespace  CoreCode.Docker
 
 
             //First Create the state manager
-            Node ActorStateManager = new Node();
-            ActorStateManager.Name = FSMName + "StateManager";
             file = FileAccess.Open(PathScriptStateManagerTemplate, FileAccess.ModeFlags.Read);
             content = file.GetAsText();
             file.Close();
@@ -94,31 +92,39 @@ namespace  CoreCode.Docker
             string pathForStateManager= path+ FSMName + "/StateManager/"+FSMName+"StateManager.cs";
             file = FileAccess.Open(pathForStateManager, FileAccess.ModeFlags.Write);
             file.StoreLine(content);
-
             file.Close();
-            ActorStateManager.SetScript(GD.Load<Script>(pathForStateManager));
 
-            //Make the State Machine
-            Node FSMNode = new Node();
-            FSMNode.Name = FSMName + "FSM";
-            FSMNode.SetScript(GD.Load<Script>(PathScriptFSMActor));
-            FSMNode.AddChild(ActorStateManager);
-            
-            //Add all of this to an actor
+
+            //Create state manager pointer
+            StateManagerPointer stateManagerPointer = new StateManagerPointer();
+            stateManagerPointer.StateManagerClassPath = newNamespace+"."+FSMName+"StateManager";
+            ResourceSaver.Save(stateManagerPointer, path + FSMName + "/StateManager/"+FSMName+"ManagerPointer.tres");
+
+
+            //Make the actor base node
             Node ActorNode;
             if (IsTwoDimension){
                 ActorNode = new CharacterBody2D();
-                ActorNode.SetScript(GD.Load<Script>(PathStringGameActorReference2D));
+                ActorNode.SetScript(ResourceLoader.Load<Script>(PathStringGameActorReference2D));
             }
             else{
                 ActorNode = new CharacterBody3D();
-                ActorNode.SetScript(GD.Load<Script>(PathStringGameActorReference3D));
+                ActorNode.SetScript(ResourceLoader.Load<Script>(PathStringGameActorReference3D));
             }
             ActorNode.Name = FSMName;
+
+
+            //Add the the State Machine node and component
+            Node FSMNode = new Node();
+            FSMNode.Name = FSMName + "FSM";
             ActorNode.AddChild(FSMNode);
             FSMNode.Owner = ActorNode;
-            ActorStateManager.Owner = ActorNode;
-
+            FSMNode.SetScript(ResourceLoader.Load<Script>(PathScriptFSMActor));
+            //Assign the state manager pointer
+            StateManagerPointer savedPointer = ResourceLoader.Load<StateManagerPointer>(path + FSMName + "/StateManager/"+FSMName+"ManagerPointer.tres");
+            StateMachineActor FSMActor = ActorNode.GetChild<StateMachineActor>(0);
+            FSMActor.StateManagerResource = savedPointer;
+            
             Packer.Pack(ActorNode);
             ResourceSaver.Save(Packer, path +"/" + FSMName +"/" + FSMName + ".tscn");
 
@@ -161,24 +167,27 @@ namespace  CoreCode.Docker
 
             file.Close();
 
-            //Make the State Machine
-            Node ActorStateManager = new Node();
-            ActorStateManager.Name = FSMName + "StateManager";
+            //Make the StateMachinePointer
+            StateManagerPointer stateManagerPointer = new StateManagerPointer();
+            stateManagerPointer.StateManagerClassPath = newNamespace+"."+FSMName+"StateManager";
+            ResourceSaver.Save(stateManagerPointer, path + FSMName + "/StateManager/"+FSMName+"ManagerPointer.tres");
 
+            //Make the State Machine
             Node FSMNode = new Node();
             FSMNode.Name = FSMName + "FSM";
-            FSMNode.AddChild(ActorStateManager);
-            
-            ActorStateManager.Owner = FSMNode;
-            
-            //This is due to Godot losing base clases in multiple inheritance. Maybe could fix it later.
+
+            //This avoid Godot losing reference to FSMNode due to Casting shenanigans.
             Node dummyNode = new Node();
             dummyNode.AddChild(FSMNode);
-            
-            ActorStateManager.SetScript(GD.Load<Script>(pathForStateManager));
-            FSMNode.SetScript(GD.Load<Script>(PathScriptFSMAI));
 
+            //Assign the script and recover the reference from dummyNode.
+            FSMNode.SetScript(ResourceLoader.Load<Script>(PathScriptFSMAI));
             FSMNode = dummyNode.GetChild(0);
+
+            //Assign the state manager pointer
+            StateManagerPointer savedPointer = ResourceLoader.Load<StateManagerPointer>(path + FSMName + "/StateManager/"+FSMName+"ManagerPointer.tres");
+            StateMachineAIInput FSMAI = FSMNode as StateMachineAIInput;
+            FSMAI.mStateManagerPointer = savedPointer;
 
             Packer.Pack(FSMNode);
             ResourceSaver.Save(Packer, path +"/" + FSMName +"/" + FSMName + ".tscn");

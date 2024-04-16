@@ -1,8 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://b8bvibp3efkqi"]
+[gd_scene load_steps=5 format=3 uid="uid://b8bvibp3efkqi"]
 
 [ext_resource type="Script" path="res://CoreTools/GameActorReferenceHandler/Script/GameActorReferenceHandler2D.cs" id="1_ej351"]
 [ext_resource type="Script" path="res://CoreTools/FSM/Scripts/StateMachineActor.cs" id="2_xi6dp"]
-[ext_resource type="Script" path="res://AIExamples/Chapter2/ControlablePlayer/ActorPlayerFSM/StateManager/ActorPlayerFSMStateManager.cs" id="3_qq4sr"]
 [ext_resource type="Texture2D" uid="uid://dqd4wln1wph42" path="res://icon.svg" id="4_jn0nk"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_jek8g"]
@@ -17,7 +16,6 @@ mStateMachine = NodePath("ActorPlayerFSMFSM")
 
 [node name="ActorPlayerFSMFSM" type="Node" parent="."]
 script = ExtResource("2_xi6dp")
-NodeManagerPath = NodePath("ActorPlayerFSMStateManager")
 mMemoryBlackboard = {
 "Acceleration": 25,
 "CharacterNode": NodePath(".."),
@@ -27,9 +25,6 @@ mMemoryBlackboard = {
 "MaxSpeed": 250
 }
 mRequestInputChannel = 1
-
-[node name="ActorPlayerFSMStateManager" type="Node" parent="ActorPlayerFSMFSM"]
-script = ExtResource("3_qq4sr")
 
 [node name="Icon" type="Sprite2D" parent="."]
 texture = ExtResource("4_jn0nk")

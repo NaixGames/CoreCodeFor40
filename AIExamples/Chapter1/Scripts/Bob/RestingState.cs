@@ -40,7 +40,7 @@ namespace CoreCode.AIExamples.Bob{
 			GD.Print("Oi I am tired. Going home to rest!");
 			GD.Print("Honey I am home!");
 			StateManagerBob managerBob = mStateManagerCache as StateManagerBob;
-			mStateManagerCache.EmitSignal(nameof(managerBob.BobIsHome));
+			////TODO: CHANGET HIS FOR EVENT DISPATCHER mStateManagerCache.EmitSignal(nameof(managerBob.BobIsHome));
 			return;
 		}
 

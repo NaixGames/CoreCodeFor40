@@ -1,7 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://dqjr3q7e1unr8"]
+[gd_scene load_steps=2 format=3 uid="uid://dqjr3q7e1unr8"]
 
 [ext_resource type="Script" path="res://CoreTools/SceneTransitionManager/Script/SceneTransitionReferenceHelper.cs" id="1_ki77j"]
-[ext_resource type="Script" path="res://CoreTools/ObjectPooler/Scripts/GameObjectPooler.cs" id="1_niiey"]
 
 [node name="Scene" type="Node"]
 script = ExtResource("1_ki77j")
@@ -10,15 +9,10 @@ PersistentElementsPath = NodePath("")
 ObjectPoolerNodePath = NodePath("")
 AudioBankContainerNodePath = NodePath("")
 
-[node name="ActualScene" type="Node" parent="."]
-
-[node name="PersistentElements" type="Node" parent="ActualScene"]
-
-[node name="ADDNNONPERSISTENTELEMENTSASANODE" type="Node" parent="ActualScene"]
+[node name="PersistentElements" type="Node" parent="."]
 
 [node name="ObjectPooler" type="Node" parent="."]
-script = ExtResource("1_niiey")
-mPoolPosition = Vector3(200, 600, 0)
-mShouldLog = true
 
 [node name="AudioBanks" type="Node" parent="."]
+
+[node name="ADDNNONPERSISTENTELEMENTSASANODE" type="Node" parent="."]

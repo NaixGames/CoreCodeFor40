@@ -1,3 +1,4 @@
+StateManagerPointer
 Curve
 Vector2Data
 FloatData

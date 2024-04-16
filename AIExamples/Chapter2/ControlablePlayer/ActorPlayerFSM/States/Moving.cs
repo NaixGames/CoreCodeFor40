@@ -24,6 +24,11 @@ namespace CoreCode.AITestActorPlayerFSM{
 		protected override void InitializeStateParams(Node mNodeRef){
 			mCharacterBody = mNodeRef.GetNode<CharacterBody2D>(mMemoryBlackboardCache["CharacterNode"].AsNodePath());
 			mInput = (mNodeRef as StateMachineActor).ReturnInputReader();
+			GD.Print("THIS IS THE DICTIONARY");
+			GD.Print(mMemoryBlackboardCache.Count);
+			foreach (Godot.Variant key in mMemoryBlackboardCache.Keys){
+				GD.Print(key);
+			}
 			mMaxSpeed = (float)mMemoryBlackboardCache["MaxSpeed"].AsDouble();
 			mAcceleration = (float)mMemoryBlackboardCache["Acceleration"].AsDouble();
 			mDrag = (float)mMemoryBlackboardCache["Drag"].AsDouble();

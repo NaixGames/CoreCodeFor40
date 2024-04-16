@@ -3,6 +3,7 @@ using System;
 using CoreCode.Scripts;
 
 namespace CoreCode.FSM{
+	[Tool]	
 	public partial class StateMachineActor : Node, IStateMachine, IControlableByInput, IResetable
 	{
 		// ----------------------------------- Information ------------------------------------------------
@@ -22,7 +23,7 @@ namespace CoreCode.FSM{
 		// ------------------------------------ Variables ------------------------------------------------
 
 		private StateManagerAbstract mStateManager;
-		[Export] public NodePath NodeManagerPath;
+		[Export] public StateManagerPointer StateManagerResource;
 		[Export] private Godot.Collections.Dictionary mMemoryBlackboard = new Godot.Collections.Dictionary();
 		private StateAbstract mActualState;
 
@@ -64,7 +65,11 @@ namespace CoreCode.FSM{
 
 		public override void _Ready()
 		{
-			mStateManager = GetNode<StateManagerAbstract>(NodeManagerPath);
+			if (Engine.IsEditorHint()){
+				return;
+			}
+
+			mStateManager = StateManagerResource.GiveStateManagerInstance();
 			if (mRequestInputChannel>0){
 				RecieveInputReader(InputManager.Instance.GiveInputByPlayerChannel(this, mRequestInputChannel));
 			}
@@ -82,12 +87,20 @@ namespace CoreCode.FSM{
 
 		public override void _Process(double delta)
 		{
+			if (Engine.IsEditorHint()){
+				return;
+			}
+
 			mActualState = mActualState.ExecuteProcess(delta, mLogObject); 
 			mActualState = mActualState.ExecuteQueuedDelegatedEvent(mLogObject);
 		}
 
 		public override void _PhysicsProcess(double delta)
 		{
+			if (Engine.IsEditorHint()){
+				return;
+			}
+			
 			mActualState = mActualState.ExecutePhysicsProcess(delta, mLogObject); 
 		}
 

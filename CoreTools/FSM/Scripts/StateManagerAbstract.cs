@@ -4,7 +4,7 @@ using CoreCode.Scripts;
 
 namespace CoreCode.FSM{
 
-	public abstract partial class StateManagerAbstract : Node, IResetable
+	public abstract partial class StateManagerAbstract : IResetable
 	{
 		// ----------------------------------- Information ------------------------------------------------
 		/*This is a script to provide an abstract interface for a StateManager for the state machine class.*/

@@ -17,7 +17,8 @@ namespace CoreCode.FSM{
 		// ------------------------------------ Variables ------------------------------------------------
 
 
-		[Export] private StateManagerAbstract mStateManager;
+		private StateManagerAbstract mStateManager;
+		[Export] public StateManagerPointer mStateManagerPointer;
 		[Export] private Godot.Collections.Dictionary mMemoryBlackboard = new Godot.Collections.Dictionary();
 		private StateAbstract mActualState;
 
@@ -54,6 +55,8 @@ namespace CoreCode.FSM{
 			}
 			base._Ready();
 			
+			mStateManager = mStateManagerPointer.GiveStateManagerInstance();
+
 			mLogObject = LogManager.Instance.RequestLog("FSM", mShouldLog);
 			mLogObject.Print("Intiliazing FSM of: "  + this.Name + " with state manager " + mStateManager.GetType());
 			mLogObject.Print("Starting FSM of " + this.Name + " with state " + mActualState.GetType());
