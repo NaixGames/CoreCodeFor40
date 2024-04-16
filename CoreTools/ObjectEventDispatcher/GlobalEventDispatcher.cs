@@ -50,10 +50,6 @@ namespace CoreCode.Scripts{
 
 		[Signal] public delegate void MySignalEventHandler();
 
-		[Signal] public delegate void WithParametersSignalEventHandler(string parameter);
-
-		[Signal] public delegate void ObjectWasPooledSignalEventHandler(string objectsName);
-
 
 		//---------------------Variables for loging
 		

@@ -32,7 +32,6 @@ namespace CoreCode.FSM{
 
 		[Export] protected bool mShouldLog;
 		protected ILogObject mLogObject;
-		[Export] protected int mLogChannel;
 
 		// ------------------------------------ Variable for input requesting-----------------------------------------
 

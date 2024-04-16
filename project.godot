@@ -12,6 +12,7 @@ config_version=5
 
 config/name="CoreCodeFor40"
 config/tags=PackedStringArray("coretools", "testing")
+run/main_scene="res://CoreTools/SceneTransitionManager/Scene/SceneOne/ActualExampleScene1.tscn"
 config/features=PackedStringArray("4.2", "C#", "Forward Plus")
 config/icon="res://EditorAssets/Images/Logo.png"
 
