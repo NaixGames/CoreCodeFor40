@@ -24,11 +24,6 @@ namespace CoreCode.FSM{
 
 		//Have a list of inputs key and buttons that can be called.
 
-		// ------------------------------------ Variable for logging-----------------------------------------
-		[Export] protected int mLogChannel;
-
-		//Recall the InputRead itself already has the Log object.	
-
 		// ------------------------------------ Functions ------------------------------------------------	
 
 		// ------------------------------------- Godot overrides ---------------------------------------
@@ -55,11 +50,6 @@ namespace CoreCode.FSM{
 			}
 			base._Ready();
 			
-			mStateManager = mStateManagerPointer.GiveStateManagerInstance();
-
-			mLogObject = LogManager.Instance.RequestLog("FSM", mShouldLog);
-			mLogObject.Print("Intiliazing FSM of: "  + this.Name + " with state manager " + mStateManager.GetType());
-			mLogObject.Print("Starting FSM of " + this.Name + " with state " + mActualState.GetType());
 			
 			//Add a BBV container list to the Blackboard. This is what will have the inputs pressed on that frame.
 			Godot.Collections.Array<string> ButtonsPressedThisFrame = new Godot.Collections.Array<string>();
@@ -77,8 +67,14 @@ namespace CoreCode.FSM{
 				mMemoryBlackboard.Add("AxisContainer", AxisNonZeroThisFrame);
 			}
 
+			mStateManager = mStateManagerPointer.GiveStateManagerInstance();
+
 			mStateManager.InitializeStates(this, mMemoryBlackboard);
 			mActualState = mStateManager.GiveInitialState(mLogObject); 
+
+			mLogObject = LogManager.Instance.RequestLog("FSM", mShouldLog);
+			mLogObject.Print("Intiliazing FSM of: "  + this.Name + " with state manager " + mStateManager.GetType());
+			mLogObject.Print("Starting FSM of " + this.Name + " with state " + mActualState.GetType());
 		}
 
 

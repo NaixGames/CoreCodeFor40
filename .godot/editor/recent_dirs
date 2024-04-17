@@ -1,3 +1,7 @@
+res://AIExamples/Chapter2/Task1Seek/AISeekAI
+res://AIExamples/Chapter2/ControlablePlayer/ActorPlayerFSM/StateManager
+res://
+res://AIExamples/Chapter1/Task1
 res://CoreTools/FSM/Scenes/Actor/Player
 res://CoreTools/SceneTemplate
 res://CoreTools/SceneTransitionManager/Data
@@ -5,4 +9,3 @@ res://CoreTools/DataContainers
 C:/Godot/CoreCodeFor40/Export
 C:/Godot/CoreCodeFor40/rcedit
 res://addons
-res://

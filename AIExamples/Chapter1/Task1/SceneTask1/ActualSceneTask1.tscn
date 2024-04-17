@@ -6,18 +6,16 @@
 
 [node name="ActualSceneTask1" type="Node"]
 script = ExtResource("1_g78qe")
-NonPersistentElementsPath = NodePath("Elements/NPActualSceneTask1")
-PersistentElementsPath = NodePath("Elements/PESceneTask1")
+NonPersistentElementsPath = NodePath("NPActualSceneTask1")
+PersistentElementsPath = NodePath("PESceneTask1")
 ObjectPoolerNodePath = NodePath("ObjectPooler")
 AudioBankContainerNodePath = NodePath("AudioBank")
-
-[node name="Elements" type="Node" parent="."]
-
-[node name="PESceneTask1" type="Node" parent="Elements"]
-
-[node name="NPActualSceneTask1" type="Node" parent="Elements" instance=ExtResource("2_ewegh")]
 
 [node name="ObjectPooler" type="Node" parent="."]
 script = ExtResource("3_slt8a")
 
 [node name="AudioBank" type="Node" parent="."]
+
+[node name="PESceneTask1" type="Node" parent="."]
+
+[node name="NPActualSceneTask1" parent="." instance=ExtResource("2_ewegh")]

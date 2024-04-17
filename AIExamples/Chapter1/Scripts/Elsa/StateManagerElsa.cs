@@ -27,13 +27,5 @@ namespace CoreCode.AIExamples.Elsa{
             ElsaStateMachine = FSMNode as StateMachineActor;
         }
 
-            //----------------------------------- Event system ------------------------------------------------
-
-        [Signal] public delegate void FoodIsReadyEventHandler();
-
-        private void BobIsHome(){
-            ElsaStateMachine.GiveActualState().QueueDelegatedEvent("BobIsHome");
-        }
-
     }
 }

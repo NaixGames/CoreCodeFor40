@@ -3,6 +3,7 @@ using System;
 using CoreCode.FSM;
 
 namespace CoreCode.Scripts{
+	[Tool]
 	public partial class GameActorReferenceHandler3D : CharacterBody3D, IPoolableObject
 	{
 		// ----------------------------------- Information ------------------------------------------------
@@ -18,9 +19,10 @@ namespace CoreCode.Scripts{
 		*/
 
 		// ------------------------------------ Variables ------------------------------------------------
-		[Export] private string mTagObject = "";
+		[Export] public string mTagObject = "";
 		public string TagObject{
 			get{return mTagObject;}
+			set{mTagObject = value;}
 		}
 
 		public bool IsObjectActive{
@@ -36,15 +38,12 @@ namespace CoreCode.Scripts{
 			set{mHasPoolReference = value;}
 		} 
 
-		[Export] private StateMachineActor mStateMachine;
-		public IStateMachine StateMachine{
-			get{return mStateMachine;} 
-		}
+		[Export] public StateMachineActor StateMachine;
 
 		
 		//------------------------------------Methods
 
-		//THIS SHOULD NEVER BE CALLED. USE GAME OBJECT POOLER TO POOL OBJECTS!
+		//THIS SHOULD NEVER BE CALLED MANUALLY. USE GAME OBJECT POOLER TO POOL OBJECTS!
 		public void ReturnToPool(){
 			if (HasPoolReference==false){
 				AddReferenceInPool();	

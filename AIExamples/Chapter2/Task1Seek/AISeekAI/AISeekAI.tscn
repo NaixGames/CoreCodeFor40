@@ -1,13 +1,10 @@
 [gd_scene load_steps=3 format=3 uid="uid://dif3fmowqtmbe"]
 
 [ext_resource type="Script" path="res://CoreTools/FSM/Scripts/StateMachineAIInput.cs" id="1_75o04"]
-[ext_resource type="Script" path="res://AIExamples/Chapter2/Task1Seek/AISeekAI/StateManager/AISeekAIStateManager.cs" id="2_1hnx7"]
+[ext_resource type="Resource" uid="uid://kuwjdn36fl2" path="res://AIExamples/Chapter2/Task1Seek/AISeekAI/StateManager/Chapter2Task1AISMP.tres" id="2_j8ajs"]
 
-[node name="AISeekAIFSM" type="Node" node_paths=PackedStringArray("mStateManager")]
+[node name="AISeekAIFSM" type="Node"]
 script = ExtResource("1_75o04")
-mStateManager = NodePath("AISeekAIStateManager")
+mStateManagerPointer = ExtResource("2_j8ajs")
 mPlayerID = 0
 mAxis = PackedStringArray("Left", "Right", "Up", "Down")
-
-[node name="AISeekAIStateManager" type="Node" parent="."]
-script = ExtResource("2_1hnx7")

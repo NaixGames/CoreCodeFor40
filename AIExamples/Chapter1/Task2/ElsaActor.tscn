@@ -1,18 +1,21 @@
-[gd_scene load_steps=6 format=3 uid="uid://mh03iupw5hrb"]
+[gd_scene load_steps=7 format=3 uid="uid://mh03iupw5hrb"]
 
 [ext_resource type="Texture2D" uid="uid://dqd4wln1wph42" path="res://icon.svg" id="1_tr6wq"]
 [ext_resource type="Script" path="res://CoreTools/FSM/Scripts/StateMachineActor.cs" id="2_eta65"]
-[ext_resource type="Script" path="res://AIExamples/Chapter1/Scripts/Elsa/StateManagerElsa.cs" id="3_gonvv"]
+[ext_resource type="Script" path="res://AIExamples/Chapter1/Task2/ElsaReferenceHandler.cs" id="2_tlhxv"]
+[ext_resource type="Resource" uid="uid://mu8e04f5dffi" path="res://AIExamples/Chapter1/Task2/ElsaStateManagerPointer.tres" id="3_r5ac1"]
 [ext_resource type="Script" path="res://CoreTools/FSM/Scripts/StateMachineAIInput.cs" id="4_betgs"]
-[ext_resource type="Script" path="res://AIExamples/Chapter1/Scripts/AutomaticAI/AutomaticAIStateManager.cs" id="5_ak8bk"]
+[ext_resource type="Resource" uid="uid://d1iqdrjjl16ri" path="res://AIExamples/Chapter1/Task2/ElsaAIStateManagerPointer.tres" id="5_2xaft"]
 
-[node name="Elsa" type="Sprite2D"]
+[node name="Elsa" type="CharacterBody2D" node_paths=PackedStringArray("StateMachine")]
 modulate = Color(1, 0.113725, 0.992157, 1)
-texture = ExtResource("1_tr6wq")
+script = ExtResource("2_tlhxv")
+mTagObject = "Elsa"
+StateMachine = NodePath("ElsaFSM")
 
 [node name="ElsaFSM" type="Node2D" parent="." node_paths=PackedStringArray("mInputReader")]
 script = ExtResource("2_eta65")
-NodeManagerPath = NodePath("ElsaStateManager")
+StateManagerResource = ExtResource("3_r5ac1")
 mMemoryBlackboard = {
 "BladerFillTime": 12,
 "BladerLevel": 0,
@@ -21,12 +24,9 @@ mMemoryBlackboard = {
 }
 mInputReader = NodePath("ElsaAIFSM")
 
-[node name="ElsaStateManager" type="Node2D" parent="ElsaFSM"]
-script = ExtResource("3_gonvv")
-
-[node name="ElsaAIFSM" type="Node" parent="ElsaFSM" node_paths=PackedStringArray("mStateManager")]
+[node name="ElsaAIFSM" type="Node" parent="ElsaFSM"]
 script = ExtResource("4_betgs")
-mStateManager = NodePath("ElsaAIStateManager")
+mStateManagerPointer = ExtResource("5_2xaft")
 mMemoryBlackboard = {
 "AxisContainer": {},
 "ButtonsContainer": [],
@@ -35,5 +35,6 @@ mMemoryBlackboard = {
 mPlayerID = 0
 mButtons = PackedStringArray("Up")
 
-[node name="ElsaAIStateManager" type="Node" parent="ElsaFSM/ElsaAIFSM"]
-script = ExtResource("5_ak8bk")
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 0.113725, 0.992157, 1)
+texture = ExtResource("1_tr6wq")

@@ -8,10 +8,9 @@ namespace CoreCode.AIExamples.Elsa{
 	{
 
 		private InputReaderAbstract mInput;
-
 		private int mNeededCookTime; 
-
 		private int TimeSpentCooking=0;
+		private ElsaReferenceHandler mElsaReferenceHandler;
 		
 		// -------------------------- Abstract overrides -------------------------------------
 
@@ -21,6 +20,8 @@ namespace CoreCode.AIExamples.Elsa{
 			mNeededCookTime = mMemoryBlackboardCache["TimeForCooking"].AsInt32();
 
 			TimeSpentCooking=0;
+
+			mElsaReferenceHandler = mNodeRef.GetParent() as ElsaReferenceHandler;
 		}
 		protected override StateAbstract ProcessAction(double delta, ILogObject mlogObject=null){
 			//Put any action to be performed on update here.
@@ -31,7 +32,7 @@ namespace CoreCode.AIExamples.Elsa{
 			TimeSpentCooking+=1;
 			if(TimeSpentCooking==mNeededCookTime){
 				StateManagerElsa managerElsa = mStateManagerCache as StateManagerElsa;
-				//TODO: CHANGET HIS FOR EVENT DISPATCHER mStateManagerCache.EmitSignal(nameof(managerElsa.FoodIsReady));
+				mElsaReferenceHandler.EmitSignal(ElsaReferenceHandler.SignalName.FoodIsReady);
 				return ((StateManagerElsa)mStateManagerCache).StateHousework;
 			}
 			return this;

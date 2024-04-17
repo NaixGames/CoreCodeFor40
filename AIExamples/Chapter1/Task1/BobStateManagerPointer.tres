@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="StateManagerPointer" load_steps=2 format=3 uid="uid://dmln6b0d0qcrh"]
+
+[ext_resource type="Script" path="res://CoreTools/FSM/Scripts/StateManagerPointer.cs" id="1_20q3p"]
+
+[resource]
+script = ExtResource("1_20q3p")
+StateManagerClassPath = "CoreCode.AIExamples.Bob.StateManagerBob"

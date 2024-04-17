@@ -11,8 +11,5 @@ position = Vector2(105, 134)
 [node name="Bob" parent="." instance=ExtResource("2_kj6nr")]
 position = Vector2(441, 201)
 
-[connection signal="FoodIsReady" from="Elsa/ElsaFSM/ElsaStateManager" to="Bob/FSM/StateManager" method="FoodIsReady"]
-[connection signal="BobIsHome" from="Bob/FSM/StateManager" to="Elsa/ElsaFSM/ElsaStateManager" method="BobIsHome"]
-
-[editable path="Elsa"]
-[editable path="Bob"]
+[connection signal="FoodIsReady" from="Elsa" to="Bob" method="ReceiveDelegateEvent" binds= ["FoodIsReady"]]
+[connection signal="BobIsHome" from="Bob" to="Elsa" method="ReceiveDelegateEvent" binds= ["BobIsHome"]]

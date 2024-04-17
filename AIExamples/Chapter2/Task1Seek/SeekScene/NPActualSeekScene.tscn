@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://5h55x0jywyiw"]
+[gd_scene load_steps=4 format=3 uid="uid://5h55x0jywyiw"]
 
 [ext_resource type="PackedScene" uid="uid://b8bvibp3efkqi" path="res://AIExamples/Chapter2/ControlablePlayer/ActorPlayerFSM/ActorPlayerFSM.tscn" id="1_6tdci"]
 [ext_resource type="PackedScene" uid="uid://sohmhtpljgp2" path="res://AIExamples/Chapter2/Task1Seek/ActorAIFSM/ActorAIFSM.tscn" id="2_yfk03"]
+[ext_resource type="Resource" uid="uid://kuwjdn36fl2" path="res://AIExamples/Chapter2/Task1Seek/AISeekAI/StateManager/Chapter2Task1AISMP.tres" id="3_dv7ne"]
 
 [node name="NPActualSeekScene" type="Node"]
 
@@ -9,9 +10,10 @@
 position = Vector2(867, 434)
 
 [node name="ActorAIFSM" parent="." instance=ExtResource("2_yfk03")]
-position = Vector2(245, 295)
+position = Vector2(291, 307)
 
-[node name="AISeekAIFSM" parent="ActorAIFSM/ActorAIFSM" index="1"]
+[node name="AISeekAIFSM" parent="ActorAIFSM/ActorAIFSM" index="0"]
+mStateManagerPointer = ExtResource("3_dv7ne")
 mMemoryBlackboard = {
 "CharacterNode": NodePath("../.."),
 "Objective": NodePath("../../../ActorPlayerFSM")

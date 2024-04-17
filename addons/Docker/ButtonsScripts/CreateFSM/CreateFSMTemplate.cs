@@ -1,6 +1,7 @@
 #if TOOLS
 using Godot;
 using CoreCode.FSM;
+using CoreCode.Scripts;
 
 namespace  CoreCode.Docker
 {
@@ -103,16 +104,22 @@ namespace  CoreCode.Docker
 
             //Make the actor base node
             Node ActorNode;
+
+            //This avoid Godot losing reference to FSMNode due to Casting shenanigans.
+            Node dummyNode = new Node();
+
             if (IsTwoDimension){
                 ActorNode = new CharacterBody2D();
+                dummyNode.AddChild(ActorNode);
                 ActorNode.SetScript(ResourceLoader.Load<Script>(PathStringGameActorReference2D));
             }
             else{
                 ActorNode = new CharacterBody3D();
+                dummyNode.AddChild(ActorNode);
                 ActorNode.SetScript(ResourceLoader.Load<Script>(PathStringGameActorReference3D));
             }
+            ActorNode = dummyNode.GetChild(0);
             ActorNode.Name = FSMName;
-
 
             //Add the the State Machine node and component
             Node FSMNode = new Node();
@@ -125,6 +132,18 @@ namespace  CoreCode.Docker
             StateMachineActor FSMActor = ActorNode.GetChild<StateMachineActor>(0);
             FSMActor.StateManagerResource = savedPointer;
             
+            //Assign FSM to reference handler
+            if (IsTwoDimension){
+                GameActorReferenceHandler2D refHandler = ActorNode as GameActorReferenceHandler2D;
+                refHandler.StateMachine = FSMActor;
+                refHandler.TagObject = FSMName;
+            }
+            else{
+                GameActorReferenceHandler3D refHandler = ActorNode as GameActorReferenceHandler3D;
+                refHandler.StateMachine = FSMActor;
+                refHandler.TagObject = FSMName;
+            }
+
             Packer.Pack(ActorNode);
             ResourceSaver.Save(Packer, path +"/" + FSMName +"/" + FSMName + ".tscn");
 

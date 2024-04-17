@@ -8,13 +8,14 @@ namespace CoreCode.AIExamples.Bob{
 	{
 	// -------------------------- Variables -------------------------------------
 		private InputReaderAbstract mInput;
-		
+		private BobReferenceHandler mBobReferenceHandler;
 
 		// -------------------------- Abstract overrides -------------------------------------
 
 		protected override void InitializeStateParams(Node mNodeRef){
 			mInput = (mNodeRef as StateMachineActor).ReturnInputReader();
 			mStateManagerCache = (mNodeRef as StateMachineActor).GiveStateManager();
+			mBobReferenceHandler = mNodeRef.GetParent() as BobReferenceHandler; 
 		}
 		
 		protected override StateAbstract ProcessAction(double delta, ILogObject mlogObject=null){
@@ -39,8 +40,7 @@ namespace CoreCode.AIExamples.Bob{
 			//Using GD Print just for the example
 			GD.Print("Oi I am tired. Going home to rest!");
 			GD.Print("Honey I am home!");
-			StateManagerBob managerBob = mStateManagerCache as StateManagerBob;
-			////TODO: CHANGET HIS FOR EVENT DISPATCHER mStateManagerCache.EmitSignal(nameof(managerBob.BobIsHome));
+			mBobReferenceHandler.EmitSignal(BobReferenceHandler.SignalName.BobIsHome);
 			return;
 		}
 

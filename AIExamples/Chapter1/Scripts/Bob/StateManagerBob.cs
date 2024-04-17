@@ -30,13 +30,5 @@ namespace CoreCode.AIExamples.Bob{
 
             BobStateMachine = FSMNode as StateMachineActor;
         }
-
-        //----------------------------------- Event system ------------------------------------------------
-
-        [Signal] public delegate void BobIsHomeEventHandler();
-
-        private void FoodIsReady(){
-            BobStateMachine.GiveActualState().QueueDelegatedEvent("FoodIsReady");
-        }
     }
 }
