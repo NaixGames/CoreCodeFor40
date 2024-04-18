@@ -96,8 +96,10 @@ namespace CoreCode.AudioSystem{
 			}
 
 			foreach (AdaptativeMusicTrack musicNode in AudioBankContainer.GetChildren() ){
+				musicNode.Owner = null;
 				AudioBankContainer.RemoveChild(musicNode);
 				this.AddChild(musicNode);
+				musicNode.Owner = this;
 			}
 			
 			UpdateMusicTracks();

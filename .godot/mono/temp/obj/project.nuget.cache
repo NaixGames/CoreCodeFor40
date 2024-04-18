@@ -1,12 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "kJi649WQZ9TFrzkJmiFCILrteoe8bL5J8WFVg5gw0MDR10CJPHhuX7G3eODQo9CEDytjsrXEEyVYlWWAjStSRQ==",
+  "dgSpecHash": "+rc3yZmBOAnEZVGtJzIBQ8sCX1r/+EiZAG8+PQGv9FgQIS6iNMnc5zBIg/Xbd2/whg4kIvNu0+dHSaXntBDdyQ==",
   "success": true,
   "projectFilePath": "D:\\Github\\CoreCodeFor40\\CoreCodeFor40.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\IanLetter\\.nuget\\packages\\godot.sourcegenerators\\4.2.1\\godot.sourcegenerators.4.2.1.nupkg.sha512",
-    "C:\\Users\\IanLetter\\.nuget\\packages\\godotsharp\\4.2.1\\godotsharp.4.2.1.nupkg.sha512",
-    "C:\\Users\\IanLetter\\.nuget\\packages\\godotsharpeditor\\4.2.1\\godotsharpeditor.4.2.1.nupkg.sha512",
+    "C:\\Users\\IanLetter\\.nuget\\packages\\godot.sourcegenerators\\4.2.2\\godot.sourcegenerators.4.2.2.nupkg.sha512",
+    "C:\\Users\\IanLetter\\.nuget\\packages\\godotsharp\\4.2.2\\godotsharp.4.2.2.nupkg.sha512",
+    "C:\\Users\\IanLetter\\.nuget\\packages\\godotsharpeditor\\4.2.2\\godotsharpeditor.4.2.2.nupkg.sha512",
     "C:\\Users\\IanLetter\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
     "C:\\Users\\IanLetter\\.nuget\\packages\\microsoft.netcore.targets\\1.1.0\\microsoft.netcore.targets.1.1.0.nupkg.sha512",
     "C:\\Users\\IanLetter\\.nuget\\packages\\system.collections\\4.3.0\\system.collections.4.3.0.nupkg.sha512",

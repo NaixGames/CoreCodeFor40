@@ -1,5 +1,5 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1713455727
+::res://::1713463420
 export_presets.cfg::TextFile::-1::1712850594::0::1::::<><>::
 icon.svg::CompressedTexture2D::8290277361856763881::1701619747::1701619747::1::::<><>::
 README.md::TextFile::-1::1701619747::0::1::::<><>::
@@ -414,7 +414,7 @@ NPActualExampleScene1.tscn::PackedScene::2608145691407883258::1701619170::0::1::
 ActualExampleScene2.tscn::PackedScene::1644803622493005541::1713118220::0::1::::<><>::res://CoreTools/SceneTransitionManager/Script/SceneTransitionReferenceHelper.cs<>res://CoreTools/SceneTransitionManager/Script/SceneTransitionManagerTest.cs<>res://CoreTools/ObjectPooler/Scripts/GameObjectPooler2D.cs<>uid://dqd4wln1wph42::::res://icon.svg<>uid://bild7eo77cnpq::::res://CoreTools/AudioManager/BasicTesting/01. Castlevania - Vampire Killer [Torby Brand].mp3<>res://CoreTools/AudioManager/Scripts/AdaptativeMusicTrack.cs<>uid://c3cp7rsny752j::::res://CoreTools/SceneTransitionManager/Scene/SceneTwo/NPActualExampleScene2.tscn
 NPActualExampleScene2.tscn::PackedScene::6743226566383139895::1701619170::0::1::::<><>::uid://dqd4wln1wph42::::res://icon.svg
 ::res://CoreTools/SceneTransitionManager/Script/::1701619746
-SceneTransitionManager.cs::CSharpScript::-1::1713117947::0::1::::<>Node<>::
+SceneTransitionManager.cs::CSharpScript::-1::1713455941::0::1::::<>Node<>::
 SceneTransitionManagerTest.cs::CSharpScript::-1::1702152084::0::1::::<>Node<>::
 SceneTransitionReferenceHelper.cs::CSharpScript::-1::1713114531::0::1::::<>Node<>::
 ::res://CoreTools/SteeringBehaviors/::1701619746

@@ -81,15 +81,17 @@ namespace CoreCode.Scripts{
 
 			//Add the new object pooler.
 			loadedReferenceHelper.RemoveChild(loadedReferenceHelper.ObjectPoolerNode);
+			loadedReferenceHelper.ObjectPoolerNode.Owner = null;
 			mReferenceHelper.AddChild(loadedReferenceHelper.ObjectPoolerNode);
-			loadedReferenceHelper.ObjectPoolerNode.Owner = mReferenceHelper;
+			loadedReferenceHelper.ObjectPoolerNode.Owner = mReferenceHelper.Owner;
 			mReferenceHelper.ObjectPoolerNode = loadedReferenceHelper.ObjectPoolerNode;
 
 			//Change the non persistent elements for the new ones.
 			mReferenceHelper.PersistentElements = loadedReferenceHelper.PersistentElements;
 			loadedReferenceHelper.PersistentElements.GetParent<Node>().RemoveChild(loadedReferenceHelper.PersistentElements);
+			loadedReferenceHelper.PersistentElements.Owner = null;
 			mReferenceHelper.AddChild(loadedReferenceHelper.PersistentElements);
-			loadedReferenceHelper.PersistentElements.Owner = mReferenceHelper;
+			loadedReferenceHelper.PersistentElements.Owner = mReferenceHelper.Owner;
 			
 			//Should update the audio bank and make the song transition.
 			AudioManager.Instance.UpdateMusicBanks(loadedReferenceHelper.AudioBankContainerNode);
@@ -97,8 +99,9 @@ namespace CoreCode.Scripts{
 			//Change the non persistent elements for the new ones.
 			mReferenceHelper.NonPersistentElements = loadedReferenceHelper.NonPersistentElements;
 			loadedReferenceHelper.NonPersistentElements.GetParent<Node>().RemoveChild(loadedReferenceHelper.NonPersistentElements);
+			loadedReferenceHelper.NonPersistentElements.Owner = null;
 			mReferenceHelper.AddChild(loadedReferenceHelper.NonPersistentElements);
-			loadedReferenceHelper.NonPersistentElements.Owner = mReferenceHelper;
+			loadedReferenceHelper.NonPersistentElements.Owner = mReferenceHelper.Owner;
 			
 			//Free the loaded scene from memory
 			loadedReferenceHelper.SceneFinishedLoading();			
@@ -117,8 +120,9 @@ namespace CoreCode.Scripts{
 			//Change the non persistent elements for the new ones.
 			mReferenceHelper.NonPersistentElements.QueueFree();
 			mReferenceHelper.NonPersistentElements = newNonPersitanceScene;
+			newNonPersitanceScene.Owner = null;
 			mReferenceHelper.AddChild(newNonPersitanceScene);
-			newNonPersitanceScene.Owner = mReferenceHelper;
+			newNonPersitanceScene.Owner = mReferenceHelper.Owner;
 		}
 
 		public override void _Ready(){
