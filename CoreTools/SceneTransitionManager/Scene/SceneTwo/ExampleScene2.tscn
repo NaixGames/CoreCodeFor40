@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dqd4wln1wph42" path="res://icon.svg" id="3_ucd8o"]
 [ext_resource type="AudioStream" uid="uid://bild7eo77cnpq" path="res://CoreTools/AudioManager/BasicTesting/01. Castlevania - Vampire Killer [Torby Brand].mp3" id="5_ul3vj"]
 [ext_resource type="Script" path="res://CoreTools/AudioManager/Scripts/AdaptativeMusicTrack.cs" id="6_qvi8d"]
-[ext_resource type="PackedScene" uid="uid://c3cp7rsny752j" path="res://CoreTools/SceneTransitionManager/Scene/SceneTwo/NPActualExampleScene2.tscn" id="7_6x856"]
+[ext_resource type="PackedScene" uid="uid://c3cp7rsny752j" path="res://CoreTools/SceneTransitionManager/Scene/SceneTwo/NPEExampleScene2.tscn" id="7_6x856"]
 
 [node name="Scene" type="Node"]
 script = ExtResource("1_cvfdc")

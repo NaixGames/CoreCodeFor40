@@ -60,7 +60,7 @@ namespace CoreCode.Scripts{
 		// ------------------------------------ Methods -----------------------------------------
 
 		public void HeavyTransitionToNewScene(string sceneName){
-			if (!mSceneDatabase.mActualSceneSceneNameToPathMapping.ContainsKey(sceneName)){
+			if (!mSceneDatabase.mSceneNameToPathMapping.ContainsKey(sceneName)){
 				mLogObject.Err("trying to load scene not loaded in Scene database named: " + sceneName);
 				return;
 			}
@@ -75,7 +75,7 @@ namespace CoreCode.Scripts{
 			mReferenceHelper.NonPersistentElements=null;
 
 			//We load the other scene
-			Node newActualScene = ResourceLoader.Load<PackedScene>(mSceneDatabase.mActualSceneSceneNameToPathMapping[sceneName]).Instantiate(); 
+			Node newActualScene = ResourceLoader.Load<PackedScene>(mSceneDatabase.mSceneNameToPathMapping[sceneName]).Instantiate(); 
 			SceneTransitionReferenceHelper loadedReferenceHelper = (SceneTransitionReferenceHelper) newActualScene;
 			loadedReferenceHelper.GetNodesFromPaths();
 

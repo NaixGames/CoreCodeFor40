@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://btss5a2a612os"]
 
 [ext_resource type="Script" path="res://CoreTools/SceneTransitionManager/Script/SceneTransitionReferenceHelper.cs" id="1_tjui5"]
-[ext_resource type="PackedScene" uid="uid://dxfwl1fp2xua7" path="res://CoreTools/FSM/Scenes/FSMTest/NPActualFSMTest.tscn" id="2_amjlp"]
+[ext_resource type="PackedScene" uid="uid://dxfwl1fp2xua7" path="res://CoreTools/FSM/Scenes/FSMTest/NPEFSMTest.tscn" id="2_amjlp"]
 [ext_resource type="Script" path="res://CoreTools/ObjectPooler/Scripts/GameObjectPooler2D.cs" id="3_orevq"]
 
 [node name="ActualFSMTest" type="Node"]

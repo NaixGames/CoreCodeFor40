@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://joynw65rdgvq"]
 
 [ext_resource type="Script" path="res://CoreTools/SceneTransitionManager/Script/SceneTransitionReferenceHelper.cs" id="1_jtyl6"]
-[ext_resource type="PackedScene" uid="uid://dugxtsat5krte" path="res://CoreTools/GodotLibraryUseExamples/BezierCurves/Scene/BezierCurveTest/NPActualBezierCurveTest.tscn" id="2_hlvfv"]
+[ext_resource type="PackedScene" uid="uid://dugxtsat5krte" path="res://CoreTools/GodotLibraryUseExamples/BezierCurves/Scene/BezierCurveTest/NPEBezierCurveTest.tscn" id="2_hlvfv"]
 [ext_resource type="Script" path="res://CoreTools/ObjectPooler/Scripts/GameObjectPooler2D.cs" id="3_j4b5d"]
 
 [node name="ActualBezierCurveTest" type="Node"]

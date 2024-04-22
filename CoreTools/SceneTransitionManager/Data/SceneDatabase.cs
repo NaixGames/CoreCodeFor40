@@ -25,8 +25,6 @@ namespace CoreCode.Scripts{
         //This MUST be exported to be serialized. Sadly.
         [Export] public Godot.Collections.Dictionary<string, string> mSceneNameToPathMapping = new Godot.Collections.Dictionary<string,string>();
 
-        [Export] public Godot.Collections.Dictionary<string, string> mActualSceneSceneNameToPathMapping = new Godot.Collections.Dictionary<string,string>();
-
         [Export] public Godot.Collections.Dictionary<string, string> mNonPersistantSceneNameToPathMapping = new Godot.Collections.Dictionary<string,string>();
 
     
@@ -42,16 +40,14 @@ namespace CoreCode.Scripts{
             }
             GD.Print("The scene database is being updated");
             mSceneNameToPathMapping.Clear();
-            mActualSceneSceneNameToPathMapping.Clear();
             mNonPersistantSceneNameToPathMapping.Clear();
 
             foreach (string keyString in mSceneNameToUIDMapping.Keys){
                 string wholeScenePath = ResourceUid.GetIdPath(ResourceUid.TextToId(mSceneNameToUIDMapping[keyString]));
                 mSceneNameToPathMapping.Add(keyString, wholeScenePath);
-                string nonPersistantScenePath = wholeScenePath.Replace("Whole", "NPActual");
+                int lastSeparator = wholeScenePath.LastIndexOf("/");
+                string nonPersistantScenePath = wholeScenePath.Insert(lastSeparator+1, "NPE");
                 mNonPersistantSceneNameToPathMapping.Add(keyString, nonPersistantScenePath);
-                string ActualScenePath = wholeScenePath.Replace("Whole", "Actual");
-                mActualSceneSceneNameToPathMapping.Add(keyString, ActualScenePath);
             }
             GD.Print("The scene database was updated!");
         }

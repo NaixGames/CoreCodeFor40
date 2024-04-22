@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dn2ou7hcslyx6"]
 
 [ext_resource type="Script" path="res://CoreTools/SceneTransitionManager/Script/SceneTransitionReferenceHelper.cs" id="1_5ism7"]
-[ext_resource type="PackedScene" uid="uid://di363hn5degd6" path="res://CoreTools/GodotLibraryUseExamples/Tweens/Scene/TweenTest/NPActualTweenTest.tscn" id="2_drhv2"]
+[ext_resource type="PackedScene" uid="uid://di363hn5degd6" path="res://CoreTools/GodotLibraryUseExamples/Tweens/Scene/TweenTest/NPETweenTest.tscn" id="2_drhv2"]
 [ext_resource type="Script" path="res://CoreTools/ObjectPooler/Scripts/GameObjectPooler2D.cs" id="3_mq3vk"]
 
 [node name="ActualTweenTest" type="Node"]

@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://crdp86qsrhut8"]
 
 [ext_resource type="Script" path="res://CoreTools/SceneTransitionManager/Script/SceneTransitionReferenceHelper.cs" id="1_klum0"]
-[ext_resource type="PackedScene" uid="uid://dam1je1nkvg51" path="res://CoreTools/ObjectPooler/Scenes/ObjectPoolerTest/NPActualObjectPoolerTest.tscn" id="2_1to5a"]
+[ext_resource type="PackedScene" uid="uid://dam1je1nkvg51" path="res://CoreTools/ObjectPooler/Scenes/ObjectPoolerTest/NPEObjectPoolerTest.tscn" id="2_1to5a"]
 [ext_resource type="Script" path="res://CoreTools/ObjectPooler/Scripts/GameObjectPooler2D.cs" id="3_yf8mh"]
 [ext_resource type="PackedScene" uid="uid://cfwutdbsfce8m" path="res://CoreTools/ObjectPooler/ObjectsForTest/GreenObject.tscn" id="4_bxsh5"]
 [ext_resource type="PackedScene" path="res://CoreTools/ObjectPooler/ObjectsForTest/RedObject.tscn" id="5_xp0d2"]

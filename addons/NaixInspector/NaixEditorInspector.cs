@@ -10,7 +10,7 @@ namespace CoreCode.Inspector{
 	{
 		public override bool _CanHandle(GodotObject @object)
 		{
-			return (IsSceneDatabase(@object));
+			return (IsSceneDatabase(@object)) || (IsStateManagerPointer(@object));
 		}
 
 		public override void _ParseBegin(GodotObject @object)
@@ -20,11 +20,19 @@ namespace CoreCode.Inspector{
 				AddPropertyEditor("Generate Scene data mappings", new SceneDatabaseInspectorPluging ());
 				return;
 			}
+			if (IsStateManagerPointer(@object)){
+				StateManagerPointer myObject = @object as StateManagerPointer;
+				AddPropertyEditor("State Manager Drawer", new StateManagerPointerInspectorPluging ());
+			}
 		}
 
 		//Parsing type methods
 		private bool IsSceneDatabase(GodotObject @object){
 			return @object is SceneDatabase;
+		}
+
+		private bool IsStateManagerPointer(GodotObject @object){
+			return @object is StateManagerPointer;
 		}
 	}
 }

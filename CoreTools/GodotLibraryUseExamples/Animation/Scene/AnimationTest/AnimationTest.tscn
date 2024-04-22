@@ -1,8 +1,9 @@
 [gd_scene load_steps=4 format=3 uid="uid://cnin24nlo8pwf"]
 
 [ext_resource type="Script" path="res://CoreTools/SceneTransitionManager/Script/SceneTransitionReferenceHelper.cs" id="1_mkmcx"]
-[ext_resource type="PackedScene" uid="uid://dvyavfmdn0fbm" path="res://CoreTools/GodotLibraryUseExamples/Animation/Scene/AnimationTest/NPActualAnimationTest.tscn" id="2_dnnnh"]
+[ext_resource type="PackedScene" uid="uid://dvyavfmdn0fbm" path="res://CoreTools/GodotLibraryUseExamples/Animation/Scene/AnimationTest/NPEAnimationTest.tscn" id="2_dnnnh"]
 [ext_resource type="Script" path="res://CoreTools/ObjectPooler/Scripts/GameObjectPooler2D.cs" id="3_yeaqt"]
+
 
 [node name="ActualAnimationTest" type="Node"]
 script = ExtResource("1_mkmcx")

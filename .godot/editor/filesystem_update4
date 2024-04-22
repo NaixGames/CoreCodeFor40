@@ -1,9 +1,3 @@
-res://AIExamples/Chapter2/Task1Seek/SeekScene/ActualSeekScene.tscn
-res://CoreTools/FSM/Scripts/StateMachineAIInput.cs
-res://AIExamples/Chapter2/Task1Seek/SeekScene/NPActualSeekScene.tscn
-res://AIExamples/Chapter2/Task1Seek/AISeekAI/AISeekAI.tscn
-res://AIExamples/Chapter2/Task1Seek/ActorAIFSM/ActorAIFSM.tscn
-res://CoreTools/SceneTransitionManager/Scene/SceneOne/ActualExampleScene1.tscn
 res://CoreTools/ObjectPooler/Scripts/PoolableParticleSystem3D.cs
 res://addons/NaixInspector/NaixInspector.cs
 res://CoreTools/FSM/Scripts/StateManagerPointer.cs
@@ -67,6 +61,7 @@ res://AIExamples/Chapter2/Task5Evade/AIEvadeAI/States/EvadeState.cs
 res://CoreTools/ObjectPooler/Scripts/GameObjectPooler3D.cs
 res://AIExamples/Chapter1/Scripts/Bob/DeadState.cs
 res://CoreTools/Input/InputReader/Scripts/InputReaderPlayer.cs
+res://CoreTools/FSM/Scripts/StateMachineAIInput.cs
 res://CoreTools/FSM/Scenes/Actor/Player/PlayerStatesExample/PlayerStateMoving.cs
 res://CoreTools/DataContainers/Vector2Data.cs
 res://CoreTools/SceneTransitionManager/Script/SceneTransitionReferenceHelper.cs
@@ -85,5 +80,18 @@ res://CoreTools/Input/InputReader/Scripts/InputEmiterTouch.cs
 res://CoreTools/AudioManager/Scripts/AudioManager.cs
 res://CoreTools/GodotLibraryUseExamples/Shaders/Scripts/WaterDiffuseScript.cs
 res://CoreTools/SceneTransitionManager/Data/Inspector/SceneDatabaseInspectorPluging.cs
+res://CoreTools/SceneTransitionManager/Scene/SceneOne/ActualExampleScene1.tscn
+res://CoreTools/SceneTransitionManager/Data/SceneDatabase.tres
+res://AIExamples/Chapter2/Task1Seek/ActorAIFSM/ActorAIFSM.tscn
+res://CoreTools/SceneTransitionManager/Scene/SceneOne/ExampleScene1.tscn
 res://CoreTools/AudioManager/AudioBusConfigurations/default_bus_layout.tres
-res://CoreTools/SceneTransitionManager/Scene/SceneOne/NPActualExampleScene1.tscn
+res://CoreTools/FSM/Scripts/Editor/StateManagerPointerInspectorPluging.cs
+res://CoreTools/FSM/Scenes/Actor/Player/TestStateManagerPointer.tres
+res://CoreTools/FSM/Scenes/Actor/Player/PlayerStatesExample/PlayerStateManagerExample.cs
+res://CoreTools/FSM/Scenes/Actor/Player/player.tscn
+res://ExampleGeneration/ActorTestActor/States/Initial.cs
+res://CoreTools/FSM/Scenes/Actor/Player/States/PlayerStateJumping.cs
+res://CoreTools/FSM/Scenes/Actor/Player/States/PlayerStateMoving.cs
+res://CoreTools/FSM/Scenes/Actor/Player/States/PlayerStateFalling.cs
+res://CoreTools/FSM/Scenes/Actor/Player/StateManager/TestStateManagerPointer.tres
+res://CoreTools/FSM/Scenes/FSMTest/NPEFSMTest.tscn

@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://plu1ibsbymv5"]
 
 [ext_resource type="Script" path="res://CoreTools/SceneTransitionManager/Script/SceneTransitionReferenceHelper.cs" id="1_01ivb"]
-[ext_resource type="PackedScene" uid="uid://ciavosrlmn3gk" path="res://AIExamples/Chapter1/Task2/SceneTask2/NPActualSceneTask2.tscn" id="2_prlvc"]
+[ext_resource type="PackedScene" uid="uid://ciavosrlmn3gk" path="res://AIExamples/Chapter1/Task2/SceneTask2/NPESceneTask2.tscn" id="2_prlvc"]
 [ext_resource type="Script" path="res://CoreTools/ObjectPooler/Scripts/GameObjectPooler2D.cs" id="3_vis84"]
 
 [node name="ActualSceneTask2" type="Node"]

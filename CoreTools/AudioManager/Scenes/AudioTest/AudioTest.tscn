@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://dtv2v6rcqfr0d"]
 
 [ext_resource type="Script" path="res://CoreTools/SceneTransitionManager/Script/SceneTransitionReferenceHelper.cs" id="1_to0kj"]
-[ext_resource type="PackedScene" uid="uid://bg8gwtn8f24oh" path="res://CoreTools/AudioManager/Scenes/AudioTest/NPActualAudioTest.tscn" id="2_i5rfs"]
+[ext_resource type="PackedScene" uid="uid://bg8gwtn8f24oh" path="res://CoreTools/AudioManager/Scenes/AudioTest/NPEAudioTest.tscn" id="2_i5rfs"]
 [ext_resource type="Script" path="res://CoreTools/ObjectPooler/Scripts/GameObjectPooler2D.cs" id="3_qq7ng"]
 [ext_resource type="AudioStream" uid="uid://cj32numecji5q" path="res://CoreTools/AudioManager/BasicTesting/01TestAudio.mp3" id="4_l6u8a"]
 [ext_resource type="Script" path="res://CoreTools/AudioManager/Scripts/AdaptativeMusicTrack.cs" id="5_nwmjv"]

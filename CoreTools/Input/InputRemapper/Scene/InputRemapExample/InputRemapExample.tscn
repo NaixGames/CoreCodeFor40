@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://cnwxcg2e7ghu1"]
 
 [ext_resource type="Script" path="res://CoreTools/SceneTransitionManager/Script/SceneTransitionReferenceHelper.cs" id="1_4msue"]
-[ext_resource type="PackedScene" uid="uid://dcpuylr16p6lh" path="res://CoreTools/Input/InputRemapper/Scene/InputRemapExample/NPActualInputRemapExample.tscn" id="2_dsepo"]
+[ext_resource type="PackedScene" uid="uid://dcpuylr16p6lh" path="res://CoreTools/Input/InputRemapper/Scene/InputRemapExample/NPEInputRemapExample.tscn" id="2_dsepo"]
 [ext_resource type="Script" path="res://CoreTools/ObjectPooler/Scripts/GameObjectPooler2D.cs" id="3_q8swo"]
 
 [node name="ActualInputRemapExample" type="Node"]

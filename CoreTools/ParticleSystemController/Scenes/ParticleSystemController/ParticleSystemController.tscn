@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://cyt2yqilfbu73"]
 
 [ext_resource type="Script" path="res://CoreTools/SceneTransitionManager/Script/SceneTransitionReferenceHelper.cs" id="1_0mu4l"]
-[ext_resource type="PackedScene" uid="uid://ccgnkf7qk7rga" path="res://CoreTools/ParticleSystemController/Scenes/ParticleSystemController/NPActualParticleSystemController.tscn" id="2_1visu"]
+[ext_resource type="PackedScene" uid="uid://ccgnkf7qk7rga" path="res://CoreTools/ParticleSystemController/Scenes/ParticleSystemController/NPEParticleSystemController.tscn" id="2_1visu"]
 [ext_resource type="Script" path="res://CoreTools/ObjectPooler/Scripts/GameObjectPooler2D.cs" id="3_loh5y"]
 [ext_resource type="Texture2D" uid="uid://dqd4wln1wph42" path="res://icon.svg" id="4_abrmd"]
 [ext_resource type="Script" path="res://CoreTools/ObjectPooler/Scripts/PoolableParticleSystem2D.cs" id="5_xtjfa"]
