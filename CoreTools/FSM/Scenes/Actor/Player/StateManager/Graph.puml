@@ -1,0 +1,10 @@
+@startuml
+hide circle
+skinparam linetype ortho
+class "PlayerStateJumping"
+"PlayerStateJumping" --> "PlayerStateFalling"
+class "PlayerStateMoving"
+"PlayerStateMoving" --> "PlayerStateJumping"
+class "PlayerStateFalling"
+"PlayerStateFalling" --> "PlayerStateMoving"
+@enduml

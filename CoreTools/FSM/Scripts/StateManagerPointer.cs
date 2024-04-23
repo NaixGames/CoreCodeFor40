@@ -2,7 +2,7 @@ using Godot;
 using System;
 using System.Reflection;
 using System.Collections.Generic;
-using System.Net.Mime;
+using System.Linq;
 
 namespace CoreCode.FSM
 {
@@ -10,6 +10,8 @@ namespace CoreCode.FSM
     public  partial class StateManagerPointer : Resource
     {
         [Export] public string StateManagerClassPath;
+
+        private Dictionary<string, string> mClassToNameMapping = new Dictionary<string, string>();
 
         private Dictionary<string, string> mNameToClassMapping = new Dictionary<string, string>();
 
@@ -29,7 +31,8 @@ namespace CoreCode.FSM
 
         public void PrintStateManagerGraph(){
 #if TOOLS
-            GD.Print("TEST");
+            GD.Print("Generating data");
+            mClassToNameMapping.Clear();
             mNameToClassMapping.Clear();
             mStatesConnections.Clear();
 
@@ -56,7 +59,8 @@ namespace CoreCode.FSM
                 return;
             }
 
-            GiveStateTransitions(StatesFolder, fileName.Substring(0,fileName.IndexOf(".")));
+            GetStateTransitions(StatesFolder, fileName.Substring(0,fileName.IndexOf(".")));
+            PrintAndSaveInformation(ContainerFolder);
 #endif
         }
 
@@ -82,13 +86,14 @@ namespace CoreCode.FSM
             string[] words = content.Split(" ");
             for(int i=0 ; i< words.Length; i++){
                 if (words[i]=="new"){
-                    mNameToClassMapping.Add(words[i-3], words[i-2]);
+                    mClassToNameMapping.Add(words[i-3], words[i-2]);
+                    mNameToClassMapping.Add(words[i-2], words[i-3]);
                 }
             }
         }
 
-        private void GiveStateTransitions(string StateFolder, string StateManagerName){
-            foreach (string className in mNameToClassMapping.Keys){
+        private void GetStateTransitions(string StateFolder, string StateManagerName){
+            foreach (string className in mClassToNameMapping.Keys){
                 mStatesConnections.Add(className, new List<string>());
                 FileAccess file = FileAccess.Open(ProjectSettings.LocalizePath(StateFolder+"/"+className+".cs"), FileAccess.ModeFlags.Read);
                 string content = file.GetAsText();
@@ -98,31 +103,54 @@ namespace CoreCode.FSM
                 content = content.Replace("\t", " ");
                 string[] words = content.Split(" ");
                 for(int i=0 ; i< words.Length; i++){
-                    if (words[i]!="return"){
+                    int pointIndex = words[i].IndexOf(".");
+
+                    if (pointIndex == -1){
                         continue;
                     }
 
-                    string nextString = words[i+1];
-                    int pointIndex = nextString.IndexOf(".");
-                    if (pointIndex==-1){
+                    string stateName = (words[i].Substring(pointIndex+1));
+
+                    //If it is a state we need to remove the ";" and the start of the next line 
+                    stateName = stateName.Remove(stateName.Length - 2);
+
+                    if (!mClassToNameMapping.Values.Contains(stateName)){
                         continue;
                     }
-
-                    string stateName = nextString.Substring(pointIndex+1);
-
+                    
                     if (mStatesConnections[className].Contains(stateName)){
                         continue;
                     }
 
-                    mStatesConnections[className].Add(nextString.Substring(pointIndex+1));
+                    mStatesConnections[className].Add(stateName);
                 }
             }
-            
+        }
+
+        private void PrintAndSaveInformation(string PathToSave){
+            string preamble = "";
+            preamble += "@startuml" + "\n";
+            preamble += "hide circle" + "\n";
+            preamble += "skinparam linetype ortho" + "\n";
+            string content = "";
             foreach (string className in mStatesConnections.Keys){
+                content += "class " + PutQuotes(className) + "\n";
                 foreach (string destinationState in mStatesConnections[className]){
-                    GD.Print(mNameToClassMapping[className] + " -> " + destinationState);
+                    content += PutQuotes(className) + " --> " + PutQuotes(mNameToClassMapping[destinationState]) + "\n";
                 }
             }
+            GD.Print(content);
+    
+            content = preamble + content;
+            content += "@enduml";
+            FileAccess file = FileAccess.Open(PathToSave+"/" + "Graph.puml", FileAccess.ModeFlags.Write);
+            file.StoreLine(content);
+
+            file.Close();
+        }
+
+        private string PutQuotes(string state){
+            return "\"" + state + "\"";
         }
 #endif
 
