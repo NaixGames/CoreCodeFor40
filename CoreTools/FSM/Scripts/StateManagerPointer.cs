@@ -60,6 +60,18 @@ namespace CoreCode.FSM
             }
 
             GetStateTransitions(StatesFolder, fileName.Substring(0,fileName.IndexOf(".")));
+
+            /*
+            GD.Print("TEST");
+            foreach (string value in mClassToNameMapping.Keys){
+                GD.Print(value + " " + mClassToNameMapping[value]);
+            }
+            GD.Print("TEST2");
+
+            foreach (string value in mStatesConnections.Keys){
+                GD.Print(value + " " + mStatesConnections[value].Count);
+            }*/
+
             PrintAndSaveInformation(ContainerFolder);
 #endif
         }
@@ -109,10 +121,23 @@ namespace CoreCode.FSM
                         continue;
                     }
 
-                    string stateName = (words[i].Substring(pointIndex+1));
+                    int endIndex = words[i].IndexOf(";");
+
+                    string stateName = "";
+
+                    if (endIndex == -1){
+                        stateName = (words[i].Substring(pointIndex+1));
+                    }
+                    else{
+                        stateName = (words[i].Substring(pointIndex+1, endIndex-pointIndex));
+                    }
+
 
                     //If it is a state we need to remove the ";" and the start of the next line 
-                    stateName = stateName.Remove(stateName.Length - 2);
+                    if (stateName.Length < 2){
+                        continue;
+                    }
+                    stateName = stateName.Remove(stateName.Length - 1);
 
                     if (!mClassToNameMapping.Values.Contains(stateName)){
                         continue;
