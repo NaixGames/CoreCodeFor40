@@ -3,6 +3,7 @@ using System;
 using System.Reflection;
 using System.Collections.Generic;
 using System.Linq;
+using System.Diagnostics;
 
 namespace CoreCode.FSM
 {
@@ -172,6 +173,26 @@ namespace CoreCode.FSM
             file.StoreLine(content);
 
             file.Close();
+
+            //Try to call PUML to generate the graph image automatically.
+            string pathToPUML = ProjectSettings.GlobalizePath("res://ExternalLibraries/PUML/") + "plantuml.jar";
+
+            ProcessStartInfo processInfo = new ProcessStartInfo("java.exe", "-jar " + pathToPUML + " " +PathToSave+"/" + "Graph.puml")
+                      {
+                          CreateNoWindow = true,
+                          UseShellExecute = false
+                      };
+            Process proc;
+
+            if ((proc = Process.Start(processInfo)) == null)
+            {
+                throw new InvalidOperationException("Couldnt find PUML!");
+            }
+
+            proc.WaitForExit();
+            int exitCode = proc.ExitCode;
+            proc.Close();
+
         }
 
         private string PutQuotes(string state){

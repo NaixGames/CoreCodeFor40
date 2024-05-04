@@ -33,10 +33,10 @@ namespace CoreCode.Scripts{
 		protected override void UpdateInput(double delta)
 		{
 			for( int i=0; i< mAxis.Length ; i++){
-				ProcessAxisValue(mAxis[i], Input.GetActionStrength(mAxis[i]+PlayerIdAndP()), (float)delta);
+				ProcessAxisValue(mAxis[i], IsActive? Input.GetActionStrength(mAxis[i]+PlayerIdAndP()) : 0 , (float)delta);
 			}
 			for( int i=0; i< mButtons.Length ; i++){
-				ProcessButtonPressValue(mButtons[i], Input.IsActionPressed(mButtons[i]+PlayerIdAndP()), (float)delta);
+				ProcessButtonPressValue(mButtons[i], IsActive? Input.IsActionPressed(mButtons[i]+PlayerIdAndP()) : false, (float)delta);
 			}
 		}
 

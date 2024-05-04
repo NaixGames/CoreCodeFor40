@@ -26,6 +26,7 @@ namespace CoreCode.Scripts{
 		public string[] AxisNames{
 			get{return mAxis;}
 		}
+
 		[Export] protected string[] mButtons = new string[0];
 		public string[] ButtonNames{
 			get{return mButtons;}
@@ -34,9 +35,9 @@ namespace CoreCode.Scripts{
 
 		protected Dictionary<string, InputActionInfo> mAxisValues = new Dictionary<string, InputActionInfo>();
 		protected Dictionary<string, InputActionInfo> mButtonsValues = new Dictionary<string, InputActionInfo>();
+		protected bool mIsFirstFrame = true;
 
-
-		protected bool mIsFirstFrame=true;
+		public bool IsActive = true;
 
 
 		// ------------------------------------ Variable for logging-----------------------------------------
