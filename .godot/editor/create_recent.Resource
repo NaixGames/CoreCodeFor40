@@ -1,3 +1,4 @@
+PoolableObjectReference
 StateManagerPointer
 Curve
 Vector2Data

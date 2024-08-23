@@ -1,45 +1,30 @@
-[gd_scene load_steps=6 format=3 uid="uid://ccuh0yral7wh2"]
+[gd_scene load_steps=5 format=3 uid="uid://ccuh0yral7wh2"]
 
-[ext_resource type="PackedScene" uid="uid://drxehyvydlrnt" path="res://CoreTools/SceneTemplate/Managers.tscn" id="1_yewjp"]
 [ext_resource type="PackedScene" uid="uid://bqjh0lu0ga1q6" path="res://CoreTools/FSM/Scenes/Actor/Player/player.tscn" id="2_7eywv"]
-[ext_resource type="Script" path="res://CoreTools/ObjectPooler/Scripts/GameObjectPooler.cs" id="3_33hbc"]
 [ext_resource type="Script" path="res://CoreTools/Input/InputRemapper/Scripts/InputRemapperExample.cs" id="3_nrjbl"]
+[ext_resource type="Script" path="res://CoreTools/ObjectPooler/Scripts/GameObjectPooler2D.cs" id="3_ry65t"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ly7ef"]
 
 [node name="InputRemapperTest" type="Node2D"]
 
-[node name="Managers" parent="." instance=ExtResource("1_yewjp")]
+[node name="ActualScene" type="Node" parent="."]
 
-[node name="LogManager" parent="Managers" index="0"]
-mAllowLogging = true
-mDisplayInputChannels = true
-
-[node name="Scene" type="Node" parent="."]
-
-[node name="ActualScene" type="Node" parent="Scene"]
-
-[node name="Player" parent="Scene/ActualScene" instance=ExtResource("2_7eywv")]
+[node name="Player" parent="ActualScene" instance=ExtResource("2_7eywv")]
 position = Vector2(535, 393)
 
-[node name="PlayerExampleFSM" parent="Scene/ActualScene/Player" index="2" node_paths=PackedStringArray("mInputReader")]
-mInputReader = NodePath("")
+[node name="StaticBody2D" type="StaticBody2D" parent="ActualScene"]
 
-[node name="StaticBody2D" type="StaticBody2D" parent="Scene/ActualScene"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Scene/ActualScene/StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ActualScene/StaticBody2D"]
 position = Vector2(529, 628)
 scale = Vector2(100, 1.944)
 shape = SubResource("RectangleShape2D_ly7ef")
 
-[node name="InputRemapperExample" type="Node" parent="Scene/ActualScene"]
+[node name="InputRemapperExample" type="Node" parent="ActualScene"]
 script = ExtResource("3_nrjbl")
 mShouldLog = true
 
-[node name="ObjectPooler" type="Node" parent="Scene"]
-script = ExtResource("3_33hbc")
-mPoolPosition = Vector3(200, 600, 0)
-mShouldLog = true
+[node name="ObjectPooler" type="Node" parent="."]
+script = ExtResource("3_ry65t")
 
-[editable path="Managers"]
-[editable path="Scene/ActualScene/Player"]
+[editable path="ActualScene/Player"]

@@ -1,5 +1,5 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1724416924
+::res://::1724418819
 export_presets.cfg::TextFile::-1::1712850594::0::1::::<><>::
 icon.svg::CompressedTexture2D::8290277361856763881::1701619747::1724411274::1::::<><>::
 README.md::TextFile::-1::1701619747::0::1::::<><>::
@@ -20,7 +20,8 @@ DockerButtonExample.cs::CSharpScript::-1::1701619747::0::1::::<>Button<>::
 Example.tscn::PackedScene::-1::1701619747::0::1::::<><>::res://addons/Docker/ButtonsScripts/Example/DockerButtonExample.cs
 ::res://addons/Docker/Layout/::1713284066
 NaixDock.tscn::PackedScene::5116556002749021836::1713284066::0::1::::<><>::res://addons/Docker/ButtonsScripts/Example/Example.tscn<>res://addons/Docker/DockerExpandingButton.cs<>uid://6ichkjaxn0iv::::res://addons/Docker/ButtonsScripts/CreateScene/NewScene.tscn<>uid://c60axen41iigm::::res://EditorAssets/Images/ExpandableButtomIcon.png<>res://addons/Docker/ButtonsScripts/CreateFSM/CreateFSM.tscn
-::res://addons/gdUnit4/::1724416914
+::res://addons/gdUnit4/::1724418315
+GdUnitRunner.cfg::TextFile::-1::1724418315::0::1::::<><>::
 plugin.cfg::TextFile::-1::1724416914::0::1::::<><>::
 plugin.gd::GDScript::-1::1724416914::0::1::::<>EditorPlugin<>::
 ::res://addons/gdUnit4/bin/::1724416914
@@ -194,7 +195,7 @@ GdUnitMonitor.gd::GDScript::-1::1724416915::0::1::::GdUnitMonitor<>RefCounted<>:
 GdUnitOrphanNodesMonitor.gd::GDScript::-1::1724416915::0::1::::GdUnitOrphanNodesMonitor<>GdUnitMonitor<>::
 GodotGdErrorMonitor.gd::GDScript::-1::1724416915::0::1::::GodotGdErrorMonitor<>GdUnitMonitor<>::
 ::res://addons/gdUnit4/src/mono/::1724416915
-GdUnit4CSharpApi.cs::CSharpScript::-1::1724416915::0::1::::<><>::
+GdUnit4CSharpApi.cs::CSharpScript::-1::1724416915::0::1::::<>Object<>::
 GdUnit4CSharpApiLoader.gd::GDScript::-1::1724416915::0::1::::GdUnit4CSharpApiLoader<>RefCounted<>::
 ::res://addons/gdUnit4/src/network/::1724416915
 GdUnitServer.gd::GDScript::-1::1724416915::0::1::::<>Node<>::
@@ -503,14 +504,14 @@ default_bus_layout.tres::AudioBusLayout::593053143917367812::1724414240::0::1:::
 07. Strike the Earth! [MaesterTed, Flake].mp3::AudioStreamMP3::6199436976487870691::1701619170::1724411274::1::::<><>::
 BasicAudioTesting.cs::CSharpScript::-1::1701619170::0::1::::<>Node<>::
 ::res://CoreTools/AudioManager/Scenes/::1701619746
-::res://CoreTools/AudioManager/Scenes/AudioTest/::1713801025
-AudioTest.tscn::PackedScene::8537880528111869889::1713801025::0::1::::<><>::res://CoreTools/SceneTransitionManager/Script/SceneTransitionReferenceHelper.cs<>uid://bg8gwtn8f24oh::::res://CoreTools/AudioManager/Scenes/AudioTest/NPEAudioTest.tscn<>res://CoreTools/ObjectPooler/Scripts/GameObjectPooler2D.cs<>uid://cj32numecji5q::::res://CoreTools/AudioManager/BasicTesting/01TestAudio.mp3<>res://CoreTools/AudioManager/Scripts/AdaptativeMusicTrack.cs<>uid://domtjaregpqq2::::res://CoreTools/AudioManager/BasicTesting/02TestAudio.mp3<>uid://bild7eo77cnpq::::res://CoreTools/AudioManager/BasicTesting/01. Castlevania - Vampire Killer [Torby Brand].mp3
+::res://CoreTools/AudioManager/Scenes/AudioTest/::1724418822
+AudioTest.tscn::PackedScene::8537880528111869889::1724418822::0::1::::<><>::res://CoreTools/SceneTransitionManager/Script/SceneTransitionReferenceHelper.cs<>uid://bg8gwtn8f24oh::::res://CoreTools/AudioManager/Scenes/AudioTest/NPEAudioTest.tscn<>res://CoreTools/ObjectPooler/Scripts/GameObjectPooler2D.cs<>uid://cj32numecji5q::::res://CoreTools/AudioManager/BasicTesting/01TestAudio.mp3<>res://CoreTools/AudioManager/Scripts/AdaptativeMusicTrack.cs<>uid://domtjaregpqq2::::res://CoreTools/AudioManager/BasicTesting/02TestAudio.mp3<>uid://bild7eo77cnpq::::res://CoreTools/AudioManager/BasicTesting/01. Castlevania - Vampire Killer [Torby Brand].mp3
 NPEAudioTest.tscn::PackedScene::2876082820361030495::1701619170::0::1::::<><>::res://CoreTools/AudioManager/Scripts/AudioPhasingTest.cs
 ::res://CoreTools/AudioManager/Scripts/::1701619746
 AdaptativeMusicManager.cs::CSharpScript::-1::1713464106::0::1::::<>Node<>::
 AdaptativeMusicTrack.cs::CSharpScript::-1::1701619170::0::1::::<>AudioStreamPlayer<>::
 AudioManager.cs::CSharpScript::-1::1713115630::0::1::::<>Node<>::
-AudioPhasingTest.cs::CSharpScript::-1::1701619170::0::1::::<>Node<>::
+AudioPhasingTest.cs::CSharpScript::-1::1724418123::0::1::::<>Node<>::
 ::res://CoreTools/CameraManager/::1724414407
 Camera3DInstance.cs::CSharpScript::-1::1720544405::0::1::::<>Camera3D<>::
 Camera3DManager.cs::CSharpScript::-1::1720544469::0::1::::<>Node<>::
@@ -623,8 +624,8 @@ InputReaderTestNumberOne.cs::CSharpScript::-1::1701619170::0::1::::<>Node<>::
 InputReaderTestNumberTwo.cs::CSharpScript::-1::1701619170::0::1::::<>Node<>::
 InputReaderVoid.cs::CSharpScript::-1::1701619170::0::1::::<>Node<>::
 ::res://CoreTools/Input/InputRemapper/::1701619746
-::res://CoreTools/Input/InputRemapper/Scene/::1701619746
-InputRemapperTest.tscn::PackedScene::4954977560378511697::1701619170::0::1::::<><>::uid://drxehyvydlrnt::::res://CoreTools/SceneTemplate/Managers.tscn<>uid://bqjh0lu0ga1q6::::res://CoreTools/FSM/Scenes/Actor/Player/player.tscn<>res://CoreTools/ObjectPooler/Scripts/GameObjectPooler.cs<>res://CoreTools/Input/InputRemapper/Scripts/InputRemapperExample.cs
+::res://CoreTools/Input/InputRemapper/Scene/::1724418822
+InputRemapperTest.tscn::PackedScene::4954977560378511697::1724418822::0::1::::<><>::uid://bqjh0lu0ga1q6::::res://CoreTools/FSM/Scenes/Actor/Player/player.tscn<>res://CoreTools/Input/InputRemapper/Scripts/InputRemapperExample.cs<>res://CoreTools/ObjectPooler/Scripts/GameObjectPooler2D.cs
 ::res://CoreTools/Input/InputRemapper/Scene/InputRemapExample/::1724414407
 ActualInputRemapExample.tscn::PackedScene::5732113064765945806::1713119898::0::1::::<><>::res://CoreTools/SceneTransitionManager/Script/SceneTransitionReferenceHelper.cs<>uid://dcpuylr16p6lh::::res://CoreTools/Input/InputRemapper/Scene/InputRemapExample/NPActualInputRemapExample.tscn<>res://CoreTools/ObjectPooler/Scripts/GameObjectPooler2D.cs
 InputRemapExample.tscn::PackedScene::5732113064765945806::1713801152::0::1::::<><>::res://CoreTools/SceneTransitionManager/Script/SceneTransitionReferenceHelper.cs<>uid://dcpuylr16p6lh::::res://CoreTools/Input/InputRemapper/Scene/InputRemapExample/NPEInputRemapExample.tscn<>res://CoreTools/ObjectPooler/Scripts/GameObjectPooler2D.cs
@@ -676,14 +677,13 @@ PoolableObjectReference.cs::CSharpScript::-1::1721213457::0::1::::PoolableObject
 PoolableParticleSystem2D.cs::CSharpScript::-1::1721235161::0::1::::<>GPUParticles2D<>::
 PoolableParticleSystem3D.cs::CSharpScript::-1::1721235161::0::1::::<>GPUParticles3D<>::
 ::res://CoreTools/ParticleSystemController/::1701619746
-::res://CoreTools/ParticleSystemController/Scenes/::1701619746
-ParticleSystemExamples.tscn::PackedScene::3206683471377874113::1701619170::0::1::::<><>::uid://dqd4wln1wph42::::res://icon.svg
-ParticleSystemWithLibraryExample.tscn::PackedScene::8305735417415056887::1701619170::0::1::::<><>::uid://bib7i8f55qbxs::::res://CoreTools/SceneTemplate/LogManager.tscn<>res://CoreTools/ObjectEventDispatcher/GlobalEventDispatcher.cs<>res://CoreTools/ParticleSystemController/Scripts/ParticleSystemController2D.cs<>res://CoreTools/Input/InputReader/Scripts/InputReaderPlayer.cs<>res://CoreTools/ObjectPooler/Scripts/GameObjectPooler.cs<>uid://dqd4wln1wph42::::res://icon.svg<>res://CoreTools/ObjectPooler/Scripts/PoolableParticleSystem2D.cs
-::res://CoreTools/ParticleSystemController/Scenes/ParticleSystemController/::1713801209
+::res://CoreTools/ParticleSystemController/Scenes/::1724418822
+ParticleSystemExamples.tscn::PackedScene::3206683471377874113::1724418822::0::1::::<><>::uid://dqd4wln1wph42::::res://icon.svg
+::res://CoreTools/ParticleSystemController/Scenes/ParticleSystemController/::1724418822
 NPEParticleSystemController.tscn::PackedScene::4926412812823738288::1701619170::0::1::::<><>::res://CoreTools/ParticleSystemController/Scripts/ParticleSystemController2D.cs
-ParticleSystemController.tscn::PackedScene::6498279863123099620::1713801206::0::1::::<><>::res://CoreTools/SceneTransitionManager/Script/SceneTransitionReferenceHelper.cs<>uid://ccgnkf7qk7rga::::res://CoreTools/ParticleSystemController/Scenes/ParticleSystemController/NPEParticleSystemController.tscn<>res://CoreTools/ObjectPooler/Scripts/GameObjectPooler2D.cs<>uid://dqd4wln1wph42::::res://icon.svg<>res://CoreTools/ObjectPooler/Scripts/PoolableParticleSystem2D.cs
+ParticleSystemControllerTest.tscn::PackedScene::6498279863123099620::1724418822::0::1::::<><>::res://CoreTools/SceneTransitionManager/Script/SceneTransitionReferenceHelper.cs<>uid://ccgnkf7qk7rga::::res://CoreTools/ParticleSystemController/Scenes/ParticleSystemController/NPEParticleSystemController.tscn<>res://CoreTools/ObjectPooler/Scripts/GameObjectPooler2D.cs<>uid://dqd4wln1wph42::::res://icon.svg<>res://CoreTools/ObjectPooler/Scripts/PoolableParticleSystem2D.cs
 ::res://CoreTools/ParticleSystemController/Scripts/::1701619746
-ParticleSystemController2D.cs::CSharpScript::-1::1701619170::0::1::::<>Node<>::
+ParticleSystemController2D.cs::CSharpScript::-1::1724418795::0::1::::<>Node<>::
 ParticleSystemController3D.cs::CSharpScript::-1::1701619170::0::1::::<>Node<>::
 ::res://CoreTools/Resetable/::1701619746
 ::res://CoreTools/Resetable/Scripts/::1701619746
@@ -741,6 +741,6 @@ CoreCodeFor40.runtimeconfig.json::JSON::-1::1701619747::0::1::::<><>::
 ::res://rcedit/::1701619747
 ::res://TestsSource/::1724416871
 ::res://TestsSource/Scripts/::1724416871
-scene_tests.gd::GDScript::-1::1718908431::0::1::::<>GdUnitTestSuite<>::
+scene_tests.gd::GDScript::-1::1724417478::0::1::::<>GdUnitTestSuite<>::
 ::res://TestsSource/Utils/::1724416871
-TestFailer.cs::CSharpScript::-1::1714929278::0::1::::<><>::
+TestFailer.cs::CSharpScript::-1::1714929278::0::1::::<>Node<>::

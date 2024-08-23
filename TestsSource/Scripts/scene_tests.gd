@@ -38,7 +38,7 @@ func test_log_test_scene(timeout = 20000) -> void:
 func test_particle_system_test_scene(timeout = 20000) -> void:
     print("running test with timeout " + str(timeout))
     # Create the scene runner for scene `test_scene.tscn`
-    var runner := scene_runner("res://CoreTools/ParticleSystemController/Scenes/ParticleSystemController/ParticleSystemController.tscn")
+    var runner := scene_runner("res://CoreTools/ParticleSystemController/Scenes/ParticleSystemController/ParticleSystemControllerTest.tscn")
 
 	#Simulate for 5 seconds = 300 frames
     await runner.simulate_frames(300)

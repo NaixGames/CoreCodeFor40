@@ -36,6 +36,11 @@ script/templates_search_path="res://addons/ScriptTemplates"
 
 enabled=PackedStringArray("res://addons/Docker/plugin.cfg", "res://addons/NaixInspector/plugin.cfg", "res://addons/gdUnit4/plugin.cfg")
 
+[gdunit4]
+
+report/godot/push_error=true
+report/verbose_orphans=false
+
 [input]
 
 UpP1={

@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://cyt2yqilfbu73"]
+
+[ext_resource type="Script" path="res://CoreTools/SceneTransitionManager/Script/SceneTransitionReferenceHelper.cs" id="1_eynm7"]
+[ext_resource type="PackedScene" uid="uid://ccgnkf7qk7rga" path="res://CoreTools/ParticleSystemController/Scenes/ParticleSystemController/NPEParticleSystemController.tscn" id="2_k73ru"]
+[ext_resource type="Script" path="res://CoreTools/ObjectPooler/Scripts/GameObjectPooler2D.cs" id="3_8o10k"]
+[ext_resource type="Resource" uid="uid://c4hxueolme6xc" path="res://CoreTools/ParticleSystemController/Scenes/Data/ParticleSystemEmitterReference.tres" id="4_kfr5y"]
+
+[node name="ActualParticleSystemController" type="Node"]
+script = ExtResource("1_eynm7")
+NonPersistentElementsPath = NodePath("NPActualParticleSystemController")
+PersistentElementsPath = NodePath("PEParticleSystemController")
+ObjectPoolerNodePath = NodePath("ObjectPooler")
+AudioBankContainerNodePath = NodePath("AudioBank")
+
+[node name="NPActualParticleSystemController" parent="." instance=ExtResource("2_k73ru")]
+
+[node name="ObjectPooler" type="Node" parent="."]
+script = ExtResource("3_8o10k")
+PoolableObjectsInMemoryAmmount = {
+ExtResource("4_kfr5y"): 4
+}
+mPoolPosition = Vector3(10, 10, 0)
+mShouldLog = true
+
+[node name="AudioBank" type="Node" parent="."]
+
+[node name="PEParticleSystemController" type="Node" parent="."]
+
+[editable path="NPActualParticleSystemController"]

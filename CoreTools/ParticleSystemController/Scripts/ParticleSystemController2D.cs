@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using CoreCode.Scripts;
 
 namespace CoreCode.Example{
-	public partial class ParticleSystemController2D : Node
+	public partial class ParticleSystemController2D : Node, IControlableByInput
 	{
 		// ----------------------------------- Information ------------------------------------------------
 		/*This is an example on how to use the PoolableParticleSystem2D class and take adventage of it.
@@ -19,14 +19,13 @@ namespace CoreCode.Example{
 		[Export] private Vector2 LocationThree;
 		[Export] private InputReaderAbstract mInputReference;
 		private Stack<PoolableParticleSystem2D> mParticleReferences = new Stack<PoolableParticleSystem2D>();
-
-		private GameObjectPooler2D gameObjectPooler;
+		private GameObjectPooler2D mGameObjectPooler;
 
 
 		// ------------------------------------ Methods -------------------------------------------------------
 
-		public void EmitParticleSystemAtLocation(string tag, Vector2 newPosition, float Rotation=0){
-			Node2D mParticleObject = gameObjectPooler.InstantiateGameObjectIn2D(tag, newPosition, Rotation);
+		public void EmitParticleSystemAtLocation(Vector2 newPosition, float Rotation=0){
+			Node2D mParticleObject = mGameObjectPooler.InstantiateGameObjectIn2D("PSEmitter", newPosition, Rotation, this);
 			mParticleReferences.Push((PoolableParticleSystem2D)mParticleObject);
 		}
 
@@ -35,19 +34,20 @@ namespace CoreCode.Example{
 		}
 
 		public override void _Ready(){
-			gameObjectPooler = (GameObjectPooler.Instance as GameObjectPooler2D);
+			mGameObjectPooler = GameObjectPooler.Instance as GameObjectPooler2D;
+			mInputReference = InputManager.Instance.GiveInputByPlayerChannel(this, 1);
 		}
 
 		public override void _Process(double delta)
 		{
 			if (mInputReference.IsButtonJustPressedInput("Up")){
-				EmitParticleSystemAtLocation("PSExample1",LocationOne);
+				EmitParticleSystemAtLocation(LocationOne);
 			}
 			if (mInputReference.IsAxisJustPressedInput("Left")){
-				EmitParticleSystemAtLocation("PSExample2",LocationTwo);
+				EmitParticleSystemAtLocation(LocationTwo);
 			}
 			if (mInputReference.IsAxisJustPressedInput("Right")){
-				EmitParticleSystemAtLocation("PSExample3",LocationThree);
+				EmitParticleSystemAtLocation(LocationThree);
 			}
 			if (mInputReference.IsButtonJustPressedInput("Down")){
 				while (true){
@@ -61,5 +61,28 @@ namespace CoreCode.Example{
 				}
 			}
 		}
+
+
+		//IControllableByInput interface
+
+		public InputReaderAbstract ReturnInputReader()
+		{
+			if (mInputReference == null){
+				mInputReference = InputManager.Instance.NullInputReader;
+			}
+			return mInputReference;
+		}
+		
+
+		public void ClearInputReader()
+		{
+			mInputReference = InputManager.Instance.NullInputReader;
+		}
+
+		public void RecieveInputReader(InputReaderAbstract inputReaderPath)
+		{
+			mInputReference = inputReaderPath;
+		}
+
 	}
 }

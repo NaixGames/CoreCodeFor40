@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://cfgiyj3qd8d8h"]
+
+[ext_resource type="Texture2D" uid="uid://dqd4wln1wph42" path="res://icon.svg" id="1_vdrka"]
+[ext_resource type="Script" path="res://CoreTools/ObjectPooler/Scripts/PoolableParticleSystem2D.cs" id="2_1p4lf"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_o3jxo"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 100.0
+direction = Vector3(0, 1, 0)
+initial_velocity_min = 100.0
+initial_velocity_max = 120.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.2
+scale_max = 0.5
+color = Color(0.172549, 1, 0.968627, 1)
+hue_variation_min = -1.0
+hue_variation_max = -1.0
+
+[node name="PSExample1" type="GPUParticles2D"]
+position = Vector2(602, 310)
+emitting = false
+amount = 20
+process_material = SubResource("ParticleProcessMaterial_o3jxo")
+texture = ExtResource("1_vdrka")
+lifetime = 10.0
+randomness = 0.2
+script = ExtResource("2_1p4lf")
+mTagObject = "PSEmitter"

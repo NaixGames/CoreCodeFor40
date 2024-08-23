@@ -40,15 +40,14 @@ namespace CoreCode.Scripts{
 			}
 			Emitting=false;
 			mIsObjectActive = false; 
-			this.SetProcess(false);
-			this.SetPhysicsProcess(false);
 		}
 
 		public void ActivatePooledObject(){
 			mIsObjectActive = true;
 			Emitting=true;
-			this.SetProcess(GetTree().Paused); 
-			this.SetPhysicsProcess(GetTree().Paused);
+			
+			this.SetProcess(true); 
+
 		}
 
 		public void AddReferenceInPool(){

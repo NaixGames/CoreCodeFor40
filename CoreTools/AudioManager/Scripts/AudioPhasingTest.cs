@@ -39,16 +39,12 @@ namespace CoreCode.Example{
 		// Called every frame. 'delta' is the elapsed time since the previous frame.
 		public override void _Process(double delta)
 		{
-			//USING GD.PRINT AS THIS IS A TEST BUT THIS SHOULDN'T BE THE DEFAULT!
-			GD.Print("ACTUAL TRACK:" + AudioManager.Instance.MusicManager.ActualMusicTrack.Name);
 			
 			if (mInputReader.IsButtonJustPressedInput("Up")){
 				AudioManager.Instance.TransitionToOtherTrack(2);
-				GD.Print("GO TO TRACK 2");
 			}
 			if (mInputReader.IsButtonJustPressedInput("Down")){
 				AudioManager.Instance.TransitionToOtherTrack(0);
-				GD.Print("GO TO TRACK 0");
 			}
 		}
 	}
