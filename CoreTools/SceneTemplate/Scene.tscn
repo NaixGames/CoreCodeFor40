@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dqjr3q7e1unr8"]
 
-[ext_resource type="Script" path="res://CoreTools/SceneTransitionManager/Script/SceneTransitionReferenceHelper.cs" id="1_ki77j"]
+[ext_resource type="Script" path="res://ExternalLibraries/NaixGames/SceneTransitionManager/Script/SceneTransitionReferenceHelper.cs" id="1_ki77j"]
 
 [node name="Scene" type="Node"]
 script = ExtResource("1_ki77j")

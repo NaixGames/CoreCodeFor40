@@ -1,5 +1,5 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1714840558
+::res://::1721839982
 export_presets.cfg::TextFile::-1::1712850594::0::1::::<><>::
 icon.svg::CompressedTexture2D::8290277361856763881::1701619747::1701619747::1::::<><>::
 README.md::TextFile::-1::1701619747::0::1::::<><>::
@@ -242,7 +242,7 @@ Vector3Data.cs::CSharpScript::-1::1701619170::0::1::::Vector3Data<>Resource<>::
 ::res://CoreTools/FSM/Scenes/Actor/::1701619746
 ::res://CoreTools/FSM/Scenes/Actor/Player/::1713882400
 player.tscn::PackedScene::3528491855282018983::1713882400::0::1::::<><>::res://CoreTools/GameActorReferenceHandler/Script/GameActorReferenceHandler2D.cs<>uid://dqd4wln1wph42::::res://icon.svg<>res://CoreTools/FSM/Scripts/StateMachineActor.cs<>res://CoreTools/FSM/Scenes/Actor/Player/StateManager/PlayerStateManagerExample.cs<>uid://ct60g3i3v4xrs::::res://CoreTools/FSM/Scenes/Actor/Player/StateManager/TestStateManagerPointer.tres
-::res://CoreTools/FSM/Scenes/Actor/Player/StateManager/::1714840665
+::res://CoreTools/FSM/Scenes/Actor/Player/StateManager/::1714840671
 Graph.png::CompressedTexture2D::8834948768068121574::1714840666::1714840671::1::::<><>::
 PlayerStateManagerExample.cs::CSharpScript::-1::1713802708::0::1::::<><>::
 TestStateManagerPointer.tres::Resource/Resource::6171955230780922728::1713807374::0::1::::<><>::res://CoreTools/FSM/Scripts/StateManagerPointer.cs
@@ -250,13 +250,13 @@ TestStateManagerPointer.tres::Resource/Resource::6171955230780922728::1713807374
 PlayerStateFalling.cs::CSharpScript::-1::1711308130::0::1::::<>Node<>::
 PlayerStateJumping.cs::CSharpScript::-1::1711308010::0::1::::<>Node<>::
 PlayerStateMoving.cs::CSharpScript::-1::1711308168::0::1::::<>Node<>::
-::res://CoreTools/FSM/Scenes/FSMTest/::1713882400
-FSMTest.tscn::PackedScene::3758314033827934810::1713882400::0::1::::<><>::res://CoreTools/SceneTransitionManager/Script/SceneTransitionReferenceHelper.cs<>uid://dxfwl1fp2xua7::::res://CoreTools/FSM/Scenes/FSMTest/NPEFSMTest.tscn<>res://CoreTools/ObjectPooler/Scripts/GameObjectPooler2D.cs
+::res://CoreTools/FSM/Scenes/FSMTest/::1719059084
+FSMTest.tscn::PackedScene::3758314033827934810::1719059084::0::1::::<><>::res://CoreTools/SceneTransitionManager/Script/SceneTransitionReferenceHelper.cs<>uid://dxfwl1fp2xua7::::res://CoreTools/FSM/Scenes/FSMTest/NPEFSMTest.tscn<>res://CoreTools/ObjectPooler/Scripts/GameObjectPooler2D.cs
 NPEFSMTest.tscn::PackedScene::8785284135147828344::1713882400::0::1::::<><>::uid://bqjh0lu0ga1q6::::res://CoreTools/FSM/Scenes/Actor/Player/player.tscn
 ::res://CoreTools/FSM/Scripts/::1714839959
 ActionAbstract.cs::CSharpScript::-1::1701619170::0::1::::<><>::
 IStateMachine.cs::CSharpScript::-1::1701619170::0::1::::<><>::
-StateAbstract.cs::CSharpScript::-1::1711307402::0::1::::<>Node<>::
+StateAbstract.cs::CSharpScript::-1::1715018315::0::1::::<>Node<>::
 StateMachineActor.cs::CSharpScript::-1::1714677862::0::1::::<>Node<>::
 StateMachineAIInput.cs::CSharpScript::-1::1713800963::0::1::::<>Node<>::
 StateManagerAbstract.cs::CSharpScript::-1::1713288466::0::1::::<><>::
@@ -376,10 +376,10 @@ GreenObject.tscn::PackedScene::5170450326044659934::1701619170::0::1::::<><>::re
 player.png::CompressedTexture2D::5687637092295242138::1701619170::1701700919::1::::<><>::
 RedObject.tscn::PackedScene::-1::1701619170::0::1::::<><>::res://CoreTools/ObjectPooler/Scripts/PoolableObject2D.cs<>uid://cv2xpplwcwga3::::res://CoreTools/ObjectPooler/ObjectsForTest/enemy.png
 ::res://CoreTools/ObjectPooler/Scenes/::1701619746
-SpawnerForPoolerTest.cs::CSharpScript::-1::1713115737::0::1::::<>Node<>::
-::res://CoreTools/ObjectPooler/Scenes/ObjectPoolerTest/::1713801194
-NPEObjectPoolerTest.tscn::PackedScene::7185629548948265238::1701619170::0::1::::<><>::res://CoreTools/ObjectPooler/Scenes/SpawnerForPoolerTest.cs
-ObjectPoolerTest.tscn::PackedScene::5973216182366869887::1713801194::0::1::::<><>::res://CoreTools/SceneTransitionManager/Script/SceneTransitionReferenceHelper.cs<>uid://dam1je1nkvg51::::res://CoreTools/ObjectPooler/Scenes/ObjectPoolerTest/NPEObjectPoolerTest.tscn<>res://CoreTools/ObjectPooler/Scripts/GameObjectPooler2D.cs<>uid://cfwutdbsfce8m::::res://CoreTools/ObjectPooler/ObjectsForTest/GreenObject.tscn<>res://CoreTools/ObjectPooler/ObjectsForTest/RedObject.tscn
+SpawnerForPoolerTest.cs::CSharpScript::-1::1719059067::0::1::::<>Node<>::
+::res://CoreTools/ObjectPooler/Scenes/ObjectPoolerTest/::1719059084
+NPEObjectPoolerTest.tscn::PackedScene::7185629548948265238::1719059084::0::1::::<><>::res://CoreTools/ObjectPooler/Scenes/SpawnerForPoolerTest.cs
+ObjectPoolerTest.tscn::PackedScene::5973216182366869887::1719059084::0::1::::<><>::res://CoreTools/SceneTransitionManager/Script/SceneTransitionReferenceHelper.cs<>uid://dam1je1nkvg51::::res://CoreTools/ObjectPooler/Scenes/ObjectPoolerTest/NPEObjectPoolerTest.tscn<>res://CoreTools/ObjectPooler/Scripts/GameObjectPooler2D.cs<>uid://cfwutdbsfce8m::::res://CoreTools/ObjectPooler/ObjectsForTest/GreenObject.tscn<>res://CoreTools/ObjectPooler/ObjectsForTest/RedObject.tscn
 ::res://CoreTools/ObjectPooler/Scripts/::1701619746
 GameObjectPooler2D.cs::CSharpScript::-1::1701619170::0::1::::<>Node<>::
 GameObjectPooler3D.cs::CSharpScript::-1::1701619170::0::1::::<>Node<>::

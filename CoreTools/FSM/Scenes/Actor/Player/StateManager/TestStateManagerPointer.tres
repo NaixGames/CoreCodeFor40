@@ -1,7 +1,7 @@
-[gd_resource type="Resource" script_class="StateManagerPointer" load_steps=2 format=3 uid="uid://ct60g3i3v4xrs"]
+[gd_resource type="Resource" script_class="StateManagerPointer" load_steps=2 format=3 uid="uid://bwc27oom7tge2"]
 
-[ext_resource type="Script" path="res://CoreTools/FSM/Scripts/StateManagerPointer.cs" id="1_43m4x"]
+[ext_resource type="Script" path="res://ExternalLibraries/NaixGames/FSM/Scripts/StateManagerPointer.cs" id="1_a1qwc"]
 
 [resource]
-script = ExtResource("1_43m4x")
+script = ExtResource("1_a1qwc")
 StateManagerClassPath = "CoreCode.Example.DummyPlayerFSM.PlayerStateManagerExample"
