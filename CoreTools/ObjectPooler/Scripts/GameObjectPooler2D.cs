@@ -13,16 +13,17 @@ namespace CoreCode.Scripts{
 
 
 
-		public Node2D InstantiateGameObjectIn2D(string tag, Vector2 Position, float Rotation=0f){
-			Node2D TwoDimObject = (Node2D)GiveObject(tag);
-			TwoDimObject.Position = Position;
-			TwoDimObject.Rotation = Rotation;
-			return TwoDimObject;
+		public Node2D InstantiateGameObjectIn2D(string tag, Vector2 Position, float Rotation=0f, Node Parent = null){
+			Node2D gameObject = (Node2D)GiveObject(tag, Parent);
+			gameObject.GlobalPosition = Position;
+			gameObject.GlobalRotation = Rotation;
+			(gameObject as IPoolableObject).ActivatePooledObject();
+			return gameObject;
 
 		}
 
-		public Node2D InstantiateGameObjectIn2D(IPoolableObject ObjectToGive, Vector2 Position, float Rotation = 0f){
-			return InstantiateGameObjectIn2D(ObjectToGive.TagObject, Position, Rotation);
+		public Node2D InstantiateGameObjectIn2D(IPoolableObject ObjectToGive, Vector2 Position, float Rotation = 0f, Node Parent = null){
+			return InstantiateGameObjectIn2D(ObjectToGive.TagObject, Position, Rotation, Parent);
 		}
 		
 
