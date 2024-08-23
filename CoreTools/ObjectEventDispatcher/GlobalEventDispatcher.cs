@@ -28,7 +28,7 @@ namespace CoreCode.Scripts{
 
 		// ------------------------------------- Singleton instantiation -------------------------------
 
-		[Export] private static GlobalEventDispatcher instance;
+		private static GlobalEventDispatcher instance;
 		public static GlobalEventDispatcher Instance{
 			get {return TryToReturnInstance();}
 		}

@@ -1,2 +1,0 @@
-﻿63525
-D:/Github/Godotv4.2/Godot_v4.2.2-stable_mono_win64.exe

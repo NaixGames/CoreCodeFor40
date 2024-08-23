@@ -31,7 +31,7 @@ namespace CoreCode.Scripts{
 
 		// ------------------------------------- Singleton instantiation -------------------------------
 
-		[Export] protected static GameObjectPooler instance;
+		protected static GameObjectPooler instance;
 		public static GameObjectPooler Instance{
 			get {return TryToReturnInstance();}
 		}
