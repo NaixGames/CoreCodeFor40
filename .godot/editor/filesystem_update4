@@ -1,5 +1,3 @@
-res://CoreTools/FSM/Scenes/FSMTest/FSMTest.tscn
-res://CoreTools/ObjectPooler/Scenes/ObjectPoolerTest/ObjectPoolerTest.tscn
 res://CoreTools/ParticleSystemController/Scripts/ParticleSystemController2D.cs
 res://addons/NaixInspector/NaixInspector.cs
 res://CoreTools/FSM/Scripts/StateManagerPointer.cs
@@ -84,4 +82,3 @@ res://CoreTools/GodotLibraryUseExamples/Tweens/Scripts/TweenUseExample.cs
 res://CoreTools/SceneTransitionManager/Data/SceneDatabase.cs
 res://CoreTools/FSM/Scripts/Editor/StateManagerPointerInspectorPluging.cs
 res://CoreTools/GodotLibraryUseExamples/BezierCurves/Scripts/BezierCurveFollowerExample.cs
-res://CoreTools/ObjectPooler/Scenes/ObjectPoolerTest/NPEObjectPoolerTest.tscn

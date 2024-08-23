@@ -1,15 +1,16 @@
-[gd_scene load_steps=11 format=3 uid="uid://cx76yo78u1tfu"]
+[gd_scene load_steps=12 format=3 uid="uid://drxehyvydlrnt"]
 
-[ext_resource type="Script" path="res://ExternalLibraries/NaixGames/LogManager/Scripts/LogManager.cs" id="1_eeq6c"]
-[ext_resource type="Script" path="res://ExternalLibraries/NaixGames/ObjectEventDispatcher/GlobalEventDispatcher.cs" id="2_f31l3"]
-[ext_resource type="Script" path="res://ExternalLibraries/NaixGames/Input/InputManager/Scripts/InputManager.cs" id="3_gbq0a"]
-[ext_resource type="Script" path="res://ExternalLibraries/NaixGames/SceneTransitionManager/Script/SceneTransitionManager.cs" id="3_xb83e"]
-[ext_resource type="Script" path="res://ExternalLibraries/NaixGames/Input/InputReader/Scripts/InputReaderVoid.cs" id="4_xvsgk"]
-[ext_resource type="Script" path="res://ExternalLibraries/NaixGames/AchievementManager/Scripts/AchievementManager.cs" id="5_xesqj"]
-[ext_resource type="Script" path="res://ExternalLibraries/NaixGames/Input/InputTouch/InputReaderTouch.cs" id="6_1njep"]
-[ext_resource type="Script" path="res://ExternalLibraries/NaixGames/AudioManager/Scripts/AudioManager.cs" id="7_161i1"]
-[ext_resource type="Script" path="res://ExternalLibraries/NaixGames/AudioManager/Scripts/AdaptativeMusicManager.cs" id="8_m6vep"]
-[ext_resource type="Script" path="res://ExternalLibraries/NaixGames/CameraManager/Camera3DManager.cs" id="10_f6dbw"]
+[ext_resource type="Script" path="res://CoreTools/LogManager/Scripts/LogManager.cs" id="1_eeq6c"]
+[ext_resource type="Script" path="res://CoreTools/ObjectEventDispatcher/GlobalEventDispatcher.cs" id="2_f31l3"]
+[ext_resource type="Script" path="res://CoreTools/Input/InputManager/Scripts/InputManager.cs" id="3_gbq0a"]
+[ext_resource type="Script" path="res://CoreTools/SceneTransitionManager/Script/SceneTransitionManager.cs" id="3_xb83e"]
+[ext_resource type="Script" path="res://CoreTools/Input/InputReader/Scripts/InputReaderPlayer.cs" id="4_g5skp"]
+[ext_resource type="Script" path="res://CoreTools/Input/InputReader/Scripts/InputReaderVoid.cs" id="4_xvsgk"]
+[ext_resource type="Resource" uid="uid://b1jj86mm1tdmc" path="res://CoreTools/SceneTransitionManager/Data/SceneDatabase.tres" id="4_ygubc"]
+[ext_resource type="Script" path="res://CoreTools/AchievementManager/Scripts/AchievementManager.cs" id="5_xesqj"]
+[ext_resource type="Script" path="res://CoreTools/AudioManager/Scripts/AudioManager.cs" id="7_161i1"]
+[ext_resource type="Script" path="res://CoreTools/Input/InputReader/Scripts/InputEmiterTouch.cs" id="8_foah0"]
+[ext_resource type="Script" path="res://CoreTools/AudioManager/Scripts/AdaptativeMusicManager.cs" id="8_m6vep"]
 
 [node name="Managers" type="Node"]
 
@@ -18,10 +19,9 @@ script = ExtResource("1_eeq6c")
 mChannels = {
 "Achievements": false,
 "Audio": false,
-"Dialogue": false,
 "Dummy": false,
-"FSM": true,
-"GameObjectPooler": true,
+"FSM": false,
+"GameObjectPooler": false,
 "GlobalEventDispatcher": false,
 "Input": false,
 "SceneTransitions": false
@@ -32,31 +32,24 @@ script = ExtResource("2_f31l3")
 
 [node name="SceneTransitionManager" type="Node" parent="."]
 script = ExtResource("3_xb83e")
+mSceneDatabase = ExtResource("4_ygubc")
 
 [node name="InputManager" type="Node" parent="."]
 script = ExtResource("3_gbq0a")
-mPlayerInputs = [NodePath("VoidInput"), NodePath("P1InputTouch")]
+mPlayerInputs = [NodePath("VoidInput"), NodePath("P1Input")]
 
 [node name="VoidInput" type="Node" parent="InputManager"]
 script = ExtResource("4_xvsgk")
-mAxis = PackedStringArray("Up", "Left", "Right", "Down")
-mButtons = PackedStringArray("Jump")
 
-[node name="P1InputTouch" type="Node" parent="InputManager" node_paths=PackedStringArray("mRaycastNode")]
-script = ExtResource("6_1njep")
-mSwipeDistance = 200.0
-mSwipeTimer = 0.025
-mRaycastNode = NodePath("RayCast3D")
-mRaycastLength = 10000.0
+[node name="P1Input" type="Node" parent="InputManager"]
+script = ExtResource("4_g5skp")
 mPlayerID = 1
-mAxis = PackedStringArray("Left", "Right", "Up", "Down")
-mButtons = PackedStringArray("Drag", "Touch", "Release")
+mAxis = PackedStringArray("Right", "Left", "Up", "Down")
+mButtons = PackedStringArray("Up", "Down")
 
-[node name="RayCast3D" type="RayCast3D" parent="InputManager/P1InputTouch"]
-enabled = false
-collision_mask = 6
-collide_with_areas = true
-collide_with_bodies = false
+[node name="InputTouchEmiter" type="Node" parent="."]
+script = ExtResource("8_foah0")
+mDragDistance = 50.0
 
 [node name="AchievementManager" type="Node" parent="."]
 script = ExtResource("5_xesqj")
@@ -74,6 +67,3 @@ script = ExtResource("8_m6vep")
 [node name="GlobalSFXContainerNode" type="Node" parent="AudioManager"]
 
 [node name="PositionalSFXContainerNode" type="Node" parent="AudioManager"]
-
-[node name="CameraManager" type="Node" parent="."]
-script = ExtResource("10_f6dbw")

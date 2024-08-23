@@ -7,16 +7,16 @@ namespace CoreCode.Scripts{
 	[Tool]
 	public partial class SceneTransitionManager : Node
 	{
-		// Information
+		// ----------------------------------- Information ------------------------------------------------
 		/*This is a script to allow Scene transition in godot in a nice way. That is, preserving singletons
 		and persistant elements betweens scene (like the player), while also not needed to have scene be 
 		"stripped down in the editor"*/
 		
-		// Use 
+		// ------------------------------------ Use -------------------------------------------------------
 		/* This class give methods to load scenes given a path to the scene. This node should eventually
 		support shaders for scene transition to make this transition (duh) more smooth*/
 
-		// Singleton instantiation 
+		// ------------------------------------- Singleton instantiation -------------------------------
 		private static SceneTransitionManager instance;
 		public static SceneTransitionManager Instance{
 			get {return TryToReturnInstance();}
@@ -45,19 +45,19 @@ namespace CoreCode.Scripts{
 				GD.PushWarning("Instance of SceneTransitionManager created when there is an existing instance!");
 			}
 		}
-		// Variables
+		// ------------------------------------ Variables-----------------------------------------
 
 		[Export] private SceneDatabase mSceneDatabase;
 		
 		private SceneTransitionReferenceHelper mReferenceHelper;
 
-		// Variable for logging
+		// ------------------------------------ Variable for logging-----------------------------------------
 
 		[Export] protected bool mShouldLog;
 
 		protected ILogObject mLogObject; 
 
-		// Methods 
+		// ------------------------------------ Methods -----------------------------------------
 
 		public void HeavyTransitionToNewScene(string sceneName){
 			if (!mSceneDatabase.mSceneNameToPathMapping.ContainsKey(sceneName)){
@@ -141,14 +141,15 @@ namespace CoreCode.Scripts{
 
 			if (!(baseNode is SceneTransitionReferenceHelper)){
 				mLogObject.Warn("No reference SceneTransitionReferenceHelper as base. Audio and Scene Transitions will not work correclty");
-				return;		
 			}
-	
+
 			mReferenceHelper = baseNode as SceneTransitionReferenceHelper;
 			mReferenceHelper.GetNodesFromPaths();
 			AudioManager.Instance.UpdateMusicBanks(mReferenceHelper.AudioBankContainerNode);	
 
 		}
 
+
+		//--------------------------------------
 	}
 }
