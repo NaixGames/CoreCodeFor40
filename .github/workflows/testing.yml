@@ -1,5 +1,5 @@
-name: game-testing
-run-name: ${{ github.head_ref || github.ref_name }}-game-testing
+name: core-scripts-testing
+run-name: ${{ github.head_ref || github.ref_name }}-core-scripts-testing
 
 on:
   push:
@@ -7,13 +7,13 @@ on:
 
 
 concurrency:
-  group: game-testing${{ github.event.number }}
+  group: core-scripts-testing${{ github.event.number }}
   cancel-in-progress: true
 
 
 jobs:
   unit-test:
-    name: "game-testing"
+    name: "core-scripts-testing"
     runs-on: 'ubuntu-22.04'
     timeout-minutes: 20 # The overall timeout
     permissions: write-all
