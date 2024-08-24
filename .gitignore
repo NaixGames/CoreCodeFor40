@@ -1,2 +1,4 @@
 # Godot 4+ specific ignores
 
+.godot/
+.addons/gdUnit4/tmp-update
