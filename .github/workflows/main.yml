@@ -26,7 +26,7 @@ jobs:
           output-var-name: 'VERSION_NAME_STRING'
       - name: export game for github
         id: export
-        uses: NaixGames/godot-export@release-1
+        uses: firebelley/godot-export@v5.2.1
         with:
           godot_executable_download_url: https://downloads.tuxfamily.org/godotengine/4.3/mono/Godot_v4.3-stable_mono_linux_x86_64.zip
           godot_export_templates_download_url: https://downloads.tuxfamily.org/godotengine/4.3/mono/Godot_v4.3-stable_mono_export_templates.tpz
@@ -34,6 +34,7 @@ jobs:
           relative_export_path: ./mygithub/build/destination # move export output to this directory relative to git root
           archive_output: true
           export_debug: false
+          verbose: true
           wine_path: ${{ steps.wine_install.outputs.WINE_PATH }}
       - name: create release
         uses: ncipollo/release-action@v1.13.0
