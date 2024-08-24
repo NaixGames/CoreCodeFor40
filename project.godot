@@ -34,7 +34,7 @@ script/templates_search_path="res://addons/ScriptTemplates"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/Docker/plugin.cfg", "res://addons/NaixInspector/plugin.cfg")
+enabled=PackedStringArray("res://addons/Docker/plugin.cfg", "res://addons/NaixInspector/plugin.cfg", "res://addons/gdUnit4/plugin.cfg")
 
 [gdunit4]
 
