@@ -1,9 +1,7 @@
 # Godot 4+ specific ignores
 
 #ignore everything but the generated mono files
-.godot/editor
-.godot/imported/*
-.godot/shader_cache
+.godot
 
 #include icon for docker so godot doesnt crash. I think this is a godot problem (the headless version shouldnt
 #load this!) but it is what it is.
