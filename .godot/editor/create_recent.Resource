@@ -1,8 +1,0 @@
-PoolableObjectReference
-StateManagerPointer
-Curve
-Vector2Data
-FloatData
-ImageTexture
-Image
-Resource
