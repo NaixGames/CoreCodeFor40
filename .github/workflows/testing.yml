@@ -25,10 +25,10 @@ jobs:
           lfs: true
       - name: Try to grant execution permission to test runner
         run: git update-index --chmod=+x ./addons/gdUnit4/runtest.sh
-      # run tests by using the gdUnit4-action with Godot version 4.2.2 and the latest GdUnit4 release 
+      # run tests by using the gdUnit4-action with Godot version 4.3 and the latest GdUnit4 release 
       - uses: MikeSchulze/gdUnit4-action@v1.1.1
         with:
-          godot-version: '4.2.2'
+          godot-version: '4.3'
           version: 'installed'
           godot-net: false
           godot-force-mono: true
