@@ -32,10 +32,6 @@ project/assembly_name="CoreCodeFor40"
 
 script/templates_search_path="res://addons/ScriptTemplates"
 
-[editor_plugins]
-
-enabled=PackedStringArray("res://addons/gdUnit4/plugin.cfg")
-
 [gdunit4]
 
 report/godot/push_error=true
