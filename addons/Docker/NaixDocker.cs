@@ -14,7 +14,7 @@ namespace  CoreCode.Docker
 			// Initialization of the plugin goes here.
 
 			//Load the layout
-			DockLayout = (Control)GD.Load<PackedScene>(ResourceUid.GetIdPath(ResourceUid.TextToId("uid://ce5q6u46obd8w"))).Instantiate();
+			DockLayout = (Control)GD.Load<PackedScene>("res://addons/Docker/Layout/NaixDock.tscn").Instantiate();
 			AddControlToDock(DockSlot.LeftBr, DockLayout);
 		}
 

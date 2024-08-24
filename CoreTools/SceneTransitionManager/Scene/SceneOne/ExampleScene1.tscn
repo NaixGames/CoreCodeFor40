@@ -14,6 +14,7 @@ NonPersistentElementsPath = NodePath("NonPersistentElements")
 PersistentElementsPath = NodePath("PersistentElements")
 ObjectPoolerNodePath = NodePath("ObjectPooler")
 AudioBankContainerNodePath = NodePath("AudioBanks")
+metadata/_edit_vertical_guides_ = [38.0]
 
 [node name="ObjectPooler" type="Node" parent="."]
 script = ExtResource("3_slpaa")
