@@ -1,4 +1,9 @@
 # Godot 4+ specific ignores
 
-.godot/
+#ignore everything but the generated mono files
+.godot/editor
+.godot/imported
+.godot/shader_cache
+
+
 .addons/gdUnit4/tmp-update
