@@ -64,10 +64,14 @@ namespace CoreCode.Scripts{
 				mLogObject.Err("trying to load scene not loaded in Scene database named: " + sceneName);
 				return;
 			}
+
 			//First we remove the object pooler, since it is a singleton also present on the other scene.
 			mReferenceHelper.ObjectPoolerNode=null;
-			GameObjectPooler.Instance.PoolAllObjects();
-			GameObjectPooler.Instance.EraseObjectPooler();
+			if (GameObjectPooler.Instance != null)
+			{
+				GameObjectPooler.Instance.PoolAllObjects();
+				GameObjectPooler.Instance.Free();
+			}
 			//For a similar reason we erase the other elements. Dont want two of the same thing of a scene. But we keep the parent for adding nodes later.
 			mReferenceHelper.PersistentElements.QueueFree();
 			mReferenceHelper.PersistentElements=null;
@@ -113,8 +117,11 @@ namespace CoreCode.Scripts{
 				return;
 			}
 			
-			GameObjectPooler.Instance.PoolAllObjects();
-
+			if (GameObjectPooler.Instance != null)
+			{
+				GameObjectPooler.Instance.PoolAllObjects();
+			}
+			
 			Node newNonPersitanceScene = ResourceLoader.Load<PackedScene>(mSceneDatabase.mNonPersistantSceneNameToPathMapping[sceneName]).Instantiate(); 
 
 			//Change the non persistent elements for the new ones.
@@ -129,7 +136,11 @@ namespace CoreCode.Scripts{
 			if (Engine.IsEditorHint()){
 				return;
 			}
-			
+			Initialize();
+		}
+
+
+		private void Initialize(){
 			mLogObject = LogManager.Instance.RequestLog("SceneTransitions", mShouldLog);
 			
 			//If we dont have a SceneDatabase give a warning.
@@ -137,17 +148,20 @@ namespace CoreCode.Scripts{
 				mLogObject.Warn("No scene database provided. No scene transition will be posible!");
 			}	
 			
-			Node baseNode = GetTree().Root.GetChild(GetTree().Root.GetChildCount()-1);
+			foreach (Node childNode in GetTree().Root.GetChildren()){
+				mReferenceHelper = childNode as SceneTransitionReferenceHelper;
+				if (mReferenceHelper != null){
+					break;
+				}
+			}
 
-			if (!(baseNode is SceneTransitionReferenceHelper)){
+			if (mReferenceHelper == null){
 				mLogObject.Warn("No reference SceneTransitionReferenceHelper as base. Audio and Scene Transitions will not work correclty");
 				return;		
 			}
 	
-			mReferenceHelper = baseNode as SceneTransitionReferenceHelper;
 			mReferenceHelper.GetNodesFromPaths();
 			AudioManager.Instance.UpdateMusicBanks(mReferenceHelper.AudioBankContainerNode);	
-
 		}
 
 	}

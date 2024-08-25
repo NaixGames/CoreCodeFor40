@@ -39,14 +39,17 @@ namespace CoreCode.Scripts{
 		protected static GameObjectPooler TryToReturnInstance(){
 			if (instance == null){
 				GD.PushWarning("Instance of GameObjectPooler called before the instance was ready!");
-				instance = new GameObjectPooler2D();
+				return null;
 			}
 			return instance;
 		}
 
 		public GameObjectPooler(){
-			if (instance==null){
-				instance =this;
+			if (instance == null){
+				instance = this;
+			}
+			else{
+				this.QueueFree();
 			}
 		}
 		// ------------------------------------- Variables
@@ -152,21 +155,25 @@ namespace CoreCode.Scripts{
 		public void PoolAllObjects(){
 			foreach (string tag in mObjectPoolerMap.Keys){
 				for(int i=0; i< mObjectPoolerMap[tag].Length;i++){
-					mObjectPoolerMap[tag][i].ReturnToPool();
+					ReturnObjectToPool(mObjectPoolerMap[tag][i] as Node);
 				}
 			}
 		}
 
 		//Method to erase the object pooler. Usefull to replace it with anotherone on level changes
 
-		public void EraseObjectPooler(){
-			instance=null;
-			this.QueueFree();
+		private void EraseObjectPooler(){
+			if (instance == this){
+				instance = null;
+			}
+
 			foreach (string tag in mObjectPoolerMap.Keys){
-				foreach (IPoolableObject poolableObject in mObjectPoolerMap[tag]){
-					(poolableObject as Node).QueueFree();
+				for(int i=0; i< mObjectPoolerMap[tag].Length;i++){
+					(mObjectPoolerMap[tag][i] as Node).Free();
 				}
 			}
+
+			mObjectPoolerMap.Clear();
 		}
 
 		// -----------Methods that return a game object to the pool
