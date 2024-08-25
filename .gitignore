@@ -1,10 +1,3 @@
 # Godot 4+ specific ignores
-
-#ignore everything but the generated mono files
-.godot
-
-#include icon for docker so godot doesnt crash. I think this is a godot problem (the headless version shouldnt
-#load this!) but it is what it is.
-!.godot/imported/ExpandableButtomIcon.png-c4420c6394424e84cb35282e80a630db.ctex
-
-.addons/gdUnit4/tmp-update
+.godot/
+/android/

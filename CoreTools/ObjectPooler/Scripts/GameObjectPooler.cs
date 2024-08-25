@@ -113,11 +113,17 @@ namespace CoreCode.Scripts{
 			mLogObject.Print("Game object pooler instantiated correctly");
 		}
 
-		// ------------------------- Methods
+        public override void _ExitTree()
+        {
+            base._ExitTree();
+			EraseObjectPooler();
+        }
 
-		// -----------Methods that return a game object from the pool
+        // ------------------------- Methods
 
-		public Node GiveObject(string tag, Node Parent = null){
+        // -----------Methods that return a game object from the pool
+
+        public Node GiveObject(string tag, Node Parent = null){
 			mLogObject.Print("Attepmting to get object with tag " + tag + " from the index" + mIndexForObjectPoolerMap[tag]);
 			mLogObject.Print("There are " + mObjectPoolerMap[tag].Length + " total object in that pool");
 			
@@ -156,6 +162,11 @@ namespace CoreCode.Scripts{
 		public void EraseObjectPooler(){
 			instance=null;
 			this.QueueFree();
+			foreach (string tag in mObjectPoolerMap.Keys){
+				foreach (IPoolableObject poolableObject in mObjectPoolerMap[tag]){
+					(poolableObject as Node).QueueFree();
+				}
+			}
 		}
 
 		// -----------Methods that return a game object to the pool
