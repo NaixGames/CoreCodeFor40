@@ -35,6 +35,7 @@ jobs:
           archive_output: false
           export_debug: false
           wine_path: ${{ steps.wine_install.outputs.WINE_PATH }}
+          cache: true
       - name: upload to itch
         uses: manleydev/butler-publish-itchio-action@master
         env:

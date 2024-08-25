@@ -36,6 +36,7 @@ jobs:
           export_debug: false
           verbose: true
           wine_path: ${{ steps.wine_install.outputs.WINE_PATH }}
+          cache: true
       - name: create release
         uses: ncipollo/release-action@v1.13.0
         with:
