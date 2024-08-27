@@ -3,7 +3,7 @@ using System;
 using CoreCode.Scripts;
 
 namespace CoreCode.FSM{
-	public abstract partial class StateAbstract : Node
+	public abstract partial class StateAbstract
 	{
 		// ----------------------------------- Information ------------------------------------------------
 		/*This is a script to create States for a FSM. This gives the abstract interface that the FSM uses.*/
