@@ -1,5 +1,4 @@
 using Godot;
-using System;
 using CoreCode.AudioSystem;
 
 
@@ -46,23 +45,31 @@ namespace CoreCode.Scripts{
 			}
 		}
 		// Variables
-
 		[Export] private SceneDatabase mSceneDatabase;
-		
+		[Export] private SceneTransitionAnimator mSceneTransitionAnimator;
+		public SceneTransitionAnimator SceneTransitionAnimator => mSceneTransitionAnimator;
 		private SceneTransitionReferenceHelper mReferenceHelper;
 
+		private bool mIsLoading;
+		public bool IsLoading => mIsLoading;
+
 		// Variable for logging
-
 		[Export] protected bool mShouldLog;
-
 		protected ILogObject mLogObject; 
 
 		// Methods 
 
-		public void HeavyTransitionToNewScene(string sceneName){
+		public async void HeavyTransitionToNewScene(string sceneName, int fadeDuration = -1){
 			if (!mSceneDatabase.mSceneNameToPathMapping.ContainsKey(sceneName)){
 				mLogObject.Err("trying to load scene not loaded in Scene database named: " + sceneName);
 				return;
+			}
+
+			EmitSignal(SignalName.OnSceneLoadingStarted);
+			mIsLoading = true;
+
+			if (mSceneTransitionAnimator != null){
+				await mSceneTransitionAnimator.DoFadeOutAnimation(fadeDuration);
 			}
 
 			//First we remove the object pooler, since it is a singleton also present on the other scene.
@@ -85,52 +92,75 @@ namespace CoreCode.Scripts{
 
 			//Add the new object pooler.
 			loadedReferenceHelper.RemoveChild(loadedReferenceHelper.ObjectPoolerNode);
-			loadedReferenceHelper.ObjectPoolerNode.Owner = null;
-			mReferenceHelper.AddChild(loadedReferenceHelper.ObjectPoolerNode);
-			loadedReferenceHelper.ObjectPoolerNode.Owner = mReferenceHelper.Owner;
+			ProcessNewElements(loadedReferenceHelper.ObjectPoolerNode);
 			mReferenceHelper.ObjectPoolerNode = loadedReferenceHelper.ObjectPoolerNode;
 
-			//Change the non persistent elements for the new ones.
-			mReferenceHelper.PersistentElements = loadedReferenceHelper.PersistentElements;
+			//Change the persistent elements for the new ones.
 			loadedReferenceHelper.PersistentElements.GetParent<Node>().RemoveChild(loadedReferenceHelper.PersistentElements);
-			loadedReferenceHelper.PersistentElements.Owner = null;
-			mReferenceHelper.AddChild(loadedReferenceHelper.PersistentElements);
-			loadedReferenceHelper.PersistentElements.Owner = mReferenceHelper.Owner;
+			ProcessNewElements(loadedReferenceHelper.PersistentElements);
+			mReferenceHelper.PersistentElements = loadedReferenceHelper.PersistentElements;
 			
 			//Should update the audio bank and make the song transition.
 			AudioManager.Instance.UpdateMusicBanks(loadedReferenceHelper.AudioBankContainerNode);
 
 			//Change the non persistent elements for the new ones.
-			mReferenceHelper.NonPersistentElements = loadedReferenceHelper.NonPersistentElements;
 			loadedReferenceHelper.NonPersistentElements.GetParent<Node>().RemoveChild(loadedReferenceHelper.NonPersistentElements);
-			loadedReferenceHelper.NonPersistentElements.Owner = null;
-			mReferenceHelper.AddChild(loadedReferenceHelper.NonPersistentElements);
-			loadedReferenceHelper.NonPersistentElements.Owner = mReferenceHelper.Owner;
+			ProcessNewElements(loadedReferenceHelper.NonPersistentElements);
+			mReferenceHelper.NonPersistentElements = loadedReferenceHelper.NonPersistentElements;
 			
 			//Free the loaded scene from memory
-			loadedReferenceHelper.SceneFinishedLoading();			
+			loadedReferenceHelper.SceneFinishedLoading();	
+
+			if (mSceneTransitionAnimator != null){
+				await mSceneTransitionAnimator.DoFadeInAnimation(fadeDuration);
+			}		
+
+			mIsLoading = false;
+			EmitSignal(SignalName.OnSceneLoadingEnded);
 		}
 
-		public void LightTransitionToNewScene(string sceneName){
+		public async void LightTransitionToNewScene(string sceneName, int fadeDuration = -1){
 			if (!mSceneDatabase.mNonPersistantSceneNameToPathMapping.ContainsKey(sceneName)){
 				mLogObject.Err("trying to load scene not loaded in Scene database named: " + sceneName);
 				return;
 			}
 			
+			EmitSignal(SignalName.OnSceneLoadingStarted);
+			mIsLoading = true;
+
+			if (mSceneTransitionAnimator != null){
+				await mSceneTransitionAnimator.DoFadeOutAnimation(fadeDuration);
+			}
+
 			if (GameObjectPooler.Instance != null)
 			{
 				GameObjectPooler.Instance.PoolAllObjects();
 			}
 			
+			mReferenceHelper.NonPersistentElements.QueueFree();
+
 			Node newNonPersitanceScene = ResourceLoader.Load<PackedScene>(mSceneDatabase.mNonPersistantSceneNameToPathMapping[sceneName]).Instantiate(); 
 
 			//Change the non persistent elements for the new ones.
-			mReferenceHelper.NonPersistentElements.QueueFree();
+			ProcessNewElements(newNonPersitanceScene);
 			mReferenceHelper.NonPersistentElements = newNonPersitanceScene;
-			newNonPersitanceScene.Owner = null;
-			mReferenceHelper.AddChild(newNonPersitanceScene);
-			newNonPersitanceScene.Owner = mReferenceHelper.Owner;
+
+			if (mSceneTransitionAnimator != null){
+				await mSceneTransitionAnimator.DoFadeInAnimation(fadeDuration);
+			}	
+
+			mIsLoading = false;
+			EmitSignal(SignalName.OnSceneLoadingEnded);
 		}
+
+
+		private void ProcessNewElements(Node newElementsNode){
+			newElementsNode.Owner = null;
+			mReferenceHelper.AddChild(newElementsNode);
+			newElementsNode.Owner = mReferenceHelper.Owner;
+		}
+
+
 
 		public override void _Ready(){
 			if (Engine.IsEditorHint()){
@@ -163,6 +193,14 @@ namespace CoreCode.Scripts{
 			mReferenceHelper.GetNodesFromPaths();
 			AudioManager.Instance.UpdateMusicBanks(mReferenceHelper.AudioBankContainerNode);	
 		}
+
+
+		//Signals
+		[Signal]
+		public delegate void OnSceneLoadingStartedEventHandler();
+
+		[Signal]
+		public delegate void OnSceneLoadingEndedEventHandler();
 
 	}
 }
