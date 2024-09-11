@@ -131,6 +131,10 @@ namespace CoreCode.FSM{
 			return mActualState;
 		}
 
+		public void InjectVariables(Godot.Collections.Dictionary payload){
+			mMemoryBlackboard.Merge(payload);
+		}
+
 
 		//THIS SHOULD ONLY BE USED WHEN SPAWNING ACTORS TO FORCE A THE INITIAL STATE FOR RESET
 		public void DoReset(){

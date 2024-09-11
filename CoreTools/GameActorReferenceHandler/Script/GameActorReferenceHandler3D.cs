@@ -40,11 +40,20 @@ namespace CoreCode.Scripts{
 
 		[Export] public StateMachineActor StateMachine;
 
-		
-		//------------------------------------Methods
+		[Export] private Godot.Collections.Dictionary mMemoryBlackboardInject = new Godot.Collections.Dictionary();
 
-		//THIS SHOULD NEVER BE CALLED MANUALLY. USE GAME OBJECT POOLER TO POOL OBJECTS!
-		public void ReturnToPool(){
+
+        //------------------------------------Methods
+
+
+        public override void _EnterTree()
+        {
+            base._EnterTree();
+			StateMachine.InjectVariables(mMemoryBlackboardInject);
+        }
+
+        //THIS SHOULD NEVER BE CALLED MANUALLY. USE GAME OBJECT POOLER TO POOL OBJECTS!
+        public void ReturnToPool(){
 			if (HasPoolReference==false){
 				AddReferenceInPool();	
 			}
