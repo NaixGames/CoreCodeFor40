@@ -47,6 +47,9 @@ jobs:
           dotnet --version
           godot --version
 
+      - name: Import assets
+        run: godot --headless --import
+
       - name: 🧑‍🔬 Generate .NET Bindings
         run: godot --headless --build-solutions --quit || exit 0
 
