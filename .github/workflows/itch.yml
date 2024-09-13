@@ -1,41 +1,94 @@
-on:
-  # Runs on pushes targeting the default branch
+name: 🚥📺 Export for main
+on: 
   push:
     branches: ["main"]
 
-
 jobs:
-  export_game:
-    runs-on: ubuntu-latest
-    name: Export Game Job
-    permissions: write-all
+  tests:
+    name: 👀 Evaluate on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      # Don't cancel other OS runners if one fails.
+      fail-fast: false
+      matrix:
+        # Put the operating systems you want to run on here.
+        os: [ubuntu-latest]
+    permissions:
+      contents: write
+    env:
+      DOTNET_CLI_TELEMETRY_OPTOUT: true
+      DOTNET_NOLOGO: true
+    defaults:
+      run:
+        # Use bash shells on all platforms.
+        shell: bash
     steps:
-      - name: checkout
-        uses: actions/checkout@v4
-      - name: install wine
-        id: wine_install
-        run: |
-          sudo apt install wine64
-          echo "WINE_PATH=$(which wine64)" >> $GITHUB_OUTPUT
-      - name: Get version tag
+      - uses: actions/checkout@v4
+        name: 🧾 Checkout
+
+      - name: 🏷️ Get version tag
         uses: michpohl/action-concatenate-strings@v1.0.1
         with:
-          first: "internal"
+          first: "internal-fallback-"
           second: ${{ github.run_number }}
           separator: '-'
           output-var-name: 'VERSION_NAME_STRING'
-      - name: export game for itch
-        id: export_itch
-        uses: firebelley/godot-export@v5.2.1
+
+      - uses: actions/setup-dotnet@v3
+        name: 💽 Setup .NET SDK
         with:
-          godot_executable_download_url: https://downloads.tuxfamily.org/godotengine/4.3/mono/Godot_v4.3-stable_mono_linux_x86_64.zip
-          godot_export_templates_download_url: https://downloads.tuxfamily.org/godotengine/4.3/mono/Godot_v4.3-stable_mono_export_templates.tpz
-          relative_project_path: . # build the standard project
-          relative_export_path: ./my/build/destination # move export output to this directory relative to git root
-          archive_output: false
-          export_debug: false
-          wine_path: ${{ steps.wine_install.outputs.WINE_PATH }}
-          cache: true
+          # Use the .NET SDK from global.json in the root of the repository.
+          global-json-file: global.json
+
+      - name: 📦 Restore Dependencies
+        run: dotnet restore
+
+      - uses: chickensoft-games/setup-godot@v1
+        name: 🤖 Setup Godot
+        with:
+          # Version must include major, minor, and patch, and be >= 4.0.0
+          # Pre-release label is optional.
+          version: 4.3.0 # also valid: 4.0.0.rc1 or 4.0.0, etc
+          # Use .NET-enabled version of Godot (the default is also true).
+          use-dotnet: true
+          # Include the Godot Export Templtes (the default is false).
+          include-templates: true
+
+      - name: 🔬 Verify Setup
+        run:
+          dotnet --version
+          godot --version
+
+      - name: 📥Import assets
+        run: godot --headless --import
+
+      - name: 🧑‍🔬 Generate .NET Bindings
+        run: godot --headless --build-solutions --quit || exit 0
+
+      - name: 🦺 Build Projects
+        run: dotnet build
+
+      - name: 📂Made directory
+        run: 
+          mkdir -p ./mygithub/build
+
+      - name: 🏗️Build godot
+        run:
+          godot --headless --verbose --export-release "Windows64" ./mygithub/build/CoreCode.exe
+
+      - name: 🗃️Zip release
+        uses: montudor/action-zip@v1
+        with:
+          args: zip -qq -r Windows64.zip ./mygithub/build
+
+      - name: 📤create release
+        uses: ncipollo/release-action@v1.13.0
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          generateReleaseNotes: false
+          tag: ${{ env.VERSION_NAME_STRING }}
+          artifacts: ./Windows64.zip # Added "/*" at the end is glob pattern match for this action
+
       - name: upload to itch
         uses: manleydev/butler-publish-itchio-action@master
         env:
@@ -44,3 +97,4 @@ jobs:
           ITCH_GAME: coretools
           ITCH_USER: NaixGames
           PACKAGE: ./my/build/destination/Windows64
+

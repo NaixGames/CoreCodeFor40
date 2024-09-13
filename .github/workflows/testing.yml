@@ -1,4 +1,4 @@
-name: core-scripts-testing
+name: 🧪core-scripts-testing
 run-name: ${{ github.head_ref || github.ref_name }}-core-scripts-testing
 
 on:
@@ -13,7 +13,7 @@ concurrency:
 
 jobs:
   unit-test:
-    name: "core-scripts-testing"
+    name: 📃"core-scripts-testing"
     runs-on: 'ubuntu-22.04'
     timeout-minutes: 20 # The overall timeout
     permissions: write-all
@@ -21,12 +21,14 @@ jobs:
     steps:
       # checkout your repository
       - uses: actions/checkout@v4
+        name: 🧾 Checkout
         with:
           lfs: true
-      - name: Try to grant execution permission to test runner
+      - name: 🔐Try to grant execution permission to test runner
         run: git update-index --chmod=+x ./addons/gdUnit4/runtest.sh
       # run tests by using the gdUnit4-action with Godot version 4.3 and the latest GdUnit4 release 
       - uses: MikeSchulze/gdUnit4-action@v1.1.1
+        name: 📜 Run GDUnit
         with:
           godot-version: '4.3'
           version: 'installed'
@@ -35,14 +37,14 @@ jobs:
           paths: 'res://TestsSource/Scripts/'
           timeout: 20
           report-name: test_report.xml
-      - name: Test Success
+      - name: ✅Test Success
         uses: rjstone/discord-webhook-notify@v1
         if: success()
         with:
           severity: info
           details: Test Succeeded on ${{ github.head_ref || github.ref_name }}
           webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
-      - name: Test Failure
+      - name: ❌Test Failure
         uses: rjstone/discord-webhook-notify@v1
         if: failure()
         with:
