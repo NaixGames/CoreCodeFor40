@@ -1,4 +1,4 @@
-name: 🚥📺 Export for main
+name: 🚥📺 Export for itch
 on: 
   push:
     branches: ["main"]
@@ -81,20 +81,12 @@ jobs:
         with:
           args: zip -qq -r Windows64.zip ./mygithub/build
 
-      - name: 📤create release
-        uses: ncipollo/release-action@v1.13.0
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          generateReleaseNotes: false
-          tag: ${{ env.VERSION_NAME_STRING }}
-          artifacts: ./Windows64.zip # Added "/*" at the end is glob pattern match for this action
-
-      - name: upload to itch
+      - name: 📤 upload to itch
         uses: manleydev/butler-publish-itchio-action@master
         env:
           BUTLER_CREDENTIALS: ${{ secrets.BUTLER }}
           CHANNEL: windows
           ITCH_GAME: coretools
           ITCH_USER: NaixGames
-          PACKAGE: ./my/build/destination/Windows64
+          PACKAGE: ./Windows64.zip
 
