@@ -29,7 +29,7 @@ jobs:
       - name: 🏷️ Get version tag
         uses: michpohl/action-concatenate-strings@v1.0.1
         with:
-          first: "internal-fallback-"
+          first: "itch-release-"
           second: ${{ github.run_number }}
           separator: '-'
           output-var-name: 'VERSION_NAME_STRING'
@@ -74,12 +74,12 @@ jobs:
 
       - name: 🏗️Build godot
         run:
-          godot --headless --verbose --export-release "Windows64" ./mygithub/build/CoreCode.exe
+          godot --headless --verbose --export-release "Windows64" ./build/Windows/CoreCode.exe
 
       - name: 🗃️Zip release
         uses: montudor/action-zip@v1
         with:
-          args: zip -qq -r Windows64.zip ./mygithub/build
+          args: zip -qq -r Windows64.zip ./build/Windows
 
       - name: 📤 upload to itch
         uses: manleydev/butler-publish-itchio-action@master
