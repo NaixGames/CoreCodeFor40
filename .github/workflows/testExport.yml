@@ -85,5 +85,5 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           generateReleaseNotes: false
           tag: ${{ env.VERSION_NAME_STRING }}
-          artifacts: ./mygithub/build/Windows64.zip # Added "/*" at the end is glob pattern match for this action
+          artifacts: ./Windows64.zip # Added "/*" at the end is glob pattern match for this action
 
