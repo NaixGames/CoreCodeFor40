@@ -1,5 +1,6 @@
 name: 🚥1️⃣ Export for main
 on: 
+  workflow_dispatch:
   push:
     branches: ["main"]
 
