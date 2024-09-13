@@ -58,7 +58,7 @@ jobs:
 
       - name: Made directory
         run: 
-          mkdir -p ./mygithub/build/destination
+          mkdir -p ./mygithub/build
 
       #- name: Give writing privileges
       #  run: 
