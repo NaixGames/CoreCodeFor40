@@ -50,9 +50,6 @@ jobs:
       - name: 🧑‍🔬 Generate .NET Bindings
         run: godot --headless --build-solutions --quit || exit 0
 
-      - name: 🦺 Build Projects
-        run: dotnet build
-
       - name: Made directory
         run: 
           mkdir -p ./mygithub/build/destination
