@@ -70,7 +70,7 @@ jobs:
 
       - name: 📂Made directory
         run: 
-          mkdir -p ./mygithub/build
+          mkdir -p ./build/Windows
 
       - name: 🏗️Build godot
         run:
