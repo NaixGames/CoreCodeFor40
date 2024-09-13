@@ -72,11 +72,15 @@ jobs:
         run:
           godot --headless --verbose --export-release "Windows64" ./mygithub/build/destination
 
+      - name: Zip release
+        run:
+          zip -r Windows64.zip ./mygithub/build/destination
+
       - name: create release
         uses: ncipollo/release-action@v1.13.0
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           generateReleaseNotes: false
           tag: ${{ env.VERSION_NAME_STRING }}
-          artifacts: ./mygithub/build/destination/* # Added "/*" at the end is glob pattern match for this action
+          artifacts: ./mygithub/build/Windows64.zip # Added "/*" at the end is glob pattern match for this action
 
