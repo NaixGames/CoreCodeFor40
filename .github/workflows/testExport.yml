@@ -72,12 +72,12 @@ jobs:
 
       - name: Build godot
         run:
-          godot --headless --verbose --export-release "Windows64" ./mygithub/build/destination
+          godot --headless --verbose --export-release "Windows64" ./mygithub/build/CoreCode.exe
 
       - name: Zip release
         uses: montudor/action-zip@v1
         with:
-          args: zip -qq -r Windows64.zip ./mygithub/build/destination
+          args: zip -qq -r Windows64.zip ./mygithub/build
 
       - name: create release
         uses: ncipollo/release-action@v1.13.0
