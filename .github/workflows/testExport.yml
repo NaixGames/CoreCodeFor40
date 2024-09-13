@@ -57,11 +57,11 @@ jobs:
         run: 
           mkdir -p ./mygithub/build/destination
 
-      - name: Give writing privileges
-        run: 
-          chmod +rwx /home/runner/godot/Godot_v4.3-stable_mono_linux_x86_64/Godot_v4.3-stable_mono_linux.x86_64
+      #- name: Give writing privileges
+      #  run: 
+       #   chmod +rwx /home/runner/godot/Godot_v4.3-stable_mono_linux_x86_64/Godot_v4.3-stable_mono_linux.x86_64
 
       - name: Build godot
         run:
-          /home/runner/godot/Godot_v4.3-stable_mono_linux_x86_64/Godot_v4.3-stable_mono_linux.x86_64 --headless --verbose --export-release "Windows64" ./mygithub/build/destination
+          godot --headless --verbose --export-release "Windows64" ./mygithub/build/destination
 
