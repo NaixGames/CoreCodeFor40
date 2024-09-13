@@ -55,7 +55,7 @@ jobs:
           include-templates: true
 
       - name: 🔬 Verify Setup
-        run:
+        run: |
           dotnet --version
           godot --version
 
