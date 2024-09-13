@@ -10,7 +10,7 @@ jobs:
       fail-fast: false
       matrix:
         # Put the operating systems you want to run on here.
-        os: [ubuntu-latest]
+        os: [windows-latest]
     env:
       DOTNET_CLI_TELEMETRY_OPTOUT: true
       DOTNET_NOLOGO: true
@@ -49,6 +49,9 @@ jobs:
 
       - name: 🧑‍🔬 Generate .NET Bindings
         run: godot --headless --build-solutions --quit || exit 0
+
+      - name: 🦺 Build Projects
+        run: dotnet build
 
       - name: Made directory
         run: 
