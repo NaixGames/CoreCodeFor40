@@ -18,7 +18,7 @@ namespace CoreCode.FSM{
 
 
 		private StateManagerAbstract mStateManager;
-		[Export] public StateManagerPointer mStateManagerPointer;
+		[Export] public StateManagerPointer StateManagerPointerResource;
 		[Export] private Godot.Collections.Dictionary mMemoryBlackboard = new Godot.Collections.Dictionary();
 		private StateAbstract mActualState;
 
@@ -67,7 +67,7 @@ namespace CoreCode.FSM{
 				mMemoryBlackboard.Add("AxisContainer", AxisNonZeroThisFrame);
 			}
 
-			mStateManager = mStateManagerPointer.GiveStateManagerInstance();
+			mStateManager = StateManagerPointerResource.GiveStateManagerInstance();
 
 			mStateManager.InitializeStates(this, mMemoryBlackboard);
 			mActualState = mStateManager.GiveInitialState(mLogObject); 

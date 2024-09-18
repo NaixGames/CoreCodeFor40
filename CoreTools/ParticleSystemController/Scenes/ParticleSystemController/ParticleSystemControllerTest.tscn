@@ -10,7 +10,6 @@ script = ExtResource("1_eynm7")
 NonPersistentElementsPath = NodePath("NPActualParticleSystemController")
 PersistentElementsPath = NodePath("PEParticleSystemController")
 ObjectPoolerNodePath = NodePath("ObjectPooler")
-AudioBankContainerNodePath = NodePath("AudioBank")
 
 [node name="NPActualParticleSystemController" parent="." instance=ExtResource("2_k73ru")]
 
@@ -21,6 +20,7 @@ ExtResource("4_kfr5y"): 4
 }
 mPoolPosition = Vector3(10, 10, 0)
 mShouldLog = true
+mLogChannel = "GameObjectPooler"
 
 [node name="AudioBank" type="Node" parent="."]
 

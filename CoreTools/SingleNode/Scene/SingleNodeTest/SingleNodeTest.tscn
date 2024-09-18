@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://p4gljuo7ycrc"]
+
+[ext_resource type="Script" path="res://CoreTools/SceneTransitionManager/Script/SceneTransitionReferenceHelper.cs" id="1_7wpd5"]
+[ext_resource type="PackedScene" uid="uid://btbnxwnaq704k" path="res://CoreTools/SingleNode/Scene/SingleNodeTest/NPESingleNodeTest.tscn" id="2_sa4yk"]
+[ext_resource type="Script" path="res://CoreTools/ObjectPooler/Scripts/GameObjectPooler2D.cs" id="3_2enrv"]
+
+[node name="ActualSingleNodeTest" type="Node"]
+script = ExtResource("1_7wpd5")
+NonPersistentElementsPath = NodePath("NPESingleNodeTest")
+PersistentElementsPath = NodePath("PESingleNodeTest")
+ObjectPoolerNodePath = NodePath("ObjectPooler")
+AudioBankContainerNodePath = NodePath("AudioBank")
+
+[node name="PESingleNodeTest" type="Node" parent="."]
+
+[node name="NPESingleNodeTest" parent="." instance=ExtResource("2_sa4yk")]
+
+[node name="ObjectPooler" type="Node" parent="."]
+script = ExtResource("3_2enrv")
+
+[node name="AudioBank" type="Node" parent="."]

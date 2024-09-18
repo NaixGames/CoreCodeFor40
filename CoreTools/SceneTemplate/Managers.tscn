@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://drxehyvydlrnt"]
+[gd_scene load_steps=11 format=3 uid="uid://drxehyvydlrnt"]
 
 [ext_resource type="Script" path="res://CoreTools/LogManager/Scripts/LogManager.cs" id="1_eeq6c"]
 [ext_resource type="Script" path="res://CoreTools/ObjectEventDispatcher/GlobalEventDispatcher.cs" id="2_f31l3"]
@@ -8,9 +8,8 @@
 [ext_resource type="Script" path="res://CoreTools/Input/InputReader/Scripts/InputReaderVoid.cs" id="4_xvsgk"]
 [ext_resource type="Resource" uid="uid://b1jj86mm1tdmc" path="res://CoreTools/SceneTransitionManager/Data/SceneDatabase.tres" id="4_ygubc"]
 [ext_resource type="Script" path="res://CoreTools/AchievementManager/Scripts/AchievementManager.cs" id="5_xesqj"]
-[ext_resource type="Script" path="res://CoreTools/AudioManager/Scripts/AudioManager.cs" id="7_161i1"]
 [ext_resource type="Script" path="res://CoreTools/Input/InputReader/Scripts/InputEmiterTouch.cs" id="8_foah0"]
-[ext_resource type="Script" path="res://CoreTools/AudioManager/Scripts/AdaptativeMusicManager.cs" id="8_m6vep"]
+[ext_resource type="Script" path="res://CoreTools/AudioManager/Scripts/AudioPlayersRegister.cs" id="10_1egbf"]
 
 [node name="Managers" type="Node"]
 
@@ -24,19 +23,24 @@ mChannels = {
 "GameObjectPooler": false,
 "GlobalEventDispatcher": false,
 "Input": false,
+"LogManager": false,
 "SceneTransitions": false
 }
+mLogChannel = "LogManager"
 
 [node name="GlobalEventDispatcher" type="Node" parent="."]
 script = ExtResource("2_f31l3")
+mLogChannel = "GlobalEventDispatcher"
 
 [node name="SceneTransitionManager" type="Node" parent="."]
 script = ExtResource("3_xb83e")
 mSceneDatabase = ExtResource("4_ygubc")
+mLogChannel = "SceneTransitions"
 
 [node name="InputManager" type="Node" parent="."]
 script = ExtResource("3_gbq0a")
 mPlayerInputs = [NodePath("VoidInput"), NodePath("P1Input")]
+mLogChannel = "Input"
 
 [node name="VoidInput" type="Node" parent="InputManager"]
 script = ExtResource("4_xvsgk")
@@ -53,17 +57,8 @@ mDragDistance = 50.0
 
 [node name="AchievementManager" type="Node" parent="."]
 script = ExtResource("5_xesqj")
+mLogChannel = "Achievements"
 
-[node name="AudioManager" type="Node" parent="."]
-script = ExtResource("7_161i1")
-mMusicManagerPath = NodePath("AdaptativeMusicManager")
-mPlayMusicAtStart = true
-mGlobalSFXNodeParentPath = NodePath("GlobalSFXContainerNode")
-mPositionalSFXNodeParentPath = NodePath("PositionalSFXContainerNode")
-
-[node name="AdaptativeMusicManager" type="Node" parent="AudioManager"]
-script = ExtResource("8_m6vep")
-
-[node name="GlobalSFXContainerNode" type="Node" parent="AudioManager"]
-
-[node name="PositionalSFXContainerNode" type="Node" parent="AudioManager"]
+[node name="AudioPlayerRegister" type="Node" parent="."]
+script = ExtResource("10_1egbf")
+mLogChannel = "Audio"

@@ -7,10 +7,9 @@ using System.Diagnostics;
 
 namespace CoreCode.FSM
 {
-    [GlobalClass, Tool]
-    public  partial class StateManagerPointer : Resource
+    [Tool]
+    public abstract partial class StateManagerPointer : Resource
     {
-        [Export] public string StateManagerClassPath;
 
         private Dictionary<string, string> mClassToNameMapping = new Dictionary<string, string>();
 
@@ -18,16 +17,9 @@ namespace CoreCode.FSM
 
         private Dictionary<string, List<string>> mStatesConnections = new Dictionary<string, List<string>>();
 
-        public StateManagerAbstract GiveStateManagerInstance(){
-            try{
-                return (StateManagerAbstract)Assembly.GetAssembly(typeof(StateManagerAbstract)).CreateInstance(StateManagerClassPath);
-            }
-            catch(Exception e){
-                GD.PrintErr("State manager casting failed", e);
-                return null;
-            }
-        }
+        public abstract StateManagerAbstract GiveStateManagerInstance();
 
+        public abstract string GiveNamespaceString();
         // ----------------------------------------------------
 
         public void PrintStateManagerGraph(){
@@ -60,25 +52,13 @@ namespace CoreCode.FSM
                 return;
             }
 
-            GetStateTransitions(StatesFolder, fileName.Substring(0,fileName.IndexOf(".")));
-
-            /*
-            GD.Print("TEST");
-            foreach (string value in mClassToNameMapping.Keys){
-                GD.Print(value + " " + mClassToNameMapping[value]);
-            }
-            GD.Print("TEST2");
-
-            foreach (string value in mStatesConnections.Keys){
-                GD.Print(value + " " + mStatesConnections[value].Count);
-            }*/
+            GetStateTransitions(StatesFolder);
 
             PrintAndSaveInformation(ContainerFolder);
 #endif
         }
 
 #if TOOLS
-
         private bool IsAStateManagerClass(string fileName){
             int lastSeparator = fileName.LastIndexOf(".");
             if (lastSeparator == -1){
@@ -88,7 +68,13 @@ namespace CoreCode.FSM
             if (typeString != ".cs"){
                 return false;
             }
-            return Type.GetType(StateManagerClassPath).IsSubclassOf(typeof(StateManagerAbstract));
+            string className  = fileName.Substring(0, lastSeparator);
+            className = GiveNamespaceString() + "." + className;
+            if (Type.GetType(className) == null)
+            {
+                return false;
+            }
+            return Type.GetType(className).IsSubclassOf(typeof(StateManagerAbstract));
         }
 
         private void ProcessStateManagerClass(string stateManagerPath){
@@ -105,7 +91,7 @@ namespace CoreCode.FSM
             }
         }
 
-        private void GetStateTransitions(string StateFolder, string StateManagerName){
+        private void GetStateTransitions(string StateFolder){
             foreach (string className in mClassToNameMapping.Keys){
                 mStatesConnections.Add(className, new List<string>());
                 FileAccess file = FileAccess.Open(ProjectSettings.LocalizePath(StateFolder+"/"+className+".cs"), FileAccess.ModeFlags.Read);

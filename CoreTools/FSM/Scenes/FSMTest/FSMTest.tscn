@@ -9,7 +9,6 @@ script = ExtResource("1_tjui5")
 NonPersistentElementsPath = NodePath("NPActualFSMTest")
 PersistentElementsPath = NodePath("PEFSMTest")
 ObjectPoolerNodePath = NodePath("ObjectPooler")
-AudioBankContainerNodePath = NodePath("AudioBank")
 
 [node name="ObjectPooler" type="Node" parent="."]
 script = ExtResource("3_orevq")

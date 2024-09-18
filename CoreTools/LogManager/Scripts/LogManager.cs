@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 
 namespace CoreCode.Scripts{
-	public partial class LogManager : Node
+	public partial class LogManager : SingleNode<LogManager>
 	{
 		// ----------------------------------- Information ------------------------------------------------
 		/*This is a script to have a administrate different log instances in the game. This should help manage different logging options.*/
@@ -18,27 +18,6 @@ namespace CoreCode.Scripts{
 
 		Update: Added new dictionary based approach. Makes setting dictionaries a bit easier.
 		*/
-
-
-		// ------------------------------------- Singleton instantiation -------------------------------
-		private static LogManager instance;
-		public static LogManager Instance{
-			get {return TryToReturnInstance();}
-		}
-
-		public static LogManager TryToReturnInstance(){
-			if (instance == null){
-				GD.PushWarning("instance of LogManager called before the instance was ready!");
-				instance = new LogManager();
-			}
-			return instance;
-		}
-
-
-		public LogManager(){
-			instance=this; 
-		}
-
 
 		// ------------------------------------- Variable to turn logging by channels.
 		
@@ -75,7 +54,7 @@ namespace CoreCode.Scripts{
 
 		// -------------------------------------
 
-		public override void _Ready(){
+		public override void _EnterTree(){
 			foreach (string channel in mChannels.Keys){
 				ILogObject newLog;
 				if (mChannels[channel]){
@@ -86,6 +65,8 @@ namespace CoreCode.Scripts{
 				}
 				mLogsDictionary.Add(channel, newLog);
 			}
+
+			base._EnterTree();
 		}
 
 		// -------------------------------------

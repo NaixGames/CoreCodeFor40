@@ -1,11 +1,13 @@
 using Godot;
 using System;
 using CoreCode.Scripts;
-using CoreCode.AudioSystem;
 
 namespace CoreCode.Example{
 	public partial class AudioPhasingTest : Node, IControlableByInput
 	{
+
+		private IAudioPlayer mAudioPlayer;
+		private AudioStreamPlaybackInteractive mAudioStreamPlaybackInteractive;
 
 		// ------------------------------------ Methods for IControlableByInput interface-----------------------------------------
 		
@@ -34,6 +36,8 @@ namespace CoreCode.Example{
 		public override void _Ready()
 		{
 			RecieveInputReader(InputManager.Instance.GiveInputByPlayerChannel(this, 1));
+			mAudioPlayer  = AudioPlayersRegister.Instance.GetAudioPlayer("MainMusic");
+			mAudioStreamPlaybackInteractive = (mAudioPlayer as AudioStreamPlayer).GetStreamPlayback() as AudioStreamPlaybackInteractive;
 		}
 
 		// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -41,10 +45,12 @@ namespace CoreCode.Example{
 		{
 			
 			if (mInputReader.IsButtonJustPressedInput("Up")){
-				AudioManager.Instance.TransitionToOtherTrack(2);
+				IAudioPlayer player = AudioPlayersRegister.Instance.GetAudioPlayer("MainMusic");
+				mAudioStreamPlaybackInteractive.SwitchToClip(1);				
 			}
 			if (mInputReader.IsButtonJustPressedInput("Down")){
-				AudioManager.Instance.TransitionToOtherTrack(0);
+				IAudioPlayer player = AudioPlayersRegister.Instance.GetAudioPlayer("MainMusic");
+				mAudioStreamPlaybackInteractive.SwitchToClip(0);		
 			}
 		}
 	}

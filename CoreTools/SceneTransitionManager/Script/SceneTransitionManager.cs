@@ -1,10 +1,9 @@
 using Godot;
-using CoreCode.AudioSystem;
 
 
 namespace CoreCode.Scripts{
 	[Tool]
-	public partial class SceneTransitionManager : Node
+	public partial class SceneTransitionManager : SingleNode<SceneTransitionManager>
 	{
 		// Information
 		/*This is a script to allow Scene transition in godot in a nice way. That is, preserving singletons
@@ -15,35 +14,6 @@ namespace CoreCode.Scripts{
 		/* This class give methods to load scenes given a path to the scene. This node should eventually
 		support shaders for scene transition to make this transition (duh) more smooth*/
 
-		// Singleton instantiation 
-		private static SceneTransitionManager instance;
-		public static SceneTransitionManager Instance{
-			get {return TryToReturnInstance();}
-		}
-
-		public static SceneTransitionManager TryToReturnInstance(){
-			if (Engine.IsEditorHint()){
-				return new SceneTransitionManager();
-			}
-			if (instance == null){
-				GD.PushWarning("Instance of SceneTransitionManager called before the instance was ready!");
-				instance = new SceneTransitionManager();
-			}
-			return instance;
-		}
-
-
-		public SceneTransitionManager(){
-			if (Engine.IsEditorHint()){
-				return;
-			}
-			if (instance==null){
-				instance=this; 
-			}
-			else{
-				GD.PushWarning("Instance of SceneTransitionManager created when there is an existing instance!");
-			}
-		}
 		// Variables
 		[Export] private SceneDatabase mSceneDatabase;
 		[Export] private SceneTransitionAnimator mSceneTransitionAnimator;
@@ -52,10 +22,7 @@ namespace CoreCode.Scripts{
 
 		private bool mIsLoading;
 		public bool IsLoading => mIsLoading;
-
-		// Variable for logging
-		[Export] protected bool mShouldLog;
-		protected ILogObject mLogObject; 
+		
 
 		// Methods 
 
@@ -99,9 +66,6 @@ namespace CoreCode.Scripts{
 			loadedReferenceHelper.PersistentElements.GetParent<Node>().RemoveChild(loadedReferenceHelper.PersistentElements);
 			ProcessNewElements(loadedReferenceHelper.PersistentElements);
 			mReferenceHelper.PersistentElements = loadedReferenceHelper.PersistentElements;
-			
-			//Should update the audio bank and make the song transition.
-			AudioManager.Instance.UpdateMusicBanks(loadedReferenceHelper.AudioBankContainerNode);
 
 			//Change the non persistent elements for the new ones.
 			loadedReferenceHelper.NonPersistentElements.GetParent<Node>().RemoveChild(loadedReferenceHelper.NonPersistentElements);
@@ -170,9 +134,7 @@ namespace CoreCode.Scripts{
 		}
 
 
-		private void Initialize(){
-			mLogObject = LogManager.Instance.RequestLog("SceneTransitions", mShouldLog);
-			
+		private void Initialize(){			
 			//If we dont have a SceneDatabase give a warning.
 			if (mSceneDatabase == null){
 				mLogObject.Warn("No scene database provided. No scene transition will be posible!");
@@ -191,7 +153,6 @@ namespace CoreCode.Scripts{
 			}
 	
 			mReferenceHelper.GetNodesFromPaths();
-			AudioManager.Instance.UpdateMusicBanks(mReferenceHelper.AudioBankContainerNode);	
 		}
 
 

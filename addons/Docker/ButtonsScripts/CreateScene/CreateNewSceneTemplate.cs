@@ -10,10 +10,8 @@ namespace  CoreCode.Docker
     {
         private LineEdit mPathStringInputNode;
         private LineEdit mNameStringInputNode;
-
         private ItemList mDimensionCaseNode;
 
-        private const string ManagerNodePath="res://CoreTools/SceneTemplate/Managers.tscn";
         private const string PathScriptSceneManagerTransitionHelper="res://CoreTools/SceneTransitionManager/Script/SceneTransitionReferenceHelper.cs";
         private const string PathScriptGameObjectPooler2D="res://CoreTools/ObjectPooler/Scripts/GameObjectPooler2D.cs";
         private const string PathScriptGameObjectPooler3D="res://CoreTools/ObjectPooler/Scripts/GameObjectPooler3D.cs";
@@ -79,12 +77,8 @@ namespace  CoreCode.Docker
             else if(dimensionCase=="3D"){
                 objectPooler.SetScript(GD.Load<Script>(PathScriptGameObjectPooler3D));
             }
-            Node audioBanks = new Node();
-            audioBanks.Name = "AudioBank";
             parentScene.AddChild(objectPooler);
-            parentScene.AddChild(audioBanks);
             objectPooler.Owner=parentScene;
-            audioBanks.Owner=parentScene;
 
 
             //Put the reference of the script in the actual scene
@@ -94,7 +88,6 @@ namespace  CoreCode.Docker
             referenceHelper.NonPersistentElementsPath = referenceHelper.GetPathTo(NPElementsInstance);
             referenceHelper.PersistentElementsPath = referenceHelper.GetPathTo(persistentElements);
             referenceHelper.ObjectPoolerNodePath = referenceHelper.GetPathTo(objectPooler);
-            referenceHelper.AudioBankContainerNodePath = referenceHelper.GetPathTo(audioBanks);
 
             //Save the actual scene
             Packer.Pack(referenceHelper);

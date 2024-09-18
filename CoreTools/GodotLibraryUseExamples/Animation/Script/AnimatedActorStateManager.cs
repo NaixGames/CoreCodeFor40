@@ -6,8 +6,6 @@ using CoreCode.FSM;
 namespace CoreCode.Example.AnimationExampleFSM{
     public partial class AnimatedActorStateManager : StateManagerAbstract
     {
-        [Export] private AnimationPlayer mAnimator;
-
         public readonly AnimatedActorAnimateState AnimateState = new AnimatedActorAnimateState();
 
 

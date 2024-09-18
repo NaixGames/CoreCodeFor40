@@ -23,7 +23,7 @@ namespace CoreCode.FSM{
 		// Variables
 
 		private StateManagerAbstract mStateManager;
-		[Export] public StateManagerPointer StateManagerResource;
+		[Export] public StateManagerPointer StateManagerPointerResource;
 		[Export] private Godot.Collections.Dictionary mMemoryBlackboard = new Godot.Collections.Dictionary();
 		private StateAbstract mActualState;
 
@@ -81,16 +81,18 @@ namespace CoreCode.FSM{
 				return;
 			}
 
-			mStateManager = StateManagerResource.GiveStateManagerInstance();
+			mLogObject = LogManager.Instance.RequestLog("FSM", mShouldLog);
+			mLogObject.Assert(StateManagerPointerResource != null, "Had a StateMachineActor without a StateManagerPointer. You forgot to set a reference!");
+			
+			mStateManager = StateManagerPointerResource.GiveStateManagerInstance();
+			mLogObject.Print("Intiliazing FSM of: "  + this.Name + " with state manager " + mStateManager.GetType()); 
+			
 			if (mRequestInputChannel>0){
 				RecieveInputReader(InputManager.Instance.GiveInputByPlayerChannel(this, mRequestInputChannel));
 			}
 			if (mInputReader == null){
 				ClearInputReader();
 			}
-
-			mLogObject = LogManager.Instance.RequestLog("FSM", mShouldLog);
-			mLogObject.Print("Intiliazing FSM of: "  + this.Name + " with state manager " + mStateManager.GetType()); 
 
 			mStateManager.InitializeStates(this, mMemoryBlackboard);
 			mActualState = mStateManager.GiveInitialState(mLogObject); 

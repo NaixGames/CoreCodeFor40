@@ -33,13 +33,16 @@ namespace CoreCode.Scripts{
 		// -------------------------------------
 
 		public void Err(string message) {
-			return;
+			GD.PrintErr(message);
 		}
 
 		// -------------------------------------
 
 		public void Assert(bool condition, string message) {
-			return;
+			if (!condition)
+			{
+				GD.PrintErr(message);
+			}
 		}
 
 		// -------------------------------------

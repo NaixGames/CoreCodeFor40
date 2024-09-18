@@ -20,6 +20,7 @@ namespace  CoreCode.Docker
         private const string PathStringGameActorReference3D="res://CoreTools/GameActorReferenceHandler/Script/GameActorReferenceHandler3D.cs";
         private const string PathScriptStateTemplate="res://addons/ScriptTemplates/Node/StateTemplate.cs";
         private const string PathScriptStateManagerTemplate="res://addons/ScriptTemplates/Node/StateManagerTemplate.cs";
+        private const string PathScriptStateManagerPointerTemplate = "D:/Github/CoreCodeFor40/addons/ScriptTemplates/Node/StateManagerPointerTemplate.cs";
 
         public override void _EnterTree()
         {
@@ -36,12 +37,9 @@ namespace  CoreCode.Docker
             string mName = mFSMNameStringInputNode.Text;
             string mInitialStateName = mInitialStateNameStringInputNode.Text;
 
-            string NameCorrected;
+            string NameCorrected = mName;
             if (mFSMCaseNode.IsSelected(2)){
-                NameCorrected = "AI"+mName;
-            }
-            else{
-                NameCorrected="Actor"+mName;
+                NameCorrected = "AI"+ mName;
             }
 
             //Should create the paths I am using here
@@ -67,7 +65,7 @@ namespace  CoreCode.Docker
             string stateNameUpper = stateName[0].ToString().ToUpper() + stateName.Substr(1, stateName.Length-1);
             string stateNameLower = stateName[0].ToString().ToLower() + stateName.Substr(1, stateName.Length-1);
 
-            string newNamespace = ProjectName+".Actor"+FSMName;
+            string newNamespace = ProjectName+"."+FSMName;
 
             //Create the initial state script here
             FileAccess file = FileAccess.Open(PathScriptStateTemplate, FileAccess.ModeFlags.Read);
@@ -80,7 +78,7 @@ namespace  CoreCode.Docker
             file.Close();
 
 
-            //First Create the state manager
+            //Create the state manager
             file = FileAccess.Open(PathScriptStateManagerTemplate, FileAccess.ModeFlags.Read);
             content = file.GetAsText();
             file.Close();
@@ -96,9 +94,24 @@ namespace  CoreCode.Docker
             file.Close();
 
 
-            //Create state manager pointer
-            StateManagerPointer stateManagerPointer = new StateManagerPointer();
-            stateManagerPointer.StateManagerClassPath = newNamespace+"."+FSMName+"StateManager";
+            //Create the state manager pointer class
+            file = FileAccess.Open(PathScriptStateManagerPointerTemplate, FileAccess.ModeFlags.Read);
+            content = file.GetAsText();
+            file.Close();
+            content = EraseFirstTwoLines(content);
+            content = content.Replace("//","");
+            content = content.Replace("_STATEMANAGERNAMESPACE_", newNamespace);
+            content = content.Replace("_CLASS_",FSMName+"StateManagerPointer : StateManagerPointer");
+            content = content.Replace("null", "new " + FSMName+"StateManager()");
+
+            string pathForStateManagerPointer= path+ FSMName + "/StateManager/"+FSMName+"StateManagerPointer.cs";
+            file = FileAccess.Open(pathForStateManagerPointer, FileAccess.ModeFlags.Write);
+            file.StoreLine(content);
+            file.Close();
+
+            //Create state manager pointer resource
+            Resource stateManagerPointer = new Resource();
+            stateManagerPointer.SetScript(ResourceLoader.Load<Script>(pathForStateManagerPointer));
             ResourceSaver.Save(stateManagerPointer, path + FSMName + "/StateManager/"+FSMName+"ManagerPointer.tres");
 
 
@@ -127,10 +140,8 @@ namespace  CoreCode.Docker
             ActorNode.AddChild(FSMNode);
             FSMNode.Owner = ActorNode;
             FSMNode.SetScript(ResourceLoader.Load<Script>(PathScriptFSMActor));
-            //Assign the state manager pointer
-            StateManagerPointer savedPointer = ResourceLoader.Load<StateManagerPointer>(path + FSMName + "/StateManager/"+FSMName+"ManagerPointer.tres");
             StateMachineActor FSMActor = ActorNode.GetChild<StateMachineActor>(0);
-            FSMActor.StateManagerResource = savedPointer;
+           
             
             //Assign FSM to reference handler
             if (IsTwoDimension){
@@ -170,7 +181,7 @@ namespace  CoreCode.Docker
             file.Close();
 
 
-            //First Create the state manager class
+            //First Create the state manager
             file = FileAccess.Open(PathScriptStateManagerTemplate, FileAccess.ModeFlags.Read);
             content = file.GetAsText();
             file.Close();
@@ -183,13 +194,29 @@ namespace  CoreCode.Docker
             string pathForStateManager= path+ FSMName + "/StateManager/"+FSMName+"StateManager.cs";
             file = FileAccess.Open(pathForStateManager, FileAccess.ModeFlags.Write);
             file.StoreLine(content);
-
             file.Close();
 
-            //Make the StateMachinePointer
-            StateManagerPointer stateManagerPointer = new StateManagerPointer();
-            stateManagerPointer.StateManagerClassPath = newNamespace+"."+FSMName+"StateManager";
+
+            //Create the state manager pointer class
+            file = FileAccess.Open(PathScriptStateManagerPointerTemplate, FileAccess.ModeFlags.Read);
+            content = file.GetAsText();
+            file.Close();
+            content = EraseFirstTwoLines(content);
+            content = content.Replace("//","");
+            content = content.Replace("_STATEMANAGERNAMESPACE_", newNamespace);
+            content = content.Replace("_CLASS_",FSMName+"StateManagerPointer : StateManagerPointer");
+            content = content.Replace("null", "new " + FSMName+"StateManager()");
+
+            string pathForStateManagerPointer= path+ FSMName + "/StateManager/"+FSMName+"StateManagerPointer.cs";
+            file = FileAccess.Open(pathForStateManagerPointer, FileAccess.ModeFlags.Write);
+            file.StoreLine(content);
+            file.Close();
+
+            //Create state manager pointer resource
+            Resource stateManagerPointer = new Resource();
+            stateManagerPointer.SetScript(ResourceLoader.Load<Script>(pathForStateManagerPointer));
             ResourceSaver.Save(stateManagerPointer, path + FSMName + "/StateManager/"+FSMName+"ManagerPointer.tres");
+
 
             //Make the State Machine
             Node FSMNode = new Node();
@@ -204,9 +231,9 @@ namespace  CoreCode.Docker
             FSMNode = dummyNode.GetChild(0);
 
             //Assign the state manager pointer
-            StateManagerPointer savedPointer = ResourceLoader.Load<StateManagerPointer>(path + FSMName + "/StateManager/"+FSMName+"ManagerPointer.tres");
+            Resource savedPointer = ResourceLoader.Load<Resource>(path + FSMName + "/StateManager/"+FSMName+"ManagerPointer.tres");
             StateMachineAIInput FSMAI = FSMNode as StateMachineAIInput;
-            FSMAI.mStateManagerPointer = savedPointer;
+            //FSMAI.StateManagerPointerResource = savedPointer;
 
             Packer.Pack(FSMNode);
             ResourceSaver.Save(Packer, path +"/" + FSMName +"/" + FSMName + ".tscn");

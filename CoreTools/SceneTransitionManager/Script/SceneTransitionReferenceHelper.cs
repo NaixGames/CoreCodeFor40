@@ -20,12 +20,9 @@ namespace CoreCode.Scripts{
 		[Export] public NodePath NonPersistentElementsPath;
 		[Export] public NodePath PersistentElementsPath;
 		[Export] public NodePath ObjectPoolerNodePath;
-		[Export] public NodePath AudioBankContainerNodePath;
-
 		public Node NonPersistentElements;
 		public Node PersistentElements;
 		public Node ObjectPoolerNode;
-		public Node AudioBankContainerNode;
 
 
 		// ------------------------------------ Method to queue without anoying references staying arround
@@ -34,7 +31,6 @@ namespace CoreCode.Scripts{
 			NonPersistentElements=null;
 			PersistentElements=null;
 			ObjectPoolerNode=null;
-			AudioBankContainerNode=null;
 			this.QueueFree();
 		}
 
@@ -51,7 +47,6 @@ namespace CoreCode.Scripts{
 			NonPersistentElements = this.GetNode(NonPersistentElementsPath);
 			PersistentElements = this.GetNode(PersistentElementsPath);
 			ObjectPoolerNode = this.GetNode(ObjectPoolerNodePath);
-			AudioBankContainerNode = this.GetNode(AudioBankContainerNodePath);
 		}
 	}
 }

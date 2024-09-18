@@ -1,8 +1,16 @@
-[gd_scene load_steps=2 format=3 uid="uid://bg8gwtn8f24oh"]
+[gd_scene load_steps=4 format=3 uid="uid://bg8gwtn8f24oh"]
 
 [ext_resource type="Script" path="res://CoreTools/AudioManager/Scripts/AudioPhasingTest.cs" id="1_daun4"]
+[ext_resource type="AudioStream" uid="uid://r7uibnsbd8h0" path="res://CoreTools/AudioManager/Data/AudioStreamInteractiveTest.tres" id="2_ily7p"]
+[ext_resource type="Script" path="res://CoreTools/AudioManager/Scripts/AudioPlayer.cs" id="3_tylju"]
 
 [node name="NPActualAudioTest" type="Node"]
 
 [node name="AudioTester" type="Node" parent="."]
 script = ExtResource("1_daun4")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_ily7p")
+autoplay = true
+script = ExtResource("3_tylju")
+mTag = "MainMusic"

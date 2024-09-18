@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 namespace CoreCode.Scripts{
-	public abstract partial class GameObjectPooler : Node
+	public abstract partial class GameObjectPooler : SingleNode<GameObjectPooler>
 	{
 		// ----------------------------------- Information ------------------------------------------------
 		/*This is a script to have a game object poooler. This is a more efficient and memory safe way to manage instantiation of game objects. 
@@ -28,31 +28,7 @@ namespace CoreCode.Scripts{
 		In practice, the parameters should be set such that the last two cases never occur.
 		*/
 
-
-		// ------------------------------------- Singleton instantiation -------------------------------
-
-		protected static GameObjectPooler instance;
-		public static GameObjectPooler Instance{
-			get {return TryToReturnInstance();}
-		}
-
-		protected static GameObjectPooler TryToReturnInstance(){
-			if (instance == null){
-				GD.PushWarning("Instance of GameObjectPooler called before the instance was ready!");
-				return null;
-			}
-			return instance;
-		}
-
-		public GameObjectPooler(){
-			if (instance == null){
-				instance = this;
-			}
-			else{
-				this.QueueFree();
-			}
-		}
-		// ------------------------------------- Variables
+		// Variables
 
 		[Export] protected Godot.Collections.Dictionary<PoolableObjectReference, int> PoolableObjectsInMemoryAmmount = new Godot.Collections.Dictionary<PoolableObjectReference, int>();
 		[Export] protected int mNumberForPoolExpandUponFilling=10;
@@ -66,13 +42,6 @@ namespace CoreCode.Scripts{
 		public Vector3 PoolPosition {
 			get{return mPoolPosition;}
 		}
-
-		//---------------------Variables for loging
-		
-		[Export]
-		protected bool mShouldLog;
-
-		protected ILogObject mLogObject;
 
         // -----------------------------------------------------------------------------
 
@@ -163,10 +132,6 @@ namespace CoreCode.Scripts{
 		//Method to erase the object pooler. Usefull to replace it with anotherone on level changes
 
 		private void EraseObjectPooler(){
-			if (instance == this){
-				instance = null;
-			}
-
 			foreach (string tag in mObjectPoolerMap.Keys){
 				for(int i=0; i< mObjectPoolerMap[tag].Length;i++){
 					(mObjectPoolerMap[tag][i] as Node).Free();
