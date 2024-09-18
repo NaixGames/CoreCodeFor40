@@ -1,11 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://bgib2fg35hf6s"]
+[gd_scene load_steps=6 format=3 uid="uid://bgib2fg35hf6s"]
 
 [ext_resource type="Script" path="res://CoreTools/SceneTransitionManager/Script/SceneTransitionReferenceHelper.cs" id="1_mukmp"]
 [ext_resource type="PackedScene" uid="uid://bdfn1p6qmr5du" path="res://CoreTools/SceneTransitionManager/Scene/SceneOne/NPEExampleScene1.tscn" id="2_1a67u"]
 [ext_resource type="Texture2D" uid="uid://dqd4wln1wph42" path="res://icon.svg" id="2_4patg"]
 [ext_resource type="Script" path="res://CoreTools/SceneTransitionManager/Script/SceneTransitionManagerTest.cs" id="3_odkmi"]
 [ext_resource type="Script" path="res://CoreTools/ObjectPooler/Scripts/GameObjectPooler2D.cs" id="3_slpaa"]
-[ext_resource type="AudioStream" uid="uid://culb26ms4bw8r" path="res://CoreTools/AudioManager/BasicTesting/07. Strike the Earth! [MaesterTed, Flake].mp3" id="5_35wxi"]
 
 [node name="ActualSceneOne" type="Node"]
 script = ExtResource("1_mukmp")
@@ -19,11 +18,6 @@ script = ExtResource("3_slpaa")
 mPoolPosition = Vector3(200, 600, 0)
 mShouldLog = true
 mLogChannel = "GameObjectPooler"
-
-[node name="AudioBanks" type="Node" parent="."]
-
-[node name="TrackScene1" type="AudioStreamPlayer" parent="AudioBanks"]
-stream = ExtResource("5_35wxi")
 
 [node name="PersistentElements" type="Node" parent="."]
 
