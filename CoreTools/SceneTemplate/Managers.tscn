@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://drxehyvydlrnt"]
 
 [ext_resource type="Script" path="res://CoreTools/LogManager/Scripts/LogManager.cs" id="1_eeq6c"]
-[ext_resource type="Script" path="res://CoreTools/ObjectEventDispatcher/GlobalEventDispatcher.cs" id="2_f31l3"]
+[ext_resource type="Script" path="res://CoreTools/ObjectEventDispatcher/Scripts/GlobalEventDispatcher.cs" id="2_l52b5"]
 [ext_resource type="Script" path="res://CoreTools/Input/InputManager/Scripts/InputManager.cs" id="3_gbq0a"]
 [ext_resource type="Script" path="res://CoreTools/SceneTransitionManager/Script/SceneTransitionManager.cs" id="3_xb83e"]
 [ext_resource type="Script" path="res://CoreTools/Input/InputReader/Scripts/InputReaderPlayer.cs" id="4_g5skp"]
@@ -29,8 +29,7 @@ mChannels = {
 mLogChannel = "LogManager"
 
 [node name="GlobalEventDispatcher" type="Node" parent="."]
-script = ExtResource("2_f31l3")
-mLogChannel = "GlobalEventDispatcher"
+script = ExtResource("2_l52b5")
 
 [node name="SceneTransitionManager" type="Node" parent="."]
 script = ExtResource("3_xb83e")
