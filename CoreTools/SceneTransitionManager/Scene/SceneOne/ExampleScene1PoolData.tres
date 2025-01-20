@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="PoolSceneData" load_steps=2 format=3 uid="uid://bbjt5l5op12bx"]
+
+[ext_resource type="Script" path="res://CoreTools/SceneTransitionManager/Script/PoolSceneData.cs" id="1_qo0da"]
+
+[resource]
+script = ExtResource("1_qo0da")
+PoolableObjectsData = {}

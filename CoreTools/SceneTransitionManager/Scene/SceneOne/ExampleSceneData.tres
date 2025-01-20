@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ScenePoolAndAudioData" load_steps=4 format=3 uid="uid://b2pmvj2qdtp78"]
+
+[ext_resource type="Resource" uid="uid://bbjt5l5op12bx" path="res://CoreTools/SceneTransitionManager/Scene/SceneOne/ExampleScene1PoolData.tres" id="1_1pauc"]
+[ext_resource type="Script" path="res://CoreTools/SceneTransitionManager/Script/ScenePoolAndAudioData.cs" id="1_unemj"]
+[ext_resource type="PackedScene" uid="uid://bgib2fg35hf6s" path="res://CoreTools/SceneTransitionManager/Scene/SceneOne/ExampleScene1.tscn" id="2_amxpe"]
+
+[resource]
+script = ExtResource("1_unemj")
+mSceneReference = ExtResource("2_amxpe")
+mPoolableObjectsData = ExtResource("1_1pauc")
