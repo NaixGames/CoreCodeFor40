@@ -17,12 +17,12 @@ namespace CoreCode.Scripts{
 
 		// ------------------------------------Variables 
 		
+		[Export] public ScenePoolAndAudioData SceneData;
 		[Export] public NodePath NonPersistentElementsPath;
 		[Export] public NodePath PersistentElementsPath;
-		[Export] public NodePath ObjectPoolerNodePath;
 		public Node NonPersistentElements;
 		public Node PersistentElements;
-		public Node ObjectPoolerNode;
+
 
 
 		// ------------------------------------ Method to queue without anoying references staying arround
@@ -30,7 +30,6 @@ namespace CoreCode.Scripts{
 		public void SceneFinishedLoading(){
 			NonPersistentElements=null;
 			PersistentElements=null;
-			ObjectPoolerNode=null;
 			this.QueueFree();
 		}
 
@@ -41,12 +40,20 @@ namespace CoreCode.Scripts{
 			if (Engine.IsEditorHint()){
 				return;
 			}
+
+			if (SceneData == null)
+			{
+				GD.PushWarning("Scene without scene data!");
+				return;
+			}
+
+			GameObjectPooler.Instance.AddObjectFromPoolData(SceneData.PoolableObjectsData);
 		}
+
 
 		public void GetNodesFromPaths(){
 			NonPersistentElements = this.GetNode(NonPersistentElementsPath);
 			PersistentElements = this.GetNode(PersistentElementsPath);
-			ObjectPoolerNode = this.GetNode(ObjectPoolerNodePath);
-		}
+		} 
 	}
 }

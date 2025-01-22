@@ -1,23 +1,14 @@
-[gd_scene load_steps=6 format=3 uid="uid://bgib2fg35hf6s"]
+[gd_scene load_steps=4 format=3 uid="uid://bgib2fg35hf6s"]
 
 [ext_resource type="Script" path="res://CoreTools/SceneTransitionManager/Script/SceneTransitionReferenceHelper.cs" id="1_mukmp"]
-[ext_resource type="PackedScene" uid="uid://bdfn1p6qmr5du" path="res://CoreTools/SceneTransitionManager/Scene/SceneOne/NPEExampleScene1.tscn" id="2_1a67u"]
 [ext_resource type="Texture2D" uid="uid://dqd4wln1wph42" path="res://icon.svg" id="2_4patg"]
 [ext_resource type="Script" path="res://CoreTools/SceneTransitionManager/Script/SceneTransitionManagerTest.cs" id="3_odkmi"]
-[ext_resource type="Script" path="res://CoreTools/ObjectPooler/Scripts/GameObjectPooler2D.cs" id="3_slpaa"]
 
 [node name="ActualSceneOne" type="Node"]
 script = ExtResource("1_mukmp")
 NonPersistentElementsPath = NodePath("NonPersistentElements")
 PersistentElementsPath = NodePath("PersistentElements")
-ObjectPoolerNodePath = NodePath("ObjectPooler")
 metadata/_edit_vertical_guides_ = [38.0]
-
-[node name="ObjectPooler" type="Node" parent="."]
-script = ExtResource("3_slpaa")
-mPoolPosition = Vector3(200, 600, 0)
-mShouldLog = true
-mLogChannel = "GameObjectPooler"
 
 [node name="PersistentElements" type="Node" parent="."]
 
@@ -30,4 +21,9 @@ modulate = Color(1, 0, 0, 1)
 position = Vector2(826, 352)
 texture = ExtResource("2_4patg")
 
-[node name="NonPersistentElements" parent="." instance=ExtResource("2_1a67u")]
+[node name="NonPersistentElements" type="Node" parent="."]
+
+[node name="Icon" type="Sprite2D" parent="NonPersistentElements"]
+modulate = Color(1, 0, 0, 1)
+position = Vector2(491, 136)
+texture = ExtResource("2_4patg")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://drxehyvydlrnt"]
+[gd_scene load_steps=12 format=3 uid="uid://drxehyvydlrnt"]
 
 [ext_resource type="Script" path="res://CoreTools/LogManager/Scripts/LogManager.cs" id="1_eeq6c"]
 [ext_resource type="Script" path="res://CoreTools/ObjectEventDispatcher/Scripts/GlobalEventDispatcher.cs" id="2_l52b5"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://CoreTools/AchievementManager/Scripts/AchievementManager.cs" id="5_xesqj"]
 [ext_resource type="Script" path="res://CoreTools/Input/InputReader/Scripts/InputEmiterTouch.cs" id="8_foah0"]
 [ext_resource type="Script" path="res://CoreTools/AudioManager/Scripts/AudioPlayersRegister.cs" id="10_1egbf"]
+[ext_resource type="Script" path="res://CoreTools/ObjectPooler/Scripts/GameObjectPooler2D.cs" id="11_rntbi"]
 
 [node name="Managers" type="Node"]
 
@@ -61,3 +62,6 @@ mLogChannel = "Achievements"
 [node name="AudioPlayerRegister" type="Node" parent="."]
 script = ExtResource("10_1egbf")
 mLogChannel = "Audio"
+
+[node name="GameObjectPooler" type="Node" parent="."]
+script = ExtResource("11_rntbi")

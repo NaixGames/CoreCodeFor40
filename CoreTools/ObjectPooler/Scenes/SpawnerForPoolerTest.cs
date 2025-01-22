@@ -4,9 +4,8 @@ using System.Collections.Generic;
 using CoreCode.Scripts;
 
 namespace CoreCode.Example{
-	public partial class SpawnerForPoolerTest : Node
+	public partial class SpawnerForPoolerTest : Node, IControlableByInput
 	{
-		[Export]
 		private InputReaderAbstract mInputReference;
 
 		[Export]
@@ -29,6 +28,7 @@ namespace CoreCode.Example{
 
 		public override void _Ready(){
 			mLog = LogManager.Instance.RequestLog("GameObjectPooler", mShouldLog);
+			mInputReference = InputManager.Instance.GiveInputByPlayerChannel(this, 1);
 		}
 		
 
@@ -36,7 +36,7 @@ namespace CoreCode.Example{
 		{
 			if (mInputReference.IsAxisJustPressedInput("Right")){
 				Vector2 RealOffsetPosition = mPositionSpawn + new Vector2(mAxisTotalOffsetRed,0);
-				Node2D mNewObject = (GameObjectPooler.Instance as GameObjectPooler2D).InstantiateGameObjectIn2D("RedObject", RealOffsetPosition,0);
+				Node2D mNewObject = (GameObjectPooler.Instance as GameObjectPooler2D).InstantiateGameObjectIn2D("RedBlob", RealOffsetPosition,0);
 				mAxisTotalOffsetRed += mXAxisSpawnOffset;
 				mRedObjectStack.Push(mNewObject);
 			}
@@ -51,7 +51,7 @@ namespace CoreCode.Example{
 			}
 			if (mInputReference.IsButtonJustPressedInput("Up")){
 				Vector2 RealOffsetPosition = mPositionSpawn + new Vector2(mAxisTotalOffsetGreen,mYAxisSpawnOffset);
-				Node2D mNewObject = (GameObjectPooler.Instance as GameObjectPooler2D).InstantiateGameObjectIn2D("GreenObject", RealOffsetPosition,0);
+				Node2D mNewObject = (GameObjectPooler.Instance as GameObjectPooler2D).InstantiateGameObjectIn2D("GreenBlob", RealOffsetPosition,0);
 				mAxisTotalOffsetGreen += mXAxisSpawnOffset;
 				mGreenObjectStack.Push(mNewObject);
 			}
@@ -64,6 +64,21 @@ namespace CoreCode.Example{
 				mAxisTotalOffsetGreen -= mXAxisSpawnOffset;
 				GameObjectPooler.Instance.ReturnObjectToPool(mLastGreen);
 			}
+		}
+
+
+		public InputReaderAbstract ReturnInputReader()
+		{
+			return mInputReference;
+		}
+
+		public void ClearInputReader(){
+			mInputReference = InputManager.Instance.NullInputReader;
+		}
+
+		public void RecieveInputReader(InputReaderAbstract inputReaderPath)
+		{
+			mInputReference = inputReaderPath;
 		}
 	}
 }

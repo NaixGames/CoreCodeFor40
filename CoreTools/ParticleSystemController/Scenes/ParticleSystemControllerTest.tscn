@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://cyt2yqilfbu73"]
+
+[ext_resource type="Script" path="res://CoreTools/SceneTransitionManager/Script/SceneTransitionReferenceHelper.cs" id="1_548qe"]
+[ext_resource type="Resource" uid="uid://cmjcgf2g311f6" path="res://CoreTools/ParticleSystemController/Scenes/PSTestSceneData.tres" id="2_14gby"]
+[ext_resource type="Script" path="res://CoreTools/ParticleSystemController/Scripts/ParticleSystemController2D.cs" id="3_oxqhe"]
+
+[node name="ActualParticleSystemController" type="Node"]
+script = ExtResource("1_548qe")
+SceneData = ExtResource("2_14gby")
+NonPersistentElementsPath = NodePath("NPActualParticleSystemController")
+PersistentElementsPath = NodePath("PEParticleSystemController")
+
+[node name="NPActualParticleSystemController" type="Node" parent="."]
+
+[node name="ParticleSystemController" type="Node2D" parent="NPActualParticleSystemController"]
+script = ExtResource("3_oxqhe")
+LocationOne = Vector2(400, 100)
+LocationTwo = Vector2(100, 300)
+LocationThree = Vector2(800, 300)
+
+[node name="AudioBank" type="Node" parent="."]
+
+[node name="PEParticleSystemController" type="Node" parent="."]

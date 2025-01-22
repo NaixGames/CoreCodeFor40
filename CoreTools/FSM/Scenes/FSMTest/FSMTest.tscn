@@ -1,20 +1,26 @@
 [gd_scene load_steps=4 format=3 uid="uid://btss5a2a612os"]
 
 [ext_resource type="Script" path="res://CoreTools/SceneTransitionManager/Script/SceneTransitionReferenceHelper.cs" id="1_tjui5"]
-[ext_resource type="PackedScene" uid="uid://dxfwl1fp2xua7" path="res://CoreTools/FSM/Scenes/FSMTest/NPEFSMTest.tscn" id="2_amjlp"]
-[ext_resource type="Script" path="res://CoreTools/ObjectPooler/Scripts/GameObjectPooler2D.cs" id="3_orevq"]
+[ext_resource type="PackedScene" uid="uid://bqjh0lu0ga1q6" path="res://CoreTools/FSM/Scenes/Actor/Player/player.tscn" id="2_u0l7o"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d7br7"]
 
 [node name="ActualFSMTest" type="Node"]
 script = ExtResource("1_tjui5")
 NonPersistentElementsPath = NodePath("NPActualFSMTest")
 PersistentElementsPath = NodePath("PEFSMTest")
-ObjectPoolerNodePath = NodePath("ObjectPooler")
-
-[node name="ObjectPooler" type="Node" parent="."]
-script = ExtResource("3_orevq")
-
-[node name="AudioBank" type="Node" parent="."]
 
 [node name="PEFSMTest" type="Node" parent="."]
 
-[node name="NPActualFSMTest" parent="." instance=ExtResource("2_amjlp")]
+[node name="NPActualFSMTest" type="Node" parent="."]
+
+[node name="Player" parent="NPActualFSMTest" instance=ExtResource("2_u0l7o")]
+position = Vector2(121, 187)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="NPActualFSMTest"]
+position = Vector2(0, 305)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NPActualFSMTest/StaticBody2D"]
+position = Vector2(529, 297)
+scale = Vector2(100, 1.944)
+shape = SubResource("RectangleShape2D_d7br7")

@@ -17,7 +17,7 @@ namespace CoreCode.Example{
 		[Export] private Vector2 LocationOne;
 		[Export] private Vector2 LocationTwo;
 		[Export] private Vector2 LocationThree;
-		[Export] private InputReaderAbstract mInputReference;
+		private InputReaderAbstract mInputReference;
 		private Stack<PoolableParticleSystem2D> mParticleReferences = new Stack<PoolableParticleSystem2D>();
 		private GameObjectPooler2D mGameObjectPooler;
 

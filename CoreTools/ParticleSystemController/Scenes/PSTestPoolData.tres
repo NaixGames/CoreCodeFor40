@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="PoolSceneData" load_steps=3 format=3 uid="uid://b4ox817tms16v"]
+
+[ext_resource type="Resource" uid="uid://dh1evd60medii" path="res://CoreTools/ParticleSystemController/Scenes/ParticleSystemController/PSEmitterReference.tres" id="1_h8eff"]
+[ext_resource type="Script" path="res://CoreTools/SceneTransitionManager/Script/PoolSceneData.cs" id="1_ilrta"]
+
+[resource]
+script = ExtResource("1_ilrta")
+PoolableObjectsData = {
+ExtResource("1_h8eff"): 10
+}

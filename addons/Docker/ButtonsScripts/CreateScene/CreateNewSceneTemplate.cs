@@ -87,7 +87,6 @@ namespace  CoreCode.Docker
             SceneTransitionReferenceHelper referenceHelper = persistentElements.GetParent() as SceneTransitionReferenceHelper;
             referenceHelper.NonPersistentElementsPath = referenceHelper.GetPathTo(NPElementsInstance);
             referenceHelper.PersistentElementsPath = referenceHelper.GetPathTo(persistentElements);
-            referenceHelper.ObjectPoolerNodePath = referenceHelper.GetPathTo(objectPooler);
 
             //Save the actual scene
             Packer.Pack(referenceHelper);

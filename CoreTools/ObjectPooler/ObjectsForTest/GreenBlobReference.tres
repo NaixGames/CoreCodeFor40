@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="PoolableObjectReference" load_steps=3 format=3 uid="uid://ca721bo0oljmw"]
+
+[ext_resource type="PackedScene" uid="uid://cfwutdbsfce8m" path="res://CoreTools/ObjectPooler/ObjectsForTest/GreenObject.tscn" id="1_j7td7"]
+[ext_resource type="Script" path="res://CoreTools/ObjectPooler/Scripts/PoolableObjectReference.cs" id="2_gyh0w"]
+
+[resource]
+script = ExtResource("2_gyh0w")
+Tag = "GreenBlob"
+Object = ExtResource("1_j7td7")

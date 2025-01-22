@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="ScenePoolAndAudioData" load_steps=3 format=3 uid="uid://cmjcgf2g311f6"]
+
+[ext_resource type="Resource" uid="uid://b4ox817tms16v" path="res://CoreTools/ParticleSystemController/Scenes/PSTestPoolData.tres" id="1_34o5v"]
+[ext_resource type="Script" path="res://CoreTools/SceneTransitionManager/Script/ScenePoolAndAudioData.cs" id="1_xx0u3"]
+
+[resource]
+script = ExtResource("1_xx0u3")
+mPoolableObjectsData = ExtResource("1_34o5v")

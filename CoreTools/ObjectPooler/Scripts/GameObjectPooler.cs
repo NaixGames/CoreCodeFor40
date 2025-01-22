@@ -2,6 +2,7 @@ using Godot;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace CoreCode.Scripts{
 	public abstract partial class GameObjectPooler : SingleNode<GameObjectPooler>
@@ -29,19 +30,12 @@ namespace CoreCode.Scripts{
 		*/
 
 		// Variables
-
-		[Export] protected Godot.Collections.Dictionary<PoolableObjectReference, int> PoolableObjectsInMemoryAmmount = new Godot.Collections.Dictionary<PoolableObjectReference, int>();
 		[Export] protected int mNumberForPoolExpandUponFilling=10;
 		
 		//I think the next two dictionaries can be simplified into a tupple.  
 		protected Dictionary<string, IPoolableObject[]> mObjectPoolerMap = new Dictionary<string, IPoolableObject[]>(); 
 		protected Dictionary<string, PackedScene> mTagToPackedSceneMap = new Dictionary<string, PackedScene>();
 		protected Dictionary<string, int> mIndexForObjectPoolerMap = new Dictionary<string, int>(); //This should now split "used" versus "unused" objects
-
-		[Export] protected Vector3 mPoolPosition; 
-		public Vector3 PoolPosition {
-			get{return mPoolPosition;}
-		}
 
         // -----------------------------------------------------------------------------
 
@@ -52,38 +46,9 @@ namespace CoreCode.Scripts{
         public override void _EnterTree()
         {
             base._EnterTree();
-			//Hook up to the loging system.
-			mLogObject = LogManager.Instance.RequestLog("GameObjectPooler", mShouldLog);
-			
-			//If pool is empty, just return. Shouldn't happen in games, mostly during testing
-			if (PoolableObjectsInMemoryAmmount == null || PoolableObjectsInMemoryAmmount.Count == 0){
-				mLogObject.Print("Object pool information is empty.");
-				return;
-			}
-			
-			//Initiate the game object pooler.
-			foreach (PoolableObjectReference objectReference in PoolableObjectsInMemoryAmmount.Keys){
-				int numberOfCopies = PoolableObjectsInMemoryAmmount[objectReference];
-				IPoolableObject[] mPoolOfAGameObject = new IPoolableObject[numberOfCopies]; //Should initialize array of the given size!
-				mObjectPoolerMap.Add(objectReference.Tag, mPoolOfAGameObject); 
-				mIndexForObjectPoolerMap.Add(objectReference.Tag, 0);
-				mTagToPackedSceneMap.Add(objectReference.Tag, objectReference.Object);
-
-				for (int j=0; j < numberOfCopies; j++){
-					PackedScene sceneReference = objectReference.Object;
-					Node CopyObject = sceneReference.Instantiate();
-					if (!(CopyObject is IPoolableObject)){
-						mLogObject.Print("Trying to use object pooler for an object that is not poolable " + objectReference.Tag);
-					}
-					mPoolOfAGameObject[j] = (IPoolableObject)CopyObject;
-					mPoolOfAGameObject[j].HasPoolReference=true;
-					ReturnObjectToPool(CopyObject);
-				}
-				mLogObject.Print(objectReference.Tag + " instatiated correctly in the object pooler with " + numberOfCopies + " copies");
-			}
 			ProcessMode = ProcessModeEnum.Disabled;
-			mLogObject.Print("Game object pooler instantiated correctly");
 		}
+
 
         public override void _ExitTree()
         {
@@ -101,6 +66,7 @@ namespace CoreCode.Scripts{
 			
 			if (!mObjectPoolerMap.ContainsKey(tag)){
 				mLogObject.Err("Trying to obtain from pool tag " + tag + " which is not in pool!");
+				return null;
 			}
 			if (mIndexForObjectPoolerMap[tag] == mObjectPoolerMap[tag].Length){ //If we arrive at the end of the Pool, we need to expand.
 				mLogObject.Warn(tag + " object requested but non active. Instantiating new copies"); 
@@ -109,7 +75,7 @@ namespace CoreCode.Scripts{
 			IPoolableObject mObjectPooled = mObjectPoolerMap[tag][mIndexForObjectPoolerMap[tag]];
 			Node realParent = Parent != null? Parent : this;
 			realParent.AddChild(mObjectPooled as Node);
-			mIndexForObjectPoolerMap[tag]= (mIndexForObjectPoolerMap[tag]+1);
+			mIndexForObjectPoolerMap[tag] += 1;
 			return mObjectPooled as Node; 
 		}
 
@@ -134,7 +100,7 @@ namespace CoreCode.Scripts{
 		private void EraseObjectPooler(){
 			foreach (string tag in mObjectPoolerMap.Keys){
 				for(int i=0; i< mObjectPoolerMap[tag].Length;i++){
-					(mObjectPoolerMap[tag][i] as Node).Free();
+					(mObjectPoolerMap[tag][i] as Node).Free(); // This makes me afraid it will create bugs in the future, but wont think about
 				}
 			}
 
@@ -154,13 +120,6 @@ namespace CoreCode.Scripts{
 			int IndexOfObjectToPool = Array.IndexOf(mObjectPoolerMap[tag], PoolableVersion);
 			mObjectPoolerMap[tag][IndexOfObjectToPool] = mTemporalForObject;
 			mObjectPoolerMap[tag][mIndexForObjectPoolerMap[tag]] = PoolableVersion;
-			//Put object in position of pool.
-			if (ObjectToPool.IsClass("Node2D")){
-				(ObjectToPool as Node2D).Position = new Vector2(PoolPosition.X, PoolPosition.Y);
-			}
-			if (ObjectToPool.IsClass("Node3D")){
-				(ObjectToPool as Node3D).Position = PoolPosition;
-			}
 			ObjectToPool.GetParent<Node>()?.RemoveChild(ObjectToPool);
 		}
 
@@ -181,21 +140,28 @@ namespace CoreCode.Scripts{
 		// ---------------------- Auxiliar method
 
 		public void ExpandPoolAndGenerateObjects(string tagOfPool){
+			ExpandPoolAndGenerateObjects(tagOfPool, mNumberForPoolExpandUponFilling);
+		}
+
+
+		public void ExpandPoolAndGenerateObjects(string tagOfPool, int ammountToAdd){
 			IPoolableObject[] oldPool = mObjectPoolerMap[tagOfPool]; 
-			IPoolableObject[] newPool = new IPoolableObject[oldPool.Length+mNumberForPoolExpandUponFilling];
+			IPoolableObject[] newPool = new IPoolableObject[oldPool.Length+ammountToAdd];
 			oldPool.CopyTo(newPool, 0);
 			mObjectPoolerMap[tagOfPool] = newPool;
 			for (int i=oldPool.Length; i < newPool.Length; i++){
 				PackedScene sceneReference = mTagToPackedSceneMap[tagOfPool];
 				Node CopyObject = sceneReference.Instantiate();
 				if (!(CopyObject is IPoolableObject)){
-					mLogObject.Print("Trying to use object pooler for an object that is not poolable " + tagOfPool);
+					mLogObject.Err("Trying to use object pooler for an object that is not poolable " + tagOfPool);
+					return;
 				}
 				newPool[i] = CopyObject as IPoolableObject;
 				newPool[i].HasPoolReference=true;
-				ReturnObjectToPool(CopyObject);
+				newPool[i].ReturnToPool();
 			}
 		}
+
 
 		public void ExpandPoolAndAddObject(string tagOfPool, IPoolableObject objectToAdd){
 			IPoolableObject[] oldPool = mObjectPoolerMap[tagOfPool]; 
@@ -203,6 +169,37 @@ namespace CoreCode.Scripts{
 			oldPool.CopyTo(newPool, 0);
 			newPool[newPool.Length-1] = objectToAdd;
 			mObjectPoolerMap[tagOfPool] = newPool;
+		}
+
+
+
+		public void AddObjectFromPoolData(PoolSceneData poolSceneData)
+		{
+			if (poolSceneData == null){
+				mLogObject.Warn("Given object pool information is empty.");
+				return;
+			}
+
+			Godot.Collections.Dictionary<PoolableObjectReference, int> poolObjectData = poolSceneData.PoolableObjectsData;
+
+			//If pool is empty, just return. Shouldn't happen in games, mostly during testing
+			if (poolObjectData == null || poolObjectData.Count == 0){
+				mLogObject.Warn("Given object pool information is empty.");
+				return;
+			}
+
+			//Initiate the game object pooler.
+			foreach (PoolableObjectReference objectReference in poolObjectData.Keys){
+				if (!mObjectPoolerMap.ContainsKey(objectReference.Tag)){
+					IPoolableObject[] poolOfAGameObject = new IPoolableObject[0];
+					mObjectPoolerMap.Add(objectReference.Tag, poolOfAGameObject); 
+					mIndexForObjectPoolerMap.Add(objectReference.Tag, 0);
+					mTagToPackedSceneMap.Add(objectReference.Tag, objectReference.Object);
+				}
+
+				int numberOfCopies = Math.Max(poolObjectData[objectReference]-mObjectPoolerMap[objectReference.Tag].Length, 0);
+				ExpandPoolAndGenerateObjects(objectReference.Tag, numberOfCopies);
+			}
 		}
 
 	}

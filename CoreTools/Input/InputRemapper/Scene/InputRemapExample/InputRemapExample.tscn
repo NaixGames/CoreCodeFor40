@@ -1,21 +1,31 @@
-[gd_scene load_steps=4 format=3 uid="uid://cnwxcg2e7ghu1"]
+[gd_scene load_steps=5 format=3 uid="uid://cnwxcg2e7ghu1"]
 
 [ext_resource type="Script" path="res://CoreTools/SceneTransitionManager/Script/SceneTransitionReferenceHelper.cs" id="1_4msue"]
-[ext_resource type="PackedScene" uid="uid://dcpuylr16p6lh" path="res://CoreTools/Input/InputRemapper/Scene/InputRemapExample/NPEInputRemapExample.tscn" id="2_dsepo"]
-[ext_resource type="Script" path="res://CoreTools/ObjectPooler/Scripts/GameObjectPooler2D.cs" id="3_q8swo"]
+[ext_resource type="PackedScene" uid="uid://bqjh0lu0ga1q6" path="res://CoreTools/FSM/Scenes/Actor/Player/player.tscn" id="3_d8fyt"]
+[ext_resource type="Script" path="res://CoreTools/Input/InputRemapper/Scripts/InputRemapperExample.cs" id="4_py2hq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3xhhg"]
 
 [node name="ActualInputRemapExample" type="Node"]
 script = ExtResource("1_4msue")
 NonPersistentElementsPath = NodePath("NPActualInputRemapExample")
 PersistentElementsPath = NodePath("PEInputRemapExample")
-ObjectPoolerNodePath = NodePath("ObjectPooler")
-AudioBankContainerNodePath = NodePath("AudioBank")
-
-[node name="ObjectPooler" type="Node" parent="."]
-script = ExtResource("3_q8swo")
 
 [node name="AudioBank" type="Node" parent="."]
 
 [node name="PEInputRemapExample" type="Node" parent="."]
 
-[node name="NPActualInputRemapExample" parent="." instance=ExtResource("2_dsepo")]
+[node name="NPActualInputRemapExample" type="Node" parent="."]
+
+[node name="Player" parent="NPActualInputRemapExample" instance=ExtResource("3_d8fyt")]
+position = Vector2(259, 199)
+
+[node name="RemapperNode" type="Node" parent="NPActualInputRemapExample"]
+script = ExtResource("4_py2hq")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="NPActualInputRemapExample"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NPActualInputRemapExample/StaticBody2D"]
+position = Vector2(529, 628)
+scale = Vector2(100, 1.944)
+shape = SubResource("RectangleShape2D_3xhhg")

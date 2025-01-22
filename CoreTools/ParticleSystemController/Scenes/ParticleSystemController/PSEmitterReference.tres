@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="PoolableObjectReference" load_steps=3 format=3 uid="uid://dh1evd60medii"]
+
+[ext_resource type="PackedScene" uid="uid://cfgiyj3qd8d8h" path="res://CoreTools/ParticleSystemController/Scenes/ParticleSystemController/PSEmitter.tscn" id="1_64mue"]
+[ext_resource type="Script" path="res://CoreTools/ObjectPooler/Scripts/PoolableObjectReference.cs" id="1_b0ili"]
+
+[resource]
+script = ExtResource("1_b0ili")
+Tag = "PSEmitter"
+Object = ExtResource("1_64mue")

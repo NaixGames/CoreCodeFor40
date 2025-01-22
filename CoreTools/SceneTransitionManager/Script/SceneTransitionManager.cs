@@ -40,7 +40,7 @@ namespace CoreCode.Scripts{
 			}
 
 			//First we remove the object pooler, since it is a singleton also present on the other scene.
-			mReferenceHelper.ObjectPoolerNode=null;
+			
 			if (GameObjectPooler.Instance != null)
 			{
 				GameObjectPooler.Instance.PoolAllObjects();
@@ -56,11 +56,6 @@ namespace CoreCode.Scripts{
 			Node newActualScene = ResourceLoader.Load<PackedScene>(mSceneDatabase.mSceneNameToPathMapping[sceneName]).Instantiate(); 
 			SceneTransitionReferenceHelper loadedReferenceHelper = (SceneTransitionReferenceHelper) newActualScene;
 			loadedReferenceHelper.GetNodesFromPaths();
-
-			//Add the new object pooler.
-			loadedReferenceHelper.RemoveChild(loadedReferenceHelper.ObjectPoolerNode);
-			ProcessNewElements(loadedReferenceHelper.ObjectPoolerNode);
-			mReferenceHelper.ObjectPoolerNode = loadedReferenceHelper.ObjectPoolerNode;
 
 			//Change the persistent elements for the new ones.
 			loadedReferenceHelper.PersistentElements.GetParent<Node>().RemoveChild(loadedReferenceHelper.PersistentElements);
