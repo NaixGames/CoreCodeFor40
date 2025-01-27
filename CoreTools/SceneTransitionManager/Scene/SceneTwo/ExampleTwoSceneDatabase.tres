@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="ScenePoolAndAudioData" load_steps=3 format=3 uid="uid://brk2au3hlre7"]
+
+[ext_resource type="Resource" uid="uid://cd6ttr20ctm1b" path="res://CoreTools/SceneTransitionManager/Scene/SceneTwo/PoolSceneDatabase.tres" id="1_alnwi"]
+[ext_resource type="Script" path="res://CoreTools/SceneTransitionManager/Script/ScenePoolAndAudioData.cs" id="1_wmmvj"]
+
+[resource]
+script = ExtResource("1_wmmvj")
+mPoolableObjectsData = ExtResource("1_alnwi")

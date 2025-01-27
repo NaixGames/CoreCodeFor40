@@ -34,7 +34,7 @@ script = ExtResource("2_l52b5")
 
 [node name="SceneTransitionManager" type="Node" parent="."]
 script = ExtResource("3_xb83e")
-mSceneDatabase = ExtResource("4_ygubc")
+mIdToPackedSceneAsset = ExtResource("4_ygubc")
 mLogChannel = "SceneTransitions"
 
 [node name="InputManager" type="Node" parent="."]

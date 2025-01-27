@@ -1,5 +1,5 @@
 using Godot;
-
+using System.Threading.Tasks;
 
 namespace CoreCode.Scripts{
 	[Tool]
@@ -15,23 +15,17 @@ namespace CoreCode.Scripts{
 		support shaders for scene transition to make this transition (duh) more smooth*/
 
 		// Variables
-		[Export] private SceneDatabase mSceneDatabase;
+		[Export] private SceneDatabase mIdToPackedSceneAsset;
 		[Export] private SceneTransitionAnimator mSceneTransitionAnimator;
 		public SceneTransitionAnimator SceneTransitionAnimator => mSceneTransitionAnimator;
 		private SceneTransitionReferenceHelper mReferenceHelper;
-
 		private bool mIsLoading;
 		public bool IsLoading => mIsLoading;
 		
 
 		// Methods 
 
-		public async void HeavyTransitionToNewScene(string sceneName, int fadeDuration = -1){
-			if (!mSceneDatabase.mSceneNameToPathMapping.ContainsKey(sceneName)){
-				mLogObject.Err("trying to load scene not loaded in Scene database named: " + sceneName);
-				return;
-			}
-
+		public async void TransitionToNewScene(PackedScene sceneToLoad, bool isHeavyLoad = true, int fadeDuration = -1, bool cleanPooler = false){
 			EmitSignal(SignalName.OnSceneLoadingStarted);
 			mIsLoading = true;
 
@@ -39,84 +33,57 @@ namespace CoreCode.Scripts{
 				await mSceneTransitionAnimator.DoFadeOutAnimation(fadeDuration);
 			}
 
-			//First we remove the object pooler, since it is a singleton also present on the other scene.
-			
-			if (GameObjectPooler.Instance != null)
+			GameObjectPooler.Instance.PoolAllObjects();
+
+			if (cleanPooler)
 			{
-				GameObjectPooler.Instance.PoolAllObjects();
-				GameObjectPooler.Instance.Free();
+				GameObjectPooler.Instance.CleanObjectPooler();
 			}
-			//For a similar reason we erase the other elements. Dont want two of the same thing of a scene. But we keep the parent for adding nodes later.
-			mReferenceHelper.PersistentElements.QueueFree();
-			mReferenceHelper.PersistentElements=null;
-			mReferenceHelper.NonPersistentElements.QueueFree();
-			mReferenceHelper.NonPersistentElements=null;
 
 			//We load the other scene
-			Node newActualScene = ResourceLoader.Load<PackedScene>(mSceneDatabase.mSceneNameToPathMapping[sceneName]).Instantiate(); 
+			Node newActualScene = sceneToLoad.Instantiate(); 
 			SceneTransitionReferenceHelper loadedReferenceHelper = (SceneTransitionReferenceHelper) newActualScene;
-			loadedReferenceHelper.GetNodesFromPaths();
-
-			//Change the persistent elements for the new ones.
-			loadedReferenceHelper.PersistentElements.GetParent<Node>().RemoveChild(loadedReferenceHelper.PersistentElements);
-			ProcessNewElements(loadedReferenceHelper.PersistentElements);
-			mReferenceHelper.PersistentElements = loadedReferenceHelper.PersistentElements;
-
-			//Change the non persistent elements for the new ones.
-			loadedReferenceHelper.NonPersistentElements.GetParent<Node>().RemoveChild(loadedReferenceHelper.NonPersistentElements);
-			ProcessNewElements(loadedReferenceHelper.NonPersistentElements);
-			mReferenceHelper.NonPersistentElements = loadedReferenceHelper.NonPersistentElements;
-			
-			//Free the loaded scene from memory
-			loadedReferenceHelper.SceneFinishedLoading();	
-
-			if (mSceneTransitionAnimator != null){
-				await mSceneTransitionAnimator.DoFadeInAnimation(fadeDuration);
-			}		
-
-			mIsLoading = false;
-			EmitSignal(SignalName.OnSceneLoadingEnded);
-		}
-
-		public async void LightTransitionToNewScene(string sceneName, int fadeDuration = -1){
-			if (!mSceneDatabase.mNonPersistantSceneNameToPathMapping.ContainsKey(sceneName)){
-				mLogObject.Err("trying to load scene not loaded in Scene database named: " + sceneName);
+			if (loadedReferenceHelper == null)
+			{
+				mLogObject.Err("Tried to load a scene without the correct format. This wont work!");
 				return;
 			}
-			
-			EmitSignal(SignalName.OnSceneLoadingStarted);
-			mIsLoading = true;
+			loadedReferenceHelper.GetNodesFromPaths();
 
-			if (mSceneTransitionAnimator != null){
-				await mSceneTransitionAnimator.DoFadeOutAnimation(fadeDuration);
-			}
-
-			if (GameObjectPooler.Instance != null)
-			{
-				GameObjectPooler.Instance.PoolAllObjects();
-			}
-			
-			mReferenceHelper.NonPersistentElements.QueueFree();
-
-			Node newNonPersitanceScene = ResourceLoader.Load<PackedScene>(mSceneDatabase.mNonPersistantSceneNameToPathMapping[sceneName]).Instantiate(); 
-
-			//Change the non persistent elements for the new ones.
-			ProcessNewElements(newNonPersitanceScene);
-			mReferenceHelper.NonPersistentElements = newNonPersitanceScene;
+			SetupNewScene(loadedReferenceHelper, isHeavyLoad);
 
 			if (mSceneTransitionAnimator != null){
 				await mSceneTransitionAnimator.DoFadeInAnimation(fadeDuration);
-			}	
+			}
 
 			mIsLoading = false;
 			EmitSignal(SignalName.OnSceneLoadingEnded);
 		}
 
 
-		private void ProcessNewElements(Node newElementsNode){
-			newElementsNode.Owner = null;
-			mReferenceHelper.AddChild(newElementsNode);
-			newElementsNode.Owner = mReferenceHelper.Owner;
+		public void TransitionToNewScene(string sceneIdToLoad, bool isHeavyLoad = true, int fadeDuration = -1, bool cleanPooler = false){
+			if (!mIdToPackedSceneAsset.SceneIdToPackedScene.ContainsKey(sceneIdToLoad)){
+				mLogObject.Err("Trying to load scene id that does not exist!" + sceneIdToLoad);
+			}
+
+			TransitionToNewScene(mIdToPackedSceneAsset.SceneIdToPackedScene[sceneIdToLoad], isHeavyLoad, fadeDuration, cleanPooler);
+		}
+
+
+
+		private void SetupNewScene(SceneTransitionReferenceHelper newScene, bool isHeavyLoad)
+		{
+			if (!isHeavyLoad){
+				newScene.PersistentElements.QueueFree();
+				Node pastPersistentElements = mReferenceHelper.PersistentElements;
+				newScene.PersistentElements = pastPersistentElements;
+				mReferenceHelper.RemoveChild(mReferenceHelper.PersistentElements);
+				newScene.AddChild(pastPersistentElements);
+			}	
+
+			mReferenceHelper.QueueFree();
+			mReferenceHelper = newScene;
+			GetTree().Root.AddChild(mReferenceHelper);
 		}
 
 
@@ -129,12 +96,7 @@ namespace CoreCode.Scripts{
 		}
 
 
-		private void Initialize(){			
-			//If we dont have a SceneDatabase give a warning.
-			if (mSceneDatabase == null){
-				mLogObject.Warn("No scene database provided. No scene transition will be posible!");
-			}	
-			
+		private void Initialize(){
 			foreach (Node childNode in GetTree().Root.GetChildren()){
 				mReferenceHelper = childNode as SceneTransitionReferenceHelper;
 				if (mReferenceHelper != null){

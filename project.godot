@@ -40,6 +40,7 @@ enabled=PackedStringArray("res://addons/Docker/plugin.cfg", "res://addons/NaixIn
 
 report/godot/push_error=true
 report/verbose_orphans=false
+settings/test/test_lookup_folder="TestsSource"
 
 [input]
 

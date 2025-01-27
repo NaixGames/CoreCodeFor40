@@ -39,21 +39,21 @@ namespace CoreCode.Example{
 		{
 			if (mInputReader.IsButtonJustPressedInput("Up")){
 				if (mHeavyLoad){
-					SceneTransitionManager.Instance.HeavyTransitionToNewScene("ExampleScene1");
+					SceneTransitionManager.Instance.TransitionToNewScene("ExampleScene1", true);
 					return;
 				}
 				else{
-					SceneTransitionManager.Instance.LightTransitionToNewScene("ExampleScene1");
+					SceneTransitionManager.Instance.TransitionToNewScene("ExampleScene1", false);
 					return;
 				}
 			}
 			if (mInputReader.IsButtonJustPressedInput("Down")){
 				if (mHeavyLoad){
-					SceneTransitionManager.Instance.HeavyTransitionToNewScene("ExampleScene2");
+					SceneTransitionManager.Instance.TransitionToNewScene("ExampleScene2", true);
 					return;
 				}
 				else{
-					SceneTransitionManager.Instance.LightTransitionToNewScene("ExampleScene2");
+					SceneTransitionManager.Instance.TransitionToNewScene("ExampleScene2", false);
 					return;
 				}
 			}

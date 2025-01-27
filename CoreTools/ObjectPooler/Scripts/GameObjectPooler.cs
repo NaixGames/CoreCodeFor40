@@ -52,8 +52,8 @@ namespace CoreCode.Scripts{
 
         public override void _ExitTree()
         {
+			CleanObjectPooler();
             base._ExitTree();
-			EraseObjectPooler();
         }
 
         // ------------------------- Methods
@@ -97,7 +97,7 @@ namespace CoreCode.Scripts{
 
 		//Method to erase the object pooler. Usefull to replace it with anotherone on level changes
 
-		private void EraseObjectPooler(){
+		public void CleanObjectPooler(){
 			foreach (string tag in mObjectPoolerMap.Keys){
 				for(int i=0; i< mObjectPoolerMap[tag].Length;i++){
 					(mObjectPoolerMap[tag][i] as Node).Free(); // This makes me afraid it will create bugs in the future, but wont think about
@@ -105,6 +105,8 @@ namespace CoreCode.Scripts{
 			}
 
 			mObjectPoolerMap.Clear();
+			mTagToPackedSceneMap.Clear();
+			mIndexForObjectPoolerMap.Clear();
 		}
 
 		// -----------Methods that return a game object to the pool

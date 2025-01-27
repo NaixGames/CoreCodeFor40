@@ -24,16 +24,6 @@ namespace CoreCode.Scripts{
 		public Node PersistentElements;
 
 
-
-		// ------------------------------------ Method to queue without anoying references staying arround
-
-		public void SceneFinishedLoading(){
-			NonPersistentElements=null;
-			PersistentElements=null;
-			this.QueueFree();
-		}
-
-
 		//---------------------------------------------------------------------------
 
 		public override void _Ready(){
@@ -44,6 +34,15 @@ namespace CoreCode.Scripts{
 			if (SceneData == null)
 			{
 				GD.PushWarning("Scene without scene data!");
+				return;
+			}
+
+			//For some reason the testing suite will, in some cases, try to free the object pooler
+			//before this is processed. This is horrible behaviour imo, but for avoiding this breaking
+			//test I will allow only to call this if the object pooler is not null.
+			if (GameObjectPooler.Instance == null){
+				GD.PushWarning("GameObjectPooler does not exists. This should happen outside testing");
+				//Well it shouldn't happen ever, but I cant fix the testing suite. I will try to report when I can
 				return;
 			}
 
