@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="ScenePoolAndAudioData" load_steps=4 format=3 uid="uid://bl8lcy6e5t06o"]
+
+[ext_resource type="Script" path="res://CoreTools/SceneTransitionManager/Script/PoolSceneData.cs" id="1_kk78i"]
+[ext_resource type="Script" path="res://CoreTools/SceneTransitionManager/Script/ScenePoolAndAudioData.cs" id="1_wjilg"]
+
+[sub_resource type="Resource" id="Resource_0wni7"]
+resource_name = "TestScenePoolData"
+script = ExtResource("1_kk78i")
+PoolableObjectsData = {}
+
+[resource]
+resource_name = "TestSceneSceneData"
+script = ExtResource("1_wjilg")
+PoolableObjectsData = SubResource("Resource_0wni7")

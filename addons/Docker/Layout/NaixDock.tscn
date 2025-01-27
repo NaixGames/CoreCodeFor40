@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://addons/Docker/DockerExpandingButton.cs" id="2_hbtqo"]
 [ext_resource type="PackedScene" uid="uid://6ichkjaxn0iv" path="res://addons/Docker/ButtonsScripts/CreateScene/NewScene.tscn" id="2_mp4a5"]
 [ext_resource type="Texture2D" uid="uid://c60axen41iigm" path="res://EditorAssets/Images/ExpandableButtomIcon.png" id="2_tl2x1"]
-[ext_resource type="PackedScene" path="res://addons/Docker/ButtonsScripts/CreateFSM/CreateFSM.tscn" id="3_x4wk1"]
+[ext_resource type="PackedScene" uid="uid://daevflydnkhhl" path="res://addons/Docker/ButtonsScripts/CreateFSM/CreateFSM.tscn" id="3_x4wk1"]
 
 [node name="NaixDock" type="VBoxContainer"]
 offset_top = 1.0
@@ -56,6 +56,10 @@ layout_mode = 2
 item_count = 2
 item_0/text = "2D"
 item_1/text = "3D"
+
+[node name="CreatePoolData" type="CheckBox" parent="SceneTemplateCreationBox"]
+layout_mode = 2
+text = "Create Pool data"
 
 [node name="NewScene" parent="SceneTemplateCreationBox" instance=ExtResource("2_mp4a5")]
 layout_mode = 2

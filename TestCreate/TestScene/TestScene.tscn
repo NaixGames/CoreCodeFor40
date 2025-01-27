@@ -1,0 +1,25 @@
+[gd_scene load_steps=6 format=3 uid="uid://cvdarwpn7seqo"]
+
+[ext_resource type="Script" path="res://CoreTools/SceneTransitionManager/Script/SceneTransitionReferenceHelper.cs" id="1_uhw21"]
+[ext_resource type="Script" path="res://CoreTools/SceneTransitionManager/Script/PoolSceneData.cs" id="2_m6ds1"]
+[ext_resource type="Script" path="res://CoreTools/SceneTransitionManager/Script/ScenePoolAndAudioData.cs" id="2_oddw5"]
+
+[sub_resource type="Resource" id="Resource_0wni7"]
+resource_name = "TestScenePoolData"
+script = ExtResource("2_m6ds1")
+PoolableObjectsData = {}
+
+[sub_resource type="Resource" id="Resource_l85oa"]
+resource_name = "TestSceneSceneData"
+script = ExtResource("2_oddw5")
+PoolableObjectsData = SubResource("Resource_0wni7")
+
+[node name="TestScene" type="Node"]
+script = ExtResource("1_uhw21")
+SceneData = SubResource("Resource_l85oa")
+NonPersistentElementsPath = NodePath("NPETestScene")
+PersistentElementsPath = NodePath("PETestScene")
+
+[node name="PETestScene" type="Node" parent="."]
+
+[node name="NPETestScene" type="Node" parent="."]
