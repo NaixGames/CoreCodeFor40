@@ -26,7 +26,7 @@ namespace CoreCode.Scripts{
 
 		//---------------------------------------------------------------------------
 
-		public override void _Ready(){
+		public override void _EnterTree(){
 			if (Engine.IsEditorHint()){
 				return;
 			}

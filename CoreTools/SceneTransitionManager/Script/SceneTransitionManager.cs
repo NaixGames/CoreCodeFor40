@@ -31,6 +31,7 @@ namespace CoreCode.Scripts{
 
 			if (mSceneTransitionAnimator != null){
 				await mSceneTransitionAnimator.DoFadeOutAnimation(fadeDuration);
+				EmitSignal(SignalName.OnSceneFadeOutEnded);
 			}
 
 			GameObjectPooler.Instance.PoolAllObjects();
@@ -54,6 +55,7 @@ namespace CoreCode.Scripts{
 
 			if (mSceneTransitionAnimator != null){
 				await mSceneTransitionAnimator.DoFadeInAnimation(fadeDuration);
+				EmitSignal(SignalName.OnSceneFadeInEnded);
 			}
 
 			mIsLoading = false;
@@ -106,7 +108,7 @@ namespace CoreCode.Scripts{
 
 			if (mReferenceHelper == null){
 				mLogObject.Warn("No reference SceneTransitionReferenceHelper as base. Audio and Scene Transitions will not work correclty");
-				return;		
+				return;
 			}
 	
 			mReferenceHelper.GetNodesFromPaths();
@@ -116,6 +118,11 @@ namespace CoreCode.Scripts{
 		//Signals
 		[Signal]
 		public delegate void OnSceneLoadingStartedEventHandler();
+		[Signal]
+		public delegate void OnSceneFadeOutEndedEventHandler();
+
+		[Signal]
+		public delegate void OnSceneFadeInEndedEventHandler();
 
 		[Signal]
 		public delegate void OnSceneLoadingEndedEventHandler();
