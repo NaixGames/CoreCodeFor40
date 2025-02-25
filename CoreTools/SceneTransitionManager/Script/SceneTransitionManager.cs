@@ -34,11 +34,14 @@ namespace CoreCode.Scripts{
 				EmitSignal(SignalName.OnSceneFadeOutEnded);
 			}
 
-			GameObjectPooler.Instance.PoolAllObjects();
 
 			if (cleanPooler)
 			{
 				GameObjectPooler.Instance.CleanObjectPooler();
+			}
+			else
+			{
+				GameObjectPooler.Instance.PoolAllObjects();
 			}
 
 			//We load the other scene
@@ -64,11 +67,11 @@ namespace CoreCode.Scripts{
 
 
 		public void TransitionToNewScene(string sceneIdToLoad, bool isHeavyLoad = true, int fadeDuration = -1, bool cleanPooler = false){
-			if (!mIdToPackedSceneAsset.SceneIdToPackedScene.ContainsKey(sceneIdToLoad)){
+			if (!mIdToPackedSceneAsset.SceneIdtoPath.ContainsKey(sceneIdToLoad)){
 				mLogObject.Err("Trying to load scene id that does not exist!" + sceneIdToLoad);
 			}
-
-			TransitionToNewScene(mIdToPackedSceneAsset.SceneIdToPackedScene[sceneIdToLoad], isHeavyLoad, fadeDuration, cleanPooler);
+			
+			TransitionToNewScene(mIdToPackedSceneAsset.SceneIdtoPath[sceneIdToLoad], isHeavyLoad, fadeDuration, cleanPooler);
 		}
 
 
@@ -118,6 +121,7 @@ namespace CoreCode.Scripts{
 		//Signals
 		[Signal]
 		public delegate void OnSceneLoadingStartedEventHandler();
+		
 		[Signal]
 		public delegate void OnSceneFadeOutEndedEventHandler();
 

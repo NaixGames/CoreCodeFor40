@@ -6,13 +6,9 @@ using System.Collections.Generic;
 namespace CoreCode.Scripts{
 	public partial class GameObjectPooler3D : GameObjectPooler
 	{
-		// ----------------------------------- Information ------------------------------------------------
+		// Information
 		/*Actual instantiable class of GameObjectPooler to use in 3D scenes. */
-
-		// -----------------------------------------------------------------------------
-
-
-
+		
 		public Node3D InstantiateGameObjectIn3D(string tag, Vector3 Position, Vector3 Rotation, Node Parent = null){
 			Node3D gameObject = (Node3D)GiveObject(tag, Parent);
 			gameObject.GlobalPosition = Position;

@@ -15,7 +15,7 @@ namespace CoreCode.Scripts{
         
         // ----------------------------------- Variables
 
-        [Export] public Godot.Collections.Dictionary<string, PackedScene> SceneIdToPackedScene = new Godot.Collections.Dictionary<string, PackedScene>();
+        [Export] public Godot.Collections.Dictionary<string, PackedScene> SceneIdtoPath = new Godot.Collections.Dictionary<string, PackedScene>();
 
 
     }

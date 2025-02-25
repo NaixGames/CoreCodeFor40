@@ -6,12 +6,8 @@ using System.Collections.Generic;
 namespace CoreCode.Scripts{
 	public partial class GameObjectPooler2D : GameObjectPooler
 	{
-		// ----------------------------------- Information ------------------------------------------------
+		// Information 
 		/*Actual instantiable class of GameObjectPooler to use in 2D scenes. */
-
-		// -----------------------------------------------------------------------------
-
-
 
 		public Node2D InstantiateGameObjectIn2D(string tag, Vector2 Position, float Rotation=0f, Node Parent = null){
 			Node2D gameObject = (Node2D)GiveObject(tag, Parent);

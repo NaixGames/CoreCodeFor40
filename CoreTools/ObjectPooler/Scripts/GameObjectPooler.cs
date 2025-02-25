@@ -86,10 +86,13 @@ namespace CoreCode.Scripts{
 		// -----------Methods to manage the pool
 		
 
-		//Method to reset the object pooler when loading new scene
+		//Method to reset the object pooler when loading new scene.
+		//Note we run from the left of the current index, all the way down to 0.
+		//That way we ensure not to run through elements twice, or have problems
+		//with indices due to object swapping.
 		public void PoolAllObjects(){
 			foreach (string tag in mObjectPoolerMap.Keys){
-				for(int i=0; i< mObjectPoolerMap[tag].Length;i++){
+				for(int i = mIndexForObjectPoolerMap[tag] - 1; i >= 0; i--){
 					ReturnObjectToPool(mObjectPoolerMap[tag][i] as Node);
 				}
 			}
@@ -114,6 +117,10 @@ namespace CoreCode.Scripts{
 		public void ReturnObjectToPool(Node ObjectToPool){
 			//This method is to return active objects to the pool
 			IPoolableObject PoolableVersion = (IPoolableObject)ObjectToPool;
+			if (!PoolableVersion.IsObjectActive)
+			{
+				return;
+			}
 			string tag = PoolableVersion.TagObject;
 			PoolableVersion.ReturnToPool();
 			//Make sure to mantain all inactive objects at "the right" of the index.
