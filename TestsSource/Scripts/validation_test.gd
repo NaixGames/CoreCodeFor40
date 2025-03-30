@@ -18,16 +18,12 @@ func _init() -> void:
 		test_data.append([resource.resource_path.split("/", false)[-1], resource])
 
 func collect_assets(inspection_path: String) -> void:
-	print("collecting assets at " + inspection_path)
 	var dir := DirAccess.open(inspection_path)
 	if dir:
 		dir.list_dir_begin()
 		var file_name := dir.get_next()
 		while file_name != "":
 			if not dir.current_is_dir():
-				print("TESTING")
-				print(file_name)
-				print(inspection_path + file_name)
 				if ResourceLoader.exists(inspection_path + file_name):
 					var asset = ResourceLoader.load(inspection_path + file_name, "Resource", ResourceLoader.CacheMode.CACHE_MODE_IGNORE)
 					#if we need to validate other type of assets, we should here add them to different categories for validation
