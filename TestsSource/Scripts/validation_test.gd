@@ -24,12 +24,14 @@ func collect_assets(inspection_path: String) -> void:
 		var file_name := dir.get_next()
 		while file_name != "":
 			if not dir.current_is_dir():
-				if ResourceLoader.exists(inspection_path + file_name):
-					var asset = ResourceLoader.load(inspection_path + file_name, "Resource", ResourceLoader.CacheMode.CACHE_MODE_IGNORE)
-					#if we need to validate other type of assets, we should here add them to different categories for validation
-					#right now only need resources, so it is fine
-					if asset is Resource:
-						add_resource_to_test_list_if_needed(asset)
+				if (file_name.split(".", false)[-1] in ["tscn", "tres"]):
+					if ResourceLoader.exists(inspection_path + file_name):
+						var asset = ResourceLoader.load(inspection_path + file_name, "Resource", ResourceLoader.CacheMode.CACHE_MODE_IGNORE)
+						#if we need to validate other type of assets, we should here add them to different categories for validation
+						#right now only need resources, so it is fine
+						if asset is Resource:
+							add_resource_to_test_list_if_needed(asset)
+						#note this asset does NOT need to be freed, as it will be freed by Godot due to ref counting!
 			else:
 				collect_assets(dir.get_current_dir() + "/" + file_name + "/")
 					
