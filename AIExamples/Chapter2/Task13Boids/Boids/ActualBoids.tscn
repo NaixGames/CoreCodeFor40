@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://yf6rrgpsvrit"]
 
-[ext_resource type="Script" path="res://CoreTools/SceneTransitionManager/Script/SceneTransitionReferenceHelper.cs" id="1_y302l"]
+[ext_resource type="Script" uid="uid://cicbr22jq4u6a" path="res://CoreTools/SceneTransitionManager/Script/SceneTransitionReferenceHelper.cs" id="1_y302l"]
 [ext_resource type="PackedScene" uid="uid://dme62006n2c4x" path="res://AIExamples/Chapter2/Task13Boids/Boids/NPActualBoids.tscn" id="2_1wg3x"]
-[ext_resource type="Script" path="res://CoreTools/ObjectPooler/Scripts/GameObjectPooler2D.cs" id="3_1q4ib"]
+[ext_resource type="Script" uid="uid://fuhvvys4ytg" path="res://CoreTools/ObjectPooler/Scripts/GameObjectPooler2D.cs" id="3_1q4ib"]
 
 [node name="ActualBoids" type="Node"]
 script = ExtResource("1_y302l")

@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://r5yq2gwnany1"]
 
-[ext_resource type="Script" path="res://CoreTools/FSM/Scripts/StateMachineAIInput.cs" id="1_3w1se"]
-[ext_resource type="Script" path="res://AIExamples/Chapter2/Task7SeekAndAvoidObstacles/AISeekAndAvoidObstaclesAI/StateManager/AISeekAndAvoidObstaclesAIStateManager.cs" id="2_8hadv"]
+[ext_resource type="Script" uid="uid://bpxwd6ruj1mcc" path="res://CoreTools/FSM/Scripts/StateMachineAIInput.cs" id="1_3w1se"]
+[ext_resource type="Script" uid="uid://57grpektcedh" path="res://AIExamples/Chapter2/Task7SeekAndAvoidObstacles/AISeekAndAvoidObstaclesAI/StateManager/AISeekAndAvoidObstaclesAIStateManager.cs" id="2_8hadv"]
 
 [node name="AISeekAndAvoidObstaclesAIFSM" type="Node" node_paths=PackedStringArray("mStateManager")]
 script = ExtResource("1_3w1se")

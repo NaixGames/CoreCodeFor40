@@ -1,4 +1,7 @@
+class_name  scene_tests
 extends GdUnitTestSuite
+@warning_ignore('unused_parameter')
+@warning_ignore('return_value_discarded')
 
 
 # Called when the node enters the scene tree for the first time.

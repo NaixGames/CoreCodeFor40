@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://cxlltl5jjocxf"]
 
-[ext_resource type="Script" path="res://CoreTools/GameActorReferenceHandler/Script/GameActorReferenceHandler2D.cs" id="1_8p5dc"]
-[ext_resource type="Script" path="res://CoreTools/FSM/Scripts/StateMachineActor.cs" id="2_jn34v"]
+[ext_resource type="Script" uid="uid://cpclkhqgoa2p5" path="res://CoreTools/GameActorReferenceHandler/Script/GameActorReferenceHandler2D.cs" id="1_8p5dc"]
+[ext_resource type="Script" uid="uid://cefpuvbvj8k7c" path="res://CoreTools/FSM/Scripts/StateMachineActor.cs" id="2_jn34v"]
 [ext_resource type="Resource" uid="uid://sq8syb8mwgnw" path="res://ExampleGeneration/ActorTestActor/StateManager/ActorTestActorManagerPointer.tres" id="3_bxnhe"]
 
 [node name="ActorTestActor" type="CharacterBody2D" node_paths=PackedStringArray("StateMachine")]

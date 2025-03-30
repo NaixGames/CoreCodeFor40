@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://bgib2fg35hf6s"]
 
-[ext_resource type="Script" path="res://CoreTools/SceneTransitionManager/Script/SceneTransitionReferenceHelper.cs" id="1_mukmp"]
+[ext_resource type="Script" uid="uid://cicbr22jq4u6a" path="res://CoreTools/SceneTransitionManager/Script/SceneTransitionReferenceHelper.cs" id="1_mukmp"]
 [ext_resource type="Texture2D" uid="uid://dqd4wln1wph42" path="res://icon.svg" id="2_4patg"]
 [ext_resource type="Resource" uid="uid://bvxtqk7h5t17a" path="res://CoreTools/SceneTransitionManager/Scene/SceneOne/ExampleSceneData.tres" id="2_gmf2f"]
-[ext_resource type="Script" path="res://CoreTools/SceneTransitionManager/Script/SceneTransitionManagerTest.cs" id="3_odkmi"]
+[ext_resource type="Script" uid="uid://crvemk6idn4x4" path="res://CoreTools/SceneTransitionManager/Script/SceneTransitionManagerTest.cs" id="3_odkmi"]
 
 [node name="ActualSceneOne" type="Node"]
 script = ExtResource("1_mukmp")

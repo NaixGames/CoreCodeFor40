@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://ciogy3ipr267k"]
 
-[ext_resource type="Script" path="res://CoreTools/SceneTransitionManager/Script/SceneTransitionReferenceHelper.cs" id="1_rlbge"]
+[ext_resource type="Script" uid="uid://cicbr22jq4u6a" path="res://CoreTools/SceneTransitionManager/Script/SceneTransitionReferenceHelper.cs" id="1_rlbge"]
 [ext_resource type="PackedScene" uid="uid://djcgjfgc13flw" path="res://AIExamples/Chapter2/Task6Wander/Wander/NPActualWander.tscn" id="2_cx8wo"]
-[ext_resource type="Script" path="res://CoreTools/ObjectPooler/Scripts/GameObjectPooler2D.cs" id="3_vjt3s"]
+[ext_resource type="Script" uid="uid://fuhvvys4ytg" path="res://CoreTools/ObjectPooler/Scripts/GameObjectPooler2D.cs" id="3_vjt3s"]
 
 [node name="ActualWander" type="Node"]
 script = ExtResource("1_rlbge")

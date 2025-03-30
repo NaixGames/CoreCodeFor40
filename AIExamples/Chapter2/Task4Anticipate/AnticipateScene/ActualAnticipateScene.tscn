@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://ci34gqoakn8dr"]
 
-[ext_resource type="Script" path="res://CoreTools/SceneTransitionManager/Script/SceneTransitionReferenceHelper.cs" id="1_72qtp"]
+[ext_resource type="Script" uid="uid://cicbr22jq4u6a" path="res://CoreTools/SceneTransitionManager/Script/SceneTransitionReferenceHelper.cs" id="1_72qtp"]
 [ext_resource type="PackedScene" uid="uid://cfy1qr7xpu1xj" path="res://AIExamples/Chapter2/Task4Anticipate/AnticipateScene/NPActualAnticipateScene.tscn" id="2_cemqi"]
-[ext_resource type="Script" path="res://CoreTools/ObjectPooler/Scripts/GameObjectPooler2D.cs" id="3_p4gxw"]
+[ext_resource type="Script" uid="uid://fuhvvys4ytg" path="res://CoreTools/ObjectPooler/Scripts/GameObjectPooler2D.cs" id="3_p4gxw"]
 
 [node name="ActualAnticipateScene" type="Node"]
 script = ExtResource("1_72qtp")

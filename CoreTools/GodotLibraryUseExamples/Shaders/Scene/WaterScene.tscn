@@ -2,7 +2,7 @@
 
 [ext_resource type="Material" path="res://CoreTools/GodotLibraryUseExamples/Shaders/Assets/Materials/WaterShaderMaterial.tres" id="1_kih1e"]
 [ext_resource type="Texture2D" uid="uid://3oukyc20gand" path="res://CoreTools/GodotLibraryUseExamples/Shaders/Assets/PNGS/water_diffuse.png" id="2_44c3d"]
-[ext_resource type="Script" path="res://CoreTools/GodotLibraryUseExamples/Shaders/Scripts/WaterDiffuseScript.cs" id="3_hvsmu"]
+[ext_resource type="Script" uid="uid://yddqtbgkok1r" path="res://CoreTools/GodotLibraryUseExamples/Shaders/Scripts/WaterDiffuseScript.cs" id="3_hvsmu"]
 
 [node name="WaterScene" type="Node2D"]
 

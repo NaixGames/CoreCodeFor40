@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://cfgiyj3qd8d8h"]
 
 [ext_resource type="Texture2D" uid="uid://dqd4wln1wph42" path="res://icon.svg" id="1_vdrka"]
-[ext_resource type="Script" path="res://CoreTools/ObjectPooler/Scripts/PoolableParticleSystem2D.cs" id="2_1p4lf"]
+[ext_resource type="Script" uid="uid://csw76dptppd1q" path="res://CoreTools/ObjectPooler/Scripts/PoolableParticleSystem2D.cs" id="2_1p4lf"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_o3jxo"]
 particle_flag_disable_z = true

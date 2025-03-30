@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://5wu0didt3jgo"]
 
-[ext_resource type="Script" path="res://CoreTools/FSM/Scripts/StateMachineAIInput.cs" id="1_vo3f6"]
-[ext_resource type="Script" path="res://AIExamples/Chapter2/Task12OffsetPirsuit/AIOffsetPirsuit/StateManager/AIOffsetPirsuitStateManager.cs" id="2_0e57f"]
+[ext_resource type="Script" uid="uid://bpxwd6ruj1mcc" path="res://CoreTools/FSM/Scripts/StateMachineAIInput.cs" id="1_vo3f6"]
+[ext_resource type="Script" uid="uid://cjwf5gcs14vsi" path="res://AIExamples/Chapter2/Task12OffsetPirsuit/AIOffsetPirsuit/StateManager/AIOffsetPirsuitStateManager.cs" id="2_0e57f"]
 
 [node name="AIOffsetPirsuitFSM" type="Node" node_paths=PackedStringArray("mStateManager")]
 script = ExtResource("1_vo3f6")

@@ -1,10 +1,11 @@
-[gd_resource type="Resource" script_class="PoolSceneData" load_steps=3 format=3 uid="uid://b4ox817tms16v"]
+[gd_resource type="Resource" script_class="PoolSceneData" load_steps=4 format=3 uid="uid://b4ox817tms16v"]
 
 [ext_resource type="Resource" uid="uid://dh1evd60medii" path="res://CoreTools/ParticleSystemController/Scenes/ParticleSystemController/PSEmitterReference.tres" id="1_h8eff"]
-[ext_resource type="Script" path="res://CoreTools/SceneTransitionManager/Script/PoolSceneData.cs" id="1_ilrta"]
+[ext_resource type="Script" uid="uid://cxl44xywn4t6b" path="res://CoreTools/SceneTransitionManager/Script/PoolSceneData.cs" id="1_ilrta"]
+[ext_resource type="Script" uid="uid://bf8bm3phq7clu" path="res://CoreTools/ObjectPooler/Scripts/PoolableObjectReference.cs" id="1_veb1b"]
 
 [resource]
 script = ExtResource("1_ilrta")
-PoolableObjectsData = {
+PoolableObjectsData = Dictionary[ExtResource("1_veb1b"), int]({
 ExtResource("1_h8eff"): 10
-}
+})

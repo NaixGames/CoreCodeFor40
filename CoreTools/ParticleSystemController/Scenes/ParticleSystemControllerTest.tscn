@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://cyt2yqilfbu73"]
 
-[ext_resource type="Script" path="res://CoreTools/SceneTransitionManager/Script/SceneTransitionReferenceHelper.cs" id="1_548qe"]
+[ext_resource type="Script" uid="uid://cicbr22jq4u6a" path="res://CoreTools/SceneTransitionManager/Script/SceneTransitionReferenceHelper.cs" id="1_548qe"]
 [ext_resource type="Resource" uid="uid://cmjcgf2g311f6" path="res://CoreTools/ParticleSystemController/Scenes/PSTestSceneData.tres" id="2_14gby"]
-[ext_resource type="Script" path="res://CoreTools/ParticleSystemController/Scripts/ParticleSystemController2D.cs" id="3_oxqhe"]
+[ext_resource type="Script" uid="uid://dqsl8ekf1d8s2" path="res://CoreTools/ParticleSystemController/Scripts/ParticleSystemController2D.cs" id="3_oxqhe"]
 
 [node name="ActualParticleSystemController" type="Node"]
 script = ExtResource("1_548qe")

@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bog0ee8f2itxe"]
 
-[ext_resource type="Script" path="res://CoreTools/FSM/Scripts/StateMachineAIInput.cs" id="1_ultfi"]
-[ext_resource type="Script" path="res://AIExamples/Chapter2/Task13Boids/AIBoid/StateManager/AIBoidStateManager.cs" id="2_tlfdy"]
+[ext_resource type="Script" uid="uid://bpxwd6ruj1mcc" path="res://CoreTools/FSM/Scripts/StateMachineAIInput.cs" id="1_ultfi"]
+[ext_resource type="Script" uid="uid://d3jvr7ey1bbf7" path="res://AIExamples/Chapter2/Task13Boids/AIBoid/StateManager/AIBoidStateManager.cs" id="2_tlfdy"]
 
 [node name="AIBoidFSM" type="Node" node_paths=PackedStringArray("mStateManager")]
 script = ExtResource("1_ultfi")

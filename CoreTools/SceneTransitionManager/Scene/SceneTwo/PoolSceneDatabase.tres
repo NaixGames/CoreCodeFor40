@@ -1,7 +1,8 @@
-[gd_resource type="Resource" script_class="PoolSceneData" load_steps=2 format=3 uid="uid://cd6ttr20ctm1b"]
+[gd_resource type="Resource" script_class="PoolSceneData" load_steps=3 format=3 uid="uid://cd6ttr20ctm1b"]
 
-[ext_resource type="Script" path="res://CoreTools/SceneTransitionManager/Script/PoolSceneData.cs" id="1_rpmhm"]
+[ext_resource type="Script" uid="uid://cxl44xywn4t6b" path="res://CoreTools/SceneTransitionManager/Script/PoolSceneData.cs" id="1_rpmhm"]
+[ext_resource type="Script" uid="uid://bf8bm3phq7clu" path="res://CoreTools/ObjectPooler/Scripts/PoolableObjectReference.cs" id="1_wrerx"]
 
 [resource]
 script = ExtResource("1_rpmhm")
-PoolableObjectsData = {}
+PoolableObjectsData = Dictionary[ExtResource("1_wrerx"), int]({})

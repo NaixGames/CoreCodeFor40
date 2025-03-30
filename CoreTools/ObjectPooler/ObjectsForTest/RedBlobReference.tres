@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="PoolableObjectReference" load_steps=3 format=3 uid="uid://duae8ohucmijq"]
 
 [ext_resource type="PackedScene" uid="uid://bvvert6s6r7ib" path="res://CoreTools/ObjectPooler/ObjectsForTest/RedObject.tscn" id="1_g1fbs"]
-[ext_resource type="Script" path="res://CoreTools/ObjectPooler/Scripts/PoolableObjectReference.cs" id="2_xjf0u"]
+[ext_resource type="Script" uid="uid://bf8bm3phq7clu" path="res://CoreTools/ObjectPooler/Scripts/PoolableObjectReference.cs" id="2_xjf0u"]
 
 [resource]
 script = ExtResource("2_xjf0u")

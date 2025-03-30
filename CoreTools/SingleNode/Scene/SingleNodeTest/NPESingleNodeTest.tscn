@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://btbnxwnaq704k"]
 
-[ext_resource type="Script" path="res://CoreTools/SingleNode/SingleNodeTest.cs" id="1_6tfyt"]
-[ext_resource type="Script" path="res://CoreTools/SingleNode/SingleNodeExample.cs" id="2_ub6jv"]
+[ext_resource type="Script" uid="uid://bjbn12femkyuh" path="res://CoreTools/SingleNode/SingleNodeTest.cs" id="1_6tfyt"]
+[ext_resource type="Script" uid="uid://bjxiu2806ujlc" path="res://CoreTools/SingleNode/SingleNodeExample.cs" id="2_ub6jv"]
 
 [node name="NPESingleNodeTest" type="Node"]
 

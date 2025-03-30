@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://b8bvibp3efkqi"]
 
-[ext_resource type="Script" path="res://CoreTools/GameActorReferenceHandler/Script/GameActorReferenceHandler2D.cs" id="1_ej351"]
-[ext_resource type="Script" path="res://CoreTools/FSM/Scripts/StateMachineActor.cs" id="2_xi6dp"]
+[ext_resource type="Script" uid="uid://cpclkhqgoa2p5" path="res://CoreTools/GameActorReferenceHandler/Script/GameActorReferenceHandler2D.cs" id="1_ej351"]
+[ext_resource type="Script" uid="uid://cefpuvbvj8k7c" path="res://CoreTools/FSM/Scripts/StateMachineActor.cs" id="2_xi6dp"]
 [ext_resource type="Resource" uid="uid://cijneqniyeckq" path="res://AIExamples/Chapter2/ControlablePlayer/ActorPlayerFSM/StateManager/Chapter2AIPlayerSMP.tres" id="3_88nqc"]
 [ext_resource type="Texture2D" uid="uid://dqd4wln1wph42" path="res://icon.svg" id="4_jn0nk"]
 

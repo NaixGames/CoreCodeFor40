@@ -1,6 +1,6 @@
-[gd_scene load_steps=3 format=3]
+[gd_scene load_steps=3 format=3 uid="uid://dhemg6khpfgd7"]
 
-[ext_resource type="Script" path="res://CoreTools/GodotLibraryUseExamples/Tweens/Scripts/TweenUseExample.cs" id="1_m5e4a"]
+[ext_resource type="Script" uid="uid://cvl5s30qwqh3o" path="res://CoreTools/GodotLibraryUseExamples/Tweens/Scripts/TweenUseExample.cs" id="1_m5e4a"]
 [ext_resource type="Texture2D" uid="uid://dqd4wln1wph42" path="res://icon.svg" id="2_l5t7b"]
 
 [node name="TweenUseSceneExample" type="Node2D"]

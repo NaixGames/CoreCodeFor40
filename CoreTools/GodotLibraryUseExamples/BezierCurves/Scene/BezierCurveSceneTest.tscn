@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://g3cq5antyit0"]
 
-[ext_resource type="Script" path="res://CoreTools/GodotLibraryUseExamples/BezierCurves/Scripts/BezierCurveFollowerExample.cs" id="1_1mh0s"]
+[ext_resource type="Script" uid="uid://dv0ncbjbpv25u" path="res://CoreTools/GodotLibraryUseExamples/BezierCurves/Scripts/BezierCurveFollowerExample.cs" id="1_1mh0s"]
 [ext_resource type="Texture2D" uid="uid://dqd4wln1wph42" path="res://icon.svg" id="2_uhr26"]
 
 [sub_resource type="Curve2D" id="Curve2D_6vcyq"]

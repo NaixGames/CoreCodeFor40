@@ -1,13 +1,14 @@
-[gd_scene load_steps=6 format=3 uid="uid://cvdarwpn7seqo"]
+[gd_scene load_steps=7 format=3 uid="uid://cvdarwpn7seqo"]
 
-[ext_resource type="Script" path="res://CoreTools/SceneTransitionManager/Script/SceneTransitionReferenceHelper.cs" id="1_uhw21"]
-[ext_resource type="Script" path="res://CoreTools/SceneTransitionManager/Script/PoolSceneData.cs" id="2_m6ds1"]
-[ext_resource type="Script" path="res://CoreTools/SceneTransitionManager/Script/ScenePoolAndAudioData.cs" id="2_oddw5"]
+[ext_resource type="Script" uid="uid://cicbr22jq4u6a" path="res://CoreTools/SceneTransitionManager/Script/SceneTransitionReferenceHelper.cs" id="1_uhw21"]
+[ext_resource type="Script" uid="uid://cxl44xywn4t6b" path="res://CoreTools/SceneTransitionManager/Script/PoolSceneData.cs" id="2_m6ds1"]
+[ext_resource type="Script" uid="uid://bnjn5ehb7hgmr" path="res://CoreTools/SceneTransitionManager/Script/ScenePoolAndAudioData.cs" id="2_oddw5"]
+[ext_resource type="Script" uid="uid://bf8bm3phq7clu" path="res://CoreTools/ObjectPooler/Scripts/PoolableObjectReference.cs" id="2_vg3fx"]
 
 [sub_resource type="Resource" id="Resource_0wni7"]
 resource_name = "TestScenePoolData"
 script = ExtResource("2_m6ds1")
-PoolableObjectsData = {}
+PoolableObjectsData = Dictionary[ExtResource("2_vg3fx"), int]({})
 
 [sub_resource type="Resource" id="Resource_l85oa"]
 resource_name = "TestSceneSceneData"

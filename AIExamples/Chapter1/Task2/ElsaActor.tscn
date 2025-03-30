@@ -1,10 +1,10 @@
 [gd_scene load_steps=7 format=3 uid="uid://mh03iupw5hrb"]
 
 [ext_resource type="Texture2D" uid="uid://dqd4wln1wph42" path="res://icon.svg" id="1_tr6wq"]
-[ext_resource type="Script" path="res://CoreTools/FSM/Scripts/StateMachineActor.cs" id="2_eta65"]
-[ext_resource type="Script" path="res://AIExamples/Chapter1/Task2/ElsaReferenceHandler.cs" id="2_tlhxv"]
+[ext_resource type="Script" uid="uid://cefpuvbvj8k7c" path="res://CoreTools/FSM/Scripts/StateMachineActor.cs" id="2_eta65"]
+[ext_resource type="Script" uid="uid://bjllnab0h54s1" path="res://AIExamples/Chapter1/Task2/ElsaReferenceHandler.cs" id="2_tlhxv"]
 [ext_resource type="Resource" uid="uid://mu8e04f5dffi" path="res://AIExamples/Chapter1/Task2/ElsaStateManagerPointer.tres" id="3_r5ac1"]
-[ext_resource type="Script" path="res://CoreTools/FSM/Scripts/StateMachineAIInput.cs" id="4_betgs"]
+[ext_resource type="Script" uid="uid://bpxwd6ruj1mcc" path="res://CoreTools/FSM/Scripts/StateMachineAIInput.cs" id="4_betgs"]
 [ext_resource type="Resource" uid="uid://d1iqdrjjl16ri" path="res://AIExamples/Chapter1/Task2/ElsaAIStateManagerPointer.tres" id="5_2xaft"]
 
 [node name="Elsa" type="CharacterBody2D" node_paths=PackedStringArray("StateMachine")]

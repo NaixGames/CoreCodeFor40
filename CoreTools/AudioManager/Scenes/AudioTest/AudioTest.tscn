@@ -1,10 +1,10 @@
 [gd_scene load_steps=6 format=3 uid="uid://dtv2v6rcqfr0d"]
 
-[ext_resource type="Script" path="res://CoreTools/SceneTransitionManager/Script/SceneTransitionReferenceHelper.cs" id="1_to0kj"]
+[ext_resource type="Script" uid="uid://cicbr22jq4u6a" path="res://CoreTools/SceneTransitionManager/Script/SceneTransitionReferenceHelper.cs" id="1_to0kj"]
 [ext_resource type="Resource" uid="uid://cr2dynptymf0w" path="res://CoreTools/AudioManager/Scenes/AudioTest/AudioTestSceneData.tres" id="2_dbmin"]
-[ext_resource type="Script" path="res://CoreTools/AudioManager/Scripts/AudioPhasingTest.cs" id="3_ghcyy"]
+[ext_resource type="Script" uid="uid://c7kpb1n7y22eg" path="res://CoreTools/AudioManager/Scripts/AudioPhasingTest.cs" id="3_ghcyy"]
 [ext_resource type="AudioStream" uid="uid://r7uibnsbd8h0" path="res://CoreTools/AudioManager/Data/AudioStreamInteractiveTest.tres" id="4_cyf5p"]
-[ext_resource type="Script" path="res://CoreTools/AudioManager/Scripts/AudioPlayer.cs" id="5_bbnnr"]
+[ext_resource type="Script" uid="uid://bn5dppssjwurd" path="res://CoreTools/AudioManager/Scripts/AudioPlayer.cs" id="5_bbnnr"]
 
 [node name="ActualAudioTest" type="Node"]
 script = ExtResource("1_to0kj")

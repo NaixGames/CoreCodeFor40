@@ -2,8 +2,8 @@
 
 [ext_resource type="Material" path="res://CoreTools/GodotLibraryUseExamples/Shaders/Assets/Materials/DancingGodotMaterial.tres" id="1_4egsy"]
 [ext_resource type="Texture2D" uid="uid://dqd4wln1wph42" path="res://icon.svg" id="2_kbjid"]
-[ext_resource type="Script" path="res://CoreTools/GodotLibraryUseExamples/Shaders/Scripts/SliderShaderExample.cs" id="3_6ypkl"]
-[ext_resource type="Script" path="res://CoreTools/GodotLibraryUseExamples/Shaders/Scripts/HSliderExtension.cs" id="4_huyuu"]
+[ext_resource type="Script" uid="uid://cslyu8clk0u47" path="res://CoreTools/GodotLibraryUseExamples/Shaders/Scripts/SliderShaderExample.cs" id="3_6ypkl"]
+[ext_resource type="Script" uid="uid://cr0coh0fu8aag" path="res://CoreTools/GodotLibraryUseExamples/Shaders/Scripts/HSliderExtension.cs" id="4_huyuu"]
 
 [node name="DancingGodot" type="Node2D"]
 

@@ -1,6 +1,6 @@
 [gd_resource type="Resource" load_steps=2 format=3 uid="uid://efs7w6s7hjt2"]
 
-[ext_resource type="Script" path="res://CoreTools/FSM/Scenes/Actor/Player/StateManager/TestStateManagerPointer.cs" id="1_yoc44"]
+[ext_resource type="Script" uid="uid://ba468q36f3kt7" path="res://CoreTools/FSM/Scenes/Actor/Player/StateManager/TestStateManagerPointer.cs" id="1_yoc44"]
 
 [resource]
 script = ExtResource("1_yoc44")

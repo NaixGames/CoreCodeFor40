@@ -3,7 +3,7 @@
 [ext_resource type="Material" path="res://CoreTools/GodotLibraryUseExamples/Shaders/Assets/Materials/WaterShaderMaterialWithLight.tres" id="1_cf6pk"]
 [ext_resource type="Texture2D" uid="uid://3oukyc20gand" path="res://CoreTools/GodotLibraryUseExamples/Shaders/Assets/PNGS/water_diffuse.png" id="2_75e34"]
 [ext_resource type="Texture2D" uid="uid://2cspu3be0pnu" path="res://CoreTools/GodotLibraryUseExamples/Shaders/Assets/PNGS/water_normal.png" id="3_josdc"]
-[ext_resource type="Script" path="res://CoreTools/GodotLibraryUseExamples/Shaders/Scripts/WaterDiffuseScript.cs" id="3_sn8a1"]
+[ext_resource type="Script" uid="uid://yddqtbgkok1r" path="res://CoreTools/GodotLibraryUseExamples/Shaders/Scripts/WaterDiffuseScript.cs" id="3_sn8a1"]
 [ext_resource type="Texture2D" uid="uid://cw18xfh1o1cxp" path="res://CoreTools/GodotLibraryUseExamples/Shaders/Assets/PNGS/light.png" id="4_60m78"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_246h8"]

@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://ccuh0yral7wh2"]
 
 [ext_resource type="PackedScene" uid="uid://bqjh0lu0ga1q6" path="res://CoreTools/FSM/Scenes/Actor/Player/player.tscn" id="2_7eywv"]
-[ext_resource type="Script" path="res://CoreTools/Input/InputRemapper/Scripts/InputRemapperExample.cs" id="3_nrjbl"]
-[ext_resource type="Script" path="res://CoreTools/ObjectPooler/Scripts/GameObjectPooler2D.cs" id="3_ry65t"]
+[ext_resource type="Script" uid="uid://blq51lsxotepq" path="res://CoreTools/Input/InputRemapper/Scripts/InputRemapperExample.cs" id="3_nrjbl"]
+[ext_resource type="Script" uid="uid://fuhvvys4ytg" path="res://CoreTools/ObjectPooler/Scripts/GameObjectPooler2D.cs" id="3_ry65t"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ly7ef"]
 

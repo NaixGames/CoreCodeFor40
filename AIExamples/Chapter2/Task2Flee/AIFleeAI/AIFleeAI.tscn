@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dnhbictppirjr"]
 
-[ext_resource type="Script" path="res://CoreTools/FSM/Scripts/StateMachineAIInput.cs" id="1_cnxps"]
-[ext_resource type="Script" path="res://AIExamples/Chapter2/Task2Flee/AIFleeAI/StateManager/AIFleeAIStateManager.cs" id="2_0hdlh"]
+[ext_resource type="Script" uid="uid://bpxwd6ruj1mcc" path="res://CoreTools/FSM/Scripts/StateMachineAIInput.cs" id="1_cnxps"]
+[ext_resource type="Script" uid="uid://ce663djcgvp4d" path="res://AIExamples/Chapter2/Task2Flee/AIFleeAI/StateManager/AIFleeAIStateManager.cs" id="2_0hdlh"]
 
 [node name="AIFleeAIFSM" type="Node" node_paths=PackedStringArray("mStateManager")]
 script = ExtResource("1_cnxps")

@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cyldan7s21bla"]
 
-[ext_resource type="Script" path="res://CoreTools/FSM/Scripts/StateMachineAIInput.cs" id="1_g8ada"]
-[ext_resource type="Script" path="res://AIExamples/Chapter2/Task4Anticipate/AIAnticipateAI/StateManager/AIAnticipateAIStateManager.cs" id="2_mhdrq"]
+[ext_resource type="Script" uid="uid://bpxwd6ruj1mcc" path="res://CoreTools/FSM/Scripts/StateMachineAIInput.cs" id="1_g8ada"]
+[ext_resource type="Script" uid="uid://cchnib4dqddgp" path="res://AIExamples/Chapter2/Task4Anticipate/AIAnticipateAI/StateManager/AIAnticipateAIStateManager.cs" id="2_mhdrq"]
 
 [node name="AIAnticipateAIFSM" type="Node" node_paths=PackedStringArray("mStateManager")]
 script = ExtResource("1_g8ada")

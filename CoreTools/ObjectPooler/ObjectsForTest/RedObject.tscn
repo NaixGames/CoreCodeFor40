@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bvvert6s6r7ib"]
 
-[ext_resource type="Script" path="res://CoreTools/ObjectPooler/Scripts/PoolableObject2D.cs" id="1_43rvu"]
+[ext_resource type="Script" uid="uid://cvfdc6kxbhcfj" path="res://CoreTools/ObjectPooler/Scripts/PoolableObject2D.cs" id="1_43rvu"]
 [ext_resource type="Texture2D" uid="uid://cv2xpplwcwga3" path="res://CoreTools/ObjectPooler/ObjectsForTest/enemy.png" id="1_ddrek"]
 
 [node name="Node2D" type="Node2D"]
