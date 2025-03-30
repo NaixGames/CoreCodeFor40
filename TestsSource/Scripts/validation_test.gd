@@ -30,9 +30,6 @@ func collect_assets(inspection_path: String) -> void:
 					#right now only need resources, so it is fine
 					if asset is Resource:
 						add_resource_to_test_list_if_needed(asset)
-					else:
-						#only keep loaded assets we will use for testing
-						asset.free()
 			else:
 				collect_assets(dir.get_current_dir() + "/" + file_name + "/")
 					
