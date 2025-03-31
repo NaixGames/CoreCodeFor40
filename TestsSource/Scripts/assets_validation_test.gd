@@ -1,4 +1,4 @@
-class_name validation_test
+class_name assets_validation_test
 extends GdUnitTestSuite
 @warning_ignore('unused_parameter')
 
@@ -26,7 +26,7 @@ func collect_assets(inspection_path: String) -> void:
 			if not dir.current_is_dir():
 				if (file_name.split(".", false)[-1] in ["tscn", "tres"]):
 					if ResourceLoader.exists(inspection_path + file_name):
-						var asset = ResourceLoader.load(inspection_path + file_name, "Resource", ResourceLoader.CacheMode.CACHE_MODE_IGNORE)
+						var asset = ResourceLoader.load(inspection_path + file_name, "Resource")
 						#if we need to validate other type of assets, we should here add them to different categories for validation
 						#right now only need resources, so it is fine
 						if asset is Resource:
@@ -53,4 +53,4 @@ func test_object_reference_tag(resource_name: String, resource: Resource, test_p
 		var object_reference = resource as PoolableObjectReference
 		var referenced_object = load(object_reference.Object.resource_path).instantiate()
 		assert_str(object_reference.Tag).append_failure_message("Mismatching object pooler tag for poolable reference:" + object_reference.resource_path).is_equal(referenced_object.TagObject)
-		referenced_object.free()
+		referenced_object.queue_free()
