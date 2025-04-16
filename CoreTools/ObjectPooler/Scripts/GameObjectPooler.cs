@@ -58,6 +58,27 @@ namespace CoreCode.Scripts{
 
         // ------------------------- Methods
 
+		//This method automatically manage whenever the Pool actually exists or not.
+		//This is just for more confortably handling case in which the pooler isnt registered
+
+		public static Node FetchOrInstantiateObject(PoolableObjectReference objectRef, Node Parent = null)
+		{
+			GameObjectPooler gameObjectPooler = GameObjectPooler.Instance;
+	
+			if (gameObjectPooler != null && gameObjectPooler.IsInsideTree()){
+				Node fetchNode = gameObjectPooler.GiveObject(objectRef.Tag, Parent);
+				(fetchNode as IPoolableObject).ActivatePooledObject();
+				return fetchNode;
+			}
+			else{
+				GD.PushWarning("Trying to fetch object " + objectRef.Tag + ", but pooler is not registered. ");
+				Node instancedNode = objectRef.Object.Instantiate();
+				Parent.AddChild(instancedNode);
+				(instancedNode as IPoolableObject).ActivatePooledObject();
+				return instancedNode;
+			}
+		}
+
         // -----------Methods that return a game object from the pool
 
         public Node GiveObject(string tag, Node Parent = null){
@@ -127,6 +148,7 @@ namespace CoreCode.Scripts{
 			mIndexForObjectPoolerMap[tag] = Mathf.Max(mIndexForObjectPoolerMap[tag]-1,0);
 			IPoolableObject mTemporalForObject = mObjectPoolerMap[tag][mIndexForObjectPoolerMap[tag]];
 			int IndexOfObjectToPool = Array.IndexOf(mObjectPoolerMap[tag], PoolableVersion);
+
 			mObjectPoolerMap[tag][IndexOfObjectToPool] = mTemporalForObject;
 			mObjectPoolerMap[tag][mIndexForObjectPoolerMap[tag]] = PoolableVersion;
 			ObjectToPool.GetParent<Node>()?.RemoveChild(ObjectToPool);
@@ -208,6 +230,17 @@ namespace CoreCode.Scripts{
 
 				int numberOfCopies = Math.Max(poolObjectData[objectReference]-mObjectPoolerMap[objectReference.Tag].Length, 0);
 				ExpandPoolAndGenerateObjects(objectReference.Tag, numberOfCopies);
+			}
+		}
+
+
+		public void PrintDebugObjectPooler()
+		{	
+			//THIS SHOULD ONLY BE USED FOR DEBUGGING, DONT USE IT ON BUILD EVER
+			GD.Print("Debug print of object pooler");
+			foreach (string key in mObjectPoolerMap.Keys)
+			{
+				GD.Print("Key:" + key + " with " + mObjectPoolerMap[key].Length + " object");
 			}
 		}
 
